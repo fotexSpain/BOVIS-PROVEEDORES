@@ -104,61 +104,61 @@ if (!file_exists(GLPI_CONFIG_DIR . "/config_db.php")) {
  $strslider = "<ul>
     <li id='no-js-slider-1' class='slide'>
       <img src='pics/ciudad.jpg' class='slideimage'>
-      <div id='proyecto1' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto1' class='proyectos'>PROYECTO 1</div>
       <a class='prev' href='#no-js-slider-10'>prev</a>
       <a class='next' href='#no-js-slider-2'>next</a>
     </li>
     <li id='no-js-slider-2' class='slide'>
       <img src='pics/ciudad2.jpg' class='slideimage'> 
-      <div id='proyecto2' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto2' class='proyectos'>PROYECTO 2</div>
       <a class='prev' href='#no-js-slider-1'>prev</a>
       <a class='next' href='#no-js-slider-3'>next</a>           
     </li>
     <li id='no-js-slider-3' class='slide'>
       <img src='pics/ciudad3.jpg' class='slideimage'>
-      <div id='proyecto3' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto3' class='proyectos'>PROYECTO 3</div>
       <a class='prev' href='#no-js-slider-2'>prev</a>
       <a class='next' href='#no-js-slider-4'>next</a>           
     </li>
     <li id='no-js-slider-4' class='slide'>
       <img src='pics/ciudad4.jpg' class='slideimage'>
-      <div id='proyecto4' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto4' class='proyectos'>PROYECTO 4</div>
       <a class='prev' href='#no-js-slider-3'>prev</a>
       <a class='next' href='#no-js-slider-5'>next</a>          
     </li>
     <li id='no-js-slider-5' class='slide'>
       <img src='pics/ciudad5.jpg' class='slideimage'> 
-      <div id='proyecto5' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto5' class='proyectos'>PROYECTO 5</div>
       <a class='prev' href='#no-js-slider-4'>prev</a> 
       <a class='next' href='#no-js-slider-6'>next</a>
     </li>
     <li id='no-js-slider-6' class='slide'>
       <img src='pics/ciudad6.jpg' class='slideimage'> 
-      <div id='proyecto6' class='proyectos'>Proyecto 1</div>
-      <a class='prev' href='#no-js-slider-5'>prev</a> 
+      <div id='proyecto6' class='proyectos'>PROYECTO 6</div>
+      <a class='prev' href='#no-js-slider-5'>Prev</a> 
       <a class='next' href='#no-js-slider-7'>next</a>
     </li>
     <li id='no-js-slider-7' class='slide'>
       <img src='pics/ciudad7.jpg' class='slideimage'> 
-      <div id='proyecto7' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto7' class='proyectos'>PROYECTO 7</div>
       <a class='prev' href='#no-js-slider-6'>prev</a> 
       <a class='next' href='#no-js-slider-8'>next</a>
     </li>
     <li id='no-js-slider-8' class='slide'>
       <img src='pics/ciudad8.jpg' class='slideimage'> 
-      <div id='proyecto8' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto8' class='proyectos'>PROYECTO 8</div>
       <a class='prev' href='#no-js-slider-7'>prev</a> 
       <a class='next' href='#no-js-slider-9'>next</a>
     </li>
     <li id='no-js-slider-9' class='slide'>
       <img src='pics/ciudad9.jpg' class='slideimage'> 
-      <div id='proyecto9' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto9' class='proyectos'>PROYECTO 9</div>
       <a class='prev' href='#no-js-slider-8'>prev</a> 
       <a class='next' href='#no-js-slider-10'>next</a>
     </li>
     <li id='no-js-slider-10' class='slide'>
       <img src='pics/ciudad10.jpg' class='slideimage'>
-      <div id='proyecto10' class='proyectos'>Proyecto 1</div>
+      <div id='proyecto10' class='proyectos'>PROYECTO 10</div>
       <a id='inicio' class='prev' href='#no-js-slider-9'>prev</a>
       <a class='next' href='#no-js-slider-1'>next</a>          
     </li>
