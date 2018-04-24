@@ -80,14 +80,25 @@ a.prev:hover,a.next:hover {
    
 }
 
-.proyecto {
+.proyectos {
+    font-family: arial,helvetica,sans-serif;
     background-color: #CCC;
+    opacity: 0.8;
     color: #000;
     font-weight: bold;
     position: fixed;
-    left: 300px;
+    width:300px;
+    height:300px;
+    padding: 5px;
+    right: 60px;
     top: 300px;
+    animation-name: anim_proyectos;
+    animation-duration: 2s;
+    animation-direction: reverse;    
 }
+    @keyframes anim_proyectos {
+        100%  {opacity:0; right:0px; top:300px;}
+    }
 
 .slider .slide:target {
     z-index: 100;
