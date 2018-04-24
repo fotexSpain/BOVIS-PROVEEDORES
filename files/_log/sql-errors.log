@@ -1,0 +1,776 @@
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+  Error: Key column 'plugin_machines_machinetypes_id' doesn't exist in table
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+  Error: Key column 'plugin_machines_machinetypes_id' doesn't exist in table
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+  Error: Key column 'plugin_machines_machinetypes_id' doesn't exist in table
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+  Error: Key column 'plugin_machines_machinetypes_id' doesn't exist in table
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+
+  Error: Key column 'plugin_machines_machinetypes_id' doesn't exist in table
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int(11) NOT NULL auto_increment,
+   `entities_id` int(11) NOT NULL default '0',
+   `is_recursive` tinyint(1) NOT NULL default '0',
+   `name` varchar(255) NOT NULL default '',
+   `plugin_machines_machines_id` int(11) NOT NULL default '0',
+   `comment` text,
+   `externalid` varchar(255) NULL,
+   PRIMARY KEY (`id`),
+   KEY `name` (`name`),
+   KEY `entities_id` (`entities_id`),
+    KEY `plugin_machines_machines_id` (`plugin_machines_machines_id`),
+   UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int' at line 25
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int(11) NOT NULL auto_increment,
+   `entities_id` int(11) NOT NULL default '0',
+   `is_recursive` tinyint(1) NOT NULL default '0',
+   `name` varchar(255) NOT NULL default '',
+   `plugin_machines_machines_id` int(11) NOT NULL default '0',
+   `comment` text,
+   `externalid` varchar(255) NULL,
+   PRIMARY KEY (`id`),
+   KEY `name` (`name`),
+   KEY `entities_id` (`entities_id`),
+    KEY `plugin_machines_machines_id` (`plugin_machines_machines_id`),
+   UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int' at line 25
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  *** MySQL query error:
+  SQL: 						
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
+  `id` int(11) NOT NULL auto_increment,
+  `entities_id` int(11) NOT NULL default '0',
+  `is_recursive` tinyint(1) NOT NULL default '0',
+  `name` varchar(255) NOT NULL default '',
+  `states_id` int(11) NOT NULL default '0',
+  `comment` text,
+  `template_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `is_deleted` tinyint(1) NOT NULL default '0', 
+  `is_template` tinyint(1) NOT NULL default '0',
+  `is_helpdesk_visible` 								int(11) NOT NULL default '1',
+  `externalid` varchar(255) NULL,
+  
+  PRIMARY KEY  (`id`),
+  KEY `entities_id` (`entities_id`),
+  KEY `is_deleted` (`is_deleted`),
+  KEY `name` (`name`),
+  KEY `plugin_machines_machinetypes_id` (`plugin_machines_machinetypes_id`),
+  KEY `plugin_machines_machinemarca_id` (`plugin_machines_machinemarca_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int(11) NOT NULL auto_increment,
+   `entities_id` int(11) NOT NULL default '0',
+   `is_recursive` tinyint(1) NOT NULL default '0',
+   `name` varchar(255) NOT NULL default '',
+   `plugin_machines_machines_id` int(11) NOT NULL default '0',
+   `comment` text,
+   `externalid` varchar(255) NULL,
+   PRIMARY KEY (`id`),
+   KEY `name` (`name`),
+   KEY `entities_id` (`entities_id`),
+    KEY `plugin_machines_machines_id` (`plugin_machines_machines_id`),
+   UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE IF NOT EXISTS `glpi_plugin_machines_machineconsumos` (
+   `id` int' at line 25
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:49:09 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:49:32 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:49:36 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:49:36 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:49:48 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:49:49 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:50:11 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:50:52 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:50:52 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:51:00 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:51:04 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:51:04 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:51:24 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:51:24 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:52:36 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:52:40 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:52:41 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:53:07 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:07 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:08 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:08 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:09 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:09 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:53:21 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:53:24 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:53:25 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:55:09 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:55:12 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:55:13 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:55:32 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:55:32 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:55:38 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:55:40 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:55:41 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:55:47 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:55:48 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:56:21 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:56:21 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:56:42 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:56:46 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:56:46 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:56:55 [2@mins002]
+  *** MySQL query error:
+  SQL: UPDATE `glpi_users` SET supplier_id=1 WHERE id=7
+  Error: Unknown column 'supplier_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:61        
+2018-04-16 14:56:55 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_users WHERE supplier_id=1
+  Error: Unknown column 'supplier_id' in 'where clause'
+  Backtrace :
+  plugins/comproveedores/inc/user.class.php:81       
+  plugins/comproveedores/inc/user.class.php:31       PluginComproveedoresUser->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresUser::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-16 14:58:28 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_comproveedores`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_comproveedores'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-16 14:58:28 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_cvs`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_cvs'
+  Backtrace :
+  plugins/comproveedores/hook.php:51                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-18 08:21:39 [7@mins002]
+  *** MySQL query error:
+  SQL: UPDATE glpi_suppliers SET cvs_id=1 WHERE id=1
+  Error: Unknown column 'cvs_id' in 'field list'
+  Backtrace :
+  plugins/comproveedores/front/cv.form.php:31        
+2018-04-20 13:34:08 [2@mins002]
+  *** MySQL query error:
+  SQL: SHOW COLUMNS FROM `glpi_plugin_comproveedores_communities`
+  Error: Table 'glpibovis.glpi_plugin_comproveedores_communities' doesn't exist
+  Backtrace :
+  inc/dbmysql.class.php:402                          
+  inc/commondbtm.class.php:365                       DBmysql->list_fields()
+  inc/commondbtm.class.php:3045                      CommonDBTM->getEmpty()
+  inc/dropdown.class.php:233                         CommonDBTM->isField()
+  ...ins/comproveedores/inc/experience.class.php:199 Dropdown::show()
+  plugins/comproveedores/inc/experience.class.php:33 PluginComproveedoresExperience->showFormItemExperience()
+  plugins/comproveedores/inc/cv.class.php:301        PluginComproveedoresExperience::displayTabContentForItem()
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-20 13:34:08 [2@mins002]
+  *** MySQL query error:
+  SQL: SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=1
+  Error: Table 'glpibovis.glpi_plugin_comproveedores_experiences' doesn't exist
+  Backtrace :
+  ...ins/comproveedores/inc/experience.class.php:281 
+  plugins/comproveedores/inc/experience.class.php:33 PluginComproveedoresExperience->showFormItemExperience()
+  plugins/comproveedores/inc/cv.class.php:301        PluginComproveedoresExperience::displayTabContentForItem()
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-20 13:34:15 [2@mins002]
+  *** MySQL query error:
+  SQL: 
+
+UPDATE `glpi_suppliers` SET cv_id=NULL;
+  Error: Unknown column 'cv_id' in 'field list'
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:52                 DBmysql->runFile()
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-20 13:34:15 [2@mins002]
+  *** MySQL query error:
+  SQL: DROP TABLE `glpi_plugin_comproveedores_experiences`
+  Error: Unknown table 'glpibovis.glpi_plugin_comproveedores_experiences'
+  Backtrace :
+  plugins/comproveedores/hook.php:57                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-20 13:40:08 [2@mins002]
+  *** MySQL query error:
+  SQL: 
+INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
+(1, 'Andalucía'),
+(2,	'Aragón'),
+(3, 'Principado de Asturias'),
+(4, 'Illes Balears'),
+(5, 'Canarias'),
+(6, 'Cantabria'),
+(7, 'Castilla y León'),
+(8, 'Castilla - La Mancha'),
+(9, 'Cataluña'),
+(10, 'Comunitat Valenciana'),
+(11, 'Extremadura'),
+(12, 'Galicia'),
+(13, 'Comunidad de Madrid '),
+(14, 'Región de Murcia'),
+(15, 'Comunidad Foral de Navarra'),
+(16, 'País Vasco'),
+(17, 'La Rioja'),
+(18, 'Ceuta'),
+(19, 'Melilla');
+
+  Error: Duplicate entry '1' for key 'PRIMARY'
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:32                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:40:08 [2@mins002]
+  *** MySQL query error:
+  SQL: 
+INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
+(1, 'Andalucía'),
+(2,	'Aragón'),
+(3, 'Principado de Asturias'),
+(4, 'Illes Balears'),
+(5, 'Canarias'),
+(6, 'Cantabria'),
+(7, 'Castilla y León'),
+(8, 'Castilla - La Mancha'),
+(9, 'Cataluña'),
+(10, 'Comunitat Valenciana'),
+(11, 'Extremadura'),
+(12, 'Galicia'),
+(13, 'Comunidad de Madrid '),
+(14, 'Región de Murcia'),
+(15, 'Comunidad Foral de Navarra'),
+(16, 'País Vasco'),
+(17, 'La Rioja'),
+(18, 'Ceuta'),
+(19, 'Melilla');
+
+  Error: Duplicate entry '1' for key 'PRIMARY'
+  Backtrace :
+  inc/dbmysql.class.php:503                          
+  plugins/comproveedores/hook.php:32                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()

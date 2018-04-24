@@ -1,0 +1,2858 @@
+Test
+Test
+Test
+Test
+Test
+Test
+Test
+2018-04-10 08:22:52 [@mins002]
+  *** PHP Warning(2): get_headers(http://192.168.0.169/Bovis/glpiBovis): failed to open stream: No route to host
+  Backtrace :
+  :                                                  
+  inc/telemetry.class.php:156                        get_headers()
+  inc/telemetry.class.php:49                         Telemetry::grabWebserverInfos()
+  inc/telemetry.class.php:270                        Telemetry::getTelemetryInfos()
+  inc/crontask.class.php:832                         Telemetry::cronTelemetry()
+  front/cron.php:65                                  CronTask::launch()
+2018-04-10 08:51:15 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 09:01:23 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 09:05:47 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:29:43 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:29:44 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:37:29 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:42:03 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:42:03 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:42:20 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:42:20 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:43:34 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:43:42 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:43:43 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:44:05 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:44:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:45:26 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:45:26 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:46:02 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:46:02 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:46:30 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:46:30 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:46:41 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:46:41 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:52:54 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 11:52:54 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 11:58:16 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:10:04 [6@mins002]
+  *** PHP Deprecated function(8192): Non-static method Supplier::showForm() should not be called statically
+  Backtrace :
+  front/helpdesk.public.php:109                      
+2018-04-10 12:10:05 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:10:07 [6@mins002]
+  *** PHP Deprecated function(8192): Non-static method Supplier::showForm() should not be called statically
+  Backtrace :
+  front/helpdesk.public.php:109                      
+2018-04-10 12:10:43 [6@mins002]
+  *** PHP Deprecated function(8192): Non-static method Supplier::showInfocoms() should not be called statically
+  Backtrace :
+  front/helpdesk.public.php:109                      
+2018-04-10 12:10:45 [6@mins002]
+  *** PHP Deprecated function(8192): Non-static method Supplier::showInfocoms() should not be called statically
+  Backtrace :
+  front/helpdesk.public.php:109                      
+2018-04-10 12:11:33 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:11:33 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:13:19 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:13:19 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:15:02 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:15:02 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:20:24 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:20:25 [2@mins002]
+  *** PHP Notice(8): Undefined index: create_cv_on_login
+  Backtrace :
+  inc/profile.class.php:620                          
+  inc/commonglpi.class.php:472                       Profile->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-10 12:27:41 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:27:42 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:28:01 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:28:02 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:29:09 [6@mins002]
+  *** PHP Notice(8): Undefined variable: ticket
+  Backtrace :
+  front/helpdesk.public.php:98                       
+2018-04-10 12:36:33 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:54:50 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:54:53 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:54:54 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:55:11 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:55:12 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:55:29 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:55:29 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 12:55:38 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 12:55:38 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:03:23 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:06:22 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:06:23 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:07:15 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:07:15 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:12:06 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:12:06 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:18:04 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:18:58 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:18:58 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:19:20 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:19:20 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:24:19 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:24:20 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:25:27 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:25:28 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:31:19 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:103                      Supplier->showInfocoms()
+2018-04-10 13:31:20 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:37:53 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:38:03 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:103                      Supplier->showInfocoms()
+2018-04-10 13:38:06 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:38:07 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:38:31 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:103                      Supplier->showInfocoms()
+2018-04-10 13:42:35 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:42:36 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:46:09 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:46:10 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:46:20 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:46:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:47:14 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:47:15 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:48:27 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:48:28 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:48:42 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:48:42 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:49:06 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:106                      Supplier->showInfocoms()
+2018-04-10 13:49:11 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:106                      Supplier->showInfocoms()
+2018-04-10 13:51:23 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:51:24 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:53:03 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:53:03 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:53:13 [6@mins002]
+  *** PHP Notice(8): Undefined index: id
+  Backtrace :
+  inc/supplier.class.php:465                         
+  front/helpdesk.public.php:106                      Supplier->showInfocoms()
+2018-04-10 13:58:55 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:59:15 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:59:15 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 13:59:51 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 13:59:52 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 14:06:52 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_valoraciones method must be defined! 
+2018-04-10 14:06:52 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 14:33:37 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 14:47:12 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 14:49:41 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_comproveedores method must be defined! 
+2018-04-10 14:49:41 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-10 14:55:49 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_comproveedores method must be defined! 
+2018-04-10 14:56:04 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_comproveedores method must be defined! 
+2018-04-10 14:56:04 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 09:01:30 [@mins002]
+  From Plugin::getInfo() in /var/www/html/Bovis/glpiBovis/inc/plugin.class.php line 1374
+  plugin_version_comproveedores method must be defined! 
+2018-04-11 09:25:52 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 09:44:52 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 09:50:20 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 11:13:30 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 11:18:39 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-11 11:58:15 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:40:03 [2@mins002]
+  *** PHP Deprecated function(8192): Non-static method PluginComproveedoresCv::showFormItem() should not be called statically
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:37         
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-12 08:45:03 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:46:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:50:04 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:50:19 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:50:21 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:53:26 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:24 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:54:36 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:40 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:41 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:42 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:43 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:44 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:54:56 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 08:55:06 [6@mins002]
+  *** PHP Notice(8): Undefined variable: addCV
+  Backtrace :
+  front/helpdesk.public.php:104                      
+2018-04-12 08:57:51 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:02:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:04:25 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:18:28 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:18:56 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 09:18:56 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:18:56 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.003", 0.78Mio)
+  TableExists() function is deprecated 
+2018-04-12 09:18:56 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:18:56 [2@mins002]
+  *** PHP Warning(2): fopen(/var/www/html/Bovis/glpiBovis/plugins/machines/sql/empty-2.0.0.sql): failed to open stream: No such file or directory
+  Backtrace :
+  :                                                  
+  inc/dbmysql.class.php:483                          fopen()
+  plugins/comproveedores/hook.php:32                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:23:52 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:30:23 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:36:06 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:41:17 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:46:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:55:22 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 09:57:27 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 09:57:27 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:57:27 [2@mins002]
+  *** PHP Warning(2): fopen(/var/www/html/Bovis/glpiBovis/plugins/machines/sql/empty-2.0.0.sql): failed to open stream: No such file or directory
+  Backtrace :
+  :                                                  
+  inc/dbmysql.class.php:483                          fopen()
+  plugins/comproveedores/hook.php:30                 DBmysql->runFile()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 09:59:29 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 09:59:29 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 10:02:36 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 10:02:37 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 10:02:37 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 10:10:19 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 10:18:00 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 10:18:10 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 10:18:10 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 10:22:17 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 10:22:17 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 10:23:25 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 10:23:30 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 10:23:30 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 10:35:04 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 10:35:09 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 10:35:09 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 11:16:28 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:16:30 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 11:16:30 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 11:25:47 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:25:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:32:14 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:33:00 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 11:33:00 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 11:37:19 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:48:18 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 11:53:58 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:02:14 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:09:18 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:10:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:12:50 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 12:12:50 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 12:20:12 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:24:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:25:07 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:30:12 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:30:27 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:31:23 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:48 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:49 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:36:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:38:43 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:38:54 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 12:38:54 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 12:49:38 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:54:58 [2@mins002]
+  *** PHP Notice(8): Undefined variable: rightname
+  Backtrace :
+  inc/commondbtm.class.php:1875                      
+  inc/document.class.php:1417                        CommonDBTM::canView()
+  inc/massiveaction.class.php:571                    Document::getMassiveActionsForItemtype()
+  inc/search.class.php:1312                          MassiveAction::getAllMassiveActions()
+  inc/search.class.php:99                            Search::displayDatas()
+  inc/search.class.php:81                            Search::showList()
+  plugins/comproveedores/front/comproveedore.php:22  Search::show()
+2018-04-12 12:54:58 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 12:57:01 [2@mins002]
+  *** PHP Notice(8): Undefined index: plugin_machines_machinetypes_id
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:92 
+  inc/commonglpi.class.php:472                       PluginComproveedoresComproveedore->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-12 12:57:05 [2@mins002]
+  *** PHP Notice(8): Undefined index: plugin_machines_machinetypes_id
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:92 
+  inc/commonglpi.class.php:472                       PluginComproveedoresComproveedore->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-12 12:57:09 [2@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showFormComproveedores(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/inc/cv.class.php on line 39 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:51         
+  plugins/comproveedores/inc/cv.class.php:39         PluginComproveedoresCv->showFormComproveedores()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-12 12:58:18 [2@mins002]
+  *** PHP Notice(8): Undefined index: plugin_machines_machinetypes_id
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:92 
+  inc/commonglpi.class.php:472                       PluginComproveedoresComproveedore->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-12 13:00:02 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:07:29 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:07:58 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:10:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:11:13 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:13:13 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:19:58 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:20:34 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-12 13:20:34 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-12 13:20:58 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:21:13 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:24:23 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:24:26 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:25:23 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:47:26 [6@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:69         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-12 13:47:27 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 13:49:39 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-12 14:44:09 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 08:20:55 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 08:28:40 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 08:28:44 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 08:28:44 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 08:52:12 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 08:57:03 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:02:21 [6@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:02:46 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:02:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:04:58 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:05:04 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 09:05:04 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 09:05:09 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:05:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:06:00 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:06:07 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:63         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:77         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:87         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:08:44 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:64         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:08:44 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:79         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:08:44 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:89         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:35 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:64         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:35 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:79         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:35 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:89         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:58 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:64         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:58 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:79         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:09:58 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:89         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 09:11:42 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:18:47 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 09:18:47 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 09:19:44 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 09:19:44 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 09:25:38 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:26:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:29:49 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:30:46 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:30:46 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:31:08 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:32:08 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:32:33 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:33:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:33:29 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:33:29 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:34 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:99 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:34 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:100 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:35 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:99 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:35 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:100 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:36 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:99 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:36 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:100 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:36 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  ...s/comproveedores/inc/comproveedore.class.php:99 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:36:36 [7@mins002]
+  *** PHP Notice(8): Undefined variable: id_Item
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:100 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:37:20 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:37:20 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:40:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:40:54 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:43:47 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:43:47 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:03 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:03 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:14 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:14 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:16 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:16 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:55 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:44:55 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:06 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:06 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:18 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:18 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:28 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:28 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:54 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:45:54 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:00 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:00 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:00 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:48:10 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:34 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:48:34 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:50:06 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:50:06 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:06 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:06 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:21 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:21 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:27 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:31 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:31 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:36 [7@mins002]
+  *** PHP Notice(8): Undefined variable: option
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:107 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:51:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: answer
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:55:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:112 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:55:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:121 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:55:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:55:27 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 09:56:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:112 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:56:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:121 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 09:56:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:112 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:121 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:49 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:00:50 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:50 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:50 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:51 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:51 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:00:51 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:01:48 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:01:48 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:01:48 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:26 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:26 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:26 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:02:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:03:05 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:113 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:03:05 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:122 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:03:05 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:123 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:04:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:04:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:04:42 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:05:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:05:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:05:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:06:31 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:06:31 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:07:01 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:07:01 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:07:01 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:08:28 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:08:28 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:08:28 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:14 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:09:17 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:17 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:09:17 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:21 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:21 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:21 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:29 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:29 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:10:29 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:11:45 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:11:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:56 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:56 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:11:56 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:12:15 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:116 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:12:15 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:125 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:12:15 [7@mins002]
+  *** PHP Notice(8): Undefined index: entities_id
+  Backtrace :
+  .../comproveedores/inc/comproveedore.class.php:126 
+  front/helpdesk.public.php:111                      PluginComproveedoresComproveedore->showFormHelpdesk()
+2018-04-13 10:14:04 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:59         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 10:14:07 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:59         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 10:14:07 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:59         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 10:14:08 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:59         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 10:14:08 [7@mins002]
+  *** PHP Notice(8): Undefined variable: options
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:59         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showFormHelpdesk()
+2018-04-13 10:15:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:15:36 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:18:51 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:19:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:19:27 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 10:19:47 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:06:41 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:06:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:07:13 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:10:42 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:11:26 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:11:58 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:12:14 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:12:33 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:13:55 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:30:25 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:31:38 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:34:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:35:12 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:35:41 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:36:12 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:39:57 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:41:01 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:49:49 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:54:57 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:56:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 11:58:15 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:01:54 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:01:54 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:103        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:01:55 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:01:55 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:103        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:21 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:21 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:103        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:21 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:05:42 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:42 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:43 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:05:43 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:15 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:15 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:16 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:16 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:17 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:32 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:32 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:32 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:32 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:49 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:49 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:49 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:52 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:52 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:52 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:06:52 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:08:19 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:08:19 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:08:19 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:08:19 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:16 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:16 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:16 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:16 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:20 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:09:25 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:09:30 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:30 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:09:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:18:52 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:24:46 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:25:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:25:25 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/plugins/comproveedores/front/cv.form.php on line 67 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:25:25 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:25:25 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:25:25 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  plugins/comproveedores/front/cv.form.php:67        PluginComproveedoresCv->showForm()
+2018-04-13 12:26:16 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:27:44 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:27:47 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:27:47 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:27:53 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:27:53 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:28:13 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:28:17 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:28:17 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:10 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:29:14 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:29:32 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:29:52 [7@mins002]
+  *** PHP Warning(2): Missing argument 1 for PluginComproveedoresCv::showForm(), called in /var/www/html/Bovis/glpiBovis/front/helpdesk.public.php on line 105 and defined
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:99         
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showForm()
+2018-04-13 12:29:52 [7@mins002]
+  *** PHP Notice(8): Undefined variable: ID
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:104        
+  front/helpdesk.public.php:105                      PluginComproveedoresCv->showForm()
+2018-04-13 12:30:06 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:32:24 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:32:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:32:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:33:26 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:33:26 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:33:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:33:27 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:33:31 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:34:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:34:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:34:09 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:34:13 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:34:36 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:38:53 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 12:38:53 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 12:38:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:39:03 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:39:03 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:39:26 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:45:26 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:45:29 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:45:35 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:45:35 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:12 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:12 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:12 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:48:12 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:49:03 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:49:03 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:50:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:50:30 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:50:31 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:50:37 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 12:50:37 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 12:50:45 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:50:54 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:50:54 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:51:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:51:36 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:07 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:07 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:11 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:12 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:52:18 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 12:52:23 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 12:52:23 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:06:55 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:06:55 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:06:55 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:06:57 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:06:57 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:07:39 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:07:39 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:07:57 [7@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:07:57 [7@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:07:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:08:04 [2@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:08:04 [2@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:11:06 [2@mins002]
+  *** PHP Notice(8): Undefined index: states_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:115        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:11:06 [2@mins002]
+  *** PHP Notice(8): Undefined index: locations_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:124        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-13 13:11:12 [2@mins002]
+  *** PHP Notice(8): Undefined variable: DB
+  Backtrace :
+  plugins/comproveedores/hook.php:47                 
+  inc/plugin.class.php:685                           plugin_comproveedores_uninstall()
+  front/plugin.form.php:48                           Plugin->uninstall()
+2018-04-13 13:11:28 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-13 13:11:28 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:29                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-13 13:12:32 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:13:49 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:19:05 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:21:07 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:26:17 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:31:39 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:31:45 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:50:23 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:58:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 13:59:26 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:00:32 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:00:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:09:17 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:09:19 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:16:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:16:40 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:43:39 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-13 14:43:52 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:09:45 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:09:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:23:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:37:31 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:43:36 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 08:43:38 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 14:48:56 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 14:50:54 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-16 14:50:54 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:50:54 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.085", 0.79Mio)
+  FieldExists() function is deprecated 
+2018-04-16 14:50:54 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:53:10 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-16 14:53:10 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:53:10 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.073", 0.79Mio)
+  FieldExists() function is deprecated 
+2018-04-16 14:53:10 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:55:04 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 14:55:33 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-16 14:55:33 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:55:33 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.081", 0.80Mio)
+  FieldExists() function is deprecated 
+2018-04-16 14:55:33 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:56:23 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-16 14:56:23 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:56:23 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.080", 0.80Mio)
+  FieldExists() function is deprecated 
+2018-04-16 14:56:23 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:58:29 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-16 14:58:29 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:58:29 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.092", 0.80Mio)
+  FieldExists() function is deprecated 
+2018-04-16 14:58:29 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-16 14:58:45 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 14:59:05 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-16 14:59:13 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:10:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:10:28 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:10:46 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:14:26 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:21:30 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 08:26:43 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 13:40:14 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 13:40:20 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 13:45:20 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 13:45:21 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 13:45:27 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:12:08 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:12:13 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:13:04 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:13:53 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:13:57 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:14:12 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:14:28 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:22:15 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:22:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:22:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:36:19 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:44:42 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-17 14:45:20 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 08:11:23 [7@mins002]
+  *** PHP Notice(8): Undefined index: empresa_matriz_direccion
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:261        
+  inc/commonglpi.class.php:472                       PluginComproveedoresCv->showForm()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-18 08:11:34 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 08:11:50 [2@mins002]
+  *** PHP Notice(8): Undefined index: cvs_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:92         
+  plugins/comproveedores/inc/cv.class.php:35         PluginComproveedoresCv->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-18 08:11:50 [2@mins002]
+  *** PHP Notice(8): Undefined index: empresa_matriz_direccion
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:157        
+  plugins/comproveedores/inc/cv.class.php:35         PluginComproveedoresCv->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-18 08:12:03 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-18 08:12:03 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 08:12:03 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.086", 0.79Mio)
+  FieldExists() function is deprecated 
+2018-04-18 08:12:03 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 08:12:09 [2@mins002]
+  *** PHP Notice(8): Undefined index: cvs_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:92         
+  plugins/comproveedores/inc/cv.class.php:35         PluginComproveedoresCv->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-18 08:21:24 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 08:21:41 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 08:23:03 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 08:23:12 [2@mins002]
+  *** PHP Notice(8): Undefined index: cvs_id
+  Backtrace :
+  plugins/comproveedores/inc/cv.class.php:92         
+  plugins/comproveedores/inc/cv.class.php:35         PluginComproveedoresCv->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-18 08:36:30 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 11:05:52 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 11:05:56 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 11:06:02 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-18 11:06:02 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:06:03 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.092", 0.78Mio)
+  FieldExists() function is deprecated 
+2018-04-18 11:06:03 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:07:42 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-18 11:07:42 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:07:42 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.085", 0.78Mio)
+  FieldExists() function is deprecated 
+2018-04-18 11:07:42 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:14:34 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 11:14:36 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-18 11:14:36 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:30                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:14:36 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.095", 0.78Mio)
+  FieldExists() function is deprecated 
+2018-04-18 11:14:36 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:33                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:14:36 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.006", 0.80Mio)
+  FieldExists() function is deprecated 
+2018-04-18 11:14:36 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:35                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-18 11:15:02 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 11:15:38 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:31:00 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:35:58 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:36:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:36:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:36:21 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:37:33 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:37:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:37:46 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:38:50 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:43:25 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:43:30 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:48:30 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:48:35 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:49:23 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:50:56 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:52:00 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-18 14:52:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:12:56 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:18:25 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:23:31 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:24:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:24:54 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:31:50 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:36:46 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:37:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:38:24 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:38:53 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:39:00 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:44:22 [7@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:51:19 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:54:23 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:59:00 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 08:59:17 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 09:00:06 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 09:00:47 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 09:06:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 09:07:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-19 09:07:46 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 12:47:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:34:01 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:34:18 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-20 13:34:18 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:31                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:34:24 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (5.856", 0.81Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:34:24 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:36                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:34:24 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.008", 0.82Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:34:24 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:38                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:36:34 [2@mins002]
+  *** PHP Notice(8): Undefined index: plugin_comproveedores_communities_id
+  Backtrace :
+  ...ins/comproveedores/inc/experience.class.php:321 
+  plugins/comproveedores/inc/experience.class.php:33 PluginComproveedoresExperience->showFormItemExperience()
+  plugins/comproveedores/inc/cv.class.php:186        PluginComproveedoresExperience::displayTabContentForItem()
+  plugins/comproveedores/inc/cv.class.php:35         PluginComproveedoresCv->showFormItem()
+  inc/commonglpi.class.php:482                       PluginComproveedoresCv::displayTabContentForItem()
+  ajax/common.tabs.php:96                            CommonGLPI::displayStandardTab()
+2018-04-20 13:38:10 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:38:28 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:40:04 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:40:08 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-20 13:40:08 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:31                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:40:14 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (5.954", 0.82Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:40:14 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:36                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:40:14 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.008", 0.83Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:40:14 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:38                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:47:04 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 13:48:37 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-20 13:48:37 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:31                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:48:43 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (6.293", 0.82Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:48:43 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:36                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 13:48:43 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.006", 0.83Mio)
+  FieldExists() function is deprecated 
+2018-04-20 13:48:43 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:38                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 14:01:48 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:11:46 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:11:49 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:16:51 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-20 14:16:51 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:549                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:31                 TableExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 14:16:57 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (6.460", 0.82Mio)
+  FieldExists() function is deprecated 
+2018-04-20 14:16:57 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:36                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 14:16:57 [2@mins002]
+  From Toolbox::deprecated() in /var/www/html/Bovis/glpiBovis/inc/toolbox.class.php line 484 (0.006", 0.83Mio)
+  FieldExists() function is deprecated 
+2018-04-20 14:16:57 [2@mins002]
+  Backtrace :
+  inc/toolbox.class.php:485                          Toolbox::backtrace()
+  inc/db.function.php:568                            Toolbox::deprecated()
+  plugins/comproveedores/hook.php:38                 FieldExists()
+  inc/plugin.class.php:731                           plugin_comproveedores_install()
+  front/plugin.form.php:48                           Plugin->install()
+2018-04-20 14:16:58 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:22:18 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:22:59 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:23:10 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:23:37 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:29:02 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-20 14:36:36 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 08:18:08 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 08:18:22 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 10:20:11 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 10:31:16 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:15:12 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:20:34 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:26:09 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:36:11 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:38:34 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 11:39:33 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 12:07:51 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 12:08:55 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 12:09:10 [@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 12:16:10 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-23 12:24:06 [2@mins002]
+Función CronTask::cronoptimize no definida (para cron)
