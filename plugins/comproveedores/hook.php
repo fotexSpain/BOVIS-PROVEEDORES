@@ -48,8 +48,8 @@
 	}
 
 	function plugin_comproveedores_uninstall(){
-		
-
+		global $DB;
+		$DB->runFile(GLPI_ROOT . '/plugins/comproveedores/sql/delete_relation.sql');
 		return true;
 
 	}
