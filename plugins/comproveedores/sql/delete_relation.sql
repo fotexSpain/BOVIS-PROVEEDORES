@@ -1,11 +1,11 @@
-DROP TABLE `glpi_plugin_comproveedores_categories`;
-DROP TABLE `glpi_plugin_comproveedores_communities`;
-DROP TABLE `glpi_plugin_comproveedores_comproveedores`;
-DROP TABLE `glpi_plugin_comproveedores_cvs`;
-DROP TABLE `glpi_plugin_comproveedores_experiences`;
-DROP TABLE `glpi_plugin_comproveedores_listspecialties`;
-DROP TABLE `glpi_plugin_comproveedores_roltypes`;
-DROP TABLE `glpi_plugin_comproveedores_specialties`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_categories`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_communities`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_comproveedores`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_cvs`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_experiences`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_listspecialties`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_roltypes`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_specialties`;
 
 ALTER TABLE `glpi_users` DROP COLUMN  `supplier_id`;
 
