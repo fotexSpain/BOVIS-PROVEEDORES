@@ -27,15 +27,10 @@
 
 			global $CFG_GLPI;
 			$self = new self();
-			if($item->getType()=='Supplier'){
-				if(isset($item->fields['cv_id'])){
-					$self->showFormItemCv($item, $withtemplate);
-				}else{
-					$self->showFormItem($item, $withtemplate);
-				}
-				
-			}else{
-				$self->showForm();
+			if($item->getType()=='Supplier'){	
+				$self->showFormItem($item, $withtemplate);
+			}else if($item->getType()=='PluginComproveedoresCv'){
+				$self->showFormItemCv($item, $withtemplate);
 			}
 		}
 
@@ -50,7 +45,7 @@
 			//AÑADIR USUARIOS AL PROVEEDOR
 
 			$dropdown = new Dropdown();
-			$SupplierId=$item->fields['supplier_id']; 
+			$SupplierId=$item->fields['id']; 
 			
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php  method='post'>";		
 			echo Html::hidden('supplier_id', array('value' => $SupplierId));
@@ -137,7 +132,7 @@
 								echo "<td  class='center'>No</td></tr>";
 							}
 
-			}
+						}
 
 
 						echo"<br/>";
@@ -164,7 +159,7 @@
 						//AÑADIR USUARIOS AL PROVEEDOR
 
 						$dropdown = new Dropdown();
-
+						//
 						$SupplierId=$item->fields['supplier_id']; 
 
 						echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php method='post'>";		
@@ -207,71 +202,71 @@
 
 						//Ocultar lista, si no existe ningun usuario
 						if($result2->num_rows!=0){
-						echo "<div align='center'><table class='tab_cadre_fixehov'>";
-						echo "<tr class='nohover'><th colspan='".(6+$colsup)."'>"._n('Usuarios del proveedor:', 'Usuarios del proveedor:', 2, 'comproveedores')."</th></tr>";
-						echo"<br/>";
-						echo "<tr><th>".__('Name')."</th>";
-						if (Session::isMultiEntitiesMode())
-							echo "<th>".__('Entity')."</th>";
-							echo "<th>".__('Puesto')."</th>";	
-							echo "<th>".__('Desenlazar')."</th>";
-							echo "<th>".__('Papelera')."</th>";
-							echo "</tr>";
+							echo "<div align='center'><table class='tab_cadre_fixehov'>";
+							echo "<tr class='nohover'><th colspan='".(6+$colsup)."'>"._n('Usuarios del proveedor:', 'Usuarios del proveedor:', 2, 'comproveedores')."</th></tr>";
+							echo"<br/>";
+							echo "<tr><th>".__('Name')."</th>";
+							if (Session::isMultiEntitiesMode())
+								echo "<th>".__('Entity')."</th>";
+								echo "<th>".__('Puesto')."</th>";	
+								echo "<th>".__('Desenlazar')."</th>";
+								echo "<th>".__('Papelera')."</th>";
+								echo "</tr>";
 
-							while ($data=$DB->fetch_array($result2)) {
-								if($data['is_deleted']==""){
-									$data['is_deleted']=1;
-								}
-
-								echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-								if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
-									echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["name"];
-									if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-									echo "</a></td>";
-								} else {
-									echo "<td class='center'>".$data["name"];
-									if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-									echo "</td>";
-								}
-								echo "</a></td>";
-								if (Session::isMultiEntitiesMode())
-									echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
-									echo "<td class='center'>".Dropdown::getDropdownName("glpi_usertitles",$data['usertitles_id'])."</td>";
-									echo "<td class='center'>";
-									echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php method='post'>";
-									echo Html::hidden('users_id', array('value' => $data['id']));
-									echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-									echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='delUser'/>";
-									echo "</td>";
-									echo"</form>";
-
-									if($data["is_deleted"]=='1'){
-										echo "<td class='center'>Si</td></tr>";
-									}else{
-										echo "<td  class='center'>No</td></tr>";
+								while ($data=$DB->fetch_array($result2)) {
+									if($data['is_deleted']==""){
+										$data['is_deleted']=1;
 									}
 
+									echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
+									if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
+										echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["name"];
+										if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
+										echo "</a></td>";
+									} else {
+										echo "<td class='center'>".$data["name"];
+										if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
+										echo "</td>";
+									}
+									echo "</a></td>";
+									if (Session::isMultiEntitiesMode())
+										echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
+										echo "<td class='center'>".Dropdown::getDropdownName("glpi_usertitles",$data['usertitles_id'])."</td>";
+										echo "<td class='center'>";
+										echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php method='post'>";
+										echo Html::hidden('users_id', array('value' => $data['id']));
+										echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+										echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='delUser'/>";
+										echo "</td>";
+										echo"</form>";
+
+										if($data["is_deleted"]=='1'){
+											echo "<td class='center'>Si</td></tr>";
+										}else{
+											echo "<td  class='center'>No</td></tr>";
+										}
+
+									}
+
+
+									echo"<br/>";
+									echo "<tr><th>".__('Name')."</th>";
+									if (Session::isMultiEntitiesMode())
+										echo "<th>".__('Entity')."</th>";
+										echo "<th>".__('Puesto')."</th>";
+										echo "<th>".__('Desenlazar')."</th>";
+										echo "<th>".__('Papelera')."</th>";
+										echo "</tr>";
+										echo "</table></div>";
+										echo"<br>";
+
+									}		
+
 								}
 
-
-								echo"<br/>";
-								echo "<tr><th>".__('Name')."</th>";
-								if (Session::isMultiEntitiesMode())
-									echo "<th>".__('Entity')."</th>";
-									echo "<th>".__('Puesto')."</th>";
-									echo "<th>".__('Desenlazar')."</th>";
-									echo "<th>".__('Papelera')."</th>";
-									echo "</tr>";
-									echo "</table></div>";
-									echo"<br>";
-
-							}		
-
-						}
-
-							
+								
 								function showForm($ID, $options=[]) {
-									
+									echo "Hola"; 
 								}
 
 							}
