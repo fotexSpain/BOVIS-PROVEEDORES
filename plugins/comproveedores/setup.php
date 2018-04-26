@@ -40,6 +40,7 @@
 		$PLUGIN_HOOKS['post_init']['comproveedores'] = 'plugin_comproveedores_postinit';
 		$PLUGIN_HOOKS['add_css']['comproveedores']   = "cvStyle.css";
 	}
+	echo"";
 
 	function plugin_version_comproveedores(){
 		return array('name' => 'Gestion avanzada de proveedores',
