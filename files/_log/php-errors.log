@@ -2874,3 +2874,12 @@ Función CronTask::cronoptimize no definida (para cron)
 Función CronTask::cronoptimize no definida (para cron)
 2018-04-26 09:51:06 [2@POR114]
 Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 10:19:17 [2@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 10:19:38 [2@POR114]
+  *** PHP Notice(8): Undefined variable: DB
+  Backtrace :
+  plugins\comproveedores\hook.php:52                 
+  inc\plugin.class.php:685                           plugin_comproveedores_uninstall()
+  :                                                  Plugin->uninstall()
+  front\plugin.form.php:48                           call_user_func()
