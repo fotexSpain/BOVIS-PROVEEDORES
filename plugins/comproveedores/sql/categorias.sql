@@ -26,11 +26,11 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `glpi_plugin_comproveedores_categories`
 --
 
-CREATE TABLE `glpi_plugin_comproveedores_categories` (
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `glpi_plugin_comproveedores_roltypes_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `glpi_plugin_comproveedores_categories`
@@ -67,11 +67,12 @@ INSERT INTO `glpi_plugin_comproveedores_categories` (`id`, `name`, `glpi_plugin_
 -- Estructura de tabla para la tabla `glpi_plugin_comproveedores_specialties`
 --
 
-CREATE TABLE `glpi_plugin_comproveedores_specialties` (
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_specialties` (
   `id` int(11) NOT NULL,
   `glpi_plugin_comproveedores_categories_id` int(11) NOT NULL,
   `name` mediumtext
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Volcado de datos para la tabla `glpi_plugin_comproveedores_specialties`
@@ -269,10 +270,10 @@ INSERT INTO `glpi_plugin_comproveedores_specialties` (`id`, `glpi_plugin_comprov
 -- Estructura de tabla para la tabla `glpi_plugin_comproveedores_types`
 --
 
-CREATE TABLE `glpi_plugin_comproveedores_roltypes` (
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_roltypes` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `glpi_plugin_comproveedores_types`
