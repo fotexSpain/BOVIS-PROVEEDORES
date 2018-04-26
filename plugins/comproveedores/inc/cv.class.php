@@ -246,13 +246,18 @@
 			$itemS->fields['supplier_id']=$item->fields['id'];
 			$itemS->fields['cv_id']=$item->fields['cv_id'];
 
+
+			//Ocultar si el proveedor no tiene cv_id
+			if($itemS->fields['cv_id']!=0 && $itemS->fields['cv_id']!= null){
+
+				PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
+
+				PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
+
+				PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
+			}
 			
 			
-			PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
-
-			PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
-
-			PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
 			
 
 
@@ -430,14 +435,15 @@
 				$itemS->fields['cv_id']=$this->fields['id'];
 			}
 
+			//Ocultar si el proveedor no tiene cv_id
+			if($itemS->fields['cv_id']!=0 && $itemS->fields['cv_id']!= null){
 
-			//var_dump($this);
-			PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
+				PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
 
-			PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
+				PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
 			
-			PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
-
+				PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
+			}
 			
 		}
 

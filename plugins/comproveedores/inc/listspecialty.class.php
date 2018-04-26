@@ -144,42 +144,44 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 
 			$result2 = $DB->query($query2);
 			
+			//Ocultar lista, si no existe ninguna especialidad
 			if($result2->num_rows!=0){
-			echo "<div align='center'><table class='tab_cadre_fixehov'>";
-			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>Especialidades del proveedor</th></tr>";
-			echo"<br/>";
-			echo "<tr><th>".__('Contratista/Proveedor')."</th>";
-			
-				echo "<th>".__('Categoría')."</th>";
-				echo "<th>".__('Especialidad')."</th>";
-				echo "<th>".__('Quitar')."</th>";
-				echo "</tr>";
 
-				while ($data=$DB->fetch_array($result2)) {
-					
-						echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
-						echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
-						echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
-
-						echo "<td class='center'>";
-						echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
-						echo Html::hidden('id', array('value' => $data['id']));
-						echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-						echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-						echo "</td>";
-						echo"</form>";
-
-					}
-
-
+				echo "<div align='center'><table class='tab_cadre_fixehov'>";
+				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>Especialidades del proveedor</th></tr>";
 				echo"<br/>";
 				echo "<tr><th>".__('Contratista/Proveedor')."</th>";
+				
 					echo "<th>".__('Categoría')."</th>";
 					echo "<th>".__('Especialidad')."</th>";
 					echo "<th>".__('Quitar')."</th>";
-						echo "</tr>";
-						echo "</table></div>";
-						echo"<br>";
+					echo "</tr>";
+
+					while ($data=$DB->fetch_array($result2)) {
+						
+							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
+							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
+							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
+
+							echo "<td class='center'>";
+							echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
+							echo Html::hidden('id', array('value' => $data['id']));
+							echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+							echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
+							echo "</td>";
+							echo"</form>";
+
+						}
+
+
+					echo"<br/>";
+					echo "<tr><th>".__('Contratista/Proveedor')."</th>";
+						echo "<th>".__('Categoría')."</th>";
+						echo "<th>".__('Especialidad')."</th>";
+						echo "<th>".__('Quitar')."</th>";
+							echo "</tr>";
+							echo "</table></div>";
+							echo"<br>";
 			}			
 
 	}
