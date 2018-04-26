@@ -1364,7 +1364,19 @@ Función CronTask::cronoptimize no definida (para cron)
 Interno #1: No se puede iniciar optimize
 
 Función CronTask::cronoptimize no definida (para cron)
+<<<<<<< HEAD
 2018-04-26 08:24:18 [@PC034]
+=======
+2018-04-26 09:09:37 [2@POR114]
+>>>>>>> cadce70f981f28a7efbfb5cd84dd6f823f728cf8
+Interno #1: No se puede iniciar optimize
+
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:37:58 [2@PC034]
+Interno #1: No se puede iniciar optimize
+
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:47:42 [@PC034]
 Interno #1: No se puede iniciar optimize
 
 Función CronTask::cronoptimize no definida (para cron)
