@@ -450,3 +450,7 @@
 [login] 3: glpi inició la sesión desde la IP 192.168.0.161
 2018-04-26 07:46:44 [@POR114]
 [login] 3: glpi inició la sesión desde la IP ::1
+2018-04-26 08:24:23 [@PC034]
+[login] 3: Fallo en el inicio de sesión de glpi desde la IP ::1
+2018-04-26 08:24:33 [@PC034]
+[login] 3: glpi inició la sesión desde la IP ::1
