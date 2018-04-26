@@ -27,16 +27,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `glpi_plugin_comproveedores_categories` (
-  `Id` int(11) NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `id_types` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `glpi_plugin_comproveedores_roltypes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `glpi_plugin_comproveedores_categories`
 --
 
-INSERT INTO `glpi_plugin_comproveedores_categories` (`Id`, `nombre`, `id_types`) VALUES
+INSERT INTO `glpi_plugin_comproveedores_categories` (`id`, `name`, `glpi_plugin_comproveedores_roltypes_id`) VALUES
 (1, 'SUMINISTRO_MATERIALES_PARA_OBRA_CIVIL', 1),
 (2, 'SUMINISTRO_MATERIALES_PARA_ACABADOS', 1),
 (3, 'SUMINISTRO_AISLAMIENTOS_Y_TRATAMIENTOS_ESPECÍFICOS', 1),
@@ -64,20 +64,20 @@ INSERT INTO `glpi_plugin_comproveedores_categories` (`Id`, `nombre`, `id_types`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `glpi_plugin_comproveedores_specialities`
+-- Estructura de tabla para la tabla `glpi_plugin_comproveedores_specialties`
 --
 
-CREATE TABLE `glpi_plugin_comproveedores_specialities` (
+CREATE TABLE `glpi_plugin_comproveedores_specialties` (
   `id` int(11) NOT NULL,
-  `categories_id` int(11) NOT NULL,
-  `nombre` mediumtext
+  `glpi_plugin_comproveedores_categories_id` int(11) NOT NULL,
+  `name` mediumtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `glpi_plugin_comproveedores_specialities`
+-- Volcado de datos para la tabla `glpi_plugin_comproveedores_specialties`
 --
 
-INSERT INTO `glpi_plugin_comproveedores_specialities` (`id`, `categories_id`, `nombre`) VALUES
+INSERT INTO `glpi_plugin_comproveedores_specialties` (`id`, `glpi_plugin_comproveedores_categories_id`, `name`) VALUES
 (1, 0, 'SUMINISTRO_MATERIALES_Y_ELEMENTOS_ESTRUCTURALES'),
 (2, 0, 'SUMINISTRO_MORTEROS,_ADITIVOS,_ADHESIVOS'),
 (3, 0, 'SUMINISTRO_ELEMENTOS_PREFABRICADOS_DE_HORMIGÓN'),
@@ -269,7 +269,7 @@ INSERT INTO `glpi_plugin_comproveedores_specialities` (`id`, `categories_id`, `n
 -- Estructura de tabla para la tabla `glpi_plugin_comproveedores_types`
 --
 
-CREATE TABLE `glpi_plugin_comproveedores_types` (
+CREATE TABLE `glpi_plugin_comproveedores_roltypes` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -278,7 +278,7 @@ CREATE TABLE `glpi_plugin_comproveedores_types` (
 -- Volcado de datos para la tabla `glpi_plugin_comproveedores_types`
 --
 
-INSERT INTO `glpi_plugin_comproveedores_types` (`id`, `name`) VALUES
+INSERT INTO `glpi_plugin_comproveedores_roltypes` (`id`, `name`) VALUES
 (1, 'Suministrador'),
 (2, 'Contratista');
 
@@ -290,18 +290,18 @@ INSERT INTO `glpi_plugin_comproveedores_types` (`id`, `name`) VALUES
 -- Indices de la tabla `glpi_plugin_comproveedores_categories`
 --
 ALTER TABLE `glpi_plugin_comproveedores_categories`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `glpi_plugin_comproveedores_specialities`
+-- Indices de la tabla `glpi_plugin_comproveedores_specialties`
 --
-ALTER TABLE `glpi_plugin_comproveedores_specialities`
+ALTER TABLE `glpi_plugin_comproveedores_specialties`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `glpi_plugin_comproveedores_types`
 --
-ALTER TABLE `glpi_plugin_comproveedores_types`
+ALTER TABLE `glpi_plugin_comproveedores_roltypes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -312,16 +312,16 @@ ALTER TABLE `glpi_plugin_comproveedores_types`
 -- AUTO_INCREMENT de la tabla `glpi_plugin_comproveedores_categories`
 --
 ALTER TABLE `glpi_plugin_comproveedores_categories`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT de la tabla `glpi_plugin_comproveedores_specialities`
+-- AUTO_INCREMENT de la tabla `glpi_plugin_comproveedores_specialties`
 --
-ALTER TABLE `glpi_plugin_comproveedores_specialities`
+ALTER TABLE `glpi_plugin_comproveedores_specialties`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 --
 -- AUTO_INCREMENT de la tabla `glpi_plugin_comproveedores_types`
 --
-ALTER TABLE `glpi_plugin_comproveedores_types`
+ALTER TABLE `glpi_plugin_comproveedores_roltypes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

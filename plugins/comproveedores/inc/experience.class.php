@@ -279,6 +279,7 @@
 
 			$result2 = $DB->query($query2);
 
+			if($result2->num_rows!=0){
 			echo "<div align='center'><table class='tab_cadre_fixehov'>";
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Esperiencias del proveedor</th></tr>";
 			echo"<br/>";
@@ -361,6 +362,7 @@
 						echo "<td class='center'>";
 						echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
 						echo Html::hidden('id', array('value' => $data['id']));
+						echo Html::hidden('cv_id', array('value' => $data['cv_id']));
 						echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 						echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
 						echo "</td>";
@@ -372,7 +374,7 @@
 							echo "<td  class='center'>No</td></tr>";
 						}*/
 
-					}
+				}
 
 
 					echo"<br/>";
@@ -395,6 +397,6 @@
 						echo "</table></div>";
 						echo"<br>";
 
-					}
-
 				}
+			}
+		}

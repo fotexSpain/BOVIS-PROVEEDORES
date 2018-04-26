@@ -41,7 +41,8 @@
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
 		$PluginExperience->check($_POST['id'], DELETE);
 		$PluginExperience->delete($_POST);
-		Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php");
+		//Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
+		Html::back();
 
 	} else if (isset($_POST["restore"])) {
 		$PluginExperience->check($_POST['id'], PURGE);
@@ -51,8 +52,8 @@
 	} else if (isset($_POST["purge"])) {
 		$PluginExperience->check($_POST['id'], PURGE);
 		$PluginExperience->delete($_POST, 1);
-
-		Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php");
+		
+		Html::back();
 
 	} else {
 		$PluginExperience->checkGlobal(READ);

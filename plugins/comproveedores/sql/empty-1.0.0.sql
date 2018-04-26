@@ -26,47 +26,20 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_comproveedores` (
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_cvs` (
 	`id` int(11) NOT NULL auto_increment,
-	`supplier_id` int(11) NOT NULL default '0',
 	`name` varchar(255) NOT NULL default '',
-	`cif` varchar(255),
-	`forma_juridica` varchar(255),
-	/*Direccion*/
-	`locations_id` int(11) NOT NULL default '0',
-	`contacto_telefono` varchar(9),
-	`codigo_postal` varchar(9),
-	/*Persona de contacto-Representante/Director general*/
-	`contacto_representante_nombre` varchar(255),
-	`contacto_representante_email` varchar(255),
-	`contacto_representante_telefono` varchar(9),
-	`contacto_representante_movil` varchar(9),
-	/*Persona de contacto-Dpto de estudios/Dpto tecnico*/
-	`contacto_dpto_estudios_nombre` varchar(255),
-	`contacto_dpto_estudios_email` varchar(255),
-	`contacto_dpto_estudios_telefono` varchar(9),
-	`contacto_dpto_estudios_movil` varchar(9),
-	/*Persona de contacto-Dpto comercial*/
-	`contacto_dpto_comercial_nombre` varchar(255),
-	`contacto_dpto_comercial_email` varchar(255),
-	`contacto_dpto_comercial_telefono` varchar(9),
-	`contacto_dpto_comercial_movil` varchar(9),
-	/*Empresa matriz*/
+	`supplier_id` int(11) NOT NULL default '0',
+
 	`empresa_matriz_nombre` varchar(255),
 	`empresa_matriz_direccion` int(11),
 	`empresa_matriz_poblacion` varchar(255),
 	`empresa_matriz_provincia` varchar(255),
 	
-	
-
-
-
 	`states_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
-	`answer` longtext,
 	`is_recursive` tinyint(1) NOT NULL default '0',
 	`comment` text,
 	`externalid` varchar(255) NULL,
-	PRIMARY KEY (`id`),
-	KEY `name` (`name`),
+	PRIMARY KEY (`id`),	
 	KEY `entities_id` (`entities_id`),
 	UNIQUE (`externalid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -132,3 +105,17 @@ INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
 (17, 'La Rioja'),
 (18, 'Ceuta'),
 (19, 'Melilla');
+
+CREATE TABLE `glpi_plugin_comproveedores_listspecialties` (
+  `id` int(11) NOT NULL,
+  `plugin_comproveedores_roltypes_id` int(11) DEFAULT NULL,
+  `plugin_comproveedores_categories_id` int(11) NOT NULL,
+  `plugin_comproveedores_specialties_id` int(11) DEFAULT NULL,
+  `cv_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `glpi_plugin_comproveedores_listspecialties`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `glpi_plugin_comproveedores_listspecialties` 
+	CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

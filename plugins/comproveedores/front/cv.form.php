@@ -26,10 +26,16 @@
 	if(isset($_POST['add'])){
 		$PluginComproveedores->check(-1, CREATE, $_POST);
 		if($newID = $PluginComproveedores->add($_POST)){
-				
 
+			
 			$query="UPDATE glpi_suppliers SET cv_id=$newID WHERE id=$_POST[supplier_id]";
 			$DB->query($query);
+
+			$supplier=new Supplier();
+			$_POST['id']=$_POST['supplier_id'];
+			
+			$supplier->check($_POST['supplier_id'],UPDATE);
+			$supplier->update($_POST);
 
 			if($_SESSION['glpibackcreated']) {
 				Html::redirect($PluginComproveedores->getFormURL()."?id=".$newID);
@@ -37,8 +43,18 @@
 		};		 
 		Html::back();
 	} else if(isset($_POST['update'])){
+
+
 		$PluginComproveedores->check($_POST['id'], UPDATE);
 		$PluginComproveedores->update($_POST);
+
+		$supplier=new Supplier();
+		
+		$_POST['id']=$_POST['supplier_id'];
+
+
+		$supplier->check($_POST['id'],UPDATE);
+		$supplier->update($_POST);
 		Html::back();
 	} else if (isset($_POST["delete"])) {
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
@@ -54,6 +70,9 @@
 	} else if (isset($_POST["purge"])) {
 		$PluginComproveedores->check($_POST['id'], PURGE);
 		$PluginComproveedores->delete($_POST, 1);
+
+			$query="UPDATE glpi_suppliers SET cv_id=0 WHERE id=$_POST[supplier_id]";
+			$DB->query($query);
 
 		Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
 
