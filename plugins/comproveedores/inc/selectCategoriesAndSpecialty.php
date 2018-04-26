@@ -19,7 +19,7 @@
 	}else{
 
 		//Descomentar cuando este puento los id de category en la tabla specialty
-		//$opt['condition']='glpi_plugin_comproveedores_categories_id='.$_GET['idCategories'];
+		$opt['condition']='glpi_plugin_comproveedores_categories_id='.$_GET['idCategories'];
 	
 		Dropdown::show('PluginComproveedoresSpecialty',$opt);
 	}

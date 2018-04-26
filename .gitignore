@@ -8,4 +8,9 @@ files/_sessions/sess_7uoh7p0cuj2ad8slci832gckc4
 *.log
 files/_sessions/sess_9724dj2m3oqruf7oholo31tdg7
 config/config_db.php
+<<<<<<< HEAD
 config/config_db.php
+=======
+files/_log/cron.log
+files/_log/php-errors.log
+>>>>>>> 293dd763a5806f2c149f2b740caeac16623e7b9d
