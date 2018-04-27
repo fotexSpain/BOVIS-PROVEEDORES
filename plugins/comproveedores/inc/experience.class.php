@@ -279,12 +279,6 @@
 								echo "</td>";
 								echo"</form>";
 
-								/*if($data["is_deleted"]=='1'){
-									echo "<td class='center'>Si</td></tr>";
-								}else{
-									echo "<td  class='center'>No</td></tr>";
-								}*/
-
 						}
 
 
@@ -310,7 +304,7 @@
 			$this->initForm($ID, $options);
 			$this->showFormHeader($options);
 			
-			echo"<th colspan='4'>Usuarios</th>";
+			
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Nombre proyecto') . "</td>";
 			echo "<td>";
@@ -599,22 +593,6 @@
 
 
 						echo"<br/>";
-						echo "<tr><th>".__('Proyecto/Obra')."</th>";
-						if (Session::isMultiEntitiesMode())
-							echo "<th>".__('Entity')."</th>";
-							echo "<th>".__('Comunidad autonoma')."</th>";		
-							echo "<th>".__('Cliente/Propiedad')."</th>";
-							echo "<th>".__('Año')."</th>";
-							echo "<th>".__('Importe contratado')."</th>";
-							echo "<th>".__('Duración de su contrato')."</th>";
-							echo "<th>".__('BIM')."</th>";
-							echo "<th>".__('Bream')."</th>";
-							echo "<th>".__('Leed')."</th>";
-							echo "<th>".__('Otros')."</th>";
-							echo "<th>".__('Cpd tier')."</th>";
-							echo "<th>".__('Observaciones')."</th>";
-							echo "<th>".__('Eliminar')."</th>";
-							echo "</tr>";
 							echo "</table></div>";
 							echo"<br>";
 

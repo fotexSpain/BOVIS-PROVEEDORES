@@ -19,7 +19,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 
 		global $CFG_GLPI;
 		$self = new self();
-	
+
 		if($item->getType()=='Supplier'){
 
 			if(isset($item->fields['cv_id'])){
@@ -29,9 +29,9 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				
 				$self->showFormNoCV($item, $withtemplate);
 			}
-				
+
 		}else if($item->getType()=='PluginComproveedoresCv'){
-				$self->showFormItem($item, $withtemplate);
+			$self->showFormItem($item, $withtemplate);
 		}
 	}
 
@@ -59,8 +59,8 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 	function showFormNoCV($ID, $options=[]) {
 			//Aqui entra cuando no tien gestionado el curriculum
 
-			echo "<div>Necesitas gestionar el CV antes de añadir especialidades</div>";
-			echo "<br>";
+		echo "<div>Necesitas gestionar el CV antes de añadir especialidades</div>";
+		echo "<br>";
 	}
 
 	function showForm($ID, $options=[]) {
@@ -71,12 +71,12 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 	
 	function showFormItemSpecialty($item, $withtemplate='') {
 
-			GLOBAL $DB,$CFG_GLPI;
-			
-			$opt['specific_tags']=array('onchange' => 'cambiarCategorias(value)');
-			$opt['comments']= false;
-			$opt['addicon']= false;
-			
+		GLOBAL $DB,$CFG_GLPI;
+
+		$opt['specific_tags']=array('onchange' => 'cambiarCategorias(value)');
+		$opt['comments']= false;
+		$opt['addicon']= false;
+
 
 			/*///////////////////////////////
 			//AÑADIR EXPERIENCIA AL PROVEEDOR
@@ -86,7 +86,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			$CvId=$item->fields['cv_id']; 
 
 			$token=Session::getNewCSRFToken();
-					
+
 			echo $this->consultaAjax();
 			
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";		
@@ -109,26 +109,26 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			echo "<td>";
 			echo "<div id='IdCategorias'>";
 			echo "<span class='no-wrap'>
-					<div class='select2-container'>
-						<a class='select2-choice'>
-						<span class='select2-chosen'>------</span>
-						</a>
-					</div>
-				</span>";
-         	echo "</div>";
+			<div class='select2-container'>
+			<a class='select2-choice'>
+			<span class='select2-chosen'>------</span>
+			</a>
+			</div>
+			</span>";
+			echo "</div>";
 			echo "</td>";
 
 			echo "<td>" . __('Especialidades') . "</td>";
 			echo "<td>";
 			echo "<div id='IdEspecialidades'>";
 			echo "<span class='no-wrap'>
-					<div class='select2-container'>
-						<a class='select2-choice'>
-						<span class='select2-chosen'>------</span>
-						</a>
-					</div>
-				</span>";
-         	echo "</div>";
+			<div class='select2-container'>
+			<a class='select2-choice'>
+			<span class='select2-chosen'>------</span>
+			</a>
+			</div>
+			</span>";
+			echo "</div>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -158,41 +158,37 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				echo"<br/>";
 				echo "<tr><th>".__('Contratista/Proveedor')."</th>";
 				
-					echo "<th>".__('Categoría')."</th>";
-					echo "<th>".__('Especialidad')."</th>";
-					echo "<th>".__('Quitar')."</th>";
-					echo "</tr>";
+				echo "<th>".__('Categoría')."</th>";
+				echo "<th>".__('Especialidad')."</th>";
+				echo "<th>".__('Quitar')."</th>";
+				echo "</tr>";
 
-					while ($data=$DB->fetch_array($result2)) {
-						
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
+				while ($data=$DB->fetch_array($result2)) {
 
-							echo "<td class='center'>";
-							echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
-							echo Html::hidden('id', array('value' => $data['id']));
-							echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-							echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-							echo "</td>";
-							echo"</form>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
 
-						}
+					echo "<td class='center'>";
+					echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
+					echo Html::hidden('id', array('value' => $data['id']));
+					echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+					echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
+					echo "</td>";
+					echo"</form>";
+
+				}
 
 
-					echo"<br/>";
-					echo "<tr><th>".__('Contratista/Proveedor')."</th>";
-						echo "<th>".__('Categoría')."</th>";
-						echo "<th>".__('Especialidad')."</th>";
-						echo "<th>".__('Quitar')."</th>";
-							echo "</tr>";
-							echo "</table></div>";
-							echo"<br>";
+				echo"<br/>";
+
+				echo "</table></div>";
+				echo"<br>";
 			}			
 
-	}
+		}
 
-	function showFormItem($item, $withtemplate='') {
+		function showFormItem($item, $withtemplate='') {
 
 			GLOBAL $DB,$CFG_GLPI;
 			
@@ -209,7 +205,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			$CvId=$item->fields['id'];
 
 			$token=Session::getNewCSRFToken();
-					
+
 			echo $this->consultaAjax();
 			
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";		
@@ -232,26 +228,26 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			echo "<td>";
 			echo "<div id='IdCategorias'>";
 			echo "<span class='no-wrap'>
-					<div class='select2-container'>
-						<a class='select2-choice'>
-						<span class='select2-chosen'>------</span>
-						</a>
-					</div>
-				</span>";
-         	echo "</div>";
+			<div class='select2-container'>
+			<a class='select2-choice'>
+			<span class='select2-chosen'>------</span>
+			</a>
+			</div>
+			</span>";
+			echo "</div>";
 			echo "</td>";
 
 			echo "<td>" . __('Especialidades') . "</td>";
 			echo "<td>";
 			echo "<div id='IdEspecialidades'>";
 			echo "<span class='no-wrap'>
-					<div class='select2-container'>
-						<a class='select2-choice'>
-						<span class='select2-chosen'>------</span>
-						</a>
-					</div>
-				</span>";
-         	echo "</div>";
+			<div class='select2-container'>
+			<a class='select2-choice'>
+			<span class='select2-chosen'>------</span>
+			</a>
+			</div>
+			</span>";
+			echo "</div>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -281,87 +277,82 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				echo"<br/>";
 				echo "<tr><th>".__('Contratista/Proveedor')."</th>";
 				
-					echo "<th>".__('Categoría')."</th>";
-					echo "<th>".__('Especialidad')."</th>";
-					echo "<th>".__('Quitar')."</th>";
-					echo "</tr>";
+				echo "<th>".__('Categoría')."</th>";
+				echo "<th>".__('Especialidad')."</th>";
+				echo "<th>".__('Quitar')."</th>";
+				echo "</tr>";
 
-					while ($data=$DB->fetch_array($result2)) {
-						
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
-							echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
+				while ($data=$DB->fetch_array($result2)) {
 
-							echo "<td class='center'>";
-							echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
-							echo Html::hidden('id', array('value' => $data['id']));
-							echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-							echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-							echo "</td>";
-							echo"</form>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
+					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
 
-						}
+					echo "<td class='center'>";
+					echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php method='post'>";
+					echo Html::hidden('id', array('value' => $data['id']));
+					echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+					echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
+					echo "</td>";
+					echo"</form>";
+
+				}
 
 
-					echo"<br/>";
-					echo "<tr><th>".__('Contratista/Proveedor')."</th>";
-						echo "<th>".__('Categoría')."</th>";
-						echo "<th>".__('Especialidad')."</th>";
-						echo "<th>".__('Quitar')."</th>";
-							echo "</tr>";
-							echo "</table></div>";
-							echo"<br>";
+				echo"<br/>";				
+				echo "</table></div>";
+				echo"<br>";
 			}			
 
-	}
+		}
 
-	function consultaAjax(){
+		function consultaAjax(){
 
-		GLOBAL $DB,$CFG_GLPI;
+			GLOBAL $DB,$CFG_GLPI;
 
-		$consulta="<script type='text/javascript'>
+			$consulta="<script type='text/javascript'>
 			
-				function cambiarCategorias(valor){
-					
-					
-					$.ajax({  
-						type: 'GET',        		
-                		url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
-                		data: {idRolType:valor, tipo:'categoria'},   		
-                		success:function(data){
-                			
-        					$('#IdCategorias').html(data);
-                		},
-                		error: function(result) {
-                   			 alert('Data not found');
-                		}
-            		});
-            		
-						
-				}
-			
-				function cambiarEspecialidades(valor){
-					
-					
-					$.ajax({  
-						type: 'GET',        		
-                		url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
-                		data: {idCategories:valor, tipo:'especialidad'},   		
-                		success:function(data){
+			function cambiarCategorias(valor){
 
-        					$('#IdEspecialidades').html(data);
-                		},
-                		error: function(result) {
-                   			 alert('Data not found');
-                		}
-            		});
-            		
-						
-				}
-				
+
+				$.ajax({  
+					type: 'GET',        		
+					url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
+					data: {idRolType:valor, tipo:'categoria'},   		
+					success:function(data){
+
+						$('#IdCategorias').html(data);
+					},
+					error: function(result) {
+						alert('Data not found');
+					}
+				});
+
+
+			}
+			
+			function cambiarEspecialidades(valor){
+
+
+				$.ajax({  
+					type: 'GET',        		
+					url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
+					data: {idCategories:valor, tipo:'especialidad'},   		
+					success:function(data){
+
+						$('#IdEspecialidades').html(data);
+					},
+					error: function(result) {
+						alert('Data not found');
+					}
+				});
+
+
+			}
+
 			</script>";
 
-		return $consulta;
-	}
+			return $consulta;
+		}
 
-}
+	}

@@ -94,6 +94,7 @@
 				echo "<tr><th>".__('Name')."</th>";
 				if (Session::isMultiEntitiesMode())
 					echo "<th>".__('Entity')."</th>";
+					echo "<th>".__('Usuario')."</th>";	
 					echo "<th>".__('Puesto')."</th>";	
 					echo "<th>".__('Desenlazar')."</th>";
 					echo "<th>".__('Papelera')."</th>";
@@ -106,7 +107,7 @@
 
 						echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
 						if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
-							echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["name"];
+							echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["realname"]." ".$data["firstname"];
 							if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
 							echo "</a></td>";
 						} else {
@@ -117,6 +118,7 @@
 						echo "</a></td>";
 						if (Session::isMultiEntitiesMode())
 							echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
+							echo "<td class='center'>".$data['name']."</td>";
 							echo "<td class='center'>".Dropdown::getDropdownName("glpi_usertitles",$data['usertitles_id'])."</td>";
 							echo "<td class='center'>";
 							echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php method='post'>";
@@ -136,13 +138,6 @@
 
 
 						echo"<br/>";
-						echo "<tr><th>".__('Name')."</th>";
-						if (Session::isMultiEntitiesMode())
-							echo "<th>".__('Entity')."</th>";
-							echo "<th>".__('Puesto')."</th>";
-							echo "<th>".__('Desenlazar')."</th>";
-							echo "<th>".__('Papelera')."</th>";
-							echo "</tr>";
 							echo "</table></div>";
 							echo"<br>";
 
@@ -208,6 +203,7 @@
 							echo "<tr><th>".__('Name')."</th>";
 							if (Session::isMultiEntitiesMode())
 								echo "<th>".__('Entity')."</th>";
+								echo "<th>".__('Usuario')."</th>";	
 								echo "<th>".__('Puesto')."</th>";	
 								echo "<th>".__('Desenlazar')."</th>";
 								echo "<th>".__('Papelera')."</th>";
@@ -220,7 +216,7 @@
 
 									echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
 									if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
-										echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["name"];
+										echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/user.form.php?id=".$data["id"]."'>".$data["realname"]." ".$data["firstname"];
 										if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
 										echo "</a></td>";
 									} else {
@@ -231,6 +227,7 @@
 									echo "</a></td>";
 									if (Session::isMultiEntitiesMode())
 										echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
+										echo "<td class='center'>".$data['name']."</td>";
 										echo "<td class='center'>".Dropdown::getDropdownName("glpi_usertitles",$data['usertitles_id'])."</td>";
 										echo "<td class='center'>";
 										echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php method='post'>";
@@ -250,13 +247,7 @@
 
 
 									echo"<br/>";
-									echo "<tr><th>".__('Name')."</th>";
-									if (Session::isMultiEntitiesMode())
-										echo "<th>".__('Entity')."</th>";
-										echo "<th>".__('Puesto')."</th>";
-										echo "<th>".__('Desenlazar')."</th>";
-										echo "<th>".__('Papelera')."</th>";
-										echo "</tr>";
+									
 										echo "</table></div>";
 										echo"<br>";
 
