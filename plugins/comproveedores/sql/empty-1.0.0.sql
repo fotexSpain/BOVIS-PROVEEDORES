@@ -136,3 +136,13 @@ INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
 (17, 'La Rioja'),
 (18, 'Ceuta'),
 (19, 'Melilla');
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_insurence` (
+	`id` int(11) NOT NULL auto_increment,
+	`name` varchar(255) NOT NULL default '',
+	`cía_aseguradora` int(11) NOT NULL default '0',
+	`cuantia` int(11) NOT NULL default '0',
+	`fecha_caducidad` date,
+	`numero_empleados_asegurados` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`)	
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
