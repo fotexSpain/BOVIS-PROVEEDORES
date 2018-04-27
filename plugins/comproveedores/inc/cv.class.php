@@ -413,6 +413,40 @@
 			echo "</td></tr>";
 
 			echo "</tr>";
+			///////////////////Categoías y número de empleados//////////
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
+
+			echo "<tr class='tab_bg_1'>";
+			echo "<td>Nº ";
+			Html::autocompletionTextField($this, "titulacion_superior");
+			echo "</td>";
+			echo "<td>" . __('Titulación Superior') . "</td>";
+			echo "<td>Nº ";
+			Html::autocompletionTextField($this, "personal");
+			echo "</td>";
+			echo "<td>" . __('Personal') . "</td>";
+			echo "</tr>";
+			
+			echo "<tr class='tab_bg_1'>";
+			echo "<td>Nº ";
+			Html::autocompletionTextField($this, "titulacion_grado_medio");
+			echo "</td>";
+			echo "<td>" . __('Titulación Grado Medio') . "</td>";
+			echo "<td>Nº ";
+			Html::autocompletionTextField($this, "otros_categoria_numeros_empleados");
+			echo "</td>";
+			echo "<td>" . __('Otros') . "</td>";
+			echo "</tr>";
+
+			echo "<tr class='tab_bg_1'>";
+			echo "<td>Nº ";
+			Html::autocompletionTextField($this, "tecnicos_no_universitarios");
+			echo "</td>";
+			echo "<td>" . __('Técnicos No Universitarios') . "</td>";
+			echo "</tr>";
+
+			///////////////////
 
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Comentarios")."</th></tr>";
