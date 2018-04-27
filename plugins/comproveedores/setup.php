@@ -39,6 +39,7 @@
 		Plugin::registerClass('PluginComproveedoresUser', array('addtabon' => 'Supplier'));
 		Plugin::registerClass('PluginComproveedoresExperience', array('addtabon' => 'Supplier'));
 		Plugin::registerClass('PluginComproveedoresListspecialty', array('addtabon' => 'Supplier'));
+		Plugin::registerClass('PluginComproveedoresEmpleado', array('addtabon' => 'Supplier'));
 		
 		$PLUGIN_HOOKS['post_init']['comproveedores'] = 'plugin_comproveedores_postinit';
 		$PLUGIN_HOOKS['add_css']['comproveedores']   = "cvStyle.css";

@@ -89,6 +89,33 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_communities` (
 
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_listspecialties` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `plugin_comproveedores_roltypes_id` int(11) DEFAULT NULL,
+  `plugin_comproveedores_categories_id` int(11) NOT NULL,
+  `plugin_comproveedores_specialties_id` int(11) DEFAULT NULL,
+  `cv_id` int(11) DEFAULT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_empleados` (
+	`id` int(11) NOT NULL auto_increment,
+	`empleados_eventuales` varchar(255),
+	`empleados_fijos` varchar(255),
+	`anio` int(11) ,
+	`cv_id` int(11) ,
+
+
+	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `entities_id` (`entities_id`)
+
+	
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
 (1, 'Andalucía'),
 (2,	'Aragón'),
@@ -109,11 +136,3 @@ INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
 (17, 'La Rioja'),
 (18, 'Ceuta'),
 (19, 'Melilla');
-
-CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_listspecialties` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `plugin_comproveedores_roltypes_id` int(11) DEFAULT NULL,
-  `plugin_comproveedores_categories_id` int(11) NOT NULL,
-  `plugin_comproveedores_specialties_id` int(11) DEFAULT NULL,
-  `cv_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

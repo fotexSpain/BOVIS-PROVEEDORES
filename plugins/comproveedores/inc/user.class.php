@@ -12,12 +12,12 @@
 		static $rightname	= "plugin_comproveedores";
 
 		static function getTypeName($nb=0){
-			return _n('Usuarios del proveedor','Usuario del proveedor',1,'comproveedores');
+			return _n('Personas de contacto','Personas de contacto',1,'comproveedores');
 		}
 
 		function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
 			if($item-> getType()=="Supplier"){
-				return self::createTabEntry('Usuarios del proveedor');
+				return self::createTabEntry('Personas de contacto');
 			}
 			return 'Usuario del proveedor';
 		}

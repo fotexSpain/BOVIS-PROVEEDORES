@@ -16,7 +16,7 @@
 		static $rightname	= "plugin_comproveedores";
 
 		static function getTypeName($nb=0){
-			return _n('CURRICULUM DE LA EMPRESA','CURRICULUM DE LA EMPRESA',1,'comproveedores');
+			return _n('DATOS DE CONTACTO','DATOS DE CONTACTO',1,'comproveedores');
 		}
 
 		function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
@@ -62,6 +62,7 @@
 			$this->addStandardTab('PluginComproveedoresUser', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresExperience', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresListspecialty', $ong, $options);
+			$this->addStandardTab('PluginComproveedoresEmpleado', $ong, $options);
 
 
 			return $ong;
