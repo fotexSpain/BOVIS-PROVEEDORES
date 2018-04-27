@@ -26,7 +26,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				$self->showFormItemSpecialty($item, $withtemplate);
 			}else{
 				
-				$self->showForm($item, $withtemplate);
+				$self->showFormNoCV($item, $withtemplate);
 			}
 				
 		}else{
@@ -55,10 +55,15 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 		}		
 	}
 
+	function showFormNoCV($ID, $options=[]) {
+			//Aqui entra cuando no tien gestionado el curriculum
+
+			echo "<div>Necesitas gestionar el CV antes de añadir especialidades</div>";
+			echo "<br>";
+	}
+
 	function showForm($ID, $options=[]) {
 			//Aqui entra desde el inicio de los proveedores
-
-		echo "show form de lista de especialidades";
 		
 	}
 
