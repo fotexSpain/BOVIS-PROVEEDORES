@@ -2918,3 +2918,11 @@ Función CronTask::cronoptimize no definida (para cron)
   inc\plugin.class.php:731                           plugin_comproveedores_install()
   :                                                  Plugin->install()
   front\plugin.form.php:48                           call_user_func()
+2018-04-27 09:32:01 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:34:16 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:51:13 [6@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:52:58 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
