@@ -29,7 +29,16 @@
 			$self = new self();
 
 			if($item->getType()=='Supplier'){	
-				$self->showFormItemExperience($item, $withtemplate);
+
+				if(isset($item->fields['cv_id'])){
+			
+					$self->showFormItemExperience($item, $withtemplate);
+
+				}else{
+				
+					$self->showFormNoCV($item, $withtemplate);
+				}
+				
 			}else if($item->getType()=='PluginComproveedoresCv'){
 				$self->showFormItem($item, $withtemplate);
 			}
@@ -287,8 +296,16 @@
 		}
 
 
+		function showFormNoCV($ID, $options=[]) {
+			//Aqui entra cuando no tien gestionado el curriculum
+
+			echo "<div>Necesitas gestionar el CV antes de añadir expeciencias</div>";
+			echo "<br>";
+		}
+
 		function showForm($ID, $options=[]) {
 			//Aqui entra desde el inicio de los proveedores
+
 			global $CFG_GLPI;
 			$this->initForm($ID, $options);
 			$this->showFormHeader($options);
