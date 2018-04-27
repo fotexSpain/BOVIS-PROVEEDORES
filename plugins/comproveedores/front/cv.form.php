@@ -34,7 +34,7 @@
 			$supplier=new Supplier();
 			$_POST['id']=$_POST['supplier_id'];
 			
-			$supplier->check($_POST['supplier_id'],UPDATE);
+			//$supplier->check($_POST['supplier_id'],UPDATE);
 			$supplier->update($_POST);
 
 			if($_SESSION['glpibackcreated']) {
@@ -70,9 +70,13 @@
 	} else if (isset($_POST["purge"])) {
 		$PluginComproveedores->check($_POST['id'], PURGE);
 		$PluginComproveedores->delete($_POST, 1);
+		var_dump($_POST);
 
-			$query="UPDATE glpi_suppliers SET cv_id=0 WHERE id=$_POST[supplier_id]";
-			$DB->query($query);
+		$query="UPDATE glpi_suppliers SET cv_id= null WHERE id=$_POST[supplier_id];
+		DELETE  FROM `glpi_plugin_comproveedores_experiences`  WHERE cv_id=$_POST[id];
+		DELETE  FROM `glpi_plugin_comproveedores_listspecialties`  WHERE cv_id=$_POST[id];
+		DELETE  FROM `glpi_plugin_comproveedores_empleados`  WHERE cv_id=$_POST[id];";
+		$DB->query($query);
 
 		Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
 

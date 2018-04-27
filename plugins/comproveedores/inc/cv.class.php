@@ -265,40 +265,6 @@
 			echo "</tbody></table>";
 
 			$this->showFormButtons($options);
-
-
-			/*
-			*	ENTRAMOS AL CURRICULUM DEL PROVEEDOR MEDIANTE EL SUPPLIER_id
-			*
-			*	LLAMAMOS A LAS CLASES USER Y EXPERIENCE PASANDO EL ID DEL PROVEEEDOR Y EL ID DEL CURRICULUM 
-			*/
-
-
-			$itemS= new Supplier;
-			$itemS->fields['supplier_id']=$item->fields['id'];
-			$itemS->fields['cv_id']=$item->fields['cv_id'];
-
-
-			//Ocultar si el proveedor no tiene cv_id
-
-
-
-
-			if($itemS->fields['cv_id']!=0 && $itemS->fields['cv_id']!= null){
-
-			//	PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
-
-				//PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
-
-			//	PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
-
-				//PluginComproveedoresEmpleado::displayTabContentForItem($itemS,'','');
-			}
-			
-			
-			
-
-
 		}
 
 		function showForm($ID, $options=[]) {
@@ -311,9 +277,6 @@
 			$user_Id=$_SESSION['glpiID'];
 			$profile_Id=$this->getProfileByUserID($user_Id);
 
-			$data=$this->getSupplierCompleteByCv($ID);
-
-
 			$this->initForm($ID, $options);
 			
 			$this->showFormHeader($options);
@@ -325,11 +288,13 @@
 
 			echo Html::hidden('id', array('value' => $this->fields['id']));
 
-			if($profile_Id!=9){
-				
+			if($profile_Id!=9){				
 				echo Html::hidden('supplier_id', array('value' => $this->fields['supplier_id']));
+				$data=$this->getSupplierCompleteByCv($ID);
 			}else{
 				echo Html::hidden('supplier_id', array('value' => $this->getSupplierByUserID($user_Id)));
+				$supp_id=$this->getSupplierByUserID($user_Id);
+				$data=$this->getSupplierCompleteBySupplierId($supp_id);
 			}
 			
 			
@@ -462,26 +427,6 @@
 			echo "</tbody></table>";
 			$this->showFormButtons($options);
 			
-
-			
-			$itemS= new Supplier;
-			if($profile_Id!=9){
-				$itemS->fields['supplier_id']=$this->fields['supplier_id'];
-				$itemS->fields['cv_id']=$this->fields['id'];
-			}else{
-				$itemS->fields['supplier_id']=$this->getSupplierByUserID($user_Id);
-				$itemS->fields['cv_id']=$this->fields['id'];
-			}
-
-			//Ocultar si el proveedor no tiene cv_id
-			if($itemS->fields['cv_id']!=0 && $itemS->fields['cv_id']!= null){
-
-				//PluginComproveedoresUser::displayTabContentForItem($itemS,'','');
-
-				//PluginComproveedoresExperience::displayTabContentForItem($itemS,'','');
-			
-				//PluginComproveedoresListspecialty::displayTabContentForItem($itemS,'','');
-			}
 			
 		}
 
@@ -489,6 +434,23 @@
 			global $DB;
 			$options=array();
 			$query ="SELECT *  FROM glpi_suppliers WHERE cv_id=$Id";
+
+			$result=$DB->query($query);
+			$data=$DB->fetch_array($result);
+
+			$itemSupplier=new Supplier();
+			
+			
+			foreach ($data as $key => $value) {
+				$itemSupplier->fields[$key]=$value;
+			}
+			return $itemSupplier;
+		}
+
+		function getSupplierCompleteBySupplierId($Id){
+			global $DB;
+			$options=array();
+			$query ="SELECT *  FROM glpi_suppliers WHERE id=$Id";
 
 			$result=$DB->query($query);
 			$data=$DB->fetch_array($result);

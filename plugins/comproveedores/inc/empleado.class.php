@@ -29,7 +29,11 @@
 			$self = new self();
 
 			if($item->getType()=='Supplier'){	
-				$self->showFormItemEmpleado($item, $withtemplate);
+				if(isset($item->fields['cv_id'])){
+					$self->showFormItemEmpleado($item, $withtemplate);
+				}else{
+					$self->showFormNoCV($item, $withtemplate);
+				}
 			}else if($item->getType()=='PluginComproveedoresCv'){
 				$self->showFormItem($item, $withtemplate);
 			}
@@ -87,44 +91,44 @@
 			$CvId=$item->fields['id']; 
 
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/empleado.form.php method='post'>";		
-						echo Html::hidden('cv_id', array('value' => $CvId));
+			echo Html::hidden('cv_id', array('value' => $CvId));
 
-						echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-						echo "<div class='center'>";
-						echo"<table class='tab_cadre_fixe'><tbody>";
-						echo"<tr class='headerRow'>";
-						echo"<th colspan='4'>Experiencia</th></tr>";
+			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+			echo "<div class='center'>";
+			echo"<table class='tab_cadre_fixe'><tbody>";
+			echo"<tr class='headerRow'>";
+			echo"<th colspan='4'>Experiencia</th></tr>";
 
-						echo"<th colspan='4'>Añadir datos</th></tr>";
-						echo"<tr class='tab_bg_1 center'>";
-						echo "<td>" . __('Año') . "</td>";
-						echo "<td>";
+			echo"<th colspan='4'>Añadir datos</th></tr>";
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td>" . __('Año') . "</td>";
+			echo "<td>";
 
-						Dropdown::showFromArray('anio', $this->getYears(),'');
-						echo "</td>";
-						echo"</tr>";
+			Dropdown::showFromArray('anio', $this->getYears(),'');
+			echo "</td>";
+			echo"</tr>";
 
-						echo"<tr class='tab_bg_1 center'>";
-						echo "<td>" . __('Empleados Fijos') . "</td>";
-						echo "<td>";
-						Html::autocompletionTextField($this, "empleados_fijos");
-						echo "</td>";
-						echo "<td>" . __('Empleados Eventuales') . "</td>";
-						echo "<td>";
-						Html::autocompletionTextField($this, "empleados_eventuales");
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td>" . __('Empleados Fijos') . "</td>";
+			echo "<td>";
+			Html::autocompletionTextField($this, "empleados_fijos");
+			echo "</td>";
+			echo "<td>" . __('Empleados Eventuales') . "</td>";
+			echo "<td>";
+			Html::autocompletionTextField($this, "empleados_eventuales");
 
-						echo "</td>";
-						echo"</tr>";
+			echo "</td>";
+			echo"</tr>";
 
 
 
-						echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-						echo"<tr class='tab_bg_1'>";
-						echo"</tr>";
-						echo"</tbody>";
-						echo"</table>";
-						echo"</div>";
-						echo"</form>";
+			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo"<tr class='tab_bg_1'>";
+			echo"</tr>";
+			echo"</tbody>";
+			echo"</table>";
+			echo"</div>";
+			echo"</form>";
 
 						/*///////////////////////////////
 						//LISTAR EXPERIENCIA DEL PROVEEDOR
@@ -153,116 +157,116 @@
 										$data['is_deleted']=1;
 									}
 
-										echo "<tr>";
-										echo "<td class='center'>".$data['anio']."</td>";
-										echo "<td class='center'>".$data['empleados_fijos']."</td>";
-										echo "<td class='center'>".$data['empleados_eventuales']."</td>";
-										
-										echo "<td class='center'>";
-										echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/empleado.form.php method='post'>";
-										echo Html::hidden('id', array('value' => $data['id']));
-										echo Html::hidden('cv_id', array('value' => $data['cv_id']));
-										echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-										echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-										echo "</td>";
-										echo "</tr>";
-										echo"</form>";
+									echo "<tr>";
+									echo "<td class='center'>".$data['anio']."</td>";
+									echo "<td class='center'>".$data['empleados_fijos']."</td>";
+									echo "<td class='center'>".$data['empleados_eventuales']."</td>";
+									
+									echo "<td class='center'>";
+									echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/empleado.form.php method='post'>";
+									echo Html::hidden('id', array('value' => $data['id']));
+									echo Html::hidden('cv_id', array('value' => $data['cv_id']));
+									echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+									echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
+									echo "</td>";
+									echo "</tr>";
+									echo"</form>";
 
+								}
+								echo "</tr>";
+								echo "</table></div>";
+								echo"<br>";
 							}
-							echo "</tr>";
-							echo "</table></div>";
-							echo"<br>";
-					}
-					
-				}
+							
+						}
 
 
-				function showForm($ID, $options=[]) {
+						function showForm($ID, $options=[]) {
 			//Aqui entra desde el inicio de los proveedores
-					global $CFG_GLPI;
-					$this->initForm($ID, $options);
-					$this->showFormHeader($options);
+							global $CFG_GLPI;
+							$this->initForm($ID, $options);
+							$this->showFormHeader($options);
 
-					echo"<th colspan='4'>Usuarios</th>";
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('Nombre proyecto') . "</td>";
-					echo "<td>";
-					Html::autocompletionTextField($this, "name");
-					echo "</td>";
-					echo "<td>" . __('Comunidad Autonoma') . "</td>";
-					echo "<td>";
+							echo"<th colspan='4'>Usuarios</th>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('Nombre proyecto') . "</td>";
+							echo "<td>";
+							Html::autocompletionTextField($this, "name");
+							echo "</td>";
+							echo "<td>" . __('Comunidad Autonoma') . "</td>";
+							echo "<td>";
 			//Html::autocompletionTextField($this, "comunidad");
-					Dropdown::show('PluginComproveedoresCommunity',
-						array('value' => $this->fields["plugin_comproveedores_communities_id"]));
+							Dropdown::show('PluginComproveedoresCommunity',
+								array('value' => $this->fields["plugin_comproveedores_communities_id"]));
 
-					echo "</td>";
-					echo"</tr>";
+							echo "</td>";
+							echo"</tr>";
 
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('Cliente') . "</td>";
-					echo "<td>";
-					Html::autocompletionTextField($this, "cliente");
-					echo "</td>";
-					echo "<td>" . __('Año') . "</td>";
-					echo "<td>";
-					$options['value']=$this->fields["anio"];
-					Dropdown::showFromArray('anio', $this->getYears(),array($options));
-					echo "</td>";
-					echo"</tr>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('Cliente') . "</td>";
+							echo "<td>";
+							Html::autocompletionTextField($this, "cliente");
+							echo "</td>";
+							echo "<td>" . __('Año') . "</td>";
+							echo "<td>";
+							$options['value']=$this->fields["anio"];
+							Dropdown::showFromArray('anio', $this->getYears(),array($options));
+							echo "</td>";
+							echo"</tr>";
 
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('Importe contratado') . "</td>";
-					echo "<td>";
-					Html::autocompletionTextField($this, "importe");
-					echo "</td>";
-					echo "<td>" . __('Duración de su contratado') . "</td>";
-					echo "<td>";
-					Html::autocompletionTextField($this, "duracion");
-					echo "</td>";
-					echo"</tr>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('Importe contratado') . "</td>";
+							echo "<td>";
+							Html::autocompletionTextField($this, "importe");
+							echo "</td>";
+							echo "<td>" . __('Duración de su contratado') . "</td>";
+							echo "<td>";
+							Html::autocompletionTextField($this, "duracion");
+							echo "</td>";
+							echo"</tr>";
 
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('BIM') . "</td>";
-					echo "<td>";
-					Dropdown::showYesNo('bim',$this->fields['bim']);
-					echo "</td>";
-					echo "<td>" . __('Breeam') . "</td>";
-					echo "<td>";
-					Dropdown::showYesNo('breeam',$this->fields['breeam']);
-					echo "</td>";
-					echo"</tr>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('BIM') . "</td>";
+							echo "<td>";
+							Dropdown::showYesNo('bim',$this->fields['bim']);
+							echo "</td>";
+							echo "<td>" . __('Breeam') . "</td>";
+							echo "<td>";
+							Dropdown::showYesNo('breeam',$this->fields['breeam']);
+							echo "</td>";
+							echo"</tr>";
 
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('Leed') . "</td>";
-					echo "<td>";
-					Dropdown::showYesNo('leed',$this->fields['leed']);
-					echo "</td>";
-					echo "<td>" . __('Otros certificados') . "</td>";
-					echo "<td>";
-					Dropdown::showYesNo('otros_certificados',$this->fields['otros_certificados']);
-					echo "</td>";
-					echo"</tr>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('Leed') . "</td>";
+							echo "<td>";
+							Dropdown::showYesNo('leed',$this->fields['leed']);
+							echo "</td>";
+							echo "<td>" . __('Otros certificados') . "</td>";
+							echo "<td>";
+							Dropdown::showYesNo('otros_certificados',$this->fields['otros_certificados']);
+							echo "</td>";
+							echo"</tr>";
 
-					echo"<tr class='tab_bg_1 center'>";
-					echo "<td>" . __('Cpd Tier') . "</td>";
-					echo "<td>";
-					Dropdown::showYesNo('cpd_tier',null);
-					echo "</td>";
-					echo "<td>" . __('Observaciones') . "</td>";
-					echo "<td>";
-					Html::autocompletionTextField($this, "observaciones");
-					echo "</td>";
-					echo "</tr>";
+							echo"<tr class='tab_bg_1 center'>";
+							echo "<td>" . __('Cpd Tier') . "</td>";
+							echo "<td>";
+							Dropdown::showYesNo('cpd_tier',null);
+							echo "</td>";
+							echo "<td>" . __('Observaciones') . "</td>";
+							echo "<td>";
+							Html::autocompletionTextField($this, "observaciones");
+							echo "</td>";
+							echo "</tr>";
 
-					$this->showFormButtons($options);
-				}
-
-
+							$this->showFormButtons($options);
+						}
 
 
-				function showFormItemEmpleado($item, $withtemplate='') {	
 
-					GLOBAL $DB,$CFG_GLPI;
+
+						function showFormItemEmpleado($item, $withtemplate='') {	
+
+							GLOBAL $DB,$CFG_GLPI;
 
 
 						/*///////////////////////////////
@@ -338,36 +342,43 @@
 										$data['is_deleted']=1;
 									}
 
-										echo "<tr>";
-										echo "<td class='center'>".$data['anio']."</td>";
-										echo "<td class='center'>".$data['empleados_fijos']."</td>";
-										echo "<td class='center'>".$data['empleados_eventuales']."</td>";
-										
-										echo "<td class='center'>";
-										echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/empleado.form.php method='post'>";
-										echo Html::hidden('id', array('value' => $data['id']));
-										echo Html::hidden('cv_id', array('value' => $data['cv_id']));
-										echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-										echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-										echo "</td>";
-										echo "</tr>";
-										echo"</form>";
+									echo "<tr>";
+									echo "<td class='center'>".$data['anio']."</td>";
+									echo "<td class='center'>".$data['empleados_fijos']."</td>";
+									echo "<td class='center'>".$data['empleados_eventuales']."</td>";
+									
+									echo "<td class='center'>";
+									echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/empleado.form.php method='post'>";
+									echo Html::hidden('id', array('value' => $data['id']));
+									echo Html::hidden('cv_id', array('value' => $data['cv_id']));
+									echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+									echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
+									echo "</td>";
+									echo "</tr>";
+									echo"</form>";
+
+								}
+								echo "</tr>";
+								echo "</table></div>";
+								echo"<br>";
 
 							}
-							echo "</tr>";
-							echo "</table></div>";
-							echo"<br>";
+						}
 
+						function getYears(){
+							$year = date("Y");
+							for ($i= 1945; $i <= $year ; $i++) {
+
+								$lista[$i]=$i;
+
+							}
+							return $lista;
+						}
+
+						function showFormNoCV($ID, $options=[]) {
+			//Aqui entra cuando no tien gestionado el curriculum
+
+							echo "<div>Necesitas gestionar el CV antes de añadir expeciencias</div>";
+							echo "<br>";
 						}
 					}
-
-					function getYears(){
-						$year = date("Y");
-						for ($i= 1945; $i <= $year ; $i++) {
-
-							$lista[$i]=$i;
-
-						}
-						return $lista;
-					}
-				}
