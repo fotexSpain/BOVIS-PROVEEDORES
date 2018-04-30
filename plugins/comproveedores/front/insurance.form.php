@@ -20,43 +20,43 @@
 		$_GET["withtemplate"] = "";
 	}
 
-	$PluginInsurence= new PluginComproveedoresInsurence();
+	$PluginInsurance= new PluginComproveedoresInsurance();
 
 	
 	if(isset($_POST['add'])){
-		$PluginInsurence->check(-1, CREATE, $_POST);
-		$newID = $PluginInsurence->add($_POST);
+		$PluginInsurance->check(-1, CREATE, $_POST);
+		$newID = $PluginInsurance->add($_POST);
 	
 		if($_SESSION['glpibackcreated']) {
-			Html::redirect($PluginInsurence->getFormURL()."?id=".$newID);
+			Html::redirect($PluginInsurance->getFormURL()."?id=".$newID);
 		}
 
 		Html::back();
 	} else if(isset($_POST['update'])){
-		$PluginInsurence->check($_POST['id'], UPDATE);
-		$PluginInsurence->update($_POST);
+		$PluginInsurance->check($_POST['id'], UPDATE);
+		$PluginInsurance->update($_POST);
 
 		Html::back();
 	} else if (isset($_POST["delete"])) {
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
-		$PluginInsurence->check($_POST['id'], DELETE);
-		$PluginInsurence->delete($_POST);
+		$PluginInsurance->check($_POST['id'], DELETE);
+		$PluginInsurance->delete($_POST);
 		//Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
 		Html::back();
 
 	} else if (isset($_POST["restore"])) {
-		$PluginInsurence->check($_POST['id'], PURGE);
-		$PluginInsurence->restore($_POST);
+		$PluginInsurance->check($_POST['id'], PURGE);
+		$PluginInsurance->restore($_POST);
 		Html::back();
 
 	} else if (isset($_POST["purge"])) {
-		$PluginInsurence->check($_POST['id'], PURGE);
-		$PluginInsurence->delete($_POST, 1);
+		$PluginInsurance->check($_POST['id'], PURGE);
+		$PluginInsurance->delete($_POST, 1);
 		
 		Html::back();
 
 	} else {
-		$PluginExperience->checkGlobal(READ);
+		$PluginInsurance->checkGlobal(READ);
 
 
 		/*//////////////////////////////////////////////////////////
@@ -65,10 +65,10 @@
 
 		$plugin = new Plugin();
 		if ($plugin->isActivated("environment")) {
-			Html::header(PluginComproveedoresInsurence::getTypeName(2),
+			Html::header(PluginComproveedoresInsurance::getTypeName(2),
 				'',"management","pluginenvironmentdisplay","comproveedores");
 		} else {
-			Html::header(PluginComproveedoresInsurence::getTypeName(2), '', "management",
+			Html::header(PluginComproveedoresInsurance::getTypeName(2), '', "management",
 				"plugincomproveedorescvmenu");	
 		}
 
@@ -78,10 +78,10 @@
 		//////////////////////////////////////////////////////////*/
 
 		if(empty($_GET['id'])){
-			Search::show('PluginComproveedoresInsurence');
+			Search::show('PluginComproveedoresInsurance');
 		}else{			
 			$options['id']=$_GET['id'];
-			$PluginInsurence->display($options);
+			$PluginInsurance->display($options);
 		}
 
 		Html::footer();

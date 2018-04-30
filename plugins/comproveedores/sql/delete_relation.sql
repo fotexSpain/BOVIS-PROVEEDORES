@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS `glpi_plugin_comproveedores_experiences`;
 DROP TABLE IF EXISTS `glpi_plugin_comproveedores_listspecialties`;
 DROP TABLE IF EXISTS `glpi_plugin_comproveedores_roltypes`;
 DROP TABLE IF EXISTS `glpi_plugin_comproveedores_specialties`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_insurances`;
+DROP TABLE IF EXISTS `glpi_plugin_comproveedores_empleados`;
 
 ALTER TABLE `glpi_users` DROP COLUMN  `supplier_id`;
 

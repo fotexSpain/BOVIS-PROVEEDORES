@@ -63,6 +63,7 @@
 			$this->addStandardTab('PluginComproveedoresExperience', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresListspecialty', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresEmpleado', $ong, $options);
+			$this->addStandardTab('PluginComproveedoresInsurance', $ong, $options);
 
 
 			return $ong;
