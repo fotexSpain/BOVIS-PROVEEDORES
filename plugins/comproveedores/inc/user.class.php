@@ -19,7 +19,7 @@
 			if($item-> getType()=="Supplier"){
 				return self::createTabEntry('Personas de contacto');
 			}
-			return 'Usuario del proveedor';
+			return 'Personas de contacto';
 		}
 
 

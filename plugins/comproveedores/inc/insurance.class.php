@@ -244,13 +244,14 @@
 				
 				$(document).ready(function() {
 
-					if($this->fields['name']=='Resposabilidad civil'
-						|| $this->fields['name']=='Seguro todo riesgo'
-						|| $this->fields['name']=='Seguro accidentes de trabajo'){
+					if('".$this->fields['name']."' == 'Resposabilidad civil'
+						|| '".$this->fields['name']."' == 'Seguro todo riesgo'
+						|| '".$this->fields['name']."' == 'Seguro accidentes de trabajo'){
 
 						$('select[name=selectTipo]').find('option:contains(".$this->fields['name'].")').attr('selected',true);
 						
-					}else{
+					}
+					else{
 						$('select[name=selectTipo]').find('option:contains(Otros Seguros)').attr('selected',true);
 					}
 					
@@ -463,27 +464,33 @@
       						valor=$( this ).text();
    						 });
 
-
+   						//ocultamos o mostramos el nombre del nuevo seguro
    						if(valor=='Otros Seguros'){
-   							$('input[name=name]').val('');
+
+   							$('.SeguroNombreOcultar').children('input[name=name]').val('');
    							$('.SeguroNombreOcultar').show();
+   							$('.SeguroNAseguradosOcultar').hide();
    						}
    						if(valor!='Otros Seguros'){
-   							//ocultar numero de asegurados
+
+   							$('.SeguroNombreOcultar').hide();
+   							
+   							//ocultamos o mostramos el número de asegurados
    							if(valor=='Resposabilidad civil'){
    								$('.SeguroNAseguradosOcultar').show();
+
    							}
    							if(valor!='Resposabilidad civil'){
    								$('.SeguroNAseguradosOcultar').hide();
    							}
-
-   							$('input[name=name]').val(valor);
+   							
+   							$('.SeguroNombreOcultar').children('input[name=name]').val(valor);
    							$('.SeguroNombreOcultar').hide();
    						}
   						
 					});
     				
-				});		
+				});	
 				
 		</script>";
 

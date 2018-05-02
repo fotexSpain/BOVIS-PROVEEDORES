@@ -140,7 +140,7 @@ INSERT INTO `glpi_plugin_comproveedores_communities` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_insurances` (
 	`id` int(11) NOT NULL auto_increment,
 	`name` varchar(255) NOT NULL default '',
-	`cia_aseguradora` varchar(255) NOT NULL NOT NULL default '',
+	`cia_aseguradora` varchar(255) NOT NULL default '',
 	`cuantia` int(11) NOT NULL default '0',
 	`fecha_caducidad` date,
 	`numero_empleados_asegurados` int(11) NOT NULL default '0',
@@ -153,3 +153,30 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_insurances` (
 	PRIMARY KEY (`id`),
 	KEY `entities_id` (`entities_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiencestypes` (
+	`id` int(11) NOT NULL auto_increment,
+	`name`varchar(255),
+
+	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `name` (`name`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
+(1, 'Edificios de oficinas'),
+(2,	'Centros comerciales/locales comerciales'),
+(3, 'Proyectos de hospitales/Centros sanitarios'),
+(4, 'Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes'),
+(5, 'Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos'),
+(6, 'Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)'),
+(7, 'Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)'),
+(8, 'Proyectos industriales/Logísticos'),
+(9, 'Proyectos de vivienda residenciales'),
+(10, 'Obras de rehabilitación de edificios'),
+(11, 'Centro de procesos de datos(CPD) y otros proyectos');

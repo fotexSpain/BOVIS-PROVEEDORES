@@ -164,7 +164,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				echo "</tr>";
 
 				while ($data=$DB->fetch_array($result2)) {
-
+					echo "<tr>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
@@ -176,6 +176,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 					echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
 					echo "</td>";
 					echo"</form>";
+					echo"</tr>";
 
 				}
 
@@ -283,7 +284,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 				echo "</tr>";
 
 				while ($data=$DB->fetch_array($result2)) {
-
+					echo "<tr>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_roltypes",$data['plugin_comproveedores_roltypes_id'])."</td>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_categories",$data['plugin_comproveedores_categories_id'])."</td>";
 					echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_specialties",$data['plugin_comproveedores_specialties_id'])."</td>";
@@ -295,7 +296,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 					echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
 					echo "</td>";
 					echo"</form>";
-
+					echo"</tr>";
 				}
 
 
