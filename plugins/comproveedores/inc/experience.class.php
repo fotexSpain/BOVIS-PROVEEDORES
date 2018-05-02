@@ -12,14 +12,14 @@
 		static $rightname	= "plugin_comproveedores";
 
 		static function getTypeName($nb=0){
-			return _n('Expeciencia del proveedor','Expeciencia del proveedor',1,'comproveedores');
+			return _n('Expeciencias','Expeciencias',1,'comproveedores');
 		}
 
 		function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
 			if($item-> getType()=="Supplier"){
-				return self::createTabEntry('Expeciencia del proveedor');
+				return self::createTabEntry('Experiencias');
 			}
-			return 'Expeciencia del proveedor';
+			return 'Experiencias';
 		}
 
 
@@ -439,9 +439,11 @@
 			$opt['addicon']= false;
 
 			echo $this->consultaJquery();
+			echo $this->consultaAjax();
 
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
+			echo Html::hidden('idExperiencia');
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 			echo "<div class='center'>";
@@ -462,7 +464,7 @@
 			echo"</tr>";
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Nombre proyecto') . "</td>";
-			echo "<td class='experiencia'>";
+			echo "<td id='nombreExperiencia'>";
 			Html::autocompletionTextField($this, "name");
 			echo "</td>";
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
@@ -529,8 +531,8 @@
 			echo "</tr>";
 
 			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td><input type='submit' class='submit' name='addNoDelete' value='AÑADIR SIN BORRAR' /></td>";
-			echo"<td><input type='submit' class='submit' name='update' value='MODIFICAR' /></td>";
+			echo"<td><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
+			echo"<td><span class='vsubmit' onclick='modificar();' name='Update'>GUARDAR MODIFICAR</span></td>";
 			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
@@ -541,6 +543,7 @@
 			/*///////////////////////////////
 			//LISTAR EXPERIENCIA DEL PROVEEDOR
 			///////////////////////////////*/
+			echo "<div id='actualizarLista'>";
 
 
 			$query2 ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=$CvId" ;
@@ -653,6 +656,7 @@
 							echo"<br>";
 
 			}
+			echo "</div>";
 		}
 
 		function consultaJquery(){
@@ -684,10 +688,161 @@
   					
 				});	
 
-
 			</script>";
 
 			return $consulta;
 		}
+
+		function consultaAjax(){
+
+		GLOBAL $CFG_GLPI;
+
+		$consulta="<script type='text/javascript'>
+
+				function añadirSinBorrar(){
+					
+					$('select[name=intervencion_bovis] option:selected').each(function() {
+      						intervencion_bovis=$( this ).text();
+   					});
+					$('select[name=bim] option:selected').each(function() {
+      						bim=$( this ).text();
+   					});
+   					$('select[name=breeam] option:selected').each(function() {
+      					breeam=$( this ).text();
+   					});
+   					$('select[name=leed] option:selected').each(function() {
+      					leed=$( this ).text();
+   					});
+   					$('select[name=otros_certificados] option:selected').each(function() {
+      					otros_certificados=$( this ).text();
+   					});
+   					$('select[name=cpd_tier] option:selected').each(function() {
+      					cpd_tier=$( this ).text();
+   					});
+   					/*$('select[name=anio] option:selected').each(function() {
+      					anio=$( this ).text();
+   					});*/
+   				
+   					
+                	var parametros = {
+						'addNoDelete':'AÑADIR SIN BORRAR',
+						'cv_id' : $('input[name=cv_id]').val(),
+						'intervencion_bovis'	:	intervencion_bovis,
+						'plugin_comproveedores_experiencestypes_id':$('input[name=plugin_comproveedores_experiencestypes_id]').val(),
+						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
+                		'name' : $('#nombreExperiencia > input[name=name]').val(),
+                		'cliente' : $('input[name=cliente]').val(),
+                		'importe': $('input[name=importe]').val(),
+                		'duracion': $('input[name=duracion]').val(),
+                		'bim'	:	bim,
+                		'breeam':	breeam,
+                		'leed'	:	leed,
+                		'otros_certificados':	otros_certificados,
+                		'cpd_tier'	:	cpd_tier,
+                		'observaciones'	:	$('input[name=observaciones]').val()
+                		
+                	};
+                	
+
+					$.ajax({  
+						type: 'GET',                 
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
+           				data: parametros, 
+						success:function(data){
+							$('input[name=idExperiencia]').val(data);        					
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		//Actualizar Lista expeciencias
+            	
+            		actualizarLista();
+						
+				}
+
+				function modificar(){
+
+					$('select[name=intervencion_bovis] option:selected').each(function() {
+      						intervencion_bovis=$( this ).text();
+   					});
+					$('select[name=bim] option:selected').each(function() {
+      						bim=$( this ).text();
+   					});
+   					$('select[name=breeam] option:selected').each(function() {
+      					breeam=$( this ).text();
+   					});
+   					$('select[name=leed] option:selected').each(function() {
+      					leed=$( this ).text();
+   					});
+   					$('select[name=otros_certificados] option:selected').each(function() {
+      					otros_certificados=$( this ).text();
+   					});
+   					$('select[name=cpd_tier] option:selected').each(function() {
+      					cpd_tier=$( this ).text();
+   					});
+   					/*$('select[name=anio] option:selected').each(function() {
+      					anio=$( this ).text();
+   					});*/
+
+                	var parametros = {
+						'update':'AÑADIR SIN BORRAR',
+						'cv_id' : $('input[name=cv_id]').val(),
+						'id'	: $('input[name=idExperiencia]').val(),
+						'intervencion_bovis'	:	intervencion_bovis,
+						'plugin_comproveedores_experiencestypes_id':$('input[name=plugin_comproveedores_experiencestypes_id]').val(),
+						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
+                		'name' : $('#nombreExperiencia > input[name=name]').val(),
+                		'cliente' : $('input[name=cliente]').val(),
+                		'importe': $('input[name=importe]').val(),
+                		'duracion': $('input[name=duracion]').val(),
+                		'bim'	:	bim,
+                		'breeam':	breeam,
+                		'leed'	:	leed,
+                		'otros_certificados':	otros_certificados,
+                		'cpd_tier'	:	cpd_tier,
+                		'observaciones'	:	$('input[name=observaciones]').val()
+                		
+                	};
+					$.ajax({  
+						type: 'GET',                 
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
+           				data: parametros, 
+						success:function(data){
+												
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		//Actualizar Lista expeciencias
+            	
+            		actualizarLista();
+						
+				}
+
+				function actualizarLista(){
+
+					$.ajax({ 
+            			type: 'GET',
+            			data: {'cv_id': $('input[name=cv_id]').val() },                  
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/listExperience.php',                    
+           				success:function(data){
+           					$('#actualizarLista').html(data);
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		
+				}
+				
+			</script>";
+
+		return $consulta;
+	}
 
 }

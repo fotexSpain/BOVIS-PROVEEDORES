@@ -55,7 +55,50 @@
 		
 		Html::back();
 
-	} else {
+	}else if(isset($_GET['addNoDelete'])){
+
+
+		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+
+		foreach ($cambiarValor as $key => $value) {
+
+			if($_GET[$value]=='No'){
+				$_GET[$value]=0;
+			}else{
+				$_GET[$value]=1;
+			}
+		}
+
+		$PluginExperience->check(-1, CREATE, $_GET);
+
+		
+		$newID = $PluginExperience->add($_GET);
+
+		$query ="SELECT id FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." ORDER BY id DESC LIMIT 1";
+
+		$result = $DB->query($query);
+			
+		while ($data=$DB->fetch_array($result)) {
+			$idExpeciencia=$data["id"];
+		}
+
+		echo $idExpeciencia;
+	} else if(isset($_GET['update'])){
+		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+
+		foreach ($cambiarValor as $key => $value) {
+
+			if($_GET[$value]=='No'){
+				$_GET[$value]=0;
+			}else{
+				$_GET[$value]=1;
+			}
+		}
+
+		$PluginExperience->check($_GET['id'], UPDATE);
+		$PluginExperience->update($_GET);
+
+	}else {
 		$PluginExperience->checkGlobal(READ);
 
 

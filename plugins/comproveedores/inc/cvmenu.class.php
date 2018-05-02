@@ -14,7 +14,7 @@ class PluginComproveedoresCvmenu extends CommonGLPI {
 	static $rightname = 'plugin_comproveedores';
 	
 	static function getMenuName(){
-		return _n("Añadir Curriculum","Añadir Curriculums",2,"comproveedores");
+		return _n("Gestión Curriculum","Gestion Curriculum",2,"comproveedores");
 	}
 	
 	static function getMenuContent(){

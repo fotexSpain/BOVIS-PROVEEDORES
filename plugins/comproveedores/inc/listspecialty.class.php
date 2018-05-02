@@ -5,14 +5,14 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 	static $rightname	= "plugin_comproveedores";
 
 	static function getTypeName($nb=0){
-		return _n('Especialidad del proveedor','Especialidad del proveedor',1,'comproveedores');
+		return _n('Especialidades','Especialidades',1,'comproveedores');
 	}
 
 	function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
 		if($item->getType()=="Supplier"){
-			return self::createTabEntry('Especialidad del proveedor');
+			return self::createTabEntry('Especialidades');
 		}
-		return 'Especialidad del proveedor';
+		return 'Especialidades';
 	}
 
 	static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){
