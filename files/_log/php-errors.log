@@ -2856,3 +2856,73 @@ Función CronTask::cronoptimize no definida (para cron)
 Función CronTask::cronoptimize no definida (para cron)
 2018-04-23 12:24:06 [2@mins002]
 Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 07:46:36 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 08:20:23 [2@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+<<<<<<< HEAD
+2018-04-26 08:24:18 [@PC034]
+=======
+2018-04-26 09:09:37 [2@POR114]
+>>>>>>> cadce70f981f28a7efbfb5cd84dd6f823f728cf8
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:37:58 [2@PC034]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:47:42 [@PC034]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:43:21 [2@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 09:51:06 [2@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 10:19:17 [2@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 10:19:38 [2@POR114]
+  *** PHP Notice(8): Undefined variable: DB
+  Backtrace :
+  plugins\comproveedores\hook.php:52                 
+  inc\plugin.class.php:685                           plugin_comproveedores_uninstall()
+  :                                                  Plugin->uninstall()
+  front\plugin.form.php:48                           call_user_func()
+2018-04-26 12:50:54 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-26 12:51:11 [2@POR114]
+  From Toolbox::deprecated() in C:\wamp64\www\BOVIS-PROVEEDORES\inc\toolbox.class.php line 484
+  TableExists() function is deprecated 
+2018-04-26 12:51:11 [2@POR114]
+  Backtrace :
+  inc\toolbox.class.php:485                          Toolbox::backtrace()
+  inc\db.function.php:549                            Toolbox::deprecated()
+  plugins\comproveedores\hook.php:31                 TableExists()
+  inc\plugin.class.php:731                           plugin_comproveedores_install()
+  :                                                  Plugin->install()
+  front\plugin.form.php:48                           call_user_func()
+2018-04-26 12:51:11 [2@POR114]
+  From Toolbox::deprecated() in C:\wamp64\www\BOVIS-PROVEEDORES\inc\toolbox.class.php line 484 (0.019", 6.62Mio)
+  FieldExists() function is deprecated 
+2018-04-26 12:51:11 [2@POR114]
+  Backtrace :
+  inc\toolbox.class.php:485                          Toolbox::backtrace()
+  inc\db.function.php:568                            Toolbox::deprecated()
+  plugins\comproveedores\hook.php:36                 FieldExists()
+  inc\plugin.class.php:731                           plugin_comproveedores_install()
+  :                                                  Plugin->install()
+  front\plugin.form.php:48                           call_user_func()
+2018-04-26 12:51:11 [2@POR114]
+  From Toolbox::deprecated() in C:\wamp64\www\BOVIS-PROVEEDORES\inc\toolbox.class.php line 484 (0.020", 6.65Mio)
+  FieldExists() function is deprecated 
+2018-04-26 12:51:11 [2@POR114]
+  Backtrace :
+  inc\toolbox.class.php:485                          Toolbox::backtrace()
+  inc\db.function.php:568                            Toolbox::deprecated()
+  plugins\comproveedores\hook.php:38                 FieldExists()
+  inc\plugin.class.php:731                           plugin_comproveedores_install()
+  :                                                  Plugin->install()
+  front\plugin.form.php:48                           call_user_func()
+2018-04-27 09:32:01 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:34:16 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:51:13 [6@POR114]
+Función CronTask::cronoptimize no definida (para cron)
+2018-04-27 09:52:58 [@POR114]
+Función CronTask::cronoptimize no definida (para cron)

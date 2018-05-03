@@ -1919,19 +1919,40 @@ Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(
    $this->showFormHeader($options);
    $rand = mt_rand();
 
-   echo "<tr class='tab_bg_1'>";
-   echo "<td><label for='name'>" . __('Login') . "</label></td>";
-   if ($this->fields["name"] == "" ||
-    !empty($this->fields["password"])
-    || ($this->fields["authtype"] == Auth::DB_GLPI) ) {
-         //display login field for new records, or if this is not external auth
-     echo "<td><input name='name' id='name' value=\"" . $this->fields["name"] . "\"></td>";
- } else {
-   echo "<td class='b'>" . $this->fields["name"];
-   echo "<input type='hidden' name='name' value=\"" . $this->fields["name"] . "\"></td>";
- }
+   echo"<script type='text/javascript'>
 
- if (!empty($this->fields["name"])) {
+       $(document).ready(function () {
+
+          //Poner en nombre de usuario el correo
+          $('#emailUsuario').find('input[name*=_useremails]').keyup(function () {
+              var value = $(this).val();
+              $('#nombreDeUsuario').children('input[name=name]').val(value);
+          });
+
+          //Poner en la contrasenia el primer apellido con la primera en mayúscula
+          $('#primerApellido').find('input[name=realname]').keyup(function () {
+              var value = $(this).val();
+
+                var first = value.substring(0, 1);
+                var rest = value.substring(1, value.length);
+                var first = first.toUpperCase();
+                var contrasenia = first + rest;
+            
+              $('.ponerContrasenia').val(contrasenia);
+          });
+          
+      });
+        
+    </script>";
+
+   echo "<tr class='tab_bg_1'>";
+   echo "<td>" . _n('Email', 'Emails', Session::getPluralNumber());
+   UserEmail::showAddEmailButton($this);
+   echo "</td><td id='emailUsuario'>";
+   UserEmail::showForUser($this);
+   echo "</td>";
+
+   if (!empty($this->fields["name"])) {
    echo "<td rowspan='4'>" . __('Picture') . "</td>";
    echo "<td rowspan='4'>";
    echo "<div class='user_picture_border_small' id='picture$rand'>";
@@ -1948,9 +1969,34 @@ Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(
    echo "<input type='file' name='picture' accept='image/*'>";
    echo "<input type='checkbox' name='_blank_picture'>&nbsp;".__('Clear');
    echo "</td>";
+  } else {
+   echo "<td rowspan='4'></td>";
+   echo "<td rowspan='4'></td>";
+  }
+
+   echo"</tr>";
+
+   $surnamerand = mt_rand();
+  echo "<tr class='tab_bg_1'><td><label for='textfield_realname$surnamerand'>" . __('Surname') . "</label></td>";
+  echo"<td id='primerApellido'>";
+  Html::autocompletionTextField($this, "realname", ['rand' => $surnamerand]);
+  echo "</td></tr>";
+
+  $firstnamerand = mt_rand();
+  echo "<tr class='tab_bg_1'><td><label for='textfield_firstname$firstnamerand'>" . __('First name') . "</label></td><td>";
+  Html::autocompletionTextField($this, "firstname", ['rand' => $firstnamerand]);
+  echo "</td></tr>";
+
+   echo "<tr class='tab_bg_1'>";
+   echo "<td><label for='name'>" . __('Login') . "</label></td>";
+   if ($this->fields["name"] == "" ||
+    !empty($this->fields["password"])
+    || ($this->fields["authtype"] == Auth::DB_GLPI) ) {
+         //display login field for new records, or if this is not external auth
+     echo "<td id='nombreDeUsuario'><input name='name' id='name' value=\"" . $this->fields["name"] . "\"></td>";
  } else {
-   echo "<td rowspan='4'></td>";
-   echo "<td rowspan='4'></td>";
+   echo "<td id='nombreDeUsuario' class='b'>" . $this->fields["name"];
+   echo "<input type='hidden' name='name' value=\"" . $this->fields["name"] . "\"></td>";
  }
  echo "</tr>";
 
@@ -1975,36 +2021,31 @@ Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(
  echo "<tr><td colspan='2'></td></tr>";
 }
 
-$surnamerand = mt_rand();
-echo "<tr class='tab_bg_1'><td><label for='textfield_realname$surnamerand'>" . __('Surname') . "</label></td><td>";
-Html::autocompletionTextField($this, "realname", ['rand' => $surnamerand]);
-echo "</td></tr>";
-
-$firstnamerand = mt_rand();
-echo "<tr class='tab_bg_1'><td><label for='textfield_firstname$firstnamerand'>" . __('First name') . "</label></td><td>";
-Html::autocompletionTextField($this, "firstname", ['rand' => $firstnamerand]);
-echo "</td></tr>";
-
       //do some rights verification
 if (self::canUpdate()
   && (!$extauth || empty($ID))
   && $caneditpassword) {
  echo "<tr class='tab_bg_1'>";
  echo "<td><label for='password'>" . __('Password')."</label></td>";
- echo "<td><input id='password' type='password' name='password' value='' size='20'
+ echo "<td><input class='ponerContrasenia' id='password' type='password' name='password' value='' size='20'
  autocomplete='off' onkeyup=\"return passwordCheck();\"></td>";
- echo "<td rowspan='2'>";
+ echo "<td>";
  if ($CFG_GLPI["use_password_security"]) {
   echo __('Password security policy');
 }
 echo "</td>";
-echo "<td rowspan='2'>";
+echo "<td>";
 Config::displayPasswordSecurityChecks();
 echo "</td></tr>";
 
 echo "<tr class='tab_bg_1'>";
 echo "<td><label for='password2'>" . __('Password confirmation') . "</label></td>";
-echo "<td><input type='password' id='password2' name='password2' value='' size='20' autocomplete='off'>";
+echo "<td><input  class='ponerContrasenia' type='password' id='password2' name='password2' value='' size='20' autocomplete='off'>";
+echo "</td>";
+echo "<td><label for='password2'>" . __('CIF') . "</label></td>";
+echo "<td>";
+Html::autocompletionTextField($this, "user_dn");
+
 echo "</td></tr>";
 }
 
@@ -2017,11 +2058,7 @@ if (!GLPI_DEMO_MODE) {
 } else {
  echo "<td colspan='2'></td>";
 }
-echo "<td>" . _n('Email', 'Emails', Session::getPluralNumber());
-UserEmail::showAddEmailButton($this);
-echo "</td><td>";
-UserEmail::showForUser($this);
-echo "</td>";
+
 echo "</tr>";
 
 if (!GLPI_DEMO_MODE) {

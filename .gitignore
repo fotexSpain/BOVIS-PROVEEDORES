@@ -1,0 +1,3 @@
+config/config_db.php
+files/_log/*
+*.log

@@ -448,3 +448,21 @@
 [login] 3: prov 2 inició la sesión desde la IP 192.168.0.161
 2018-04-23 12:09:28 [@mins002]
 [login] 3: glpi inició la sesión desde la IP 192.168.0.161
+2018-04-26 07:46:44 [@POR114]
+[login] 3: glpi inició la sesión desde la IP ::1
+2018-04-26 08:24:23 [@PC034]
+[login] 3: Fallo en el inicio de sesión de glpi desde la IP ::1
+2018-04-26 08:24:33 [@PC034]
+[login] 3: glpi inició la sesión desde la IP ::1
+2018-04-26 09:47:38 [@PC034]
+[login] 3: Fallo en el inicio de sesión de  desde la IP ::1
+2018-04-26 09:47:47 [@PC034]
+[login] 3: glpi inició la sesión desde la IP ::1
+2018-04-26 12:51:00 [@POR114]
+[login] 3: glpi inició la sesión desde la IP ::1
+2018-04-27 09:32:09 [@POR114]
+[login] 3: glpi inició la sesión desde la IP ::1
+2018-04-27 09:34:24 [@POR114]
+[login] 3: prov inició la sesión desde la IP ::1
+2018-04-27 09:53:06 [@POR114]
+[login] 3: glpi inició la sesión desde la IP ::1
