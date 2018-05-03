@@ -1924,13 +1924,13 @@ Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(
        $(document).ready(function () {
 
           //Poner en nombre de usuario el correo
-          $('#emailUsuario').children('input[name*=_useremails]').keyup(function () {
+          $('#emailUsuario').find('input[name*=_useremails]').keyup(function () {
               var value = $(this).val();
               $('#nombreDeUsuario').children('input[name=name]').val(value);
           });
 
           //Poner en la contrasenia el primer apellido con la primera en mayúscula
-          $('#primerApellido').children('input[name=realname]').keyup(function () {
+          $('#primerApellido').find('input[name=realname]').keyup(function () {
               var value = $(this).val();
 
                 var first = value.substring(0, 1);
