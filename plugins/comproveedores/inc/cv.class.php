@@ -150,16 +150,7 @@
 			echo "<td>";
 			Html::autocompletionTextField($item, "phonenumber");
 			echo "</td>";
-			echo "<td>"._x('location', 'State')."</td>";
-			echo "<td>";
-			Html::autocompletionTextField($item, "state");
-			echo"</td></tr>";
-
-			echo "<tr  class='tab_bg_1'>";
-			echo "<td class='middle'>".__('Address')."</td>";
-			echo "<td class='middle'>";
-			echo "<textarea cols='37' rows='3' name='address'>".$item->fields["address"]."</textarea>";
-			echo "</td>";
+			
 			echo"</tr>";
 
 
@@ -167,30 +158,34 @@
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Dirección")."</th></tr>";
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
-
-			echo "<tr class='tab_bg_1'>";
+			echo "<td class='middle'>".__('Address')."</td>";
+			echo "<td class='middle'>";
+			echo "<textarea cols='37' rows='3' name='address'>".$item->fields["address"]."</textarea>";
+			echo "</td>";
 			echo "<td>".__('Country')."</td>";
 			echo "<td>";
 			Html::autocompletionTextField($item, "country");
 			echo "</td>";
-			echo "<td>" . __('Location') . "</td>";
+			echo "</tr>";
+
+
+			echo"<tr class='tab_bg_1'>";
+			echo "<td>" . __('Provincia') . "</td>";
 			echo "<td>";
-			Location::dropdown(array('value' => $item->fields["locations_id"],
-				'name'=>'locations_id',
-				'entity' => $item->fields["entities_id"]));
+			Html::autocompletionTextField($item, "state");
+			echo"</td>";
+			echo"<td>". __('City')."</td>";
+			echo "<td>";
+			Html::autocompletionTextField($item, "town", ['size' => 23]);
 			echo"</td></tr>";
 
 
 			echo"<tr class='tab_bg_1'>";
-			echo "<td>" . __('Codigo Postal') . "</td>";
+			echo "<td>" . __('Código Postal') . "</td>";
 			echo "<td>";
 			Html::autocompletionTextField($item, "postcode");
-			echo "</td>";
-			echo"<td>". __('City')."</td>";
-			echo "<td>";
-			Html::autocompletionTextField($item, "town", ['size' => 23]);
-
-			echo "</td>";
+			echo "</td></tr>";
+			
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Empresa matriz(Si la tiene)")."</th></tr>";
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
@@ -203,9 +198,10 @@
 
 			echo "<td>" . __('Dirección') . "</td>";
 			echo "<td>";
-			Location::dropdown(array('value' => $this->fields["empresa_matriz_direccion"],
+			echo "<textarea cols='37' rows='3' name='empresa_matriz_direccion'>".$this->fields["empresa_matriz_direccion"]."</textarea>";
+			/*Location::dropdown(array('value' => $this->fields["empresa_matriz_direccion"],
 				'name'=>'empresa_matriz_direccion',
-				'entity' => $this->fields["entities_id"]));
+				'entity' => $this->fields["entities_id"]));*/
 			echo "</td></tr>";
 
 			echo"<tr class='tab_bg_1'>";
@@ -338,52 +334,43 @@
 			echo "<td>" . __('Teléfono') . "</td>";
 			echo "<td>";
 			Html::autocompletionTextField($data, "phonenumber");
-			echo "</td>";
-			echo "<td>"._x('location', 'State')."</td>";
-			echo "<td>";
-			Html::autocompletionTextField($data, "state");
-			echo"</td></tr>";
+			echo "</td></tr>";
 
-			echo "<tr  class='tab_bg_1'>";
-			echo "<td class='middle'>".__('Address')."</td>";
-			echo "<td class='middle'>";
-			echo "<textarea cols='37' rows='3' name='address'>".$data->fields["address"]."</textarea>";
-			echo "</td>";
-			echo"</tr>";
-
-
-
+			
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Dirección")."</th></tr>";
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
 
 			echo "<tr class='tab_bg_1'>";
+			echo "<td class='middle'>".__('Address')."</td>";
+			echo "<td class='middle'>";
+			echo "<textarea cols='37' rows='3' name='address'>".$data->fields["address"]."</textarea>";
+			echo "</td>";
 			echo "<td>".__('Country')."</td>";
 			echo "<td>";
 			Html::autocompletionTextField($data, "country");
 			echo "</td>";
-			echo "<td>" . __('Location') . "</td>";
-			echo "<td>";
-			Location::dropdown(array('value' => $data->fields["locations_id"],
-				'name'=>'locations_id',
-				'entity' => $data->fields["entities_id"]));
-			echo"</td></tr>";
-
-
-
-
+			echo"</tr>";
 
 
 			echo"<tr class='tab_bg_1'>";
-			echo "<td>" . __('Codigo Postal') . "</td>";
+			echo "<td>" . __('Provincia') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($data, "postcode");
+			Html::autocompletionTextField($data, "state");
 			echo "</td>";
+			
 			echo"<td>". __('City')."</td>";
 			echo "<td>";
 			Html::autocompletionTextField($data, "town", ['size' => 23]);
 
+			echo "</td></tr>";
+
+			echo"<tr class='tab_bg_1'>";
+			echo "<td>" . __('Código Postal') . "</td>";
+			echo "<td>";
+			Html::autocompletionTextField($data, "postcode");
 			echo "</td>";
+			echo"</tr>";
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Empresa matriz(Si la tiene)")."</th></tr>";
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
@@ -394,12 +381,11 @@
 			Html::autocompletionTextField($this, "empresa_matriz_nombre");
 			echo "</td>";
 
-			echo "<td>" . __('Dirección') . "</td>";
-			echo "<td>";
-			Location::dropdown(array('value' => $this->fields["empresa_matriz_direccion"],
-				'name'=>'empresa_matriz_direccion',
-				'entity' => $this->fields["entities_id"]));
-			echo "</td></tr>";
+			echo "<td class='middle'>".__('Address')."</td>";
+			echo "<td class='middle'>";
+			echo "<textarea cols='37' rows='3' name='address'>".$this->fields["empresa_matriz_direccion"]."</textarea>";
+			echo "</td>";
+			echo "</tr>";
 
 			echo"<tr class='tab_bg_1'>";
 

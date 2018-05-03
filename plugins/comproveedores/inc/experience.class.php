@@ -593,7 +593,9 @@
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
 								echo "<td class='center'>".$data['cliente']."</td>";
-								echo "<td class='center'>".$data['anio']."</td>";
+								$anio = date("Y", strtotime($data['anio']));
+								$anio++;
+								echo "<td class='center'>".$anio."</td>";
 								echo "<td class='center'>".$data['importe']."</td>";
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
@@ -719,9 +721,10 @@
    					$('select[name=cpd_tier] option:selected').each(function() {
       					cpd_tier=$( this ).text();
    					});
-   					/*$('select[name=anio] option:selected').each(function() {
+   					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
-   					});*/
+      					anio=anio+'-00-00 00:00';
+   					});
    				
    					
                 	var parametros = {
@@ -732,6 +735,7 @@
 						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
                 		'name' : $('#nombreExperiencia > input[name=name]').val(),
                 		'cliente' : $('input[name=cliente]').val(),
+                		'anio'	:	anio,
                 		'importe': $('input[name=importe]').val(),
                 		'duracion': $('input[name=duracion]').val(),
                 		'bim'	:	bim,
@@ -745,7 +749,8 @@
                 	
 
 					$.ajax({  
-						type: 'GET',                 
+						type: 'GET',  
+						async: true,               
            				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
            				data: parametros, 
 						success:function(data){
@@ -782,9 +787,10 @@
    					$('select[name=cpd_tier] option:selected').each(function() {
       					cpd_tier=$( this ).text();
    					});
-   					/*$('select[name=anio] option:selected').each(function() {
+   					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
-   					});*/
+      					anio=anio+'-00-00 00:00';
+   					});
 
                 	var parametros = {
 						'update':'AÑADIR SIN BORRAR',
@@ -795,6 +801,7 @@
 						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
                 		'name' : $('#nombreExperiencia > input[name=name]').val(),
                 		'cliente' : $('input[name=cliente]').val(),
+                		'anio'	:	anio,
                 		'importe': $('input[name=importe]').val(),
                 		'duracion': $('input[name=duracion]').val(),
                 		'bim'	:	bim,
@@ -806,7 +813,8 @@
                 		
                 	};
 					$.ajax({  
-						type: 'GET',                 
+						type: 'GET',  
+						async: true,                
            				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
            				data: parametros, 
 						success:function(data){
