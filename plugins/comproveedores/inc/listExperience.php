@@ -20,6 +20,8 @@ GLOBAL $DB,$CFG_GLPI;
 				echo "<tr><th>".__('Proyecto/Obra')."</th>";
 				if (Session::isMultiEntitiesMode())
 					echo "<th>".__('Entity')."</th>";
+					echo "<th>".__('Intervención Bovis')."</th>";
+					echo "<th>".__('Tipo de experiencia')."</th>";
 					echo "<th>".__('Comunidad autonoma')."</th>";
 					echo "<th>".__('Cliente/Propiedad')."</th>";
 					echo "<th>".__('Año')."</th>";
@@ -31,6 +33,7 @@ GLOBAL $DB,$CFG_GLPI;
 					echo "<th>".__('Otros')."</th>";
 					echo "<th>".__('Cpd tier')."</th>";
 					echo "<th>".__('Observaciones')."</th>";
+					echo "<th>".__('Modificar')."</th>";
 					echo "<th>".__('Eliminar')."</th>";
 					echo "</tr>";
 
@@ -52,6 +55,15 @@ GLOBAL $DB,$CFG_GLPI;
 							echo "</a></td>";
 							if (Session::isMultiEntitiesMode())
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
+
+								echo "<td class='center'>";
+								if($data['intervencion_bovis']=='1'){
+									echo "Si";
+								}else{
+									echo "No";
+								}
+								echo "</td>";
+								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
 								echo "<td class='center'>".$data['cliente']."</td>";
 								$anio = date("Y", strtotime($data['anio']));
@@ -95,6 +107,8 @@ GLOBAL $DB,$CFG_GLPI;
 								}
 								echo "</td>";
 								echo "<td class='center'>".$data['observaciones']."</td>";
+			
+								echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";
 								echo "<td class='center'>";
 								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
 								echo Html::hidden('id', array('value' => $data['id']));
