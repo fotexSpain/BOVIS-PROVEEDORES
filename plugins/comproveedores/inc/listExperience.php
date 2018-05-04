@@ -7,7 +7,7 @@ include ("../../../inc/includes.php");
 GLOBAL $DB,$CFG_GLPI;
 
 
-	$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id'];
+	$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." order by id desc";
 
 			$result = $DB->query($query);
 
@@ -18,6 +18,7 @@ GLOBAL $DB,$CFG_GLPI;
 				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Experiencias del proveedor</th></tr>";
 				echo"<br/>";
 				echo "<tr><th>".__('Proyecto/Obra')."</th>";
+				echo "<th>".__('Estado')."</th>";
 				if (Session::isMultiEntitiesMode())
 					echo "<th>".__('Entity')."</th>";
 					echo "<th>".__('Intervención Bovis')."</th>";
@@ -57,6 +58,14 @@ GLOBAL $DB,$CFG_GLPI;
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 
 								echo "<td class='center'>";
+								if($data['estado']=='1'){
+									echo "En Curso";
+								}else{
+									echo "Finalizado";
+								}
+								echo "</td>";
+
+								echo "<td class='center'>";
 								if($data['intervencion_bovis']=='1'){
 									echo "Si";
 								}else{
@@ -69,40 +78,44 @@ GLOBAL $DB,$CFG_GLPI;
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
 								echo "<td class='center'>".$anio."</td>";
-								echo "<td class='center'>".$data['importe']."</td>";
+
+								//Formato al importe
+								$importe=number_format($data['importe'], 2, ',', '.');
+								
+								echo "<td class='center'>".$importe."</td>";
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
 								if($data['bim']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['bim']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['breeam']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['breeam']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['leed']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['leed']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['otros_certificados']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['otros_certificados']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['cpd_tier']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['cpd_tier']=='0'){
 									echo "No";
 								}
 								echo "</td>";

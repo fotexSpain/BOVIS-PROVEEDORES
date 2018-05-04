@@ -138,13 +138,13 @@ class Supplier extends CommonDBTM {
       echo "</td>";
 
       echo "<td>" . __('Forma Juridica') . "</td>";         
-      echo "<td>";
+     /* echo "<td>";
       Html::autocompletionTextField($this, "forma_juridica");
-      echo "</td>";
-      /*echo "<td>".__('Third party type')."</td>";
+      echo "</td>";*/
+      //echo "<td>".__('Third party type')."</td>";
       echo "<td>";
       SupplierType::dropdown(['value' => $this->fields["suppliertypes_id"]]);
-      echo "</td></tr>";*/
+      echo "</td></tr>";
 
       echo "</tr>";
       echo "<tr class='tab_bg_1'>";
@@ -190,7 +190,7 @@ class Supplier extends CommonDBTM {
       echo "</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>"._x('location', 'State')."</td>";
+      echo "<td>".__('Provincia')."</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "state");
       echo "</td></tr>";

@@ -25,6 +25,21 @@
 	
 	if(isset($_POST['add'])){
 
+		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
+		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+
+		foreach ($cambiarValor as $key => $value) {
+
+			if($_POST[$value]==null){
+				unset($_POST[$value]);
+			}
+			
+		}*/
+
+		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
+		$_POST['importe']= str_replace(".", "", $_POST['importe']);
+		$_POST['importe']= str_replace(",", ".", $_POST['importe']);
+		
 		//si a intervenido bovis el tipo de experiencia sera 0
 		if($_POST['intervencion_bovis']==1){
 			$_POST['plugin_comproveedores_experiencestypes_id']=0;
@@ -38,6 +53,21 @@
 
 		Html::back();
 	} else if(isset($_POST['update'])){
+
+		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
+		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+
+		foreach ($cambiarValor as $key => $value) {
+
+			if($_POST[$value]==null){
+				unset($_POST[$value]);
+			}
+			
+		}*/
+
+		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
+		$_POST['importe']= str_replace(".", "", $_POST['importe']);
+		$_POST['importe']= str_replace(",", ".", $_POST['importe']);
 
 		//si a intervenido bovis el tipo de experiencia sera 0
 		if($_POST['intervencion_bovis']==1){
@@ -67,18 +97,20 @@
 
 	}else if(isset($_GET['addNoDelete'])){
 
-		
-
-		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
+		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
 
 		foreach ($cambiarValor as $key => $value) {
 
-			if($_GET[$value]=='No'){
-				$_GET[$value]=0;
-			}else{
-				$_GET[$value]=1;
+			if($_GET[$value]==null){
+				unset($_GET[$value]);
 			}
-		}
+			
+		}*/
+
+		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
+		$_GET['importe']= str_replace(".", "", $_GET['importe']);
+		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
 
 		//si a intervenido bovis el tipo de experiencia sera 0
 		if($_GET['intervencion_bovis']==1){
@@ -101,16 +133,20 @@
 		echo $idExpeciencia;
 	} else if(isset($_GET['update'])){
 
-		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
+		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
+		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
 
 		foreach ($cambiarValor as $key => $value) {
 
-			if($_GET[$value]=='No'){
-				$_GET[$value]=0;
-			}else{
-				$_GET[$value]=1;
+			if($_GET[$value]==null){
+				unset($_GET[$value]);
 			}
-		}
+			
+		}*/
+
+		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
+		$_GET['importe']= str_replace(".", "", $_GET['importe']);
+		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
 
 		//si a intervenido bovis el tipo de experiencia sera 0
 		if($_GET['intervencion_bovis']==1){

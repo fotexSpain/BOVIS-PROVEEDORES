@@ -54,11 +54,12 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_cvs` (
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiences` (
 	`id` int(11) NOT NULL auto_increment,
 	`name`varchar(255),
+	`estado` tinyint(1),
 	`intervencion_bovis`tinyint(1) not null default '0',
 	`plugin_comproveedores_communities_id` int(11) ,
 	`cliente` varchar(255) ,
 	`anio` date,
-	`importe` float(11) ,
+	`importe` decimal(20,2) ,
 	`duracion` int(11) ,
 	`bim` tinyint(1),
 	`breeam` tinyint(1) ,

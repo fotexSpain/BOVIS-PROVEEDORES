@@ -457,8 +457,14 @@
 
 			echo"<th colspan='4'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo "<td>" . __('Estado') . "</td>";
 			echo "<td>";
+			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'));
+			echo "</td>";
+			echo "</tr>";
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo "<td id='intervencionBovis'>";
 			Dropdown::showYesNo('intervencion_bovis');
 			echo "</td>";
 
@@ -471,7 +477,7 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Nombre proyecto') . "</td>";
 			echo "<td id='nombreExperiencia'>";
-			Html::autocompletionTextField($this, "name");
+			echo "<textarea cols='37' rows='3' name='name'></textarea>";
 			echo "</td>";
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			echo "<td>";
@@ -482,7 +488,7 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Cliente') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($this, "cliente");
+			echo "<textarea cols='37' rows='3' name='cliente'></textarea>";
 			echo "</td>";
 			echo "<td>" . __('Año') . "</td>";
 			echo "<td>";
@@ -505,22 +511,22 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('BIM') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('bim', null);
+			Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 			echo "<td>" . __('Breeam') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('breeam', null);
+			Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Leed') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('leed', null);
+			Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 			echo "<td>" . __('Otros certificados') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('otros_certificados',null);
+			Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 			echo"</tr>";
 
@@ -528,11 +534,12 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Cpd Tier') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('cpd_tier',null);
+			Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 			echo "<td>" . __('Observaciones') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($this, "observaciones");
+			echo "<textarea cols='37' rows='3' name='observaciones'></textarea>";
+			//Html::autocompletionTextField($this, "observaciones");
 			echo "</td>";
 			echo "</tr>";
 			
@@ -554,7 +561,7 @@
 			echo "<div id='actualizarLista'>";
 
 
-			$query2 ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=$CvId" ;
+			$query2 ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=$CvId order by id desc" ;
 
 			$result2 = $DB->query($query2);
 
@@ -564,7 +571,9 @@
 				echo "<div align='center'><table class='tab_cadre_fixehov'>";
 				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='17'>Experiencias del proveedor</th></tr>";
 				echo"<br/>";
+
 				echo "<tr><th>".__('Proyecto/Obra')."</th>";
+				echo "<th>".__('Estado')."</th>";
 				if (Session::isMultiEntitiesMode())
 					echo "<th>".__('Entity')."</th>";
 					echo "<th>".__('Intervención Bovis')."</th>";
@@ -603,6 +612,13 @@
 							if (Session::isMultiEntitiesMode())
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 								echo "<td class='center'>";
+								if($data['estado']=='1'){
+									echo "En Curso";
+								}else{
+									echo "Finalizado";
+								}
+								echo "</td>";
+								echo "<td class='center'>";
 								if($data['intervencion_bovis']=='1'){
 									echo "Si";
 								}else{
@@ -616,40 +632,44 @@
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
 								echo "<td class='center'>".$anio."</td>";
-								echo "<td class='center'>".$data['importe']."</td>";
+
+								//Formato al importe
+								$importe=number_format($data['importe'], 2, ',', '.');
+							
+								echo "<td class='center'>".$importe."</td>";
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
 								if($data['bim']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['bim']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['breeam']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['breeam']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['leed']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['leed']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['otros_certificados']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['otros_certificados']=='0'){
 									echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['cpd_tier']=='1'){
 									echo "Si";
-								}else{
+								}elseif($data['cpd_tier']=='0'){
 									echo "No";
 								}
 								echo "</td>";
@@ -689,10 +709,9 @@
 
 				$(document).ready(function() {
 
-					//$('.tipos_experiencias').hide();
-
 					//añadimos onchange al desplegable de Intervención de BOVIS
-					$('[name=intervencion_bovis]').change(function() {
+					$('#intervencionBovis').find('select').change(function() {
+						
 
 						//Cogemos el valor selecionado
     					$('[name=intervencion_bovis] option:selected').each(function() {
@@ -712,6 +731,7 @@
 
   					
 				});	
+			
 
 			</script>";
 
@@ -727,37 +747,40 @@
 				function añadirSinBorrar(){
 					
 					$('select[name=intervencion_bovis] option:selected').each(function() {
-      						intervencion_bovis=$( this ).text();
+      						intervencion_bovis=$( this ).val();
    					});
 					$('select[name=bim] option:selected').each(function() {
-      						bim=$( this ).text();
+      						bim=$( this ).val();
    					});
    					$('select[name=breeam] option:selected').each(function() {
-      					breeam=$( this ).text();
+      					breeam=$( this ).val();
    					});
    					$('select[name=leed] option:selected').each(function() {
-      					leed=$( this ).text();
+      					leed=$( this ).val();
    					});
    					$('select[name=otros_certificados] option:selected').each(function() {
-      					otros_certificados=$( this ).text();
+      					otros_certificados=$( this ).val();
    					});
    					$('select[name=cpd_tier] option:selected').each(function() {
-      					cpd_tier=$( this ).text();
+      					cpd_tier=$( this ).val();
    					});
    					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
       					anio=anio+'-00-00 00:00';
    					});
+   					$('select[name=estado] option:selected').each(function() {
+      					estado=$( this ).val();
+   					});
    				
-   					
                 	var parametros = {
 						'addNoDelete':'AÑADIR SIN BORRAR',
 						'cv_id' : $('input[name=cv_id]').val(),
+						'estado':estado,
 						'intervencion_bovis'	:	intervencion_bovis,
 						'plugin_comproveedores_experiencestypes_id':$('input[name=plugin_comproveedores_experiencestypes_id]').val(),
 						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
-                		'name' : $('#nombreExperiencia > input[name=name]').val(),
-                		'cliente' : $('input[name=cliente]').val(),
+                		'name' : $('#nombreExperiencia > textarea[name=name]').val(),
+                		'cliente' : $('textarea[name=cliente]').val(),
                 		'anio'	:	anio,
                 		'importe': $('input[name=importe]').val(),
                 		'duracion': $('input[name=duracion]').val(),
@@ -766,7 +789,7 @@
                 		'leed'	:	leed,
                 		'otros_certificados':	otros_certificados,
                 		'cpd_tier'	:	cpd_tier,
-                		'observaciones'	:	$('input[name=observaciones]').val()
+                		'observaciones'	:	$('textarea[name=observaciones]').val()
                 		
                 	};
                 	
@@ -794,37 +817,41 @@
 
 
 					$('select[name=intervencion_bovis] option:selected').each(function() {
-      						intervencion_bovis=$( this ).text();
+      						intervencion_bovis=$( this ).val();
    					});
 					$('select[name=bim] option:selected').each(function() {
-      						bim=$( this ).text();
+      						bim=$( this ).val();
    					});
    					$('select[name=breeam] option:selected').each(function() {
-      					breeam=$( this ).text();
+      					breeam=$( this ).val();
    					});
    					$('select[name=leed] option:selected').each(function() {
-      					leed=$( this ).text();
+      					leed=$( this ).val();
    					});
    					$('select[name=otros_certificados] option:selected').each(function() {
-      					otros_certificados=$( this ).text();
+      					otros_certificados=$( this ).val();
    					});
    					$('select[name=cpd_tier] option:selected').each(function() {
-      					cpd_tier=$( this ).text();
+      					cpd_tier=$( this ).val();
    					});
    					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
       					anio=anio+'-00-00 00:00';
    					});
+   					$('select[name=estado] option:selected').each(function() {
+      					estado=$( this ).val();
+   					});
 
                 	var parametros = {
 						'update':'GUARDAR MODIFICAR',
 						'cv_id' : $('input[name=cv_id]').val(),
+						'estado':estado,
 						'id'	: $('input[name=idExperiencia]').val(),
 						'intervencion_bovis'	:	intervencion_bovis,
 						'plugin_comproveedores_experiencestypes_id':$('input[name=plugin_comproveedores_experiencestypes_id]').val(),
 						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
-                		'name' : $('#nombreExperiencia > input[name=name]').val(),
-                		'cliente' : $('input[name=cliente]').val(),
+                		'name' : $('#nombreExperiencia > textarea[name=name]').val(),
+                		'cliente' : $('textarea[name=cliente]').val(),
                 		'anio'	:	anio,
                 		'importe': $('input[name=importe]').val(),
                 		'duracion': $('input[name=duracion]').val(),
@@ -833,7 +860,7 @@
                 		'leed'	:	leed,
                 		'otros_certificados':	otros_certificados,
                 		'cpd_tier'	:	cpd_tier,
-                		'observaciones'	:	$('input[name=observaciones]').val()
+                		'observaciones'	:	$('textarea[name=observaciones]').val()
                 		
                 	};
 
