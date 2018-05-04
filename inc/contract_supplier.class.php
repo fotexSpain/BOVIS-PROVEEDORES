@@ -129,6 +129,7 @@ class Contract_Supplier extends CommonDBRelation {
             self::showForContract($item);
             break;
       }
+            
       return true;
    }
 
@@ -175,11 +176,12 @@ class Contract_Supplier extends CommonDBRelation {
       }
 
       if ($canedit) {
-         echo "<div class='firstbloc'>";
+
+         /*echo "<div class='firstbloc'>";
          echo "<form name='contractsupplier_form$rand' id='contractsupplier_form$rand' method='post'
                 action='".Toolbox::getItemTypeFormURL(__CLASS__)."'>";
          echo "<input type='hidden' name='suppliers_id' value='$ID'>";
-
+          
          echo "<table class='tab_cadre_fixe'>";
          echo "<tr class='tab_bg_2'><th colspan='2'>".__('Add a contract')."</th></tr>";
 
@@ -194,7 +196,7 @@ class Contract_Supplier extends CommonDBRelation {
          echo "</td></tr>";
          echo "</table>";
          Html::closeForm();
-         echo "</div>";
+         echo "</div>";*/
       }
 
       echo "<div class='spaced'>";
@@ -205,6 +207,8 @@ class Contract_Supplier extends CommonDBRelation {
          Html::showMassiveActions($massiveactionparams);
       }
       echo "<table class='tab_cadre_fixe'>";
+
+      echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Contratos</th></tr>";
 
       $header_begin  = "<tr>";
       $header_top    = '';

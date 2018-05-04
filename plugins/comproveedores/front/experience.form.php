@@ -24,6 +24,11 @@
 
 	
 	if(isset($_POST['add'])){
+
+		//si a intervenido bovis el tipo de experiencia sera 0
+		if($_POST['intervencion_bovis']==1){
+			$_POST['plugin_comproveedores_experiencestypes_id']=0;
+		}
 		$PluginExperience->check(-1, CREATE, $_POST);
 		$newID = $PluginExperience->add($_POST);
 	
@@ -33,6 +38,11 @@
 
 		Html::back();
 	} else if(isset($_POST['update'])){
+
+		//si a intervenido bovis el tipo de experiencia sera 0
+		if($_POST['intervencion_bovis']==1){
+			$_POST['plugin_comproveedores_experiencestypes_id']=0;
+		}
 		$PluginExperience->check($_POST['id'], UPDATE);
 		$PluginExperience->update($_POST);
 
@@ -57,6 +67,7 @@
 
 	}else if(isset($_GET['addNoDelete'])){
 
+		
 
 		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
 
@@ -67,6 +78,11 @@
 			}else{
 				$_GET[$value]=1;
 			}
+		}
+
+		//si a intervenido bovis el tipo de experiencia sera 0
+		if($_GET['intervencion_bovis']==1){
+			$_GET['plugin_comproveedores_experiencestypes_id']=0;
 		}
 
 		$PluginExperience->check(-1, CREATE, $_GET);
@@ -84,6 +100,7 @@
 
 		echo $idExpeciencia;
 	} else if(isset($_GET['update'])){
+
 		$cambiarValor=array('intervencion_bovis', 'bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
 
 		foreach ($cambiarValor as $key => $value) {
@@ -93,6 +110,11 @@
 			}else{
 				$_GET[$value]=1;
 			}
+		}
+
+		//si a intervenido bovis el tipo de experiencia sera 0
+		if($_GET['intervencion_bovis']==1){
+			$_GET['plugin_comproveedores_experiencestypes_id']=0;
 		}
 
 		$PluginExperience->check($_GET['id'], UPDATE);

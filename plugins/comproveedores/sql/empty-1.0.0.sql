@@ -30,9 +30,11 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_cvs` (
 	`supplier_id` int(11) NOT NULL default '0',
 
 	`empresa_matriz_nombre` varchar(255),
-	`empresa_matriz_direccion` int(11),
-	`empresa_matriz_poblacion` varchar(255),
+	`empresa_matriz_direccion` varchar(255),
+	`empresa_matriz_pais` varchar(255),
 	`empresa_matriz_provincia` varchar(255),
+	`empresa_matriz_ciudad` varchar(255),
+	`empresa_matriz_CP` varchar(255),
 	`titulacion_superior` INT(11) NOT NULL default '0',
 	`titulacion_grado_medio` INT(11) NOT NULL default '0',
 	`tecnicos_no_universitarios` INT(11) NOT NULL default '0',

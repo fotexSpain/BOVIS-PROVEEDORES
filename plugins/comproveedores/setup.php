@@ -35,6 +35,8 @@
 		}
 
 		
+			
+		//Plugin::registerClass('Contract_Supplier', array('addtabon' => '../plugin/comproveedores/inc/PluginComproveedoresCv'));
 		Plugin::registerClass('PluginComproveedoresCv', array('addtabon' => 'Supplier'));
 		Plugin::registerClass('PluginComproveedoresUser', array('addtabon' => 'Supplier'));
 		Plugin::registerClass('PluginComproveedoresExperience', array('addtabon' => 'Supplier'));
