@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiences` (
 	`name`varchar(255),
 	`estado` tinyint(1),
 	`intervencion_bovis`tinyint(1) not null default '0',
+	`plugin_comproveedores_experiencestypes_id` int(11) ,
 	`plugin_comproveedores_communities_id` int(11) ,
 	`cliente` varchar(255) ,
 	`anio` date,

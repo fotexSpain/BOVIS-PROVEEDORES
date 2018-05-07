@@ -25,16 +25,7 @@
 	
 	if(isset($_POST['add'])){
 
-		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
-		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
-
-		foreach ($cambiarValor as $key => $value) {
-
-			if($_POST[$value]==null){
-				unset($_POST[$value]);
-			}
-			
-		}*/
+		$_POST['anio']=$_POST['anio'].'-00-00 00:00';
 
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
 		$_POST['importe']= str_replace(".", "", $_POST['importe']);
@@ -54,16 +45,7 @@
 		Html::back();
 	} else if(isset($_POST['update'])){
 
-		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
-		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
-
-		foreach ($cambiarValor as $key => $value) {
-
-			if($_POST[$value]==null){
-				unset($_POST[$value]);
-			}
-			
-		}*/
+		$_POST['anio']=$_POST['anio'].'-00-00 00:00';
 
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
 		$_POST['importe']= str_replace(".", "", $_POST['importe']);
@@ -97,17 +79,6 @@
 
 	}else if(isset($_GET['addNoDelete'])){
 
-		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
-		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
-
-		foreach ($cambiarValor as $key => $value) {
-
-			if($_GET[$value]==null){
-				unset($_GET[$value]);
-			}
-			
-		}*/
-
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
 		$_GET['importe']= str_replace(".", "", $_GET['importe']);
 		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
@@ -132,17 +103,6 @@
 
 		echo $idExpeciencia;
 	} else if(isset($_GET['update'])){
-
-		//Comprobar si la variable es null, y si lo es eliminarla para que se guarde null en la base de datos
-		/*$cambiarValor=array('bim', 'breeam', 'leed', 'otros_certificados', 'cpd_tier');
-
-		foreach ($cambiarValor as $key => $value) {
-
-			if($_GET[$value]==null){
-				unset($_GET[$value]);
-			}
-			
-		}*/
 
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
 		$_GET['importe']= str_replace(".", "", $_GET['importe']);

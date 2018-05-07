@@ -154,7 +154,7 @@ abstract class CommonDBVisible extends CommonDBTM {
          echo "<tr class='tab_bg_1'><th colspan='4'>".__('Add a target')."</tr>";
          echo "<tr class='tab_bg_1'><td class='tab_bg_2' width='100px'>";
 
-         $types   = ['Entity', 'Group', 'Profile', 'User'];
+         $types   = ['Entity', 'Group', 'Profile', 'User', 'Supplier'];
 
          $addrand = Dropdown::showItemTypes('_type', $types);
          $params = $this->getShowVisibilityDropdownParams();

@@ -67,6 +67,22 @@ if (isset($_POST['type']) && !empty($_POST['type'])
          $display = true;
          break;
 
+      case 'Supplier' :
+         echo "<td>";
+        $arrayUsersSupplier = array();
+        $query ="SELECT id, name FROM glpi_users WHERE profiles_id=9 order by id desc" ;
+
+        $result = $DB->query($query);
+
+        while ($data=$DB->fetch_array($result)) {
+          $arrayUsersSupplier[$data["id"]]=$data["name"];
+        };
+
+        Dropdown::showFromArray('users_id', $arrayUsersSupplier);
+         echo "</td>";
+         $display = true;
+         break;
+
       case 'Group' :
          echo "<td>";
          $params             = ['rand' => $rand,

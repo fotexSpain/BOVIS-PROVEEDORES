@@ -22,7 +22,30 @@ GLOBAL $DB,$CFG_GLPI;
 
 			while ($data=$DB->fetch_array($result)) {
 
-			
+			echo "<script type='text/javascript'>
+
+				//añadimos onchange al desplegable de Intervención de BOVIS
+					$('#intervencionBovis').find('select').change(function() {
+						
+						//Cogemos el valor selecionado
+    					$('[name=intervencion_bovis] option:selected').each(function() {
+      						valor_intervencion_bovis=$(this).text();
+   						 });
+
+						if(valor_intervencion_bovis=='No'){
+
+							$('.tipos_experiencias').show();
+
+						}else{
+							
+							$('.tipos_experiencias').hide();
+						}
+
+					});
+
+			</script>";
+
+
 
 			$opt3['comments']= false;
 			$opt3['addicon']= false;
@@ -87,7 +110,9 @@ GLOBAL $DB,$CFG_GLPI;
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td>" . __('Importe contratado') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($objCommonDBT, "importe", array('value' => $data['importe']));
+			$importe=number_format($data['importe'], 2, ',', '.');
+
+			Html::autocompletionTextField($objCommonDBT, "importe", array('value' => $importe));
 			echo "</td>";
 			echo "<td>" . __('Duración de su contratado') . "</td>";
 			echo "<td>";

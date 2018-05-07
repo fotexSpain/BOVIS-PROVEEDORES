@@ -88,6 +88,12 @@ if (isset($_POST["add"])) {
             }
             break;
 
+         case 'Supplier' :
+            if (isset($_POST['users_id']) && $_POST['users_id']) {
+               $item = new Reminder_User();
+            }
+            break;
+
          case 'Group' :
             if (isset($_POST['groups_id']) && $_POST['groups_id']) {
                $item = new Group_Reminder();
