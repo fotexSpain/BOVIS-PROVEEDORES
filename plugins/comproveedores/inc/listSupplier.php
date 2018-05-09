@@ -8,62 +8,167 @@ GLOBAL $DB,$CFG_GLPI;
 	$where='';
 	$select='';
 
-	if(isset($_GET['bim']) and !empty($_GET['bim'])){
-		$where=" where ";
-	}
+	// el elemento tipo experiencia no es necesario, ya que no esta en la consulta
+	$elementos_consulta=['name', 'intervencion_bovis', 'bim', 'leed', 'breeam', 'otros_certificados', 'cpd_tier'];
 
-	///////Experiencia tabla////////
-
-	//Añadimos la tabla y la referencia
-	if(isset($_GET['bim']) and !empty($_GET['bim'])){
-		$tablas=$tablas.", glpi_plugin_comproveedores_experiences as experiences";
-		$where=$where."  suppliers.cv_id=experiences.cv_id";
+	//Comprobamos si hay algun filtro, en el caso de haber un filtro, añadimos el WHERE a la consulta
+	foreach ($elementos_consulta as $key => $value) {
+		if(isset($_GET[$value]) and $_GET[$value]!=''){
+			$where=" where ";
+		}
 	}
 	
-	//los campos del filtro
-	if(isset($_GET['bim']) and !empty($_GET['bim'])){
-		$where=$where." and experiences.bim=".$_GET['bim']."";
-		$select=$select.", experiences.name as nombreExperiencia";
+	//Añadimos la tabla y la referencia
+	
+	$tablas=' glpi_suppliers as suppliers LEFT JOIN glpi_plugin_comproveedores_experiences as experiences on suppliers.cv_id=experiences.cv_id';
+
+	/////////
+
+	if(isset($_GET['tipos_experiencias'])){
+		$filtro_tipo_experiencia=$_GET['tipos_experiencias'];
 	}
 
+	///////tabla Experiencias////////
 
+	//Los campos del filtro
+
+	if(isset($_GET['name']) and $_GET['name']!=''){
+		$where=$where." suppliers.name like '%".$_GET['name']."%' and";
+	}
+	if(isset($_GET['intervencion_bovis']) and $_GET['intervencion_bovis']!=''){
+		$where=$where." experiences.intervencion_bovis=".$_GET['intervencion_bovis']." and";
+	}
+	if(isset($_GET['bim']) and $_GET['bim']!=''){
+		$where=$where." experiences.bim=".$_GET['bim']." and";
+	}
+	if(isset($_GET['leed']) and $_GET['leed']!=''){
+		$where=$where." experiences.leed=".$_GET['leed']." and";
+	}
+	if(isset($_GET['breeam']) and $_GET['breeam']!=''){
+		$where=$where." experiences.breeam=".$_GET['breeam']." and";
+	}
+	if(isset($_GET['otros_certificados']) and $_GET['otros_certificados']!=''){
+		$where=$where." experiences.otros_certificados=".$_GET['otros_certificados']." and";
+	}
+	if(isset($_GET['cpd_tier']) and $_GET['cpd_tier']!=''){
+		$where=$where." experiences.cpd_tier=".$_GET['cpd_tier']." and";
+	}
+
+	//////Eliminamos el ultimo AND del WHERE
+	$posicion= strpos($where, ' and');
+	$where = substr($where, 0, $posicion);
+
+	//Los campos que se visualizaran en la tabla
+	$select=$select."suppliers.cv_id as cv_id, 
+	 suppliers.name as empresa,
+	 experiences.id as id_experiencia, 
+	 experiences.name as nombre_experiencia, 
+	 experiences.estado, 
+	 experiences.intervencion_bovis, 
+	 experiences.plugin_comproveedores_experiencestypes_id as tipo_experiencia";
 
 	//Consulta
 	
-	$query ="SELECT suppliers.name as empresa".$select." FROM glpi_suppliers as suppliers".$tablas.$where."";
+	$query ="SELECT ".$select." FROM ".$tablas.$where." order by suppliers.id asc";
 
+	$result = $DB->query($query);
 
-	//////Visualizar consulta(Quitar al terminar)
-	
-	echo "Consulta:";
-	echo "<br><br>";
-
-	echo $query;
-	echo "<br><br>";
-
-	////////////
-
-			$result = $DB->query($query);
-
-			//Ocultar lista, si no existe ninguna expeciencia
+		//Ocultar lista, si no existe ninguna expeciencia
 		if($result->num_rows!=0){
 
-			echo"<table class='tab_cadre_fixe'><tbody>";
+			echo"<table class='tab_cadre_fixehov'><tbody>";
 			
-				echo"<th colspan='4'>Lista de Proveedores</th></tr>";
+				echo"<th colspan='14'>Lista de Proveedores</th></tr>";
 				echo"<tr class='tab_bg_1 center'>";
-					echo "<td>Empresa</td>";
-					echo "<td>Experiencia</td>";
+					echo "<th>Empresa</th>";
+					echo "<th>Cartera actual de trabajo</th>";
+					echo "<th>Intervención BOVIS</th>";
+					echo "<th>Edificios de oficinas</th>";
+					echo "<th>Centros comerciales/locales comerciales</th>";
+					echo "<th>Proyectos de hospitales/Centros sanitarios</th>";
+					echo "<th>Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes</th>";
+					echo "<th>Proyectos de equipamiento-museos, Centros culturales, ...</th>";
+					echo "<th>Centros docentes(Universidades,Institutos de enseñanza,...)</th>";
+					echo "<th>Complejos deportivos(Estadios de fútbol,...)</th>";
+					echo "<th>Proyectos industriales/Logísticos</th>";
+					echo "<th>Proyectos de vivienda residenciales</th>";
+					echo "<th>Obras de rehabilitación de edificios</th>";
+					echo "<th>Centro de procesos de datos(CPD) y otros proyectos</th>";
+
 				echo "</tr>";
 				
 			while ($data=$DB->fetch_array($result)) {
 							
-				echo"<tr class='tab_bg_1 center'>";
-					echo "<td>".$data['empresa']."</td>";
+				echo"<tr class='tab_bg_2'>";
+					
+					echo "<td  class='center'>".$data['empresa']."</td>";
 
-					if(isset($data['nombreExperiencia']))
-					echo "<td>".$data['nombreExperiencia']."</td>";
+					//comprueba que el provedor tiene alguna experiencia, el el caso de no tener solo montara el nombre del proveedor
+					if(isset($data['nombre_experiencia'])){
+
+						if(isset($data['estado']) and $data['estado']==1){
+							echo "<td  class='center'>
+								<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
+							</td>";
+						}else{
+							echo "<td></td>";
+						}
+
+
+						if(isset($data['intervencion_bovis']) and $data['intervencion_bovis']==1){
+							echo "<td  class='center'>
+								<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
+							</td>";
+						}else{
+							echo "<td></td>";
+						}
+
+						//Creamos las 11 columnas de tipos de experiencias
+						for($i=1; $i<=11; $i++){
+
+							$ocultar_experiencia=true;
+
+							//Si existe la experiencia y el id es igual a la de la columna que tiene que aparecer 
+							if(isset($data['tipo_experiencia']) and $data['tipo_experiencia']==$i){
+
+								//Si Existe el filtro de tipos de experiencia, Sino que muestre todo los tipos. 
+								if(isset($filtro_tipo_experiencia)){
+									foreach ($filtro_tipo_experiencia as $key => $value) {
+										
+										//Comprueba que el tipo a mostar esta en el filtro
+										if($data["tipo_experiencia"]==$value){
+											echo "<td  class='center'>
+											<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
+											</td>";
+											$ocultar_experiencia=false;
+										}
+									}
+									if($ocultar_experiencia){
+										echo "<td></td>";
+									}
+								}
+								else{
+									echo "<td  class='center'>
+											<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
+											</td>";
+								}
+								
+							}
+							else{
+								echo "<td></td>";
+							}
+
+						}
+						
+					}
+					else{
+						for($i=1; $i<=13; $i++){
+							echo"<td  class='center'></td>";
+						}
+					}
+
 				echo "</tr>";
+
 
 			}
 

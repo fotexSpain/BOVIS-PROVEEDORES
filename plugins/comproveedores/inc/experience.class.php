@@ -208,7 +208,7 @@
 
 			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
 			echo"<td><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICAR</span></td>";
+			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
@@ -610,7 +610,7 @@
 
 			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
 			echo"<td><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICAR</span></td>";
+			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
