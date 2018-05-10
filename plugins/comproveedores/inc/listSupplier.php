@@ -7,6 +7,7 @@ GLOBAL $DB,$CFG_GLPI;
 	$tablas='';
 	$where='';
 	$select='';
+	$repeticion_empresa='';
 
 	// el elemento tipo experiencia no es necesario, ya que no esta en la consulta
 	$elementos_consulta=['name', 'intervencion_bovis', 'bim', 'leed', 'breeam', 'otros_certificados', 'cpd_tier'];
@@ -33,7 +34,8 @@ GLOBAL $DB,$CFG_GLPI;
 	//Los campos del filtro
 
 	if(isset($_GET['name']) and $_GET['name']!=''){
-		$where=$where." suppliers.name like '%".$_GET['name']."%' and";
+
+		$where=$where." UPPER(suppliers.name) LIKE UPPER('%".$_GET['name']."%') and";
 	}
 	if(isset($_GET['intervencion_bovis']) and $_GET['intervencion_bovis']!=''){
 		$where=$where." experiences.intervencion_bovis=".$_GET['intervencion_bovis']." and";
@@ -59,6 +61,7 @@ GLOBAL $DB,$CFG_GLPI;
 	$where = substr($where, 0, $posicion);
 
 	//Los campos que se visualizaran en la tabla
+	$select=$select."(SELECT COUNT(cv_id) from glpi_plugin_comproveedores_experiences as a where a.cv_id=suppliers.cv_id GROUP by cv_id) as numRepeticiones, ";
 	$select=$select."suppliers.cv_id as cv_id, 
 	 suppliers.name as empresa,
 	 experiences.id as id_experiencia, 
@@ -68,7 +71,6 @@ GLOBAL $DB,$CFG_GLPI;
 	 experiences.plugin_comproveedores_experiencestypes_id as tipo_experiencia";
 
 	//Consulta
-	
 	$query ="SELECT ".$select." FROM ".$tablas.$where." order by suppliers.id asc";
 
 	$result = $DB->query($query);
@@ -98,10 +100,18 @@ GLOBAL $DB,$CFG_GLPI;
 				echo "</tr>";
 				
 			while ($data=$DB->fetch_array($result)) {
-							
+			
 				echo"<tr class='tab_bg_2'>";
 					
-					echo "<td  class='center'>".$data['empresa']."</td>";
+					if($repeticion_empresa!=$data['empresa']){
+						echo "<td rowspan=".$data['numRepeticiones']." class='center'>
+							<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php?id=".$data["cv_id"]."'>".$data['empresa']."
+						</td>";
+					}else{
+						echo "<td></td>";
+					}
+					
+					$repeticion_empresa=$data['empresa'];
 
 					//comprueba que el provedor tiene alguna experiencia, el el caso de no tener solo montara el nombre del proveedor
 					if(isset($data['nombre_experiencia'])){
