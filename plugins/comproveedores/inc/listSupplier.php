@@ -62,7 +62,8 @@ GLOBAL $DB,$CFG_GLPI;
 
 	//Los campos que se visualizaran en la tabla
 	$select=$select."(SELECT COUNT(cv_id) from glpi_plugin_comproveedores_experiences as a where a.cv_id=suppliers.cv_id GROUP by cv_id) as numRepeticiones, ";
-	$select=$select."suppliers.cv_id as cv_id, 
+	$select=$select."suppliers.id as is_supplier, 
+	 suppliers.cv_id as cv_id, 
 	 suppliers.name as empresa,
 	 experiences.id as id_experiencia, 
 	 experiences.name as nombre_experiencia, 
@@ -105,7 +106,7 @@ GLOBAL $DB,$CFG_GLPI;
 					
 					if($repeticion_empresa!=$data['empresa']){
 						echo "<td rowspan=".$data['numRepeticiones']." class='center'>
-							<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php?id=".$data["cv_id"]."'>".$data['empresa']."
+							<a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["is_supplier"]."'>".$data['empresa']."
 						</td>";
 					}else{
 						echo "<td></td>";

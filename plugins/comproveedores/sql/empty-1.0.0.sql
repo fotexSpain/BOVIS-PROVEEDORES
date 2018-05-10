@@ -184,3 +184,67 @@ INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
 (9, 'Proyectos de vivienda residenciales'),
 (10, 'Obras de rehabilitación de edificios'),
 (11, 'Centro de procesos de datos(CPD) y otros proyectos');
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_integratedmanagementsystems` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`planGestion` tinyint(1) NOT NULL default '0',
+	`obsPlanGestion` varchar(255),
+	`controlDocumentos` tinyint(1) NOT NULL default '0',
+	`obsControlDocumentos` varchar(255),
+	`politicaCalidad` tinyint(1) NOT NULL default '0',
+	`obsPoliticaCalidad` varchar(255),
+	`auditoriasInternas` tinyint(1) NOT NULL default '0',
+	`obsAuditoriasInternas` varchar(255),
+	`planSostenibilidad` tinyint(1) NOT NULL default '0',
+	`obsPlanSostenibilidad` varchar(255),
+	`SGMedioambiental` tinyint(1) NOT NULL default '0',
+	`obsSGMedioambiental` varchar(255),
+	`accionesRSC` tinyint(1) NOT NULL default '0',
+	`obsAccionesRSC` varchar(255),
+	`gestionRSC` tinyint(1) NOT NULL default '0',
+	`obsGestionRSC` varchar(255),
+	`SGSeguridadYSalud` tinyint(1) NOT NULL default '0',
+	`obsSGSeguridadYSalud` varchar(255),
+	`certificadoFormacion` tinyint(1) NOT NULL default '0',
+	`obsCertificadoFormacion` varchar(255),
+	`departamentoSeguridaYSalud` tinyint(1) NOT NULL default '0',
+	`obsDepartamentoSeguridaYSalud` varchar(255),
+	`metodologiaSeguridaYSalud` tinyint(1) NOT NULL default '0',
+	`obsMetodologiaSeguridaYSalud` varchar(255),
+	`formacionSeguridaYSalud` tinyint(1) NOT NULL default '0',
+	`obsFormacionSeguridaYSalud` varchar(255),
+	`empleadoRP` tinyint(1) NOT NULL default '0',
+	`obsEmpleadoRP` varchar(255),
+	`empresaAsesoramiento` tinyint(1) NOT NULL default '0',
+	`obsEmpresaAsesoramiento` varchar(255),
+	`procedimientoSubcontratistas` tinyint(1) NOT NULL default '0',
+	`obsProcedimientoSubcontratistas` varchar(255),
+
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_lossratios` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`anio` date,
+	`incidencia` decimal(4,2) ,
+	`frecuencia` decimal(4,2) ,
+	`gravedad` decimal(4,2) ,
+
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

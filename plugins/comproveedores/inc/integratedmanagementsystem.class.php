@@ -44,7 +44,6 @@
 				$self->showFormItem($item, $withtemplate);
 			}
 
-
 		}
 
 		function getSearchOptions(){
@@ -90,211 +89,269 @@
 		function showFormItemSIG($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
 			
-			//echo $this->consultaAjax();
-
 			/*///////////////////////////////
 			//AÑADIR SEGURO AL PROVEEDOR
 			///////////////////////////////*/
 
 			$CvId=$item->fields['cv_id']; 
 
-			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/integratedmanagementsystem.form.php method='post'>";		
+			//
+			$query ="SELECT id FROM glpi_plugin_comproveedores_integratedmanagementsystems WHERE cv_id=".$CvId;
+
+			$result = $DB->query($query);
+
+			if($result->num_rows!=0){
+				while ($data=$DB->fetch_array($result)) {
+					$ID=$data['id'];
+				}
+			}
+			else{
+				$ID='';
+			}
+			
+			$options = array();
+			$options['formtitle']    = "Sistema integrado de gestión(SIG)";
+			$options['colspan']=5;
+
+			$this->initForm($ID, $options);
+			
+			$this->showFormHeader($options);
+				
 			echo Html::hidden('cv_id', array('value' => $CvId));
 
 			//Aseguramiento calidad
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 			echo "<div class='center'>";
-			echo"<table class='tab_cadre_fixe'><tbody>";
-			echo"<tr class='headerRow'>";
-			echo"<th colspan='4'>Sistema integrado de gestión(SIG)</th></tr>";
 
-			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
-			echo "<td style='color:#B40404;'>Aseguramiento de calidad</td>";
+			echo "<td colspan='3'>Aseguramiento de calidad</td>";
 			echo "<td>Sí/No</td>";
 			echo "<td>Observaciones/Comentarios</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>" . __('¿Tiene la empresa un sistema o plan de gestión?') . "</td>";
+			echo "<td <td colspan='3' style='text-align: left'>¿Tiene la empresa un sistema o plan de gestión?
+					<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 9001 o similar)</span></td>";
 			echo "<td>";
-			Dropdown::showYesNo('planGestion');
+			Dropdown::showYesNo('planGestion', $this->fields["planGestion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanGestion'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsPlanGestion'>".$this->fields["obsPlanGestion"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Posee procedimientos de control de documentos?') . "</td>";
+			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee procedimientos de control de documentos?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('controlDocumentos');
+			Dropdown::showYesNo('controlDocumentos',$this->fields["controlDocumentos"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsControlDocumentos'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsControlDocumentos'>".$this->fields["obsControlDocumentos"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Posee Política de calidad?') . "</td>";
+			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee Política de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('politicaCalidad');
+			Dropdown::showYesNo('politicaCalidad', $this->fields["politicaCalidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPoliticaCalidad'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsPoliticaCalidad'>".$this->fields["obsPoliticaCalidad"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Realiza auditorias internas de calidad?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>". __('¿Realiza auditorias internas de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('auditoriasInternas');
+			Dropdown::showYesNo('auditoriasInternas', $this->fields["auditoriasInternas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAuditoriasInternas'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsAuditoriasInternas'>".$this->fields["obsAuditoriasInternas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			//Sostenibilidad
 
-			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
-			echo "<td style='color:#B40404'>Sostenibilidad</td>";
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td colspan='3'>Sostenibilidad</td>";
 			echo "<td>Sí/No</td>";
 			echo "<td>Observaciones/Comentarios</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>" . __('¿Tiene la empresa un plan de sostenibilidad?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>" . __('¿Tiene la empresa un plan de sostenibilidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('planSostenibilidad');
+			Dropdown::showYesNo('planSostenibilidad', $this->fields["planSostenibilidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanSostenibilidad'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsPlanSostenibilidad'>".$this->fields["obsPlanSostenibilidad"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Tiene acreditado un Sistema de Gestión Medioambiental?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Tiene acreditado un Sistema de Gestión Medioambiental?<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 14001 o similar)</span>'</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGMedioambiental');
+			Dropdown::showYesNo('SGMedioambiental', $this->fields["SGMedioambiental"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGMedioambiental'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsSGMedioambiental'>".$this->fields["obsSGMedioambiental"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
 			//Responsabilidad Social Corporativa(RSC)
 
-			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
-			echo "<td style='color:#B40404'>Responsabilidad Social Corporativa(RSC)</td>";
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td colspan='3'>Responsabilidad Social Corporativa(RSC)</td>";
 			echo "<td>Sí/No</td>";
 			echo "<td>Observaciones/Comentarios</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>" . __('¿Realiza la Empresa Acciones en favor de la RSC?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Realiza la Empresa Acciones en favor de la RSC?
+					<span style='color:#B40404'>(Indicar las más destacadas)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('accionesRSC');
+			Dropdown::showYesNo('accionesRSC', $this->fields["accionesRSC"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAccionesRSC'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsAccionesRSC'>".$this->fields["obsAccionesRSC"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Tiene implementada una politica de gestión de la RSC?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Tiene implementada una politica de gestión de la RSC?'
+					<span style='color:#B40404'>(Indicar qué política)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('gestionRSC');
+			Dropdown::showYesNo('gestionRSC', $this->fields["gestionRSC"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsGestionRSC'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsGestionRSC'>".$this->fields["obsGestionRSC"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			//Seguridad y Salud
 
-			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
-			echo "<td style='color:#B40404'>Seguridad y Salud</td>";
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td colspan='3'>Seguridad y Salud</td>";
 			echo "<td>Sí/No</td>";
 			echo "<td>Observaciones/Comentarios</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>" . __('¿Dispone de un sistema de gestión de la Seguridad y Salud tipo OSHAS 18001 o similar?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Dispone de un sistema de gestión de la Seguridad y Salud tipo OSHAS 18001 o similar?'
+					<span style='color:#B40404'>(Indicar sistema de gestión similar)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGSeguridadYSalud');
+			Dropdown::showYesNo('SGSeguridadYSalud', $this->fields["SGSeguridadYSalud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGSeguridadYSalud'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsSGSeguridadYSalud'>".$this->fields["obsSGSeguridadYSalud"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿La formación de los empleados está acreditada por un certificado de formación emitido por un organismo competente?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿La formación de los empleados está acreditada por un certificado de formación emitido por un organismo competente?'
+					<span style='color:#B40404'>(Indicar el organismo acreditador)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('certificadoFormacion');
+			Dropdown::showYesNo('certificadoFormacion', $this->fields["certificadoFormacion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsCertificadoFormacion'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsCertificadoFormacion'>".$this->fields["obsCertificadoFormacion"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Cuenta la empresa con un departamento especializado en la Gestión de Seguridad y Salud?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Cuenta la empresa con un departamento especializado en la Gestión de Seguridad y Salud?'
+				<span style='color:#B40404'>(Indicar Indicar número de empleados de dicho departamento)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('departamentoSeguridaYSalud');
+			Dropdown::showYesNo('departamentoSeguridaYSalud', $this->fields["departamentoSeguridaYSalud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsDepartamentoSeguridaYSalud'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsDepartamentoSeguridaYSalud'>".$this->fields["obsDepartamentoSeguridaYSalud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Tiene implantada la empresa una metodología para medir, evaluar, auditar, inspeccionar, etc sus desempeño en Seguridad y Salud?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>". __('¿Tiene implantada la empresa una metodología para medir, evaluar, auditar, inspeccionar, etc sus desempeño en Seguridad y Salud?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('metodologiaSeguridaYSalud');
+			Dropdown::showYesNo('metodologiaSeguridaYSalud', $this->fields["metodologiaSeguridaYSalud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsMetodologiaSeguridaYSalud'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsMetodologiaSeguridaYSalud'>".$this->fields["obsMetodologiaSeguridaYSalud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Proporciona la empresa formación especifica en Seguridad y Salud?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Proporciona la empresa formación especifica en Seguridad y Salud?'
+					<span style='color:#B40404'>(Indicar número de horas de formación impartidas durante el último año)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('formacionSeguridaYSalud');
+			Dropdown::showYesNo('formacionSeguridaYSalud', $this->fields["formacionSeguridaYSalud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsFormacionSeguridaYSalud'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsFormacionSeguridaYSalud'>".$this->fields["obsFormacionSeguridaYSalud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('De la plantilla actual. ¿Cuántos empleados podrían ejercer como Recursos Preventivo en una obra?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>De la plantilla actual. ¿Cuántos empleados podrían ejercer como Recursos Preventivo en una obra?'
+					<span style='color:#B40404'>(Indicar número de empleados fijos capacitados)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empleadoRP');
+			Dropdown::showYesNo('empleadoRP', $this->fields["empleadoRP"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpleadoRP'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsEmpleadoRP'>".$this->fields["obsEmpleadoRP"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('¿Dispone la empresa de Asesoría técina-legal competente para la asesoramiento y/o asistencia materia de Seguridad y Salud?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>¿Dispone la empresa de Asesoría técina-legal competente para la asesoramiento y/o asistencia materia de Seguridad y Salud?'
+					<span style='color:#B40404'>(Indicar número de procesos judiciales o acciones legales relacionados con la Seguridad y Salud emprendidos contra la empresa en los últimos 5 años)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empresaAsesoramiento');
+			Dropdown::showYesNo('empresaAsesoramiento', $this->fields["empresaAsesoramiento"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpresaAsesoramiento'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsEmpresaAsesoramiento'>".$this->fields["obsEmpresaAsesoramiento"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td style='text-align: left'>". __('En la práctica habitual ¿existe un procedimiento de la empresa que garantice que sus Subcontratistas son competentes y están capacitados para el desempeño de su trabajo con seguridad?') . "</td>";
+			echo "<td colspan='3' style='text-align: left'>En la práctica habitual ¿existe un procedimiento de la empresa que garantice que sus Subcontratistas son competentes y están capacitados para el desempeño de su trabajo con seguridad? 
+					<span style='color:#B40404'>(Caso de existir, indicar el número de Subcontratistas que ya habrían sido precalificados)</span>
+				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('procedimientoSucontratistas');
+			Dropdown::showYesNo('procedimientoSubcontratistas', $this->fields["procedimientoSubcontratistas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsProcedimientoSucontratistas'></textarea>";
+			echo "<textarea cols='37' rows='3' name='obsProcedimientoSubcontratistas'>".$this->fields["obsProcedimientoSubcontratistas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			//Consignar los siguientas índices de siniestralidad de los tres últimos años
-
-			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
-			echo "<td colspan=3 style='color:#B40404'>Consignar los siguientas índices de siniestralidad de los tres últimos años</td>";
-			echo "</tr>";
-
 			
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td colspan=5>Consignar los siguientas índices de siniestralidad de los tres últimos años</td>";
+			echo "</tr>";
+			echo"<tr class='tab_bg_1 center'>";
+				echo "<td></td>";
+				echo "<td></td>";
+				echo "<td>Incidencia</td>";
+				echo "<td>Frecuencia</td>";
+				echo "<td>Gravedad</td>";
+			echo"</tr>";
+
+			for($i=0; $i<3; $i++){
+
+				echo"<tr class='tab_bg_1 center'>";
+				echo "<td>Año:</td>";
+				echo "<td><input class='center' style='border:none;' type='text' name='anio".$i."' value='".(date("Y")-$i)."' readonly></td>";
+				echo "<td>";
+					Html::autocompletionTextField($this, "incidencia".$i);
+				"</td>";
+				echo "<td>";
+					Html::autocompletionTextField($this, "frecuencia".$i);
+				"</td>";
+				echo "<td>";
+					Html::autocompletionTextField($this, "gravedad".$i);
+				"</td>";
+				echo"</tr>";
+			}
 
 			echo"</tbody>";
 			echo"</table>";
 			echo"</div>";
-			echo"</form>";
+
+			$this->showFormButtons($options);
+			//echo"</form>";
 
 			/*///////////////////////////////
 			//LISTAR SEGUROS DEL PROVEEDOR
@@ -373,7 +430,7 @@
 		function showForm($ID, $options=[]) {
 			//Aqui entra desde el inicio de los proveedores
 
-			global $CFG_GLPI;
+			/*global $CFG_GLPI;
 
 			if($this->fields['fecha_caducidad']=='0000-00-00'){
 				$opt['value']= null;
@@ -441,7 +498,7 @@
 			echo "</td>";
 			echo"</tr>";
 
-			$this->showFormButtons($options);
+			$this->showFormButtons($options);*/
 		}
 
 
@@ -456,10 +513,9 @@
 		}
 
 		function showFormItem($item, $withtemplate='') {	
-
 			GLOBAL $DB,$CFG_GLPI;
 			
-			echo $this->consultaAjax();
+			//echo $this->consultaAjax();
 
 			/*///////////////////////////////
 			//AÑADIR SEGURO AL PROVEEDOR
@@ -467,52 +523,218 @@
 
 			$CvId=$item->fields['id']; 
 
-			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/insurance.form.php method='post'>";		
+			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/integratedmanagementsystem.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
+
+			//Aseguramiento calidad
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 			echo "<div class='center'>";
 			echo"<table class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
-			echo"<th colspan='4'>Seguros</th></tr>";
+			echo"<th colspan='4'>Sistema integrado de gestión(SIG)</th></tr>";
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td>Aseguramiento de calidad</td>";
+			echo "<td>Sí/No</td>";
+			echo "<td>Observaciones/Comentarios</td>";
+			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Tipo de seguro') . "</td>";
+			echo "<td style='text-align: left'>¿Tiene la empresa un sistema o plan de gestión?
+					<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 9001 o similar)</span></td>";
 			echo "<td>";
-			Dropdown::showFromArray('selectTipo',$this->getInsurence());
+			Dropdown::showYesNo('planGestion');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsPlanGestion'></textarea>";
 			echo "</td>";
-			echo "<td class='SeguroNombreOcultar'>". __('Nombre nuevo seguro') . "</td>";
-			echo "<td class='SeguroNombreOcultar'>";
-			Html::autocompletionTextField($this, "name", array('value' => 'Resposabilidad civil'));
-			echo "</td>";
-			echo"</tr>";
+			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Cía aseguradora') . "</td>";
+			echo "<td style='text-align: left'>". __('¿Posee procedimientos de control de documentos?') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($this, "cia_aseguradora");
-			echo "</td>";
-			echo "<td>" . __('Cuantía') . "</td>";			
-			echo "<td>";
-			Html::autocompletionTextField($this, "cuantia");
-			echo "</td>";
-			echo"</tr>";
-			
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Fecha caducidad') . "</td>";
-			echo "<td>";
-			Html::showDateTimeField("fecha_caducidad");
-			echo "</td>";
-			echo "<td class='SeguroNAseguradosOcultar'>" . __('Nº empleados asegurados') . "</td>";
-			echo "<td class='SeguroNAseguradosOcultar'>";
-			Html::autocompletionTextField($this, "numero_empleados_asegurados");
+			Dropdown::showYesNo('controlDocumentos');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsControlDocumentos'></textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>". __('¿Posee Política de calidad?') . "</td>";
+			echo "<td>";
+			Dropdown::showYesNo('politicaCalidad');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsPoliticaCalidad'></textarea>";
+			echo "</td>";
+			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
-			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<tr class='tab_bg_1'>";
+			echo "<td style='text-align: left'>". __('¿Realiza auditorias internas de calidad?') . "</td>";
+			echo "<td>";
+			Dropdown::showYesNo('auditoriasInternas');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsAuditoriasInternas'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			//Sostenibilidad
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td>Sostenibilidad</td>";
+			echo "<td>Sí/No</td>";
+			echo "<td>Observaciones/Comentarios</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>" . __('¿Tiene la empresa un plan de sostenibilidad?') . "</td>";
+			echo "<td>";
+			Dropdown::showYesNo('planSostenibilidad');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsPlanSostenibilidad'></textarea>";
+			echo "</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Tiene acreditado un Sistema de Gestión Medioambiental?<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 14001 o similar)</span>'</td>";
+			echo "<td>";
+			Dropdown::showYesNo('SGMedioambiental');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsSGMedioambiental'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+			
+			//Responsabilidad Social Corporativa(RSC)
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td>Responsabilidad Social Corporativa(RSC)</td>";
+			echo "<td>Sí/No</td>";
+			echo "<td>Observaciones/Comentarios</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Realiza la Empresa Acciones en favor de la RSC?
+					<span style='color:#B40404'>(Indicar las más destacadas)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('accionesRSC');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsAccionesRSC'></textarea>";
+			echo "</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Tiene implementada una politica de gestión de la RSC?'
+					<span style='color:#B40404'>(Indicar qué política)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('gestionRSC');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsGestionRSC'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			//Seguridad y Salud
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td>Seguridad y Salud</td>";
+			echo "<td>Sí/No</td>";
+			echo "<td>Observaciones/Comentarios</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Dispone de un sistema de gestión de la Seguridad y Salud tipo OSHAS 18001 o similar?'
+					<span style='color:#B40404'>(Indicar sistema de gestión similar)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('SGSeguridadYSalud');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsSGSeguridadYSalud'></textarea>";
+			echo "</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿La formación de los empleados está acreditada por un certificado de formación emitido por un organismo competente?'
+					<span style='color:#B40404'>(Indicar el organismo acreditador)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('certificadoFormacion');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsCertificadoFormacion'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Cuenta la empresa con un departamento especializado en la Gestión de Seguridad y Salud?'
+				<span style='color:#B40404'>(Indicar Indicar número de empleados de dicho departamento)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('departamentoSeguridaYSalud');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsDepartamentoSeguridaYSalud'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>". __('¿Tiene implantada la empresa una metodología para medir, evaluar, auditar, inspeccionar, etc sus desempeño en Seguridad y Salud?') . "</td>";
+			echo "<td>";
+			Dropdown::showYesNo('metodologiaSeguridaYSalud');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsMetodologiaSeguridaYSalud'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Proporciona la empresa formación especifica en Seguridad y Salud?'
+					<span style='color:#B40404'>(Indicar número de horas de formación impartidas durante el último año)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('formacionSeguridaYSalud');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsFormacionSeguridaYSalud'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>De la plantilla actual. ¿Cuántos empleados podrían ejercer como Recursos Preventivo en una obra?'
+					<span style='color:#B40404'>(Indicar número de empleados fijos capacitados)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('empleadoRP');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsEmpleadoRP'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>¿Dispone la empresa de Asesoría técina-legal competente para la asesoramiento y/o asistencia materia de Seguridad y Salud?'
+					<span style='color:#B40404'>(Indicar número de procesos judiciales o acciones legales relacionados con la Seguridad y Salud emprendidos contra la empresa en los últimos 5 años)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('empresaAsesoramiento');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsEmpresaAsesoramiento'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			echo "<td style='text-align: left'>En la práctica habitual ¿existe un procedimiento de la empresa que garantice que sus Subcontratistas son competentes y están capacitados para el desempeño de su trabajo con seguridad? 
+					<span style='color:#B40404'>(Caso de existir, indicar el número de Subcontratistas que ya habrían sido precalificados)</span>
+				</td>";
+			echo "<td>";
+			Dropdown::showYesNo('procedimientoSubcontratistas');
+			echo "</td><td>";
+			echo "<textarea cols='37' rows='3' name='obsProcedimientoSubcontratistas'></textarea>";
+			echo "</td>";
+			echo"</tr>";
+
+			//Consignar los siguientas índices de siniestralidad de los tres últimos años
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold; font-size:12px;'>";
+			echo "<td colspan=3>Consignar los siguientas índices de siniestralidad de los tres últimos años</td>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center' style='font-weight: bold;'>";
+			echo"<td colspan=3><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
 			echo"</tr>";
 			echo"</tbody>";
 			echo"</table>";
@@ -523,7 +745,7 @@
 			//LISTAR SEGUROS DEL PROVEEDOR
 			///////////////////////////////*/
 
-			$query2 ="SELECT * FROM glpi_plugin_comproveedores_insurances WHERE cv_id=$CvId" ;
+			/*$query2 ="SELECT * FROM glpi_plugin_comproveedores_insurances WHERE cv_id=$CvId" ;
 
 			$result2 = $DB->query($query2);
 
@@ -579,7 +801,7 @@
 							echo"<br/>";
 							echo "</table></div>";
 							echo"<br>";
-				}
+				}*/
 		}
 
 	function getInsurence(){
