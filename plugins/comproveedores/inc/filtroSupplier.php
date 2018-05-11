@@ -3,7 +3,7 @@
 GLOBAL $DB,$CFG_GLPI;
 $objCommonDBT=new CommonDBTM;
 
-echo "<form name='searchformSupplier' method='get' action='/BOVIS-PROVEEDORES/front/supplier.php'>";
+echo "<form name='searchformSupplier' method='get' action=".$CFG_GLPI["root_doc"]."'/front/supplier.php'>";
 echo"<table class='tab_cadre_fixe'><tbody>";
 			
 
