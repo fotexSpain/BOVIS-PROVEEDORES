@@ -65,6 +65,7 @@
 			$this->addStandardTab('PluginComproveedoresEmpleado', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresInsurance', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresIntegratedmanagementsystem', $ong, $options);
+			$this->addStandardTab('PluginComproveedoresFinancial', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresUser', $ong, $options);
 
 
@@ -231,14 +232,26 @@
 			Html::autocompletionTextField($this, "empresa_matriz_CP");
 			echo "</td></tr>";
 
-			/*Location::dropdown(array('value' => $this->fields["empresa_matriz_direccion"],
-				'name'=>'empresa_matriz_direccion',
-				'entity' => $this->fields["entities_id"]));*/
-	
+			//////////Lista de empresas mas destacadas
+
+			/*echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de empresas más destacadas del grupo")."</th></tr>";
+
+			for($i=1; $i<=6; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+				Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="80"'));
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="80"'));
+				echo "</td>";
+				echo"</tr>";		
+			}*/
 
 			///////////////////Categoías y número de empleados//////////
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
-			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
 
 			echo "<tr class='tab_bg_1'>";
 			echo "<td>Nº ";
