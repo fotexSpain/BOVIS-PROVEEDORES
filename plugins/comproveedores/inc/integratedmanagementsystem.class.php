@@ -89,7 +89,6 @@
 		function showFormItemSIG($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
 
-			echo'Supplier';
 			$CvId=$item->fields['cv_id']; 
 
 			// Consultamo el id de la tabla integratedmanagementsystems al que esta asociado el supplier
@@ -401,7 +400,7 @@
 		}
 
 		function showFormItem($item, $withtemplate='') {	
-			echo'empresa';
+			
 			GLOBAL $DB,$CFG_GLPI;
 
 			$CvId=$item->fields['id']; 
