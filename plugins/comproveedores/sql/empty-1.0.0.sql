@@ -248,3 +248,59 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_lossratios` (
 	KEY `entities_id` (`entities_id`),
 	UNIQUE (`externalid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_financials` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`capital_social` decimal(15,2) ,
+	
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_annualbillings` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`anio` date,
+	`facturacion` decimal(10,0) ,
+	`beneficios_impuestos` decimal(10,0) ,
+	`resultado` decimal(10,0) ,
+	`total_activo` decimal(10,0) ,
+	`activo_circulante` decimal(10,0) ,
+	`pasivo_circulante` decimal(10,0) ,
+	`cash_flow` decimal(10,0) ,
+	`fondos_propios` decimal(10,0) ,
+	`recursos_ajenos` decimal(10,0) ,
+	
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_featuredcompanies` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`nombre_empresa_destacada` varchar(255) NULL,
+		
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+

@@ -78,16 +78,16 @@ class Search {
       $params = self::manageParams($itemtype, $_GET);
       echo "<div class='search_page'>";
 
-      if($itemtype=='Supplier'){
+     /* if($itemtype=='Supplier'){
         include "../plugins/comproveedores/inc/filtroSupplier.php";
         include "../plugins/comproveedores/inc/listSupplier.php";
       }else{
 
         self::showGenericSearch($itemtype, $params);
         self::showList($itemtype, $params);
-      }
-      //self::showGenericSearch($itemtype, $params);
-      //self::showList($itemtype, $params);
+      }*/
+      self::showGenericSearch($itemtype, $params);
+      self::showList($itemtype, $params);
       echo "</div>";
    }
 
