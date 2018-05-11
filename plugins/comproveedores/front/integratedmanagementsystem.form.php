@@ -29,37 +29,7 @@
 		$newID = $PluginSIG->add($_POST);
 	
 		//comprobamos si existe o no, los años de sinisestralidad, y en funcion de que exista o no, añadimos o modificamos
-		for($i=0; $i<3; $i++){
-			$query ="SELECT * FROM glpi_plugin_comproveedores_lossratios WHERE cv_id=".$_POST['cv_id']." and anio=".$_POST['anio'.$i]."-00-00";
-
-			$result = $DB->query($query);
-
-			if($result->num_rows!=0){
-
-				while ($data=$DB->fetch_array($result)) {
-					
-					$data['anio']=$_POST['anio'.$i]."-00-00";
-					$data['incidencia']=$_POST['incidencia'.$i];
-					$data['frecuencia']=$_POST['frecuencia'.$i];
-					$data['gravedad']=$_POST['gravedad'.$i];
-
-					var_dump($data);
-					$PluginLOSS_RATIO->check($data['id'], UPDATE);
-					$PluginLOSS_RATIO->update($data);
-				}
-			}
-			else{
-
-				$data['anio']=$_POST['anio'.$i]."-00-00";
-				$data['incidencia']=$_POST['incidencia'.$i];
-				$data['frecuencia']=$_POST['frecuencia'.$i];
-				$data['gravedad']=$_POST['gravedad'.$i];
-
-				$PluginLOSS_RATIO->check(-1, CREATE, $data);
-				$PluginLOSS_RATIO->add($data);
-			}
-		}
-
+		InsertAndUpdateLossRate($DB, $PluginLOSS_RATIO);
 		
 		if($_SESSION['glpibackcreated']) {
 			Html::redirect($PluginSIG->getFormURL()."?id=".$newID);
@@ -72,43 +42,13 @@
 		$PluginSIG->update($_POST);
 
 		//comprobamos si existe o no, los años de sinisestralidad, y en funcion de que exista o no, añadimos o modificamos
-		for($i=0; $i<3; $i++){
-			$query ="SELECT * FROM glpi_plugin_comproveedores_lossratios WHERE cv_id=".$_POST['cv_id']." and anio=".$_POST['anio'.$i]."-00-00";
-
-			$result = $DB->query($query);
-
-			if($result->num_rows!=0){
-
-				while ($data=$DB->fetch_array($result)) {
-					
-					$data['anio']=$_POST['anio'.$i]."-00-00";
-					$data['incidencia']=$_POST['incidencia'.$i];
-					$data['frecuencia']=$_POST['frecuencia'.$i];
-					$data['gravedad']=$_POST['gravedad'.$i];
-
-					var_dump($data);
-					$PluginLOSS_RATIO->check($data['id'], UPDATE);
-					$PluginLOSS_RATIO->update($data);
-				}
-			}
-			else{
-
-				$data['anio']=$_POST['anio'.$i]."-00-00";
-				$data['incidencia']=$_POST['incidencia'.$i];
-				$data['frecuencia']=$_POST['frecuencia'.$i];
-				$data['gravedad']=$_POST['gravedad'.$i];
-
-				$PluginLOSS_RATIO->check(-1, CREATE, $data);
-				$PluginLOSS_RATIO->add($data);
-			}
-		}
+		InsertAndUpdateLossRate($DB, $PluginLOSS_RATIO);
 		
 		Html::back();
 	} else if (isset($_POST["delete"])) {
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
 		$PluginSIG->check($_POST['id'], DELETE);
 		$PluginSIG->delete($_POST);
-		//Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
 		Html::back();
 
 	} else if (isset($_POST["restore"])) {
@@ -119,16 +59,24 @@
 	} else if (isset($_POST["purge"])) {
 		$PluginSIG->check($_POST['id'], PURGE);
 		$PluginSIG->delete($_POST, 1);
+
+		//eliminamos los indice se siniestralidad de CV_ID
+		$query ="SELECT id FROM glpi_plugin_comproveedores_lossratios WHERE cv_id=".$_POST['cv_id'];
+
+			$result = $DB->query($query);
+
+			if($result->num_rows!=0){
+
+				while ($data=$DB->fetch_array($result)) {
+					$PluginLOSS_RATIO->check($data['id'], PURGE);
+					$PluginLOSS_RATIO->delete($data, 1);
+				}
+			}
 		
 		Html::back();
 
 	} else {
 		$PluginSIG->checkGlobal(READ);
-
-
-		/*//////////////////////////////////////////////////////////
-		// MUESTRA LA CABECERA DE LA PAGINA DEL . FROM EXPERIENCIAS
-		//////////////////////////////////////////////////////////*/
 
 		$plugin = new Plugin();
 		if ($plugin->isActivated("environment")) {
@@ -139,11 +87,6 @@
 				"plugincomproveedorescvmenu");	
 		}
 
-		/*//////////////////////////////////////////////////////////
-		// MUESTRA EL REGISTRO CORRESPONDIENTE AL ID SI SE LE MANDA
-		//	O LA LISTA DE TODOS LOS REGISTROS SI NO SE LE PASA EL PARAMETRO ID
-		//////////////////////////////////////////////////////////*/
-
 		if(empty($_GET['id'])){
 			Search::show('PluginComproveedoresIntegratedmanagementsystem');
 		}else{			
@@ -153,4 +96,40 @@
 
 		Html::footer();
 	} 
+
+	function InsertAndUpdateLossRate($DB, $PluginLOSS_RATIO){
+
+		for($i=0; $i<3; $i++){
+			$query ="SELECT * FROM glpi_plugin_comproveedores_lossratios WHERE cv_id=".$_POST['cv_id']." and anio='".$_POST['anio'.$i]."-00-00'";
+
+			$result = $DB->query($query);
+
+			if($result->num_rows!=0){
+
+				while ($data=$DB->fetch_array($result)) {
+
+					
+					$data['anio']=$_POST['anio'.$i]."-00-00";
+					$data['incidencia']=str_replace(',', '.', $_POST['incidencia'.$i]);
+					$data['frecuencia']=str_replace(',', '.', $_POST['frecuencia'.$i]);
+					$data['gravedad']=str_replace(',', '.', $_POST['gravedad'.$i]);
+					$data['cv_id']=$_POST['cv_id'];
+
+					$PluginLOSS_RATIO->check($data['id'], UPDATE);
+					$PluginLOSS_RATIO->update($data);
+				}
+			}
+			else{
+
+				$data['anio']=$_POST['anio'.$i]."-00-00";
+				$data['incidencia']=str_replace(',', '.', $_POST['incidencia'.$i]);
+				$data['frecuencia']=str_replace(',', '.', $_POST['frecuencia'.$i]);
+				$data['gravedad']=str_replace(',', '.', $_POST['gravedad'.$i]);
+				$data['cv_id']=$_POST['cv_id'];
+
+				$PluginLOSS_RATIO->check(-1, CREATE, $data);
+				$PluginLOSS_RATIO->add($data);
+			}
+		}
+	}
 	?>

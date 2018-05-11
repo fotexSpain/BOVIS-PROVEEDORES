@@ -60,11 +60,11 @@
 
 			$this->addDefaultFormTab($ong);						
 			$this->addStandardTab('PluginComproveedoresUser', $ong, $options);
-			//$this->addStandardTab($CFG_GLPI["root_doc"].'/inc/Contract_Supplier', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresExperience', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresListspecialty', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresEmpleado', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresInsurance', $ong, $options);
+			$this->addStandardTab('PluginComproveedoresIntegratedmanagementsystem', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresUser', $ong, $options);
 
 
