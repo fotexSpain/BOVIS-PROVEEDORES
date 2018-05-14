@@ -96,11 +96,15 @@
 			return $types;
 		}
 
-		function showFormItem($item, $withtemplate='') {		 
+		function showFormItem($item, $withtemplate='') {	
+			global $DB;
+
 			//Aqui entra desde la pestaña de proveedores
+
 			$ID=$item->fields['cv_id'];	
+			
 			$options = array();
-			$options['colspan']  = 3;
+			$options['colspan']  = 4;
 			
 			$this->initForm($ID, $options);
 			$this->showFormHeader($options);
@@ -232,23 +236,58 @@
 			Html::autocompletionTextField($this, "empresa_matriz_CP");
 			echo "</td></tr>";
 
-			//////////Lista de empresas mas destacadas
+			//////////Lista de empresas mas destacadas///////
 
-			/*echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de empresas más destacadas del grupo")."</th></tr>";
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de empresas más destacadas del grupo")."</th></tr>";
 
+
+			//consultamos la empresas más destacada de este CV
+			$empresas_destacadas;
+
+			if($ID!=''){
+				$query2 ="SELECT * FROM glpi_plugin_comproveedores_featuredcompanies WHERE cv_id=".$ID." order by puesto asc";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$empresas_destacadas['nombre_empresa_destacada'.$i]=$data['nombre_empresa_destacada'];
+						$i++;
+					}
+				}
+			}
+			
+
+			//visualizamos las empresas más destacada en el caso de que existan
 			for($i=1; $i<=6; $i+=2){
 
 				echo "<tr class='tab_bg_1'>";
 
 				echo "<td colspan='2' center>".$i.". ";
-				Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="80"'));
+
+				if(!empty($empresas_destacadas['nombre_empresa_destacada'.$i])){
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="50"', 'value'=>$empresas_destacadas['nombre_empresa_destacada'.$i]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="50"'));
+				}
+				
 				echo "</td>";
 
 				echo "<td colspan='2' center>".($i+1).". ";
-				Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="80"'));
+				
+				if(!empty($empresas_destacadas['nombre_empresa_destacada'.($i+1)])){
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="50"', 'value'=>$empresas_destacadas['nombre_empresa_destacada'.($i+1)]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="50"'));
+				}
+
 				echo "</td>";
+
 				echo"</tr>";		
-			}*/
+			}
 
 			///////////////////Categoías y número de empleados//////////
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
@@ -282,7 +321,58 @@
 			echo "<td>" . __('Técnicos No Universitarios') . "</td>";
 			echo "</tr>";
 
-			///////////////////
+			/*/////////Principales empresas subcontratista, colaboradoras y/o profesionales que trabajan habitualmente con la empresa ///////
+
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Principales empresas subcontratistas, colaboradoras y/o profesionales que trabajan habitualmente con la empresa")."</th></tr>";
+
+			////consultamos la principales empresas subcontratista de este CV
+			$empresas_subcontratistas;
+
+			if($ID!=''){
+				$query2 ="SELECT * FROM glpi_plugin_comproveedores_subcontractingcompanies WHERE cv_id=".$ID." order by puesto asc";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$empresas_subcontratistas['nombre_empresa_subcontratista'.$i]=$data['nombre_empresa_subcontratista'];
+						$i++;
+					}
+				}
+			}
+
+			//visualizamos las empresas más destacada en el caso de que existan
+			for($i=1; $i<=10; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+
+				if(!empty($empresas_subcontratistas['nombre_empresa_subcontratista'.$i])){
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".$i, array('option'=>'size="50"', 'value'=>$empresas_subcontratistas['nombre_empresa_subcontratista'.$i]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".$i, array('option'=>'size="50"'));
+				}
+				
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				
+				if(!empty($empresas_subcontratistas['nombre_empresa_subcontratista'.($i+1)])){
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".($i+1), array('option'=>'size="50"', 'value'=>$empresas_subcontratistas['nombre_empresa_subcontratista'.($i+1)]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".($i+1), array('option'=>'size="50"'));
+				}
+
+				echo "</td>";
+
+				echo"</tr>";		
+			}
+			//////////*/
+
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Comentarios")."</th></tr>";
 
 			echo"<tr>";
@@ -299,7 +389,7 @@
 
 		function showForm($ID, $options=[]) {
 			//Aqui entra desde el inicio de los proveedores y desde el menu
-			global $CFG_GLPI;
+			global $CFG_GLPI, $DB;
 
 			$options['colspan']      = 4;
 			$options['formtitle']    = "Datos de la empresa";
@@ -446,6 +536,57 @@
 			echo "<td>";
 			Html::autocompletionTextField($this, "empresa_matriz_CP");
 			echo "</td></tr>";
+
+			//////////Lista de empresas mas destacadas///////
+
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de empresas más destacadas del grupo")."</th></tr>";
+
+
+			//consultamos la empresas más destacada de este CV
+			$empresas_destacadas;
+
+			if($ID!=''){
+				$query2 ="SELECT * FROM glpi_plugin_comproveedores_featuredcompanies WHERE cv_id=".$ID." order by puesto asc";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$empresas_destacadas['nombre_empresa_destacada'.$i]=$data['nombre_empresa_destacada'];
+						$i++;
+					}
+				}
+			}
+			//Visualizamos las empresas más destacada en el caso de que existan
+			for($i=1; $i<=6; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+
+				if(!empty($empresas_destacadas['nombre_empresa_destacada'.$i])){
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="60"', 'value'=>$empresas_destacadas['nombre_empresa_destacada'.$i]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".$i, array('option'=>'size="60"'));
+				}
+				
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				
+				if(!empty($empresas_destacadas['nombre_empresa_destacada'.($i+1)])){
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="60"', 'value'=>$empresas_destacadas['nombre_empresa_destacada'.($i+1)]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_destacada".($i+1), array('option'=>'size="60"'));
+				}
+
+				echo "</td>";
+
+				echo"</tr>";		
+			}
 			
 			///////////////////Categoías y número de empleados//////////
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
@@ -488,7 +629,7 @@
 			echo"<tr>";
 			echo "<td rowspan='8' class='middle right'>".__('Comments')."</td>";
 			echo "<td class='center middle' rowspan='8'>";
-			echo "<textarea cols='45' rows='13' name='comment' >".$data->fields["comment"]."</textarea>";
+			echo "<textarea cols='45' rows='13' name='comment' >".$this->fields["comment"]."</textarea>";
 			echo "</td></tr>";
 
 

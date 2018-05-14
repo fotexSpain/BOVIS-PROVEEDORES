@@ -21,6 +21,7 @@
 	}
 
 	$PluginFinancial= new PluginComproveedoresFinancial();
+	$PluginCv= new PluginComproveedoresCv();
 	$PluginAnnualBilling= new PluginComproveedoresAnnualbilling();
 	
 	if(isset($_POST['add'])){
@@ -29,8 +30,8 @@
 		$_POST['capital_social']=str_replace('.', '', $_POST['capital_social']);
 		$_POST['capital_social']=str_replace(',', '.', $_POST['capital_social']);
 
-		$PluginFinancial->check(-1, CREATE, $_POST);
-		$newID = $PluginFinancial->add($_POST);
+		$PluginCv->check(-1, CREATE, $_POST);
+		$newID = $PluginCv->add($_POST);
 	
 		//comprobamos si existe o no, los años de sinisestralidad, y en funcion de que exista o no, añadimos o modificamos
 		InsertAndUpdateAnnualBilling($DB, $PluginAnnualBilling);
@@ -41,13 +42,13 @@
 
 		Html::back();
 	} else if(isset($_POST['update'])){
-		
+
 		//cambiar formato de capital social
 		$_POST['capital_social']=str_replace('.', '', $_POST['capital_social']);
 		$_POST['capital_social']=str_replace(',', '.', $_POST['capital_social']);
 
-		$PluginFinancial->check($_POST['id'], UPDATE);
-		$PluginFinancial->update($_POST);
+		$PluginCv->check($_POST['id'], UPDATE);
+		$PluginCv->update($_POST);
 
 		//comprobamos si existe o no, los años de sinisestralidad, y en funcion de que exista o no, añadimos o modificamos
 		InsertAndUpdateAnnualBilling($DB, $PluginAnnualBilling);
@@ -55,21 +56,23 @@
 		Html::back();
 	} else if (isset($_POST["delete"])) {
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
-		$PluginFinancial->check($_POST['id'], DELETE);
-		$PluginFinancial->delete($_POST);
+		$PluginCv->check($_POST['id'], DELETE);
+		$PluginCv->delete($_POST);
 		Html::back();
 
 	} else if (isset($_POST["restore"])) {
-		$PluginFinancial->check($_POST['id'], PURGE);
-		$PluginFinancial->restore($_POST);
+		$PluginCv->check($_POST['id'], PURGE);
+		$PluginCv->restore($_POST);
 		Html::back();
 
 	} else if (isset($_POST["purge"])) {
-		$PluginFinancial->check($_POST['id'], PURGE);
-		$PluginFinancial->delete($_POST, 1);
+		
+		$query ="UPDATE `glpi_plugin_comproveedores_cvs` SET `capital_social` = NULL WHERE `glpi_plugin_comproveedores_cvs`.`id` =".$_POST['id'];
+
+		$DB->query($query);
 
 		//eliminamos los indice se siniestralidad de CV_ID
-		$query ="SELECT id FROM glpi_plugin_comproveedores_annualbillings WHERE cv_id=".$_POST['cv_id'];
+		$query ="SELECT id FROM glpi_plugin_comproveedores_annualbillings WHERE cv_id=".$_POST['id'];
 
 			$result = $DB->query($query);
 
@@ -84,7 +87,7 @@
 		Html::back();
 
 	} else {
-		$PluginFinancial->checkGlobal(READ);
+		$PluginCv->checkGlobal(READ);
 
 		$plugin = new Plugin();
 		if ($plugin->isActivated("environment")) {
@@ -108,7 +111,7 @@
 	function InsertAndUpdateAnnualBilling($DB, $PluginAnnualBilling){
 
 		for($i=0; $i<3; $i++){
-			$query ="SELECT * FROM glpi_plugin_comproveedores_annualbillings WHERE cv_id=".$_POST['cv_id']." and anio='".$_POST['anio'.$i]."-00-00'";
+			$query ="SELECT * FROM glpi_plugin_comproveedores_annualbillings WHERE cv_id=".$_POST['id']." and anio='".$_POST['anio'.$i]."-00-00'";
 
 			$result = $DB->query($query);
 
@@ -126,7 +129,7 @@
 					$data['cash_flow']=str_replace('.', '', $_POST['cash_flow'.$i].'000');
 					$data['fondos_propios']=str_replace('.', '', $_POST['fondos_propios'.$i].'000');
 					$data['recursos_ajenos']=str_replace('.', '', $_POST['recursos_ajenos'.$i].'000');
-					$data['cv_id']=$_POST['cv_id'];
+					$data['cv_id']=$_POST['id'];
 
 					$PluginAnnualBilling->check($data['id'], UPDATE);
 					$PluginAnnualBilling->update($data);
@@ -144,7 +147,7 @@
 					$data['cash_flow']=str_replace('.', '', $_POST['cash_flow'.$i].'000');
 					$data['fondos_propios']=str_replace('.', '', $_POST['fondos_propios'.$i].'000');
 					$data['recursos_ajenos']=str_replace('.', '', $_POST['recursos_ajenos'.$i].'000');
-					$data['cv_id']=$_POST['cv_id'];
+					$data['cv_id']=$_POST['id'];
 
 
 				$PluginAnnualBilling->check(-1, CREATE, $data);

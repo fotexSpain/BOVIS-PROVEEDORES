@@ -1894,6 +1894,24 @@ class Search {
          $p[$key] = $val;
       }
 
+      if($itemtype=='Supplier'){
+        echo "<script type='text/javascript'>
+
+            $(document).ready(function() {
+
+              for(i=0; i<3; i++){
+                $('[id*=searchrowSupplier]').find('.pointer').click();
+              }
+            
+              $('select[id*=dropdown_criteria_0__field]').val('1').change();
+              
+             /* $('select[id*=dropdown_criteria_0__field]').append($('<option>', {value:1, text:'One'}),$('<option>', {value:1, text:'DOS'}));*/
+
+            });
+
+        </script>";
+      }
+      
       echo "<form name='searchform$itemtype' method='get' action=\"".$p['target']."\">";
       echo "<div id='searchcriterias'>";
       $nbsearchcountvar      = 'nbcriteria'.strtolower($itemtype).mt_rand();
