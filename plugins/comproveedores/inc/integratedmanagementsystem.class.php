@@ -130,36 +130,36 @@
 			echo "<td <td colspan='3' style='text-align: left'>¿Tiene la empresa un sistema o plan de gestión?
 					<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 9001 o similar)</span></td>";
 			echo "<td>";
-			Dropdown::showYesNo('planGestion', $this->fields["planGestion"]);
+			Dropdown::showYesNo('plan_gestion', $this->fields["plan_gestion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanGestion'>".$this->fields["obsPlanGestion"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_plan_gestion'>".$this->fields["obs_plan_gestion"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee procedimientos de control de documentos?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('controlDocumentos',$this->fields["controlDocumentos"]);
+			Dropdown::showYesNo('control_documentos',$this->fields["control_documentos"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsControlDocumentos'>".$this->fields["obsControlDocumentos"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_control_documentos'>".$this->fields["obs_control_documentos"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee Política de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('politicaCalidad', $this->fields["politicaCalidad"]);
+			Dropdown::showYesNo('politica_calidad', $this->fields["politica_calidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPoliticaCalidad'>".$this->fields["obsPoliticaCalidad"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_politica_calidad'>".$this->fields["obs_politica_calidad"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>". __('¿Realiza auditorias internas de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('auditoriasInternas', $this->fields["auditoriasInternas"]);
+			Dropdown::showYesNo('auditorias_internas', $this->fields["auditorias_internas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAuditoriasInternas'>".$this->fields["obsAuditoriasInternas"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_auditorias_internas'>".$this->fields["obs_auditorias_internas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -174,18 +174,18 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>" . __('¿Tiene la empresa un plan de sostenibilidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('planSostenibilidad', $this->fields["planSostenibilidad"]);
+			Dropdown::showYesNo('plan_sostenibilidad', $this->fields["plan_sostenibilidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanSostenibilidad'>".$this->fields["obsPlanSostenibilidad"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_plan_sostenibilidad'>".$this->fields["obs_plan_sostenibilidad"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>¿Tiene acreditado un Sistema de Gestión Medioambiental?<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 14001 o similar)</span>'</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGMedioambiental', $this->fields["SGMedioambiental"]);
+			Dropdown::showYesNo('sg_medioambiental', $this->fields["sg_medioambiental"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGMedioambiental'>".$this->fields["obsSGMedioambiental"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_sg_medioambiental'>".$this->fields["obs_sg_medioambiental"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
@@ -202,9 +202,9 @@
 					<span style='color:#B40404'>(Indicar las más destacadas)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('accionesRSC', $this->fields["accionesRSC"]);
+			Dropdown::showYesNo('acciones_rsc', $this->fields["acciones_rsc"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAccionesRSC'>".$this->fields["obsAccionesRSC"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_acciones_rsc'>".$this->fields["obs_acciones_rsc"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
@@ -213,9 +213,9 @@
 					<span style='color:#B40404'>(Indicar qué política)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('gestionRSC', $this->fields["gestionRSC"]);
+			Dropdown::showYesNo('gestion_rsc', $this->fields["gestion_rsc"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsGestionRSC'>".$this->fields["obsGestionRSC"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_gestion_rsc'>".$this->fields["obs_gestion_rsc"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -232,9 +232,9 @@
 					<span style='color:#B40404'>(Indicar sistema de gestión similar)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGSeguridadYSalud', $this->fields["SGSeguridadYSalud"]);
+			Dropdown::showYesNo('sg_seguridad_y_salud', $this->fields["sg_seguridad_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGSeguridadYSalud'>".$this->fields["obsSGSeguridadYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_sg_seguridad_y_salud'>".$this->fields["obs_sg_seguridad_y_salud"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
@@ -243,9 +243,9 @@
 					<span style='color:#B40404'>(Indicar el organismo acreditador)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('certificadoFormacion', $this->fields["certificadoFormacion"]);
+			Dropdown::showYesNo('certificado_formacion', $this->fields["certificado_formacion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsCertificadoFormacion'>".$this->fields["obsCertificadoFormacion"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_certificado_formacion'>".$this->fields["obs_certificado_formacion"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -254,18 +254,18 @@
 				<span style='color:#B40404'>(Indicar Indicar número de empleados de dicho departamento)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('departamentoSeguridaYSalud', $this->fields["departamentoSeguridaYSalud"]);
+			Dropdown::showYesNo('departamento_segurida_y_salud', $this->fields["departamento_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsDepartamentoSeguridaYSalud'>".$this->fields["obsDepartamentoSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_departamento_segurida_y_salud'>".$this->fields["obs_departamento_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>". __('¿Tiene implantada la empresa una metodología para medir, evaluar, auditar, inspeccionar, etc sus desempeño en Seguridad y Salud?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('metodologiaSeguridaYSalud', $this->fields["metodologiaSeguridaYSalud"]);
+			Dropdown::showYesNo('metodologia_segurida_y_salud', $this->fields["metodologia_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsMetodologiaSeguridaYSalud'>".$this->fields["obsMetodologiaSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_metodologia_segurida_y_salud'>".$this->fields["obs_metodologia_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -274,9 +274,9 @@
 					<span style='color:#B40404'>(Indicar número de horas de formación impartidas durante el último año)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('formacionSeguridaYSalud', $this->fields["formacionSeguridaYSalud"]);
+			Dropdown::showYesNo('formacion_segurida_y_salud', $this->fields["formacion_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsFormacionSeguridaYSalud'>".$this->fields["obsFormacionSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_formacion_segurida_y_salud'>".$this->fields["obs_formacion_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -285,9 +285,9 @@
 					<span style='color:#B40404'>(Indicar número de empleados fijos capacitados)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empleadoRP', $this->fields["empleadoRP"]);
+			Dropdown::showYesNo('empleado_rp', $this->fields["empleado_rp"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpleadoRP'>".$this->fields["obsEmpleadoRP"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_empleado_rp'>".$this->fields["obs_empleado_rp"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -296,9 +296,9 @@
 					<span style='color:#B40404'>(Indicar número de procesos judiciales o acciones legales relacionados con la Seguridad y Salud emprendidos contra la empresa en los últimos 5 años)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empresaAsesoramiento', $this->fields["empresaAsesoramiento"]);
+			Dropdown::showYesNo('empresa_asesoramiento', $this->fields["empresa_asesoramiento"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpresaAsesoramiento'>".$this->fields["obsEmpresaAsesoramiento"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_empresa_asesoramiento'>".$this->fields["obs_empresa_asesoramiento"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -307,9 +307,9 @@
 					<span style='color:#B40404'>(Caso de existir, indicar el número de Subcontratistas que ya habrían sido precalificados)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('procedimientoSubcontratistas', $this->fields["procedimientoSubcontratistas"]);
+			Dropdown::showYesNo('procedimiento_subcontratistas', $this->fields["procedimiento_subcontratistas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsProcedimientoSubcontratistas'>".$this->fields["obsProcedimientoSubcontratistas"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_procedimiento_subcontratistas'>".$this->fields["obs_procedimiento_subcontratistas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -431,7 +431,6 @@
 
 			//Aseguramiento calidad
 
-			
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 			echo "<div class='center'>";
 
@@ -445,36 +444,36 @@
 			echo "<td <td colspan='3' style='text-align: left'>¿Tiene la empresa un sistema o plan de gestión?
 					<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 9001 o similar)</span></td>";
 			echo "<td>";
-			Dropdown::showYesNo('planGestion', $this->fields["planGestion"]);
+			Dropdown::showYesNo('plan_gestion', $this->fields["plan_gestion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanGestion'>".$this->fields["obsPlanGestion"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_plan_gestion'>".$this->fields["obs_plan_gestion"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee procedimientos de control de documentos?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('controlDocumentos',$this->fields["controlDocumentos"]);
+			Dropdown::showYesNo('control_documentos',$this->fields["control_documentos"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsControlDocumentos'>".$this->fields["obsControlDocumentos"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_control_documentos'>".$this->fields["obs_control_documentos"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td <td colspan='3' style='text-align: left'>". __('¿Posee Política de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('politicaCalidad', $this->fields["politicaCalidad"]);
+			Dropdown::showYesNo('politica_calidad', $this->fields["politica_calidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPoliticaCalidad'>".$this->fields["obsPoliticaCalidad"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_politica_calidad'>".$this->fields["obs_politica_calidad"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>". __('¿Realiza auditorias internas de calidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('auditoriasInternas', $this->fields["auditoriasInternas"]);
+			Dropdown::showYesNo('auditorias_internas', $this->fields["auditorias_internas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAuditoriasInternas'>".$this->fields["obsAuditoriasInternas"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_auditorias_internas'>".$this->fields["obs_auditorias_internas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -489,18 +488,18 @@
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>" . __('¿Tiene la empresa un plan de sostenibilidad?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('planSostenibilidad', $this->fields["planSostenibilidad"]);
+			Dropdown::showYesNo('plan_sostenibilidad', $this->fields["plan_sostenibilidad"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsPlanSostenibilidad'>".$this->fields["obsPlanSostenibilidad"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_plan_sostenibilidad'>".$this->fields["obs_plan_sostenibilidad"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>¿Tiene acreditado un Sistema de Gestión Medioambiental?<span style='color:#B40404'>(Indicar Acriditaciones Vigentes. Ejemplo:ISO 14001 o similar)</span>'</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGMedioambiental', $this->fields["SGMedioambiental"]);
+			Dropdown::showYesNo('sg_medioambiental', $this->fields["sg_medioambiental"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGMedioambiental'>".$this->fields["obsSGMedioambiental"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_sg_medioambiental'>".$this->fields["obs_sg_medioambiental"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 			
@@ -517,9 +516,9 @@
 					<span style='color:#B40404'>(Indicar las más destacadas)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('accionesRSC', $this->fields["accionesRSC"]);
+			Dropdown::showYesNo('acciones_rsc', $this->fields["acciones_rsc"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsAccionesRSC'>".$this->fields["obsAccionesRSC"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_acciones_rsc'>".$this->fields["obs_acciones_rsc"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
@@ -528,9 +527,9 @@
 					<span style='color:#B40404'>(Indicar qué política)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('gestionRSC', $this->fields["gestionRSC"]);
+			Dropdown::showYesNo('gestion_rsc', $this->fields["gestion_rsc"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsGestionRSC'>".$this->fields["obsGestionRSC"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_gestion_rsc'>".$this->fields["obs_gestion_rsc"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -547,9 +546,9 @@
 					<span style='color:#B40404'>(Indicar sistema de gestión similar)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('SGSeguridadYSalud', $this->fields["SGSeguridadYSalud"]);
+			Dropdown::showYesNo('sg_seguridad_y_salud', $this->fields["sg_seguridad_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsSGSeguridadYSalud'>".$this->fields["obsSGSeguridadYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_sg_seguridad_y_salud'>".$this->fields["obs_sg_seguridad_y_salud"]."</textarea>";
 			echo "</td>";
 			echo "</tr>";
 
@@ -558,9 +557,9 @@
 					<span style='color:#B40404'>(Indicar el organismo acreditador)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('certificadoFormacion', $this->fields["certificadoFormacion"]);
+			Dropdown::showYesNo('certificado_formacion', $this->fields["certificado_formacion"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsCertificadoFormacion'>".$this->fields["obsCertificadoFormacion"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_certificado_formacion'>".$this->fields["obs_certificado_formacion"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -569,18 +568,18 @@
 				<span style='color:#B40404'>(Indicar Indicar número de empleados de dicho departamento)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('departamentoSeguridaYSalud', $this->fields["departamentoSeguridaYSalud"]);
+			Dropdown::showYesNo('departamento_segurida_y_salud', $this->fields["departamento_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsDepartamentoSeguridaYSalud'>".$this->fields["obsDepartamentoSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_departamento_segurida_y_salud'>".$this->fields["obs_departamento_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
 			echo"<tr class='tab_bg_1 center'>";
 			echo "<td colspan='3' style='text-align: left'>". __('¿Tiene implantada la empresa una metodología para medir, evaluar, auditar, inspeccionar, etc sus desempeño en Seguridad y Salud?') . "</td>";
 			echo "<td>";
-			Dropdown::showYesNo('metodologiaSeguridaYSalud', $this->fields["metodologiaSeguridaYSalud"]);
+			Dropdown::showYesNo('metodologia_segurida_y_salud', $this->fields["metodologia_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsMetodologiaSeguridaYSalud'>".$this->fields["obsMetodologiaSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_metodologia_segurida_y_salud'>".$this->fields["obs_metodologia_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -589,9 +588,9 @@
 					<span style='color:#B40404'>(Indicar número de horas de formación impartidas durante el último año)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('formacionSeguridaYSalud', $this->fields["formacionSeguridaYSalud"]);
+			Dropdown::showYesNo('formacion_segurida_y_salud', $this->fields["formacion_segurida_y_salud"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsFormacionSeguridaYSalud'>".$this->fields["obsFormacionSeguridaYSalud"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_formacion_segurida_y_salud'>".$this->fields["obs_formacion_segurida_y_salud"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -600,9 +599,9 @@
 					<span style='color:#B40404'>(Indicar número de empleados fijos capacitados)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empleadoRP', $this->fields["empleadoRP"]);
+			Dropdown::showYesNo('empleado_rp', $this->fields["empleado_rp"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpleadoRP'>".$this->fields["obsEmpleadoRP"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_empleado_rp'>".$this->fields["obs_empleado_rp"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -611,9 +610,9 @@
 					<span style='color:#B40404'>(Indicar número de procesos judiciales o acciones legales relacionados con la Seguridad y Salud emprendidos contra la empresa en los últimos 5 años)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('empresaAsesoramiento', $this->fields["empresaAsesoramiento"]);
+			Dropdown::showYesNo('empresa_asesoramiento', $this->fields["empresa_asesoramiento"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsEmpresaAsesoramiento'>".$this->fields["obsEmpresaAsesoramiento"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_empresa_asesoramiento'>".$this->fields["obs_empresa_asesoramiento"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 
@@ -622,9 +621,9 @@
 					<span style='color:#B40404'>(Caso de existir, indicar el número de Subcontratistas que ya habrían sido precalificados)</span>
 				</td>";
 			echo "<td>";
-			Dropdown::showYesNo('procedimientoSubcontratistas', $this->fields["procedimientoSubcontratistas"]);
+			Dropdown::showYesNo('procedimiento_subcontratistas', $this->fields["procedimiento_subcontratistas"]);
 			echo "</td><td>";
-			echo "<textarea cols='37' rows='3' name='obsProcedimientoSubcontratistas'>".$this->fields["obsProcedimientoSubcontratistas"]."</textarea>";
+			echo "<textarea cols='37' rows='3' name='obs_procedimiento_subcontratistas'>".$this->fields["obs_procedimiento_subcontratistas"]."</textarea>";
 			echo "</td>";
 			echo"</tr>";
 

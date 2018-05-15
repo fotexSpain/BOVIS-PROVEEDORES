@@ -88,32 +88,21 @@
 
 		function showFormItemFinancial($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
+			$PluginCv= new PluginComproveedoresCv();
 
 			$CvId=$item->fields['cv_id'];
-
-			// Consultamo el id de la tabla integratedmanagementsystems al que esta asociado el supplier
-			$query ="SELECT id FROM glpi_plugin_comproveedores_financials WHERE cv_id=".$CvId;
-
-			$result = $DB->query($query);
-
-			if($result->num_rows!=0){
-				while ($data=$DB->fetch_array($result)) {
-					$ID=$data['id'];
-				}
-			}
-			else{
-				$ID='';
-			}
 			
 			$options = array();
 			$options['formtitle']    = "Financiero";
 			$options['colspan']=12;
-
-			$this->initForm($ID, $options);
+			$options['target']=$CFG_GLPI["root_doc"].'/plugins/comproveedores/front/financial.form.php';
 			
-			$this->showFormHeader($options);
+
+			$PluginCv->initForm($CvId, $options);
+			
+			$PluginCv->showFormHeader($options);
 				
-			echo Html::hidden('cv_id', array('value' => $CvId));
+			echo Html::hidden('id', array('value' => $CvId));
 
 			//Aseguramiento calidad
 
@@ -127,8 +116,8 @@
 			echo"<tr class='tab_bg_1' style='font-weight: bold; font-size:12px;'>";
 			echo"<td>";
 			$capital_social='';
-			if(!empty($this->fields["capital_social"])){
-				$capital_social=number_format($this->fields["capital_social"], 2, ',', '.');
+			if(!empty($PluginCv->fields["capital_social"])){
+				$capital_social=number_format($PluginCv->fields["capital_social"], 2, ',', '.');
 			}
 			Html::autocompletionTextField($this, "capital_social", array('value'=>$capital_social));
 			echo"</td>";
@@ -265,7 +254,17 @@
 			echo"</table>";
 			echo"</div>";
 
-			$this->showFormButtons($options);
+			if(!empty($PluginCv->fields["capital_social"])){
+				$PluginCv->showFormButtons($options);
+			}else{
+				echo"<input type='submit' class='submit' name='update' value='AÑADIR' />";
+				
+				echo"</form>";
+				echo"</br>";
+			}
+
+
+			
 					
 		}
 
@@ -287,32 +286,21 @@
 		function showFormItem($item, $withtemplate='') {	
 		
 			GLOBAL $DB,$CFG_GLPI;
+			$PluginCv= new PluginComproveedoresCv();
 
 			$CvId=$item->fields['id'];
-
-			// Consultamo el id de la tabla integratedmanagementsystems al que esta asociado el supplier
-			$query ="SELECT id FROM glpi_plugin_comproveedores_financials WHERE cv_id=".$CvId;
-
-			$result = $DB->query($query);
-
-			if($result->num_rows!=0){
-				while ($data=$DB->fetch_array($result)) {
-					$ID=$data['id'];
-				}
-			}
-			else{
-				$ID='';
-			}
 			
 			$options = array();
 			$options['formtitle']    = "Financiero";
 			$options['colspan']=12;
-
-			$this->initForm($ID, $options);
+			$options['target']=$CFG_GLPI["root_doc"].'/plugins/comproveedores/front/financial.form.php';
 			
-			$this->showFormHeader($options);
+
+			$PluginCv->initForm($CvId, $options);
+			
+			$PluginCv->showFormHeader($options);
 				
-			echo Html::hidden('cv_id', array('value' => $CvId));
+			echo Html::hidden('id', array('value' => $CvId));
 
 			//Aseguramiento calidad
 
@@ -326,8 +314,8 @@
 			echo"<tr class='tab_bg_1' style='font-weight: bold; font-size:12px;'>";
 			echo"<td>";
 			$capital_social='';
-			if(!empty($this->fields["capital_social"])){
-				$capital_social=number_format($this->fields["capital_social"], 2, ',', '.');
+			if(!empty($PluginCv->fields["capital_social"])){
+				$capital_social=number_format($PluginCv->fields["capital_social"], 2, ',', '.');
 			}
 			Html::autocompletionTextField($this, "capital_social", array('value'=>$capital_social));
 			echo"</td>";
@@ -464,7 +452,16 @@
 			echo"</table>";
 			echo"</div>";
 
-			$this->showFormButtons($options);
+			if(!empty($PluginCv->fields["capital_social"])){
+				$PluginCv->showFormButtons($options);
+			}else{
+				echo"<input type='submit' class='submit' name='update' value='AÑADIR' />";
+				
+				echo"</form>";
+				echo"</br>";
+			}
+
+
 		}
 
 }

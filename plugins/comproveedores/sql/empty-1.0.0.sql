@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_cvs` (
 	`tecnicos_no_universitarios` INT(11) NOT NULL default '0',
 	`personal` INT(11) NOT NULL default '0',
 	`otros_categoria_numeros_empleados` INT(11) NOT NULL default '0',
+	`capital_social` decimal(20,2) NULL,
 	`states_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
 	`is_recursive` tinyint(1) NOT NULL default '0',
@@ -188,38 +189,38 @@ INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_integratedmanagementsystems` (
 	`id` int(11) NOT NULL auto_increment,
 
-	`planGestion` tinyint(1) NOT NULL default '0',
-	`obsPlanGestion` varchar(255),
-	`controlDocumentos` tinyint(1) NOT NULL default '0',
-	`obsControlDocumentos` varchar(255),
-	`politicaCalidad` tinyint(1) NOT NULL default '0',
-	`obsPoliticaCalidad` varchar(255),
-	`auditoriasInternas` tinyint(1) NOT NULL default '0',
-	`obsAuditoriasInternas` varchar(255),
-	`planSostenibilidad` tinyint(1) NOT NULL default '0',
-	`obsPlanSostenibilidad` varchar(255),
-	`SGMedioambiental` tinyint(1) NOT NULL default '0',
-	`obsSGMedioambiental` varchar(255),
-	`accionesRSC` tinyint(1) NOT NULL default '0',
-	`obsAccionesRSC` varchar(255),
-	`gestionRSC` tinyint(1) NOT NULL default '0',
-	`obsGestionRSC` varchar(255),
-	`SGSeguridadYSalud` tinyint(1) NOT NULL default '0',
-	`obsSGSeguridadYSalud` varchar(255),
-	`certificadoFormacion` tinyint(1) NOT NULL default '0',
-	`obsCertificadoFormacion` varchar(255),
-	`departamentoSeguridaYSalud` tinyint(1) NOT NULL default '0',
-	`obsDepartamentoSeguridaYSalud` varchar(255),
-	`metodologiaSeguridaYSalud` tinyint(1) NOT NULL default '0',
-	`obsMetodologiaSeguridaYSalud` varchar(255),
-	`formacionSeguridaYSalud` tinyint(1) NOT NULL default '0',
-	`obsFormacionSeguridaYSalud` varchar(255),
-	`empleadoRP` tinyint(1) NOT NULL default '0',
-	`obsEmpleadoRP` varchar(255),
-	`empresaAsesoramiento` tinyint(1) NOT NULL default '0',
-	`obsEmpresaAsesoramiento` varchar(255),
-	`procedimientoSubcontratistas` tinyint(1) NOT NULL default '0',
-	`obsProcedimientoSubcontratistas` varchar(255),
+	`plan_gestion` tinyint(1) NOT NULL default '0',
+	`obs_plan_gestion` varchar(255) NULL,
+	`control_documentos` tinyint(1) NOT NULL default '0',
+	`obs_control_documentos` varchar(255) NULL,
+	`politica_calidad` tinyint(1) NOT NULL default '0',
+	`obs_politica_calidad` varchar(255) NULL,
+	`auditorias_internas` tinyint(1) NOT NULL default '0',
+	`obs_auditorias_internas` varchar(255) NULL,
+	`plan_sostenibilidad` tinyint(1) NOT NULL default '0',
+	`obs_plan_sostenibilidad` varchar(255) NULL,
+	`sg_medioambiental` tinyint(1) NOT NULL default '0',
+	`obs_sg_medioambiental` varchar(255) NULL,
+	`acciones_rsc` tinyint(1) NOT NULL default '0',
+	`obs_acciones_rsc` varchar(255) NULL,
+	`gestion_rsc` tinyint(1) NOT NULL default '0',
+	`obs_gestion_rsc` varchar(255) NULL,
+	`sg_seguridad_y_salud` tinyint(1) NOT NULL default '0',
+	`obs_sg_seguridad_y_salud` varchar(255) NULL,
+	`certificado_formacion` tinyint(1) NOT NULL default '0',
+	`obs_certificado_formacion` varchar(255) NULL,
+	`departamento_segurida_y_salud` tinyint(1) NOT NULL default '0',
+	`obs_departamento_segurida_y_salud` varchar(255) NULL,
+	`metodologia_segurida_y_salud` tinyint(1) NOT NULL default '0',
+	`obs_metodologia_segurida_y_salud` varchar(255) NULL,
+	`formacion_segurida_y_salud` tinyint(1) NOT NULL default '0',
+	`obs_formacion_segurida_y_salud` varchar(255) NULL,
+	`empleado_rp` tinyint(1) NOT NULL default '0',
+	`obs_empleado_rp` varchar(255) NULL,
+	`empresa_asesoramiento` tinyint(1) NOT NULL default '0',
+	`obs_empresa_asesoramiento` varchar(255) NULL,
+	`procedimiento_subcontratistas` tinyint(1) NOT NULL default '0',
+	`obs_procedimiento_subcontratistas` varchar(255) NULL,
 
 	`cv_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
@@ -234,26 +235,11 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_integratedmanagementsyste
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_lossratios` (
 	`id` int(11) NOT NULL auto_increment,
 
-	`anio` date,
-	`incidencia` decimal(4,2) ,
-	`frecuencia` decimal(4,2) ,
-	`gravedad` decimal(4,2) ,
+	`anio` date NULL,
+	`incidencia` decimal(4,2) NULL,
+	`frecuencia` decimal(4,2) NULL,
+	`gravedad` decimal(4,2) NULL,
 
-	`cv_id` int(11) NOT NULL default '0',
-	`entities_id` int(11) NOT NULL default '0',
-	`is_recursive` tinyint(1) NOT NULL default '0',
-	`comment` text,
-	`externalid` varchar(255) NULL,
-	PRIMARY KEY (`id`),	
-	KEY `entities_id` (`entities_id`),
-	UNIQUE (`externalid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_financials` (
-	`id` int(11) NOT NULL auto_increment,
-
-	`capital_social` decimal(15,2) ,
-	
 	`cv_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
 	`is_recursive` tinyint(1) NOT NULL default '0',
@@ -267,16 +253,16 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_financials` (
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_annualbillings` (
 	`id` int(11) NOT NULL auto_increment,
 
-	`anio` date,
-	`facturacion` decimal(10,0) ,
-	`beneficios_impuestos` decimal(10,0) ,
-	`resultado` decimal(10,0) ,
-	`total_activo` decimal(10,0) ,
-	`activo_circulante` decimal(10,0) ,
-	`pasivo_circulante` decimal(10,0) ,
-	`cash_flow` decimal(10,0) ,
-	`fondos_propios` decimal(10,0) ,
-	`recursos_ajenos` decimal(10,0) ,
+	`anio` date NULL,
+	`facturacion` decimal(12,0),
+	`beneficios_impuestos` decimal(12,0) NULL,
+	`resultado` decimal(12,0) NULL,
+	`total_activo` decimal(12,0) NULL,
+	`activo_circulante` decimal(12,0) NULL,
+	`pasivo_circulante` decimal(12,0) NULL,
+	`cash_flow` decimal(12,0) NULL,
+	`fondos_propios` decimal(12,0) NULL,
+	`recursos_ajenos` decimal(12,0) NULL,
 	
 	`cv_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
@@ -292,6 +278,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_featuredcompanies` (
 	`id` int(11) NOT NULL auto_increment,
 
 	`nombre_empresa_destacada` varchar(255) NULL,
+	`puesto` int(11) NOT NULL default '0',
 		
 	`cv_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
@@ -302,5 +289,38 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_featuredcompanies` (
 	KEY `entities_id` (`entities_id`),
 	UNIQUE (`externalid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_subcontractingcompanies` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`nombre_empresa_subcontratista` varchar(255) NULL,
+	`puesto` int(11) NOT NULL default '0',
+		
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_previousnamescompanies` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`nombre` varchar(255) NULL,
+	`fecha_cambio` datetime(6) NULL,
+		
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 

@@ -117,99 +117,120 @@
 
 			echo Html::hidden('idExperiencia');
 
-			echo"<th colspan='4'>Experiencia</th></tr>";
+			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
+
+			echo "<td  width='20px'>";
+			
+			echo "</td>";
+
 			echo "<td>" . __('Estado') . "</td>";
+			
+			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+
+			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
+			
+			echo "<td>" . __('Nombre proyecto') . "</td>";
+			
+			echo "<td>" . __('Comunidad Autonoma') . "</td>";
+			
+			echo "<td>" . __('Cliente') . "</td>";
+			
+			echo "<td>" . __('Año') . "</td>";
+			
+			echo "<td>" . __('Importe contratado') . "</td>";
+			
+			echo "<td>" . __('Duración de su contratado') . "</td>";
+			
+			echo "<td>" . __('BIM') . "</td>";
+			
+			echo "<td>" . __('Breeam') . "</td>";
+			
+			echo "<td>" . __('Leed') . "</td>";
+			
+			echo "<td>" . __('Otros certificados') . "</td>";
+			
+			echo "<td>" . __('Cpd Tier') . "</td>";
+			
+			echo "<td>" . __('Observaciones') . "</td>";
+			
+
+			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
+			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
+			echo"<tr class='tab_bg_1'>";
+
+			echo "<td  style='width:400px;'>";
+			
+			echo "</td>";
+
 			echo "<td>";
 			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'));
 			echo "</td>";
-			echo "</tr>";
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+
 			echo "<td id='intervencionBovis'>";
-			Dropdown::showYesNo('intervencion_bovis');
+			//Dropdown::showYesNo('intervencion_bovis');
+			echo "<input type='checkbox' name='intervencion_bovis' value='1' style='margin-left: 30px;'>";
 			echo "</td>";
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
 			echo "</td>";
-			
-			echo"</tr>";
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Nombre proyecto') . "</td>";
+
 			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='37' rows='3' name='name'></textarea>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
-			echo "<td>" . __('Comunidad Autonoma') . "</td>";
+
 			echo "<td>";
 			Dropdown::show('PluginComproveedoresCommunity',$opt);
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Cliente') . "</td>";
 			echo "<td>";
-			echo "<textarea cols='37' rows='3' name='cliente'></textarea>";
+			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";
 			echo "</td>";
-			echo "<td>" . __('Año') . "</td>";
+
 			echo "<td>";
 			Dropdown::showFromArray('anio',$this->getYears());
-
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Importe contratado') . "</td>";
 			echo "<td id='importeExperiencia'>";
 			Html::autocompletionTextField($this, "importe");
 			echo "</td>";
-			echo "<td>" . __('Duración de su contratado') . "</td>";
+
 			echo "<td>";
 			Html::autocompletionTextField($this, "duracion");
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('BIM') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='bim' value='1' style='margin-left: 5px;'>";
+			//Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Breeam') . "</td>";
-			echo "<td>";
-			Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
-			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Leed') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='breeam' value='1' style='margin-left: 15px;'>";
+			//Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Otros certificados') . "</td>";
-			echo "<td>";
-			Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
-			echo "</td>";
-			echo"</tr>";
 
-
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Cpd Tier') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='leed' value='1' style='margin-left: 8px;'>";
+			//Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Observaciones') . "</td>";
+
 			echo "<td>";
-			echo "<textarea cols='37' rows='3' name='observaciones'></textarea>";
+			echo "<input type='checkbox' name='otros_certificados' value='1' style='margin-left: 25px;'>";
+			//Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "</td>";
+
+			echo "<td>";
+			echo "<input type='checkbox' name='cpd_tier' value='1' style='margin-left: 5px;'>";
+			//Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "</td>";
+
+			echo "<td>";
+			echo "<textarea cols='20' rows='3' name='observaciones'></textarea>";
 			//Html::autocompletionTextField($this, "observaciones");
 			echo "</td>";
-			echo "</tr>";
-			
 
-			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
-			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
 			echo"</table>";
@@ -508,9 +529,6 @@
 			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
 
-			
-			
-
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 			echo "<div class='center' id='actualizarFormulario'>";
 			echo $this->consultaJquery();
@@ -519,99 +537,120 @@
 
 			echo Html::hidden('idExperiencia');
 
-			echo"<th colspan='4'>Experiencia</th></tr>";
+			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
+
+			echo "<td  width='20px'>";
+			
+			echo "</td>";
+
 			echo "<td>" . __('Estado') . "</td>";
+			
+			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+
+			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
+			
+			echo "<td>" . __('Nombre proyecto') . "</td>";
+			
+			echo "<td>" . __('Comunidad Autonoma') . "</td>";
+			
+			echo "<td>" . __('Cliente') . "</td>";
+			
+			echo "<td>" . __('Año') . "</td>";
+			
+			echo "<td>" . __('Importe contratado') . "</td>";
+			
+			echo "<td>" . __('Duración de su contratado') . "</td>";
+			
+			echo "<td>" . __('BIM') . "</td>";
+			
+			echo "<td>" . __('Breeam') . "</td>";
+			
+			echo "<td>" . __('Leed') . "</td>";
+			
+			echo "<td>" . __('Otros certificados') . "</td>";
+			
+			echo "<td>" . __('Cpd Tier') . "</td>";
+			
+			echo "<td>" . __('Observaciones') . "</td>";
+			
+
+			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
+			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
+			echo"<tr class='tab_bg_1'>";
+
+			echo "<td  style='width:400px;'>";
+			
+			echo "</td>";
+
 			echo "<td>";
 			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'));
 			echo "</td>";
-			echo "</tr>";
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+
 			echo "<td id='intervencionBovis'>";
-			Dropdown::showYesNo('intervencion_bovis');
+			//Dropdown::showYesNo('intervencion_bovis');
+			echo "<input type='checkbox' name='intervencion_bovis' value='1' style='margin-left: 30px;'>";
 			echo "</td>";
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
 			echo "</td>";
-			
-			echo"</tr>";
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Nombre proyecto') . "</td>";
+
 			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='37' rows='3' name='name'></textarea>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
-			echo "<td>" . __('Comunidad Autonoma') . "</td>";
+
 			echo "<td>";
 			Dropdown::show('PluginComproveedoresCommunity',$opt);
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Cliente') . "</td>";
 			echo "<td>";
-			echo "<textarea cols='37' rows='3' name='cliente'></textarea>";
+			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";
 			echo "</td>";
-			echo "<td>" . __('Año') . "</td>";
+
 			echo "<td>";
 			Dropdown::showFromArray('anio',$this->getYears());
-
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Importe contratado') . "</td>";
 			echo "<td id='importeExperiencia'>";
 			Html::autocompletionTextField($this, "importe");
 			echo "</td>";
-			echo "<td>" . __('Duración de su contratado') . "</td>";
+
 			echo "<td>";
 			Html::autocompletionTextField($this, "duracion");
 			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('BIM') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='bim' value='1' style='margin-left: 5px;'>";
+			//Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Breeam') . "</td>";
-			echo "<td>";
-			Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
-			echo "</td>";
-			echo"</tr>";
 
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Leed') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='breeam' value='1' style='margin-left: 15px;'>";
+			//Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Otros certificados') . "</td>";
-			echo "<td>";
-			Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
-			echo "</td>";
-			echo"</tr>";
 
-
-			echo"<tr class='tab_bg_1 center'>";
-			echo "<td>" . __('Cpd Tier') . "</td>";
 			echo "<td>";
-			Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "<input type='checkbox' name='leed' value='1' style='margin-left: 8px;'>";
+			//Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
-			echo "<td>" . __('Observaciones') . "</td>";
+
 			echo "<td>";
-			echo "<textarea cols='37' rows='3' name='observaciones'></textarea>";
+			echo "<input type='checkbox' name='otros_certificados' value='1' style='margin-left: 25px;'>";
+			//Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "</td>";
+
+			echo "<td>";
+			echo "<input type='checkbox' name='cpd_tier' value='1' style='margin-left: 5px;'>";
+			//Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo "</td>";
+
+			echo "<td>";
+			echo "<textarea cols='20' rows='3' name='observaciones'></textarea>";
 			//Html::autocompletionTextField($this, "observaciones");
 			echo "</td>";
-			echo "</tr>";
-			
 
-			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
-			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
 			echo"</table>";
@@ -774,20 +813,16 @@
 				$(document).ready(function() {
 
 					//añadimos onchange al desplegable de Intervención de BOVIS
-					$('#intervencionBovis').find('select').change(function() {
-						
-						//Cogemos el valor selecionado
-    					$('[name=intervencion_bovis] option:selected').each(function() {
-      						valor_intervencion_bovis=$(this).text();
-   						 });
+					$('#intervencionBovis').find('input').change(function() {
 
-						if(valor_intervencion_bovis=='No'){
-
-							$('.tipos_experiencias').show();
+   						if($('#intervencionBovis').find('input').prop('checked')) {
+   							
+   							$('.tipos_experiencias').hide();
 
 						}else{
 							
-							$('.tipos_experiencias').hide();
+							$('.tipos_experiencias').show();
+
 						}
 
 					});
@@ -808,24 +843,42 @@
 
 				function añadirSinBorrar(){
 					
-					$('select[name=intervencion_bovis] option:selected').each(function() {
-      						intervencion_bovis=$( this ).val();
-   					});
-					$('select[name=bim] option:selected').each(function() {
-      						bim=$( this ).val();
-   					});
-   					$('select[name=breeam] option:selected').each(function() {
-      					breeam=$( this ).val();
-   					});
-   					$('select[name=leed] option:selected').each(function() {
-      					leed=$( this ).val();
-   					});
-   					$('select[name=otros_certificados] option:selected').each(function() {
-      					otros_certificados=$( this ).val();
-   					});
-   					$('select[name=cpd_tier] option:selected').each(function() {
-      					cpd_tier=$( this ).val();
-   					});
+					if($('#intervencionBovis').find('input').prop('checked')) {	
+   						intervencion_bovis=1;
+					}else{	
+						intervencion_bovis=0;
+					}
+
+					if($('input[name=bim]').prop('checked')) {	
+   						bim=1;
+					}else{	
+						bim=0;
+					}
+
+					if($('input[name=breeam]').prop('checked')) {		
+   						breeam=1;
+					}else{	
+						breeam=0;
+					}
+
+					if($('input[name=leed]').prop('checked')) {
+   						leed=1;
+					}else{	
+						leed=0;
+					}
+
+   					if($('input[name=otros_certificados]').prop('checked')) {	
+   						otros_certificados=1;
+					}else{
+						otros_certificados=0;
+					}
+
+   					if($('input[name=cpd_tier]').prop('checked')) {	
+   						cpd_tier=1;
+					}else{
+						cpd_tier=0;
+					}
+   
    					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
       					anio=anio+'-00-00 00:00';
@@ -878,24 +931,43 @@
 				function guardarModificar(){
 
 
-					$('select[name=intervencion_bovis] option:selected').each(function() {
-      						intervencion_bovis=$( this ).val();
-   					});
-					$('select[name=bim] option:selected').each(function() {
-      						bim=$( this ).val();
-   					});
-   					$('select[name=breeam] option:selected').each(function() {
-      					breeam=$( this ).val();
-   					});
-   					$('select[name=leed] option:selected').each(function() {
-      					leed=$( this ).val();
-   					});
-   					$('select[name=otros_certificados] option:selected').each(function() {
-      					otros_certificados=$( this ).val();
-   					});
-   					$('select[name=cpd_tier] option:selected').each(function() {
-      					cpd_tier=$( this ).val();
-   					});
+					if($('#intervencionBovis').find('input').prop('checked')) {	
+   						intervencion_bovis=1;
+					}else{	
+						intervencion_bovis=0;
+					}
+
+					if($('input[name=bim]').prop('checked')) {	
+   						bim=1;
+					}else{	
+						bim=0;
+					}
+
+					if($('input[name=breeam]').prop('checked')) {		
+   						breeam=1;
+					}else{	
+						breeam=0;
+					}
+
+					if($('input[name=leed]').prop('checked')) {
+   						leed=1;
+					}else{	
+						leed=0;
+					}
+
+   					if($('input[name=otros_certificados]').prop('checked')) {	
+   						otros_certificados=1;
+					}else{
+						otros_certificados=0;
+					}
+
+   					if($('input[name=cpd_tier]').prop('checked')) {	
+   						cpd_tier=1;
+					}else{
+						cpd_tier=0;
+					}
+   
+
    					$('select[name=anio] option:selected').each(function() {
       					anio=$( this ).text();
       					anio=anio+'-00-00 00:00';
