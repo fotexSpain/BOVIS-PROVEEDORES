@@ -120,17 +120,13 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td  width='20px'>";
-			
-			echo "</td>";
+			echo "<td>" . __('Nombre proyecto') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
 			echo "<td>" . __('Intervención de BOVIS') . "</td>";
 
 			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
-			
-			echo "<td>" . __('Nombre proyecto') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -159,9 +155,9 @@
 			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
 			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
-
-			echo "<td  style='width:400px;'>";
 			
+			echo "<td id='nombreExperiencia'>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -175,10 +171,6 @@
 
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
-			echo "</td>";
-
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -540,17 +532,13 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td  width='20px'>";
-			
-			echo "</td>";
+			echo "<td>" . __('Nombre proyecto') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
 			echo "<td>" . __('Intervención de BOVIS') . "</td>";
 
 			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
-			
-			echo "<td>" . __('Nombre proyecto') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -580,8 +568,8 @@
 			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 
-			echo "<td  style='width:400px;'>";
-			
+			echo "<td id='nombreExperiencia'>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -595,10 +583,6 @@
 
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
-			echo "</td>";
-
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";

@@ -58,13 +58,14 @@ GLOBAL $DB,$CFG_GLPI;
 
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
+
+			echo "<td>" . __('Nombre proyecto') . "</td>";
+
 			echo "<td>" . __('Estado') . "</td>";
 			
 			echo "<td>" . __('Intervención de BOVIS') . "</td>";
 			
 			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
-			
-			echo "<td>" . __('Nombre proyecto') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -93,6 +94,10 @@ GLOBAL $DB,$CFG_GLPI;
 			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 
+				echo "<td id='nombreExperiencia'>";
+			echo "<textarea cols='20' rows='3' name='name'>".$data['name']."</textarea>";
+			echo "</td>";	
+
 			echo "<td>";
 			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'),  array('value' => $data['estado']));
 			echo "</td>";
@@ -109,10 +114,6 @@ GLOBAL $DB,$CFG_GLPI;
 
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt2);
-			echo "</td>";	
-
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'>".$data['name']."</textarea>";
 			echo "</td>";	
 
 			echo "<td>";
