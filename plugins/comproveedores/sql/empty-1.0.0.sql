@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_cvs` (
 	`capital_social` decimal(20,2) NULL,
 	`states_id` int(11) NOT NULL default '0',
 	`entities_id` int(11) NOT NULL default '0',
-	`is_recursive` tinyint(1) NOT NULL default '0',2x
+	`is_recursive` tinyint(1) NOT NULL default '0',
 	`comment` text,
 	`externalid` varchar(255) NULL,
 	PRIMARY KEY (`id`),	
