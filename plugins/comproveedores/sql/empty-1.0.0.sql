@@ -290,4 +290,37 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_featuredcompanies` (
 	UNIQUE (`externalid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_subcontractingcompanies` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`nombre_empresa_subcontratista` varchar(255) NULL,
+	`puesto` int(11) NOT NULL default '0',
+		
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_previousnamescompanies` (
+	`id` int(11) NOT NULL auto_increment,
+
+	`nombre` varchar(255) NULL,
+	`fecha_cambio` datetime(6) NULL,
+		
+	`cv_id` int(11) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`comment` text,
+	`externalid` varchar(255) NULL,
+	PRIMARY KEY (`id`),	
+	KEY `entities_id` (`entities_id`),
+	UNIQUE (`externalid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 

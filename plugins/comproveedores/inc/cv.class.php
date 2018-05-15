@@ -130,10 +130,14 @@
 
 			echo "</tr>";
 
-			echo "<td>" . __('Forma Juridica') . "</td>";			
+			echo "<td>" . __('Forma Juridica') . "</td>";
+
 			echo "<td>";
+      		SupplierType::dropdown(['value' => $item->fields['suppliertypes_id']]);
+      		echo "</td></tr>";			
+			/*echo "<td>";
 			Html::autocompletionTextField($item, "forma_juridica");
-			echo "</td>";
+			echo "</td>";*/
 			echo "<td>"._n('Email', 'Emails', 1)."</td>";
 			echo "<td>";
 			Html::autocompletionTextField($item, "email");
@@ -289,6 +293,79 @@
 				echo"</tr>";		
 			}
 
+			//////////Lista de nombres anteriores de la empresa, si hubiera cambiado en los Últimos 5 años///////
+
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de nombres anteriores de la empresa, si hubiera cambiado en los Últimos 5 años")."</th></tr>";
+
+
+			//consultamos los nombres anteriores de la empresas de este CV
+			$nombre_anteriores;
+
+			//fecha actual y fecha hace 5 años
+			$fecha_actual=date("Y-m-d H:i:s.").gettimeofday()["usec"];
+			$fecha_ultimos_cambios=date("Y-m-d H:i:s.", strtotime('-5 year')).gettimeofday()["usec"];
+
+			if($ID!=''){
+
+				$query2="SELECT * FROM glpi_plugin_comproveedores_previousnamescompanies WHERE cv_id=".$ID." and  fecha_cambio<=CAST('".$fecha_actual."' AS DATETIME) AND fecha_cambio>= CAST('".$fecha_ultimos_cambios."' AS DATETIME) order by fecha_cambio, id asc limit 6";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$nombre_anteriores['nombre'.$i]=$data['nombre'];
+						$nombre_anteriores['fecha_cambio'.$i]=$data['fecha_cambio'];
+						$i++;
+					}
+				}
+			}
+			//Visualizamos los nombres anteriores de la empresas en el caso de que existan
+			for($i=1; $i<=4; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+
+				if(isset($nombre_anteriores['nombre'.$i])){
+
+					Html::autocompletionTextField($this, "nombre".$i, array('option'=>'size="50"', 'value'=>$nombre_anteriores['nombre'.$i]));
+
+					echo Html::hidden('fecha_cambio'.$i, array('value'=>$nombre_anteriores['fecha_cambio'.$i]));
+
+				}else{
+
+					Html::autocompletionTextField($this, "nombre".$i, array('option'=>'size="50"'));
+
+					echo Html::hidden('fecha_cambio'.$i, array('value'=>date("Y-m-d H:i:s.").gettimeofday()["usec"]));
+
+				}
+				
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				
+				if(isset($nombre_anteriores['nombre'.($i+1)])){
+
+					Html::autocompletionTextField($this, "nombre".($i+1), array('option'=>'size="50"', 'value'=>$nombre_anteriores['nombre'.($i+1)]));
+
+					echo Html::hidden('fecha_cambio'.($i+1), array('value'=>$nombre_anteriores['fecha_cambio'.($i+1)]));
+
+				}else{
+
+					Html::autocompletionTextField($this, "nombre".($i+1), array('option'=>'size="50"'));
+
+					echo Html::hidden('fecha_cambio'.($i+1), array('value'=>date("Y-m-d H:i:s.").gettimeofday()["usec"]));
+
+				}
+
+				echo "</td>";
+
+				echo"</tr>";		
+			}
+
 			///////////////////Categoías y número de empleados//////////
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
 
@@ -321,7 +398,7 @@
 			echo "<td>" . __('Técnicos No Universitarios') . "</td>";
 			echo "</tr>";
 
-			/*/////////Principales empresas subcontratista, colaboradoras y/o profesionales que trabajan habitualmente con la empresa ///////
+			/////////Principales empresas subcontratista, colaboradoras y/o profesionales que trabajan habitualmente con la empresa ///////
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Principales empresas subcontratistas, colaboradoras y/o profesionales que trabajan habitualmente con la empresa")."</th></tr>";
 
@@ -344,7 +421,7 @@
 				}
 			}
 
-			//visualizamos las empresas más destacada en el caso de que existan
+			//visualizamos a principales empresas subcontratista en el caso de que existan
 			for($i=1; $i<=10; $i+=2){
 
 				echo "<tr class='tab_bg_1'>";
@@ -371,7 +448,7 @@
 
 				echo"</tr>";		
 			}
-			//////////*/
+			//////////
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Comentarios")."</th></tr>";
 
@@ -431,10 +508,14 @@
 
 			echo "</tr>";
 
-			echo "<td>" . __('Forma Juridica') . "</td>";			
+			echo "<td>" . __('Forma Juridica') . "</td>";	
 			echo "<td>";
+      		SupplierType::dropdown(['value' => $data->fields['suppliertypes_id']]);
+      		echo "</td></tr>";
+		
+			/*echo "<td>";
 			Html::autocompletionTextField($data, "forma_juridica");
-			echo "</td>";
+			echo "</td>";*/
 			echo "<td>"._n('Email', 'Emails', 1)."</td>";
 			echo "<td>";
 			Html::autocompletionTextField($data, "email");
@@ -587,6 +668,78 @@
 
 				echo"</tr>";		
 			}
+//////////Lista de nombres anteriores de la empresa, si hubiera cambiado en los Últimos 5 años///////
+
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Lista de nombres anteriores de la empresa, si hubiera cambiado en los Últimos 5 años")."</th></tr>";
+
+
+			//consultamos los nombres anteriores de la empresas de este CV
+			$nombre_anteriores;
+
+			//fecha actual y fecha hace 5 años
+			$fecha_actual=date("Y-m-d H:i:s.").gettimeofday()["usec"];
+			$fecha_ultimos_cambios=date("Y-m-d H:i:s.", strtotime('-5 year')).gettimeofday()["usec"];
+
+			if($ID!=''){
+
+				$query2="SELECT * FROM glpi_plugin_comproveedores_previousnamescompanies WHERE cv_id=".$ID." and  fecha_cambio<=CAST('".$fecha_actual."' AS DATETIME) AND fecha_cambio>= CAST('".$fecha_ultimos_cambios."' AS DATETIME) order by fecha_cambio, id asc limit 6";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$nombre_anteriores['nombre'.$i]=$data['nombre'];
+						$nombre_anteriores['fecha_cambio'.$i]=$data['fecha_cambio'];
+						$i++;
+					}
+				}
+			}
+			//Visualizamos los nombres anteriores de la empresas en el caso de que existan
+			for($i=1; $i<=4; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+
+				if(isset($nombre_anteriores['nombre'.$i])){
+
+					Html::autocompletionTextField($this, "nombre".$i, array('option'=>'size="50"', 'value'=>$nombre_anteriores['nombre'.$i]));
+
+					echo Html::hidden('fecha_cambio'.$i, array('value'=>$nombre_anteriores['fecha_cambio'.$i]));
+
+				}else{
+
+					Html::autocompletionTextField($this, "nombre".$i, array('option'=>'size="50"'));
+
+					echo Html::hidden('fecha_cambio'.$i, array('value'=>date("Y-m-d H:i:s.").gettimeofday()["usec"]));
+
+				}
+				
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				
+				if(isset($nombre_anteriores['nombre'.($i+1)])){
+
+					Html::autocompletionTextField($this, "nombre".($i+1), array('option'=>'size="50"', 'value'=>$nombre_anteriores['nombre'.($i+1)]));
+
+					echo Html::hidden('fecha_cambio'.($i+1), array('value'=>$nombre_anteriores['fecha_cambio'.($i+1)]));
+
+				}else{
+
+					Html::autocompletionTextField($this, "nombre".($i+1), array('option'=>'size="50"'));
+
+					echo Html::hidden('fecha_cambio'.($i+1), array('value'=>date("Y-m-d H:i:s.").gettimeofday()["usec"]));
+
+				}
+
+				echo "</td>";
+
+				echo"</tr>";		
+			}
 			
 			///////////////////Categoías y número de empleados//////////
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Categoría y número de empleados")."</th></tr>";
@@ -621,7 +774,57 @@
 			echo "<td>" . __('Técnicos No Universitarios') . "</td>";
 			echo "</tr>";
 
-			///////////////////
+			/////////Principales empresas subcontratista, colaboradoras y/o profesionales que trabajan habitualmente con la empresa ///////
+
+			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Principales empresas subcontratistas, colaboradoras y/o profesionales que trabajan habitualmente con la empresa")."</th></tr>";
+
+			////consultamos la principales empresas subcontratista de este CV
+			$empresas_subcontratistas;
+
+			if($ID!=''){
+				$query2 ="SELECT * FROM glpi_plugin_comproveedores_subcontractingcompanies WHERE cv_id=".$ID." order by puesto asc";
+
+				$result2 = $DB->query($query2);
+
+				if($result2->num_rows!=0){
+
+					$i=1;
+					while ($data=$DB->fetch_array($result2)) {
+						
+						$empresas_subcontratistas['nombre_empresa_subcontratista'.$i]=$data['nombre_empresa_subcontratista'];
+						$i++;
+					}
+				}
+			}
+
+			//visualizamos las empresas más destacada en el caso de que existan
+			for($i=1; $i<=10; $i+=2){
+
+				echo "<tr class='tab_bg_1'>";
+
+				echo "<td colspan='2' center>".$i.". ";
+
+				if(!empty($empresas_subcontratistas['nombre_empresa_subcontratista'.$i])){
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".$i, array('option'=>'size="50"', 'value'=>$empresas_subcontratistas['nombre_empresa_subcontratista'.$i]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".$i, array('option'=>'size="50"'));
+				}
+				
+				echo "</td>";
+
+				echo "<td colspan='2' center>".($i+1).". ";
+				
+				if(!empty($empresas_subcontratistas['nombre_empresa_subcontratista'.($i+1)])){
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".($i+1), array('option'=>'size="50"', 'value'=>$empresas_subcontratistas['nombre_empresa_subcontratista'.($i+1)]));
+				}else{
+					Html::autocompletionTextField($this, "nombre_empresa_subcontratista".($i+1), array('option'=>'size="50"'));
+				}
+
+				echo "</td>";
+
+				echo"</tr>";		
+			}
+			//////////
 
 
 			echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='4'>".__("Comentarios")."</th></tr>";
