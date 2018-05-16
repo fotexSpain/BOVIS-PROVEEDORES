@@ -1897,17 +1897,29 @@ class Search {
       if($itemtype=='Supplier'){
         echo "<script type='text/javascript'>
 
-            $(document).ready(function() {
+          $(document).ready(function() {
 
-              for(i=0; i<3; i++){
-                $('[id*=searchrowSupplier]').find('.pointer').click();
-              }
-            
-              $('select[id*=dropdown_criteria_0__field]').val('1').change();
-              
-             /* $('select[id*=dropdown_criteria_0__field]').append($('<option>', {value:1, text:'One'}),$('<option>', {value:1, text:'DOS'}));*/
+            for(i=0; i<3; i++){
+              $('[id*=searchrowSupplier]').find('.pointer').click();
+            }
+      
+            $('select[id*=dropdown_criteria_0__field]').val('1').change();
 
-            });
+             setTimeout('pruebaAñadir()',500);
+
+          });
+
+          function pruebaAñadir(){
+
+            $('select[id*=dropdown_criteria_1__field]').append($('<option>', {value:300, text:'CIF'}));
+            $('select[id*=dropdown_criteria_2__field]').append($('<option>', {value:301, text:'Proyecto'}));
+            $('select[id*=dropdown_criteria_3__field]').append($('<option>', {value:302, text:'Código Proyecto'}));
+
+            $('select[id*=dropdown_criteria_1__field]').val('300').change();
+            $('select[id*=dropdown_criteria_2__field]').val('301').change();
+            $('select[id*=dropdown_criteria_3__field]').val('302').change();
+
+          }
 
         </script>";
       }
