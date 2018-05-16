@@ -96,7 +96,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			echo "<div class='center'>";
 			echo"<table class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
-			echo"<th colspan='6'>Especialidades</th></tr>";
+			echo"<th colspan='7'>Especialidades</th></tr>";
 			
 			echo "<td>" . __('Contratista/Proveedor') . "</td>";
 			echo "<td>";
@@ -130,15 +130,30 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			</span>";
 			echo "</div>";
 			echo "</td>";
+
+			echo "<td><span class='fa fa-plus-circle pointer' title='Añadir' onclick='añadirNuevaEspecialidad()'><span class='sr-only'>Añadir</span></span></td>";
+
 			echo"</tr>";
 
-			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo"<td><input type='submit' class='submit' name='add_tipo_especialidad' value='AÑADIR' /></td>";
 			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";
 			echo"</table>";
 			echo"</div>";
 			echo"</form>";
+
+			/////Formulario añadir nueva especialidad
+			echo"<div style='display:none;' id='dialogNuevaEspecialidad' title='Añadir Nueva Especialidad'>";
+  			echo"<form action='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php' method='get'>";
+  			echo"<div>Nombre Especialidad</div>";
+  				Html::autocompletionTextField($this, "nombre_especialidad");
+  				echo Html::hidden('categoria_nueva_especialidad');
+  			echo"<br>";
+  			echo"<br>";
+  			echo"<input type='submit' class='submit' name='add_nueva_especialidad' value='AÑADIR' />";
+  			echo"</form>";
+			echo"</div>";
 
 			/*///////////////////////////////
 			//LISTAR ESPECIALIDADES DEL PROVEEDOR
@@ -216,7 +231,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			echo "<div class='center'>";
 			echo"<table class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
-			echo"<th colspan='6'>Especialidades</th></tr>";
+			echo"<th colspan='7'>Especialidades</th></tr>";
 			
 			echo "<td>" . __('Contratista/Proveedor') . "</td>";
 			echo "<td>";
@@ -250,6 +265,9 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			</span>";
 			echo "</div>";
 			echo "</td>";
+
+			echo "<td><span class='fa fa-plus-circle pointer' title='Añadir' onclick='añadirNuevaEspecialidad()'><span class='sr-only'>Añadir</span></span></td>";
+
 			echo"</tr>";
 
 			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
@@ -259,6 +277,18 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			echo"</table>";
 			echo"</div>";
 			echo"</form>";
+
+			/////Formulario añadir nueva especialidad
+			echo"<div style='display:none;' id='dialogNuevaEspecialidad' title='Añadir Nueva Especialidad'>";
+  			echo"<form action='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/listspecialty.form.php' method='get'>";
+  			echo"<div>Nombre Especialidad</div>";
+  				Html::autocompletionTextField($this, "nombre_especialidad");
+  				echo Html::hidden('categoria_nueva_especialidad');
+  			echo"<br>";
+  			echo"<br>";
+  			echo"<input type='submit' class='submit' name='add_nueva_especialidad' value='AÑADIR' />";
+  			echo"</form>";
+			echo"</div>";
 
 			/*///////////////////////////////
 			//LISTAR ESPECIALIDADES DEL PROVEEDOR
@@ -312,6 +342,23 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 			GLOBAL $DB,$CFG_GLPI;
 
 			$consulta="<script type='text/javascript'>
+
+			$(document).ready(function(){
+
+				$('#dialogoFormulario').dialog({
+					// Indica si la ventana se abre de forma automática
+					autoOpen: false,
+					// Indica si la ventana es modal
+					modal: true,
+					// Largo
+					width: 350,
+					// Alto
+					height: 'auto'
+				});
+
+
+
+			});
 			
 			function cambiarCategorias(valor){
 
@@ -328,8 +375,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 						alert('Data not found');
 					}
 				});
-
-
+				
 			}
 			
 			function cambiarEspecialidades(valor){
@@ -348,7 +394,19 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 					}
 				});
 
+				//añadimos al foemulario de añadir nueva especialidad, el is de la categoria
+				$('[name=categoria_nueva_especialidad]').val(valor);
 
+			}
+
+			function añadirNuevaEspecialidad(){
+
+				if($('[name=categoria_nueva_especialidad]').val()!=''){
+
+					$('#dialogNuevaEspecialidad').dialog();
+				
+				}
+				
 			}
 
 			</script>";
