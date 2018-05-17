@@ -54,7 +54,13 @@
 		$PluginlistSpecialty->delete($_POST, 1);
 
 		Html::back();
-	} else {
+	}if(isset($_GET['add_nueva_especialidad'])){
+
+		$query="INSERT INTO `glpi_plugin_comproveedores_specialties` (`id`, `glpi_plugin_comproveedores_categories_id`, `name`) VALUES (NULL, '".$_GET['categoria_nueva_especialidad']."', '".$_GET['nombre_especialidad']."')";
+		$DB->query($query);
+		
+		Html::back();
+	}else {
 		$PluginlistSpecialty->checkGlobal(READ);
 
 

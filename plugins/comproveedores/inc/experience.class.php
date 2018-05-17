@@ -120,17 +120,13 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td  width='20px'>";
-			
-			echo "</td>";
+			echo "<td>" . __('Nombre proyecto') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo  "<td>" . __('Intervención de BOVIS') . "</td>";
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
-			
-			echo "<td>" . __('Nombre proyecto') . "</td>";
+			echo  "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -155,13 +151,15 @@
 			echo "<td>" . __('Observaciones') . "</td>";
 			
 
-			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
-			echo"<tr class='tab_bg_1'>";
+			echo "<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo "<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
+			echo "<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 
-			echo "<td  style='width:400px;'>";
+
+			echo"<tr class='tab_bg_1'>";
 			
+			echo "<td id='nombreExperiencia'>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -175,10 +173,6 @@
 
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
-			echo "</td>";
-
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -238,143 +232,37 @@
 			echo"</form>";
 			
 
-			/*///////////////////////////////
+		/*///////////////////////////////
 			//LISTAR EXPERIENCIA DEL PROVEEDOR
 			///////////////////////////////*/
-			echo "<div id='actualizarLista'>";
+			echo "<div id='accordion'>";
 
+			echo"<h3>Intervención Bovis</h3>";
+  			echo"<div id='intervencion_bovis'>";  
+  			echo"</div>";
 
-			$query2 ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=$CvId order by id desc" ;
+  			$tipos_experiencia_lista=array(
+    			"1" => "Edificios de oficinas",
+    			"2" => "Centros comerciales/locales comerciales",
+    			"3" => "Proyectos de hospitales/Centros sanitarios",
+    			"4" => "Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes",
+    			"5" => "Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos",
+    			"6" => "Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)",
+    			"7" => "Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)",
+    			"8" => "Proyectos industriales/Logísticos",
+    			"9" => "Proyectos de vivienda residenciales",
+    			"10" => "Obras de rehabilitación de edificios",
+    			"11" => "Centro de procesos de datos(CPD) y otros proyectos",
+			);
 
-			$result2 = $DB->query($query2);
-
-			//Ocultar lista, si no existe ninguna expeciencia
-			if($result2->num_rows!=0){
-
-				echo "<div align='center'><table class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='17'>Experiencias del proveedor</th></tr>";
-				echo"<br/>";
-
-				echo "<tr><th>".__('Proyecto/Obra')."</th>";
-				echo "<th>".__('Estado')."</th>";
-				if (Session::isMultiEntitiesMode())
-					echo "<th>".__('Entity')."</th>";
-					echo "<th>".__('Intervención Bovis')."</th>";
-					echo "<th>".__('Tipo de experiencia')."</th>";
-					echo "<th>".__('Comunidad autonoma')."</th>";
-					echo "<th>".__('Cliente/Propiedad')."</th>";
-					echo "<th>".__('Año')."</th>";
-					echo "<th>".__('Importe contratado')."</th>";
-					echo "<th>".__('Duración de su contrato')."</th>";
-					echo "<th>".__('BIM')."</th>";
-					echo "<th>".__('Bream')."</th>";
-					echo "<th>".__('Leed')."</th>";
-					echo "<th>".__('Otros')."</th>";
-					echo "<th>".__('Cpd tier')."</th>";
-					echo "<th>".__('Observaciones')."</th>";					
-					echo "<th>".__('Modificar')."</th>";
-					echo "<th>".__('Eliminar')."</th>";
-					echo "</tr>";
-
-					while ($data=$DB->fetch_array($result2)) {
-							if($data['is_deleted']==""){
-								$data['is_deleted']=1;
-							}
-
-							echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-							if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
-								echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id"]."'>".$data["name"];
-								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-								echo "</a></td>";
-							} else {
-								echo "<td class='center'>".$data["name"];
-								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-								echo "</td>";
-							}
-							echo "</a></td>";
-							if (Session::isMultiEntitiesMode())
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
-								echo "<td class='center'>";
-								if($data['estado']=='1'){
-									echo "En Curso";
-								}else{
-									echo "Finalizado";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['intervencion_bovis']=='1'){
-									echo "Si";
-								}else{
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
-								
-								echo "<td class='center'>".$data['cliente']."</td>";
-								$anio = date("Y", strtotime($data['anio']));
-								$anio++;
-								echo "<td class='center'>".$anio."</td>";
-
-								//Formato al importe
-								$importe=number_format($data['importe'], 2, ',', '.');
-							
-								echo "<td class='center'>".$importe."</td>";
-								echo "<td class='center'>".$data['duracion']."</td>";
-								echo "<td class='center'>";
-								if($data['bim']=='1'){
-									echo "Si";
-								}elseif($data['bim']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['breeam']=='1'){
-									echo "Si";
-								}elseif($data['breeam']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['leed']=='1'){
-									echo "Si";
-								}elseif($data['leed']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['otros_certificados']=='1'){
-									echo "Si";
-								}elseif($data['otros_certificados']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['cpd_tier']=='1'){
-									echo "Si";
-								}elseif($data['cpd_tier']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>".$data['observaciones']."</td>";
-								echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";
-								echo "<td class='center'>";
-								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
-								echo Html::hidden('id', array('value' => $data['id']));
-								echo Html::hidden('cv_id', array('value' => $data['cv_id']));
-								echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-								echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-								echo "</td>";
-								echo"</form>";
-
-					}
-
-
-						echo"<br/>";
-							echo "</table></div>";
-							echo"<br>";
+			foreach ($tipos_experiencia_lista as $key => $value) {
+				
+				echo"<h3>".$value."</h3>";
+  				echo"<div id='tipo_experiencia_".$key."'>";  
+  				echo"</div>";
 
 			}
+
 			echo "</div>";
 					
 		}
@@ -540,17 +428,13 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td  width='20px'>";
-			
-			echo "</td>";
+			echo "<td>" . __('Nombre proyecto') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo  "<td>" . __('Intervención de BOVIS') . "</td>";
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
-			
-			echo "<td>" . __('Nombre proyecto') . "</td>";
+			echo  "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -573,15 +457,11 @@
 			echo "<td>" . __('Cpd Tier') . "</td>";
 			
 			echo "<td>" . __('Observaciones') . "</td>";
-			
 
-			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 
-			echo "<td  style='width:400px;'>";
-			
+			echo "<td id='nombreExperiencia'>";
+			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -595,10 +475,6 @@
 
 			echo "<td class='tipos_experiencias'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
-			echo "</td>";
-
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
 			echo "<td>";
@@ -652,157 +528,60 @@
 			echo "</td>";
 
 			echo"</tr>";
+
+			echo"<tr>";
+					
 			echo"</tbody>";
 			echo"</table>";
+
+
+			echo "<div>";
+			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
+			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' name='Update'>GUARDAR MODIFICACIÓN</span></div>";
 			echo "</div>";
+
+
+			echo "</div>";
+
 			echo"</form>";
 			
 
 			/*///////////////////////////////
 			//LISTAR EXPERIENCIA DEL PROVEEDOR
 			///////////////////////////////*/
-			echo "<div id='actualizarLista'>";
+			echo "<div id='accordion'>";
 
+			echo"<h3>Intervención Bovis</h3>";
+  			echo"<div id='intervencion_bovis'>";  
+  			echo"</div>";
 
-			$query2 ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=$CvId order by id desc" ;
+  			$tipos_experiencia_lista=array(
+    			"1" => "Edificios de oficinas",
+    			"2" => "Centros comerciales/locales comerciales",
+    			"3" => "Proyectos de hospitales/Centros sanitarios",
+    			"4" => "Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes",
+    			"5" => "Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos",
+    			"6" => "Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)",
+    			"7" => "Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)",
+    			"8" => "Proyectos industriales/Logísticos",
+    			"9" => "Proyectos de vivienda residenciales",
+    			"10" => "Obras de rehabilitación de edificios",
+    			"11" => "Centro de procesos de datos(CPD) y otros proyectos",
+			);
 
-			$result2 = $DB->query($query2);
-
-			//Ocultar lista, si no existe ninguna expeciencia
-			if($result2->num_rows!=0){
-
-				echo "<div align='center'><table class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='17'>Experiencias del proveedor</th></tr>";
-				echo"<br/>";
-
-				echo "<tr><th>".__('Proyecto/Obra')."</th>";
-				echo "<th>".__('Estado')."</th>";
-				if (Session::isMultiEntitiesMode())
-					echo "<th>".__('Entity')."</th>";
-					echo "<th>".__('Intervención Bovis')."</th>";
-					echo "<th>".__('Tipo de experiencia')."</th>";
-					echo "<th>".__('Comunidad autonoma')."</th>";
-					echo "<th>".__('Cliente/Propiedad')."</th>";
-					echo "<th>".__('Año')."</th>";
-					echo "<th>".__('Importe contratado')."</th>";
-					echo "<th>".__('Duración de su contrato')."</th>";
-					echo "<th>".__('BIM')."</th>";
-					echo "<th>".__('Bream')."</th>";
-					echo "<th>".__('Leed')."</th>";
-					echo "<th>".__('Otros')."</th>";
-					echo "<th>".__('Cpd tier')."</th>";
-					echo "<th>".__('Observaciones')."</th>";					
-					echo "<th>".__('Modificar')."</th>";
-					echo "<th>".__('Eliminar')."</th>";
-					echo "</tr>";
-
-					while ($data=$DB->fetch_array($result2)) {
-							if($data['is_deleted']==""){
-								$data['is_deleted']=1;
-							}
-
-							echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-							if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
-								echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id"]."'>".$data["name"];
-								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-								echo "</a></td>";
-							} else {
-								echo "<td class='center'>".$data["name"];
-								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
-								echo "</td>";
-							}
-							echo "</a></td>";
-							if (Session::isMultiEntitiesMode())
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
-								echo "<td class='center'>";
-								if($data['estado']=='1'){
-									echo "En Curso";
-								}else{
-									echo "Finalizado";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['intervencion_bovis']=='1'){
-									echo "Si";
-								}else{
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
-								
-								echo "<td class='center'>".$data['cliente']."</td>";
-								$anio = date("Y", strtotime($data['anio']));
-								$anio++;
-								echo "<td class='center'>".$anio."</td>";
-
-								//Formato al importe
-								$importe=number_format($data['importe'], 2, ',', '.');
-							
-								echo "<td class='center'>".$importe."</td>";
-								echo "<td class='center'>".$data['duracion']."</td>";
-								echo "<td class='center'>";
-								if($data['bim']=='1'){
-									echo "Si";
-								}elseif($data['bim']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['breeam']=='1'){
-									echo "Si";
-								}elseif($data['breeam']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['leed']=='1'){
-									echo "Si";
-								}elseif($data['leed']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['otros_certificados']=='1'){
-									echo "Si";
-								}elseif($data['otros_certificados']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>";
-								if($data['cpd_tier']=='1'){
-									echo "Si";
-								}elseif($data['cpd_tier']=='0'){
-									echo "No";
-								}
-								echo "</td>";
-								echo "<td class='center'>".$data['observaciones']."</td>";
-								echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";
-								echo "<td class='center'>";
-								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
-								echo Html::hidden('id', array('value' => $data['id']));
-								echo Html::hidden('cv_id', array('value' => $data['cv_id']));
-								echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-								echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
-								echo "</td>";
-								echo"</form>";
-
-								/*if($data["is_deleted"]=='1'){
-									echo "<td class='center'>Si</td></tr>";
-								}else{
-									echo "<td  class='center'>No</td></tr>";
-								}*/
-
-					}
-
-
-						echo"<br/>";
-							echo "</table></div>";
-							echo"<br>";
+			foreach ($tipos_experiencia_lista as $key => $value) {
+				
+				echo"<h3>".$value."</h3>";
+  				echo"<div id='tipo_experiencia_".$key."'>";  
+  				echo"</div>";
 
 			}
+
 			echo "</div>";
+		
 		}
+
 
 		function consultaJquery(){
 
@@ -826,8 +605,12 @@
 						}
 
 					});
-  					
+
 				});	
+
+				$( function() {
+   					 $( '#accordion' ).accordion();
+  				} );
 			
 
 			</script>";
@@ -840,6 +623,21 @@
 		GLOBAL $CFG_GLPI;
 
 		$consulta="<script type='text/javascript'>
+
+
+			$(document).ready(function() {
+
+				//ocultamos el boton guardar modificación, ya que no tiene id de experiencia que modificar
+				$('#guardar_modificacion').hide();
+				
+				//actualizamos todas las listas de experiencias
+				actualizarLista('intervencion_bovis', 'intervencion_bovis');
+				for(i=1; i<=11; i++){
+					actualizarLista(i, 'tipo_experiencia_'+i);
+				}
+
+			});
+  					
 
 				function añadirSinBorrar(){
 					
@@ -886,7 +684,7 @@
    					$('select[name=estado] option:selected').each(function() {
       					estado=$( this ).val();
    					});
-   				
+   					
                 	var parametros = {
 						'addNoDelete':'AÑADIR SIN BORRAR',
 						'cv_id' : $('input[name=cv_id]').val(),
@@ -923,12 +721,28 @@
             		});
 
             		//Actualizar Lista expeciencias
-            	
-            		actualizarLista();
-						
+            		tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
+
+            		if(intervencion_bovis){
+
+            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            		}else{
+            			
+            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            		}
+
+
+            		//Habilitamos el boton guardar modificación
+
+            		$('#guardar_modificacion').show();
+
+            		$('#guardar_modificacion').find('span').attr('onclick', 'guardarModificar('+tipo_experiencia_id+', '+intervencion_bovis+');');
+
 				}
 
-				function guardarModificar(){
+				function guardarModificar(tipo_experiencia_id_antigua, intervencion_bovis_antigua){
 
 
 					if($('#intervencionBovis').find('input').prop('checked')) {	
@@ -1012,21 +826,44 @@
                 		}
             		});
 
-            		//Actualizar Lista expeciencias
-            	
-            		actualizarLista();
+            		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
+
+            		tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
+
+            		// Si la experiencia ahora es de bovis o otros tipo de esperiencia, actualizamos la lista para que aparezca
+            		if(intervencion_bovis){
+            			
+            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            		}else{
+            			
+            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            		}
+
+            		//Si antes la experiencia era de bovis o algún tipo de experiencia, actualizamos la lista para que no aparezca
+            		if(intervencion_bovis_antigua){
+            			
+            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            		}else{
+            			
+            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            		}
+
 						
 				}
 
-				function actualizarLista(){
+				function actualizarLista(tipo, nombre_tabla){
 
 					$.ajax({ 
 						async: false, 
             			type: 'GET',
-            			data: {'cv_id': $('input[name=cv_id]').val() },                  
+            			data: {'cv_id': $('input[name=cv_id]').val(), 'tipo': tipo },                  
            				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/listExperience.php',                    
            				success:function(data){
-           					$('#actualizarLista').html(data);
+           					$('#'+nombre_tabla).html(data);
                 		},
                 		error: function(result) {
                    			 alert('Data not found');
@@ -1035,6 +872,8 @@
 
             		
 				}
+
+
 
 				function modificar(idExperiencia){
 
