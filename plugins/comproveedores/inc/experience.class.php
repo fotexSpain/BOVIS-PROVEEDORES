@@ -124,9 +124,9 @@
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo  "<td>" . __('Intervención de BOVIS') . "</td>";
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
+			echo  "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -151,9 +151,11 @@
 			echo "<td>" . __('Observaciones') . "</td>";
 			
 
-			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
+			echo "<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
+			echo "<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
+			echo "<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
+
+
 			echo"<tr class='tab_bg_1'>";
 			
 			echo "<td id='nombreExperiencia'>";
@@ -536,9 +538,9 @@
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo  Html::hidden("<td>" . __('Intervención de BOVIS') . "</td>");
 
-			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
+			echo  Html::hidden("<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>");
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
@@ -561,11 +563,7 @@
 			echo "<td>" . __('Cpd Tier') . "</td>";
 			
 			echo "<td>" . __('Observaciones') . "</td>";
-			
 
-			echo"<td rowspan='2'><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete'>AÑADIR SIN BORRAR</span></td>";
-			echo"<td rowspan='2'><span class='vsubmit' onclick='guardarModificar();' name='Update'>GUARDAR MODIFICACIÓN</span></td>";
 			echo"<tr class='tab_bg_1'>";
 
 			echo "<td id='nombreExperiencia'>";
@@ -636,9 +634,22 @@
 			echo "</td>";
 
 			echo"</tr>";
+
+			echo"<tr>";
+					
 			echo"</tbody>";
 			echo"</table>";
+
+
+			echo "<div>";
+			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
+			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' name='Update'>GUARDAR MODIFICACIÓN</span></div>";
 			echo "</div>";
+
+
+			echo "</div>";
+
 			echo"</form>";
 			
 
