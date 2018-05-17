@@ -6,8 +6,16 @@ include ("../../../inc/includes.php");
 
 GLOBAL $DB,$CFG_GLPI;
 
+	
+	if($_GET['tipo']=='intervencion_bovis'){
 
-	$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." order by id desc";
+		$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." and intervencion_bovis='1' order by id desc";
+
+	}
+	else{
+		$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." and plugin_comproveedores_experiencestypes_id='".$_GET['tipo']."' order by id desc";
+
+	}
 
 			$result = $DB->query($query);
 
@@ -44,7 +52,7 @@ GLOBAL $DB,$CFG_GLPI;
 							}
 
 							echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-							if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
+							/*if ((in_array($data['entities_id'],$_SESSION['glpiactiveentities']))) {
 								echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id"]."'>".$data["name"];
 								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
 								echo "</a></td>";
@@ -53,7 +61,10 @@ GLOBAL $DB,$CFG_GLPI;
 								if ($_SESSION["glpiis_ids_visible"]) echo " (".$data["id"].")";
 								echo "</td>";
 							}
-							echo "</a></td>";
+							echo "</a></td>";*/
+
+							echo "<td class='center'>".$data['name']."</td>";
+
 							if (Session::isMultiEntitiesMode())
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 
@@ -72,8 +83,11 @@ GLOBAL $DB,$CFG_GLPI;
 									echo "No";
 								}
 								echo "</td>";
+
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
+
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
+
 								echo "<td class='center'>".$data['cliente']."</td>";
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
@@ -137,4 +151,5 @@ GLOBAL $DB,$CFG_GLPI;
 							echo "</table></div>";
 							echo"<br>";
 
-			}
+			
+}

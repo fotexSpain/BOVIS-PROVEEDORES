@@ -24,6 +24,25 @@ GLOBAL $DB,$CFG_GLPI;
 
 			echo "<script type='text/javascript'>
 
+
+				$(document).ready(function() {
+
+					if($('#intervencionBovis').find('input').prop('checked')) {
+
+						$('.tipos_experiencias').hide();
+
+					}
+					else{
+
+						$('.tipos_experiencias').show();
+
+					}
+
+
+				});
+
+
+
 				//añadimos onchange al desplegable de Intervención de BOVIS
 					$('#intervencionBovis').find('input').change(function() {
 
@@ -63,9 +82,9 @@ GLOBAL $DB,$CFG_GLPI;
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo Html::hidden("<td>" . __('Intervención de BOVIS') . "</td>");
+			echo "<td>" . __('Intervención de BOVIS') . "</td>";
 			
-			echo Html::hidden("<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>");
+			echo "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
 			
 			echo "<td>" . __('Comunidad Autonoma') . "</td>";
 			
