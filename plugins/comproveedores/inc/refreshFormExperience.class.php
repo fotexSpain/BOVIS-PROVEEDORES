@@ -22,46 +22,6 @@ GLOBAL $DB,$CFG_GLPI;
 
 			while ($data=$DB->fetch_array($result)) {
 
-			echo "<script type='text/javascript'>
-
-
-				$(document).ready(function() {
-
-					if($('#intervencionBovis').find('input').prop('checked')) {
-
-						$('.tipos_experiencias').hide();
-
-					}
-					else{
-
-						$('.tipos_experiencias').show();
-
-					}
-
-
-				});
-
-
-
-				//añadimos onchange al desplegable de Intervención de BOVIS
-					$('#intervencionBovis').find('input').change(function() {
-
-   						if($('#intervencionBovis').find('input').prop('checked')) {
-   							
-   							$('.tipos_experiencias').hide();
-
-						}else{
-							
-							$('.tipos_experiencias').show();
-
-						}
-
-					});
-
-			</script>";
-
-
-
 			$opt3['comments']= false;
 			$opt3['addicon']= false;
 			$opt3['value']=  $data["plugin_comproveedores_communities_id"];

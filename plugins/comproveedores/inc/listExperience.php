@@ -6,6 +6,9 @@ include ("../../../inc/includes.php");
 
 GLOBAL $DB,$CFG_GLPI;
 
+$objExperiencia=new PluginComproveedoresExperience;
+
+
 	
 	if($_GET['tipo']=='intervencion_bovis'){
 
@@ -32,6 +35,7 @@ GLOBAL $DB,$CFG_GLPI;
 						var ('prueba'+arraycheck[i])='';
 					}*/
 					
+					/////Cogemos las variable de los checkbox
 
 					var valor_intervencion_bovis='';
 					if($(this).parents('tr').find('#checkbox_intervencion_bovis').is(':checked')){
@@ -75,16 +79,24 @@ GLOBAL $DB,$CFG_GLPI;
 						valor_otros_certificados='0';
 					}
 
+
+					$(this).parents('tr').find('select[name=anio] option:selected').each(function() {
+      					anio=$( this ).text();
+      					anio=anio+'-00-00 00:00';
+   					});
+
+					//Creamos el array con los valores, para la consulta
               		var parametros = {
 						'update':'GUARDAR MODIFICAR',
 						'estado':$(this).parents('tr').find('td').eq(2).html(),
 						'id'	:$(this).parents('tr').find('td').eq(0).html(),
 						'intervencion_bovis'	:	valor_intervencion_bovis,
-						'plugin_comproveedores_experiencestypes_id':$(this).parents('tr').find('td').eq(4).html(),
-						'plugin_comproveedores_communities_id'	:$(this).parents('tr').find('td').eq(5).html(),
+						'plugin_comproveedores_experiencestypes_id':$(this).parents('tr').find('input[name=plugin_comproveedores_experiencestypes_id]').val(),
+						'plugin_comproveedores_communities_id'	:$(this).parents('tr').find('[name=plugin_comproveedores_communities_id]').val(),
                 		'name' : $(this).parents('tr').find('td').eq(1).html(),
                 		'cliente' :$(this).parents('tr').find('td').eq(6).html(),
-             			
+                		'anio'	:	anio, 
+                		'importe': $(this).parents('tr').find('td').eq(8).html(),
                 		'duracion': $(this).parents('tr').find('td').eq(9).html(),
                 		'bim'	:	valor_bim,
                 		'breeam':	valor_breeam,
@@ -95,32 +107,18 @@ GLOBAL $DB,$CFG_GLPI;
                 		
                 	};
 
+                	$('[name=plugin_comproveedores_communities_id]').val()
+
                 	guardarModificacion(parametros);
 	
     			});
-
-    			/*$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').click(function() {
-
-					$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').html('');
-					$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').append(
-      					$(document.createElement('input')).attr({
-         					id:    'myCheckbox'
-          					,name:  'myCheckbox'
-          					,value: 'myValue'
-          					,type:  'checkbox'
-       					})
-    				);
-        			$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').off( 'click'); 
-    			});*/
 
 			});
 
 			function guardarModificacion(parametros){	
 
-                /*
-                'anio'	:	$(this).parents('tr').find('td').eq(7).html(),
-                	'importe': $(this).parents('tr').find('td').eq(8).html(),
-                	*/
+				//'importe': $(this).parents('tr').find('td').eq(8).html(),  
+				//'anio'	:	anio,             
 
 				$.ajax({  
 					type: 'GET',  
@@ -185,12 +183,12 @@ GLOBAL $DB,$CFG_GLPI;
 					echo "<th>".__('Importe contratado')."</th>";
 					echo "<th>".__('Duración de su contrato')."</th>";
 					echo "<th>".__('BIM')."</th>";
-					echo "<th>".__('Bream')."</th>";
+					echo "<th>".__('Breeam')."</th>";
 					echo "<th>".__('Leed')."</th>";
 					echo "<th>".__('Otros')."</th>";
 					echo "<th>".__('Cpd tier')."</th>";
 					echo "<th>".__('Observaciones')."</th>";
-					echo "<th>".__('Modificar')."</th>";
+					//echo "<th>".__('Modificar')."</th>";
 					echo "<th>".__('Eliminar')."</th>";
 					echo "</tr>";
 
@@ -236,14 +234,26 @@ GLOBAL $DB,$CFG_GLPI;
 								}
 								echo "</td>";
 
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
+								/*echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";*/
 
-								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
+								echo "<td class='center'>";
+								Dropdown::show('PluginComproveedoresExperiencestype', array('value' => $data['plugin_comproveedores_experiencestypes_id'], 'comments' => false, 'addicon' => false));
+								echo "</td>";
+
+								/*echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";*/
+
+								echo "<td class='center'>";
+								Dropdown::show('PluginComproveedoresCommunity', array('value' => $data['plugin_comproveedores_communities_id'], 'comments' => false, 'addicon' => false));
+								echo "</td>";
 
 								echo "<td class='center'>".$data['cliente']."</td>";
+
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
-								echo "<td class='center'>".$anio."</td>";
+								//echo "<td class='center'>".$anio."</td>";*/
+								echo "<td class='center'>";
+								Dropdown::showFromArray('anio', $objExperiencia->getYears(),array('value'=>$anio));
+								echo "</td>";
 
 								//Formato al importe
 								$importe=number_format($data['importe'], 2, ',', '.');
@@ -297,7 +307,7 @@ GLOBAL $DB,$CFG_GLPI;
 								echo "</td>";
 								echo "<td class='center'>".$data['observaciones']."</td>";
 			
-								echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";
+								/*echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";*/
 								echo "<td class='center'>";
 								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
 								echo Html::hidden('id', array('value' => $data['id']));

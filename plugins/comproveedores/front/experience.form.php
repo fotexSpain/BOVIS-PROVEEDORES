@@ -31,10 +31,7 @@
 		$_POST['importe']= str_replace(".", "", $_POST['importe']);
 		$_POST['importe']= str_replace(",", ".", $_POST['importe']);
 		
-		//si a intervenido bovis el tipo de experiencia sera 0
-		if($_POST['intervencion_bovis']==1){
-			$_POST['plugin_comproveedores_experiencestypes_id']=0;
-		}
+		
 		$PluginExperience->check(-1, CREATE, $_POST);
 		$newID = $PluginExperience->add($_POST);
 	
@@ -51,10 +48,7 @@
 		$_POST['importe']= str_replace(".", "", $_POST['importe']);
 		$_POST['importe']= str_replace(",", ".", $_POST['importe']);
 
-		//si a intervenido bovis el tipo de experiencia sera 0
-		if($_POST['intervencion_bovis']==1){
-			$_POST['plugin_comproveedores_experiencestypes_id']=0;
-		}
+		
 		$PluginExperience->check($_POST['id'], UPDATE);
 		$PluginExperience->update($_POST);
 
@@ -83,11 +77,6 @@
 		$_GET['importe']= str_replace(".", "", $_GET['importe']);
 		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
 
-		//si a intervenido bovis el tipo de experiencia sera 0
-		if($_GET['intervencion_bovis']==1){
-			$_GET['plugin_comproveedores_experiencestypes_id']=0;
-		}
-
 		$PluginExperience->check(-1, CREATE, $_GET);
 
 		
@@ -105,13 +94,8 @@
 	} else if(isset($_GET['update'])){
 
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
-		/*$_GET['importe']= str_replace(".", "", $_GET['importe']);
+		$_GET['importe']= str_replace(".", "", $_GET['importe']);
 		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
-
-		//si a intervenido bovis el tipo de experiencia sera 0
-		if($_GET['intervencion_bovis']==1){
-			$_GET['plugin_comproveedores_experiencestypes_id']=0;
-		}*/
 
 		$PluginExperience->check($_GET['id'], UPDATE);
 		$PluginExperience->update($_GET);
