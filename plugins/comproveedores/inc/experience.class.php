@@ -546,10 +546,11 @@
 			/*///////////////////////////////
 			//LISTAR EXPERIENCIA DEL PROVEEDOR
 			///////////////////////////////*/
+
 			echo "<div id='accordion'>";
 
-			echo"<h3>Intervención Bovis</h3>";
-  			echo"<div id='intervencion_bovis'>";  
+			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis</h3>";
+  			echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_intervencion_bovis'>";  
   			echo"</div>";
 
   			$tipos_experiencia_lista=array(
@@ -568,13 +569,19 @@
 
 			foreach ($tipos_experiencia_lista as $key => $value) {
 				
-				echo"<h3>".$value."</h3>";
-  				echo"<div id='tipo_experiencia_".$key."'>";  
+				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia'>".$value."</h3>";
+  				echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_".$key."'>";  
   				echo"</div>";
 
 			}
 
+			echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias</h3>";
+  			echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_sin_experiencia'>";  
+  			echo"</div>";
+
 			echo "</div>";
+
+
 		
 		}
 
@@ -588,22 +595,28 @@
 				$(document).ready(function() {
 
 
+
 					//Añadimos la función acordeon a las listas 
 					$( function() {
 	   					 $( '#accordion' ).accordion();
 	  				} );
 
-					//ocultamos el boton guardar modificación, ya que no tiene id de experiencia que modificar
-					$('#guardar_modificacion').hide();
+					//Añadimos onclick a las lista para que se cargen a elegirlas
+					$('h3[class*=tipo_experiencia_]').click(function() {
+  						actualizarLista($(this).attr('name'));	
+					});
 					
-					//actualizamos todas las listas de experiencias
-					actualizarLista('intervencion_bovis', 'intervencion_bovis');
-					for(i=1; i<=11; i++){
-						actualizarLista(i, 'tipo_experiencia_'+i);
+					/*for(i=1; i<=11; i++){
+						$( '#accordion' ).find('.tipo_experiencia_'+i).click(function() {
+  							actualizarLista('+i+');
+						});
 					}
+					$( '#accordion' ).find('.tipo_experiencia_sin_experiencia').click(function() {
+  						actualizarLista('sin_experiencia');
+					});*/
 
 				});
-	  					
+		
 
 				function añadirSinBorrar(){
 						
@@ -708,7 +721,9 @@
 
 					}
 
-				function actualizarLista(tipo, nombre_tabla){
+				function actualizarLista(tipo){
+
+					nombre_tabla='tipo_experiencia_'+tipo;
 
 					$.ajax({ 
 						async: false, 
@@ -716,7 +731,7 @@
 	           			data: {'cv_id': $('input[name=cv_id]').val(), 'tipo': tipo },                  
 	           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/listExperience.php',                    
 	           			success:function(data){
-	           				$('#'+nombre_tabla).html(data);
+	           				$('div[class*='+nombre_tabla+']').html(data);
 	               		},
 	               		error: function(result) {
 	                 		alert('Data not found');
