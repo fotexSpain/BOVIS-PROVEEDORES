@@ -16,13 +16,101 @@ GLOBAL $DB,$CFG_GLPI;
 		$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." and plugin_comproveedores_experiencestypes_id='".$_GET['tipo']."' order by id desc";
 
 	}
+		echo"<script src='../js/mindmup-editabletable.js'></script>";
+
+		echo"<script>
+			$(document).ready(function(){
+				
+				$('#data_table_".$_GET['tipo']."').editableTableWidget();
+
+				 $('#data_table_".$_GET['tipo']." td').change(function() {			 	            	
+
+              		
+              		var parametros = {
+						'update':'GUARDAR MODIFICAR',
+						'estado':$(this).parents('tr').find('td').eq(2).html(),
+						'id'	:$(this).parents('tr').find('td').eq(0).html(),
+						'intervencion_bovis'	:	'1',
+						'plugin_comproveedores_experiencestypes_id':$(this).parents('tr').find('td').eq(4).html(),
+						'plugin_comproveedores_communities_id'	:$(this).parents('tr').find('td').eq(5).html(),
+                		'name' : $(this).parents('tr').find('td').eq(1).html(),
+                		'cliente' :$(this).parents('tr').find('td').eq(6).html(),
+             			
+                		'duracion': $(this).parents('tr').find('td').eq(9).html(),
+                		'bim'	:	$(this).parents('tr').find('td').eq(10).html(),
+                		'breeam':	$(this).parents('tr').find('td').eq(11).html(),
+                		'leed'	:	$(this).parents('tr').find('td').eq(12).html(),
+                		'otros_certificados':	$(this).parents('tr').find('td').eq(13).html(),
+                		'cpd_tier'	:	$(this).parents('tr').find('td').eq(14).html(),
+                		'observaciones'	: $(this).parents('tr').find('td').eq(15).html()
+                		
+                	};
+
+                	guardarModificacion(parametros);
+
+        			
+    			})
+
+    			function guardarModificacion(parametros){
+
+    				
+
+                	/*
+                	'anio'	:	$(this).parents('tr').find('td').eq(7).html(),
+                		'importe': $(this).parents('tr').find('td').eq(8).html(),
+                		*/
+
+					$.ajax({  
+						type: 'GET',  
+						async: false,                
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
+           				data: parametros, 
+						success:function(data){
+							alert(data);
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
+
+            		tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
+
+            		// Si la experiencia ahora es de bovis o otros tipo de esperiencia, actualizamos la lista para que aparezca
+            		if(intervencion_bovis){
+            			
+            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            		}else{
+            			
+            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            		}
+
+            		//Si antes la experiencia era de bovis o algún tipo de experiencia, actualizamos la lista para que no aparezca
+            		if(intervencion_bovis_antigua){
+            			
+            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            		}else{
+            			
+            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            		}
+
+						
+				}
+
+			})
+		</script>";
 
 			$result = $DB->query($query);
 
 			//Ocultar lista, si no existe ninguna expeciencia
-			if($result->num_rows!=0){
+			
 
-				echo "<div class='actualizarLista' align='center'><table class='tab_cadre_fixehov'>";
+				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
 				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Experiencias del proveedor</th></tr>";
 				echo"<br/>";
 				echo "<tr><th>".__('Proyecto/Obra')."</th>";
@@ -62,6 +150,8 @@ GLOBAL $DB,$CFG_GLPI;
 								echo "</td>";
 							}
 							echo "</a></td>";*/
+
+							echo "<td style='display:none;' class='center'>".$data['id']."</td>";
 
 							echo "<td class='center'>".$data['name']."</td>";
 
@@ -152,4 +242,4 @@ GLOBAL $DB,$CFG_GLPI;
 							echo"<br>";
 
 			
-}
+

@@ -105,16 +105,18 @@
 	} else if(isset($_GET['update'])){
 
 		//quitar los puntos y sustituir la coma por un punto para que el valor se guarde correctamente
-		$_GET['importe']= str_replace(".", "", $_GET['importe']);
+		/*$_GET['importe']= str_replace(".", "", $_GET['importe']);
 		$_GET['importe']= str_replace(",", ".", $_GET['importe']);
 
 		//si a intervenido bovis el tipo de experiencia sera 0
 		if($_GET['intervencion_bovis']==1){
 			$_GET['plugin_comproveedores_experiencestypes_id']=0;
-		}
+		}*/
 
 		$PluginExperience->check($_GET['id'], UPDATE);
 		$PluginExperience->update($_GET);
+
+
 
 	}else {
 		$PluginExperience->checkGlobal(READ);
