@@ -22,87 +22,147 @@ GLOBAL $DB,$CFG_GLPI;
 			$(document).ready(function(){
 				
 				$('#data_table_".$_GET['tipo']."').editableTableWidget();
+				
+				$('#data_table_".$_GET['tipo']." td').change(function() {
 
-				 $('#data_table_".$_GET['tipo']." td').change(function() {			 	            	
+					/*arraycheck=['intervencion_bovis', 'bim', 'breeam', 'leed', 'cpd_tier', 'otros_certificados'];
 
-              		
+					for(i=0;i<arraycheck.length;i++){
+
+						var ('prueba'+arraycheck[i])='';
+					}*/
+					
+
+					var valor_intervencion_bovis='';
+					if($(this).parents('tr').find('#checkbox_intervencion_bovis').is(':checked')){
+						valor_intervencion_bovis='1';
+					}else{
+						valor_intervencion_bovis='0';
+					}
+					
+					var valor_bim='';
+					if($(this).parents('tr').find('#checkbox_bim').is(':checked')){
+						valor_bim='1';
+					}else{
+						valor_bim='0';
+					}
+
+					var valor_breeam='';
+					if($(this).parents('tr').find('#checkbox_breeam').is(':checked')){
+						valor_breeam='1';
+					}else{
+						valor_breeam='0';
+					}
+
+					var valor_leed='';
+					if($(this).parents('tr').find('#checkbox_leed').is(':checked')){
+						valor_leed='1';
+					}else{
+						valor_leed='0';
+					}
+
+					var valor_cpd_tier='';
+					if($(this).parents('tr').find('#checkbox_cpd_tier').is(':checked')){
+						valor_cpd_tier='1';
+					}else{
+						valor_cpd_tier='0';
+					}
+
+					var valor_otros_certificados='';
+					if($(this).parents('tr').find('#checkbox_otros_certificados').is(':checked')){
+						valor_otros_certificados='1';
+					}else{
+						valor_otros_certificados='0';
+					}
+
               		var parametros = {
 						'update':'GUARDAR MODIFICAR',
 						'estado':$(this).parents('tr').find('td').eq(2).html(),
 						'id'	:$(this).parents('tr').find('td').eq(0).html(),
-						'intervencion_bovis'	:	'1',
+						'intervencion_bovis'	:	valor_intervencion_bovis,
 						'plugin_comproveedores_experiencestypes_id':$(this).parents('tr').find('td').eq(4).html(),
 						'plugin_comproveedores_communities_id'	:$(this).parents('tr').find('td').eq(5).html(),
                 		'name' : $(this).parents('tr').find('td').eq(1).html(),
                 		'cliente' :$(this).parents('tr').find('td').eq(6).html(),
              			
                 		'duracion': $(this).parents('tr').find('td').eq(9).html(),
-                		'bim'	:	$(this).parents('tr').find('td').eq(10).html(),
-                		'breeam':	$(this).parents('tr').find('td').eq(11).html(),
-                		'leed'	:	$(this).parents('tr').find('td').eq(12).html(),
-                		'otros_certificados':	$(this).parents('tr').find('td').eq(13).html(),
-                		'cpd_tier'	:	$(this).parents('tr').find('td').eq(14).html(),
+                		'bim'	:	valor_bim,
+                		'breeam':	valor_breeam,
+                		'leed'	:	valor_leed,
+                		'otros_certificados':	valor_otros_certificados,
+                		'cpd_tier'	:	valor_cpd_tier,
                 		'observaciones'	: $(this).parents('tr').find('td').eq(15).html()
                 		
                 	};
 
                 	guardarModificacion(parametros);
+	
+    			});
 
-        			
-    			})
+    			/*$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').click(function() {
 
-    			function guardarModificacion(parametros){
+					$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').html('');
+					$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').append(
+      					$(document.createElement('input')).attr({
+         					id:    'myCheckbox'
+          					,name:  'myCheckbox'
+          					,value: 'myValue'
+          					,type:  'checkbox'
+       					})
+    				);
+        			$('#data_table_".$_GET['tipo']."').find('#checkbox_I_bovis').off( 'click'); 
+    			});*/
 
-    				
+			});
 
-                	/*
-                	'anio'	:	$(this).parents('tr').find('td').eq(7).html(),
-                		'importe': $(this).parents('tr').find('td').eq(8).html(),
-                		*/
+			function guardarModificacion(parametros){	
 
-					$.ajax({  
-						type: 'GET',  
-						async: false,                
-           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
-           				data: parametros, 
-						success:function(data){
-							alert(data);
-                		},
-                		error: function(result) {
-                   			 alert('Data not found');
-                		}
-            		});
+                /*
+                'anio'	:	$(this).parents('tr').find('td').eq(7).html(),
+                	'importe': $(this).parents('tr').find('td').eq(8).html(),
+                	*/
 
-            		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
-
-            		tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
-
-            		// Si la experiencia ahora es de bovis o otros tipo de esperiencia, actualizamos la lista para que aparezca
-            		if(intervencion_bovis){
-            			
-            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
-
-            		}else{
-            			
-            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
-
-            		}
-
-            		//Si antes la experiencia era de bovis o algún tipo de experiencia, actualizamos la lista para que no aparezca
-            		if(intervencion_bovis_antigua){
-            			
-            			actualizarLista('intervencion_bovis', 'intervencion_bovis');
-
-            		}else{
-            			
-            			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
-
-            		}
-
+				$.ajax({  
+					type: 'GET',  
+					async: false,                
+           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
+           			data: parametros, 
+					success:function(data){
 						
-				}
+                	},
+                	error: function(result) {
+                  		 alert('Data not found');
+                	}
+            	});
 
-			})
+            	////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
+
+            	tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
+
+            	// Si la experiencia ahora es de bovis o otros tipo de esperiencia, actualizamos la lista para que aparezca
+            	if(intervencion_bovis){
+            			
+            		actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            	}else{
+            			
+            		actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            	}
+
+            	//Si antes la experiencia era de bovis o algún tipo de experiencia, actualizamos la lista para que no aparezca
+            	if(intervencion_bovis_antigua){
+            			
+            		actualizarLista('intervencion_bovis', 'intervencion_bovis');
+
+            	}else{
+            			
+            		actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+
+            	}
+						
+			}
+
 		</script>";
 
 			$result = $DB->query($query);
@@ -168,9 +228,11 @@ GLOBAL $DB,$CFG_GLPI;
 
 								echo "<td class='center'>";
 								if($data['intervencion_bovis']=='1'){
-									echo "Si";
+									//echo "Si";
+									echo"<input id='checkbox_intervencion_bovis' type='checkbox' checked>";
 								}else{
-									echo "No";
+									echo"<input id='checkbox_intervencion_bovis' type='checkbox'>";
+									//echo "No";
 								}
 								echo "</td>";
 
@@ -190,37 +252,47 @@ GLOBAL $DB,$CFG_GLPI;
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
 								if($data['bim']=='1'){
-									echo "Si";
+									echo"<input id='checkbox_bim' type='checkbox' value='0' checked>";
+									//echo "Si";
 								}elseif($data['bim']=='0'){
-									echo "No";
+									echo"<input id='checkbox_bim' type='checkbox' value='1'>";
+									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['breeam']=='1'){
-									echo "Si";
+									echo"<input id='checkbox_breeam' type='checkbox' value='0' checked>";
+									//echo "Si";
 								}elseif($data['breeam']=='0'){
-									echo "No";
+									echo"<input id='checkbox_breeam' type='checkbox' value='1'>";
+									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['leed']=='1'){
-									echo "Si";
+									echo"<input id='checkbox_leed' type='checkbox' value='0' checked>";
+									//echo "Si";
 								}elseif($data['leed']=='0'){
-									echo "No";
+									echo"<input id='checkbox_leed' type='checkbox' value='1'>";
+									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['otros_certificados']=='1'){
-									echo "Si";
+									echo"<input id='checkbox_otros_certificados' type='checkbox' value='0' checked>";
+									//echo "Si";
 								}elseif($data['otros_certificados']=='0'){
-									echo "No";
+									echo"<input id='checkbox_otros_certificados' type='checkbox' value='1'>";
+									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['cpd_tier']=='1'){
-									echo "Si";
+									echo"<input id='checkbox_cpd_tier' type='checkbox' value='0' checked>";
+									//echo "Si";
 								}elseif($data['cpd_tier']=='0'){
-									echo "No";
+									echo"<input id='checkbox_cpd_tier' type='checkbox' value='1'>";
+									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>".$data['observaciones']."</td>";
