@@ -425,35 +425,23 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td>" . __('Nombre proyecto') . "</td>";
+			echo "<td>" . __('Proy') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
-			echo  "<td>" . __('Intervención de BOVIS') . "</td>";
+			echo  "<td>" . __('BOVIS') . "</td>";
 
-			echo  "<td class='tipos_experiencias'>" . __('Tipos de experiencias') . "</td>";
+			echo  "<td class='tipos_experiencias'>" . __('Exper.') . "</td>";
 			
-			echo "<td>" . __('Comunidad Autonoma') . "</td>";
+			echo "<td>" . __('CCAA') . "</td>";
 			
 			echo "<td>" . __('Cliente') . "</td>";
 			
 			echo "<td>" . __('Año') . "</td>";
-			
-			echo "<td>" . __('Importe contratado') . "</td>";
-			
-			echo "<td>" . __('Duración de su contratado') . "</td>";
-			
-			echo "<td>" . __('BIM') . "</td>";
-			
-			echo "<td>" . __('Breeam') . "</td>";
-			
-			echo "<td>" . __('Leed') . "</td>";
-			
-			echo "<td>" . __('Otros certificados') . "</td>";
-			
-			echo "<td>" . __('Cpd Tier') . "</td>";
-			
-			echo "<td>" . __('Observaciones') . "</td>";
+
+			echo "<td>" . __('Importe') . "</td>";
+
+			echo "</tr>";
 
 			echo"<tr class='tab_bg_1'>";
 
@@ -461,20 +449,20 @@
 			echo "<textarea cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
-			echo "<td>";
+			echo "<td style='text-align: center'>";
 			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'));
 			echo "</td>";
 
-			echo "<td id='intervencionBovis'>";
+			echo "<td id='intervencionBovis' style='text-align-last: center'>";
 			//Dropdown::showYesNo('intervencion_bovis');
-			echo "<input type='checkbox' name='intervencion_bovis' value='1' style='margin-left: 30px;'>";
+			echo "<input type='checkbox' name='intervencion_bovis' value='1' >";
 			echo "</td>";
 
-			echo "<td class='tipos_experiencias'>";
+			echo "<td class='tipos_experiencias' style='text-align: center'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
 			echo "</td>";
 
-			echo "<td>";
+			echo "<td style='text-align: center'>";
 			Dropdown::show('PluginComproveedoresCommunity',$opt);
 			echo "</td>";
 
@@ -482,40 +470,63 @@
 			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";
 			echo "</td>";
 
-			echo "<td>";
+			echo "<td style='text-align: center'>";
 			Dropdown::showFromArray('anio',$this->getYears());
 			echo "</td>";
 
+
 			echo "<td id='importeExperiencia'>";
-			Html::autocompletionTextField($this, "importe");
+			Html::autocompletionTextField($this, "importe", ['option' =>'style="width: 100px;"']);
+			echo "</td>";
+
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+			
+			echo "<td>" . __('Meses') . "</td>";
+			
+			echo "<td>" . __('BIM') . "</td>";
+			
+			echo "<td>" . __('Breeam') . "</td>";
+			
+			echo "<td>" . __('Leed') . "</td>";
+			
+			echo "<td>" . __('Otros') . "</td>";
+			
+			echo "<td>" . __('Cpd Tier') . "</td>";
+			
+			echo "<td>" . __('Observaciones') . "</td>";
+
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center'>";
+
+			echo "<td>";
+			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;"']);
 			echo "</td>";
 
 			echo "<td>";
-			Html::autocompletionTextField($this, "duracion");
-			echo "</td>";
-
-			echo "<td>";
-			echo "<input type='checkbox' name='bim' value='1' style='margin-left: 5px;'>";
+			echo "<input type='checkbox' name='bim' value='1' style='text-align-last: center'>";
 			//Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
 			echo "<td>";
-			echo "<input type='checkbox' name='breeam' value='1' style='margin-left: 15px;'>";
+			echo "<input type='checkbox' name='breeam' value='1' style='text-align-last: center'>";
 			//Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
 			echo "<td>";
-			echo "<input type='checkbox' name='leed' value='1' style='margin-left: 8px;'>";
+			echo "<input type='checkbox' name='leed' value='1' style='text-align-last: center'>";
 			//Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
 			echo "<td>";
-			echo "<input type='checkbox' name='otros_certificados' value='1' style='margin-left: 25px;'>";
+			echo "<input type='checkbox' name='otros_certificados' value='1' style='text-align-last: center'>";
 			//Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
 			echo "<td>";
-			echo "<input type='checkbox' name='cpd_tier' value='1' style='margin-left: 5px;'>";
+			echo "<input type='checkbox' name='cpd_tier' value='1' style='text-align-last: center'>";
 			//Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
@@ -535,6 +546,7 @@
 			echo "<div>";
 			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='limpiarFormulario();' name='addNoDelete' style='margin-right: 15px;'>LIMPIAR</span></div>";
 			echo "</div>";
 
 
@@ -550,7 +562,7 @@
 			echo "<div id='accordion'>";
 
 			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis</h3>";
-  			echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_intervencion_bovis'>";  
+  			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
   			echo"</div>";
 
   			$tipos_experiencia_lista=array(
@@ -570,13 +582,13 @@
 			foreach ($tipos_experiencia_lista as $key => $value) {
 				
 				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia'>".$value."</h3>";
-  				echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_".$key."'>";  
+  				echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_".$key."'>";  
   				echo"</div>";
 
 			}
 
 			echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias</h3>";
-  			echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_sin_experiencia'>";  
+  			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_sin_experiencia'>";  
   			echo"</div>";
 
 			echo "</div>";
@@ -596,7 +608,8 @@
 
 					//Añadimos la función acordeon a las listas 
 					
-	   				$( '#accordion' ).accordion({collapsible:true, active: false});
+	   				$( '#accordion' ).accordion({collapsible:true});
+	   				$( '.accordion_header .ui-accordion-header .ui-helper-reset .ui-state-default .ui-accordion-icons .ui-accordion-header-active .ui-state-active .ui-corner-top' ).css('background', '#1b2f62');
 	   					
 					//Añadimos onclick a las lista para que se cargen a elegirlas
 					$('h3[class*=tipo_experiencia_]').click(function() {
@@ -613,6 +626,18 @@
 					});*/
 
 				});
+
+				function limpiarFormulario(){
+
+					$('#intervencionBovis').find('input').attr('checked', false);
+					$('input[name=bim]').attr('checked', false);
+					$('input[name=breeam]').attr('checked', false);
+					$('input[name=leed]').attr('checked', false);
+					$('input[name=otros_certificados]').attr('checked', false);
+					$('input[name=cpd_tier]').attr('checked', false);
+					$('select[name=anio]').val('2018');	
+
+				}
 		
 
 				function añadirSinBorrar(){

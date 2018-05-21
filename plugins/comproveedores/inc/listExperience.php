@@ -32,30 +32,45 @@ $objExperiencia=new PluginComproveedoresExperience;
 			
 
 				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='16' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
-				echo"<br/>";
-				echo "<tr><th>".__('Proyecto/Obra')."</th>";
-				echo "<th>".__('Estado')."</th>";
-				if (Session::isMultiEntitiesMode())
-					echo "<th>".__('Entity')."</th>";
-					echo "<th>".__('Intervención Bovis')."</th>";
-					echo "<th>".__('Tipo de experiencia')."</th>";
-					echo "<th>".__('Comunidad autonoma')."</th>";
-					echo "<th>".__('Cliente/Propiedad')."</th>";
-					echo "<th>".__('Año')."</th>";
-					echo "<th>".__('Importe contratado')."</th>";
-					echo "<th>".__('Duración de su contrato')."</th>";
-					echo "<th>".__('BIM')."</th>";
-					echo "<th>".__('Breeam')."</th>";
-					echo "<th>".__('Leed')."</th>";
-					echo "<th>".__('Otros')."</th>";
-					echo "<th>".__('Cpd tier')."</th>";
-					echo "<th>".__('Observaciones')."</th>";
-					//echo "<th>".__('Modificar')."</th>";
-					echo "<th>".__('Eliminar')."</th>";
-					echo "</tr>";
-
+						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='17' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
+							echo"<br/>";
+						echo "</tr>";
+						$numero_registros=1;
+						$color_titulos='';
 					while ($data=$DB->fetch_array($result)) {
+
+							
+							echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
+
+							if($numero_registros%2==0){
+								$color_titulos="style='background-color:#CED8F6;'";
+							}else{
+								$color_titulos="style='background-color:#E0ECF8;'";
+							}
+							echo"<br/>";
+							
+							
+							echo"<th ".$color_titulos.">".__('Proy')."</th>";
+							echo "<th ".$color_titulos.">".__('Estado')."</th>";
+							if (Session::isMultiEntitiesMode())
+								echo "<th ".$color_titulos.">".__('Entity')."</th>";
+								echo "<th ".$color_titulos.">".__('Bovis')."</th>";
+								echo "<th ".$color_titulos.">".__('Exper.')."</th>";
+								echo "<th ".$color_titulos.">".__('CCAA')."</th>";
+								echo "<th ".$color_titulos.">".__('Cliente')."</th>";
+								echo "<th ".$color_titulos.">".__('Año')."</th>";
+								echo "<th ".$color_titulos.">".__('Importe')."</th>";
+								echo "<th ".$color_titulos.">".__('Meses')."</th>";
+								echo "<th ".$color_titulos.">".__('BIM')."</th>";
+								echo "<th ".$color_titulos.">".__('Bre.')."</th>";
+								echo "<th ".$color_titulos.">".__('Le.')."</th>";
+								echo "<th ".$color_titulos.">".__('Otr.')."</th>";
+								echo "<th ".$color_titulos.">".__('Cpd')."</th>";
+								//echo "<th>".__('Observaciones')."</th>";
+								//echo "<th>".__('Modificar')."</th>";
+								echo "<th ".$color_titulos."'>".__('Eliminar')."</th>";
+								echo "</tr>";
+
 							if($data['is_deleted']==""){
 								$data['is_deleted']=1;
 							}
@@ -168,18 +183,26 @@ $objExperiencia=new PluginComproveedoresExperience;
 									echo"<input id='checkbox_cpd_tier' type='checkbox' value='1'>";
 									//echo "No";
 								}
-								echo "</td>";
-								echo "<td class='center'>".$data['observaciones']."</td>";
+								/*echo "</td>";
+								echo "<td class='center'>".$data['observaciones']."</td>";*/
 			
 								/*echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";*/
-								echo "<td class='center'>";
+								echo "<td rowspan='2' class='center'>";
 								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
 								echo Html::hidden('id', array('value' => $data['id']));
 								echo Html::hidden('cv_id', array('value' => $data['cv_id']));
 								echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
 								echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
 								echo "</td>";
+								echo "</tr>";
+								
+								//echo "<tr><th ".$color_titulos." colspan='14'>".__('Observaciones')."</th></tr>";
+								echo "<tr><td id='observaciones' colspan='14' class='center'>".$data['observaciones']."</td></tr>";
+
+								echo "<tr><td><td></tr>";
 								echo"</form>";
+
+							$numero_registros++;
 
 							
 					}
@@ -280,13 +303,13 @@ function consultaAjaxListExperiencia(){
 	                		'leed'	:	valor_leed,
 	                		'otros_certificados':	valor_otros_certificados,
 	                		'cpd_tier'	:	valor_cpd_tier,
-	                		'observaciones'	: $(this).parents('tr').find('td').eq(15).html()
+	                		'observaciones'	: $(this).parents('tr').next().find('#observaciones').text()
 	                		
 	                	};
+	           
+	           			alert('entro');
 
-	                	
-
-	                	guardarModificacion(parametros,);
+	                	guardarModificacion(parametros);
 		
 	    			});
 
