@@ -549,7 +549,7 @@
 
 			echo "<div id='accordion'>";
 
-			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis</h3>";
+			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis>Intervención Bovis</h3>";
   			echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_intervencion_bovis'>";  
   			echo"</div>";
 
@@ -569,7 +569,7 @@
 
 			foreach ($tipos_experiencia_lista as $key => $value) {
 				
-				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia'>".$value."</h3>";
+				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia>".$value."</h3>";
   				echo"<div style='max-height: 250px; min-height: 250px;' class='tipo_experiencia_".$key."'>";  
   				echo"</div>";
 
@@ -594,13 +594,10 @@
 
 				$(document).ready(function() {
 
-
-
 					//Añadimos la función acordeon a las listas 
-					$( function() {
-	   					 $( '#accordion' ).accordion();
-	  				} );
-
+					
+	   				$( '#accordion' ).accordion({collapsible:true, active: false});
+	   					
 					//Añadimos onclick a las lista para que se cargen a elegirlas
 					$('h3[class*=tipo_experiencia_]').click(function() {
   						actualizarLista($(this).attr('name'));	

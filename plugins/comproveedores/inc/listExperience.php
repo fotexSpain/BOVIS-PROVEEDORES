@@ -32,7 +32,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 			
 
 				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Experiencias del proveedor</th></tr>";
+				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='16' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
 				echo"<br/>";
 				echo "<tr><th>".__('Proyecto/Obra')."</th>";
 				echo "<th>".__('Estado')."</th>";
