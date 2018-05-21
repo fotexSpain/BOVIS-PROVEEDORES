@@ -410,8 +410,10 @@
 			
 			echo $this->consultaAjax();
 
-			
-			echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
+			echo "<p style='margin: 10px 0px'> <img id='nuevaExperiencia'  src='../pics/meta_plus.png'></img> 
+			Añadir experiencia</p>";
+
+			echo"<form id='formulario' style='display:none' action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
@@ -606,9 +608,17 @@
 
 				$(document).ready(function() {
 
+					$('#nuevaExperiencia').on('click',function(){
+      					$('#formulario').toggle();
+      					var atributo = $(this).attr('src');
+      					if(atributo == '../pics/meta_plus.png')
+      						$('#nuevaExperiencia').attr('src','../pics/meta_moins.png'); 
+      					else
+      						$('#nuevaExperiencia').attr('src','../pics/meta_plus.png'); 
+   					});
+
 					//Añadimos la función acordeon a las listas 
-					
-	   				$( '#accordion' ).accordion({collapsible:true});
+	   				$( '#accordion' ).accordion({collapsible:true, active: false});
 	   				$( '.accordion_header .ui-accordion-header .ui-helper-reset .ui-state-default .ui-accordion-icons .ui-accordion-header-active .ui-state-active .ui-corner-top' ).css('background', '#1b2f62');
 	   					
 					//Añadimos onclick a las lista para que se cargen a elegirlas
