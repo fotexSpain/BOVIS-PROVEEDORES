@@ -80,11 +80,12 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 
 								echo "<td class='center'>";
-								if($data['estado']=='1'){
+								/*if($data['estado']=='1'){
 									echo "En Curso";
 								}else{
 									echo "Finalizado";
-								}
+								}*/
+								Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'),  array('value' => $data['estado']));
 								echo "</td>";
 
 								echo "<td class='center'>";
@@ -257,10 +258,14 @@ function consultaAjaxListExperiencia(){
 	      					anio=anio+'-00-00 00:00';
 	   					});
 
+	   					$(this).parents('tr').find('select[name=estado] option:selected').each(function() {
+	      					estado=$( this ).val();
+	   					});
+
 						//Creamos el array con los valores, para la consulta
 	              		var parametros = {
 							'update':'GUARDAR MODIFICAR',
-							'estado':$(this).parents('tr').find('td').eq(2).html(),
+							'estado':estado,
 							'id'	:$(this).parents('tr').find('td').eq(0).html(),
 							'intervencion_bovis'	:	valor_intervencion_bovis,
 							'plugin_comproveedores_experiencestypes_id':$(this).parents('tr').find('input[name=plugin_comproveedores_experiencestypes_id]').val(),
