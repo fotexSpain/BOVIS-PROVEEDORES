@@ -24,7 +24,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 
 	}
 		
-		echo consultaAjaxListExperiencia();
+		//echo consultaAjaxListExperiencia();
 
 			$result = $DB->query($query);
 
@@ -32,7 +32,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 			
 
 				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
-						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='17' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
+						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='16' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
 							echo"<br/>";
 						echo "</tr>";
 						$numero_registros=1;
@@ -54,7 +54,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 							echo "<th ".$color_titulos.">".__('Estado')."</th>";
 							if (Session::isMultiEntitiesMode())
 								echo "<th ".$color_titulos.">".__('Entity')."</th>";
-								echo "<th ".$color_titulos.">".__('Bovis')."</th>";
+								//echo "<th ".$color_titulos.">".__('Bovis')."</th>";
 								echo "<th ".$color_titulos.">".__('Exper.')."</th>";
 								echo "<th ".$color_titulos.">".__('CCAA')."</th>";
 								echo "<th ".$color_titulos.">".__('Cliente')."</th>";
@@ -66,8 +66,8 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<th ".$color_titulos.">".__('Le.')."</th>";
 								echo "<th ".$color_titulos.">".__('Otr.')."</th>";
 								echo "<th ".$color_titulos.">".__('Cpd')."</th>";
-								//echo "<th>".__('Observaciones')."</th>";
-								//echo "<th>".__('Modificar')."</th>";
+								//echo "<th ".$color_titulos.">".__('Observaciones')."</th>";
+								echo "<th ".$color_titulos.">".__('Modificar')."</th>";
 								echo "<th ".$color_titulos."'>".__('Eliminar')."</th>";
 								echo "</tr>";
 
@@ -95,15 +95,15 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
 
 								echo "<td class='center'>";
-								/*if($data['estado']=='1'){
+								if($data['estado']=='1'){
 									echo "En Curso";
 								}else{
 									echo "Finalizado";
-								}*/
-								Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'),  array('value' => $data['estado']));
+								}
+								//Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'),  array('value' => $data['estado']));
 								echo "</td>";
 
-								echo "<td class='center'>";
+								/*echo "<td class='center'>";
 								if($data['intervencion_bovis']=='1'){
 									//echo "Si";
 									echo"<input id='checkbox_intervencion_bovis' type='checkbox' checked>";
@@ -111,28 +111,28 @@ $objExperiencia=new PluginComproveedoresExperience;
 									echo"<input id='checkbox_intervencion_bovis' type='checkbox'>";
 									//echo "No";
 								}
-								echo "</td>";
+								echo "</td>";*/
 
-								/*echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";*/
+								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
 
-								echo "<td class='center'>";
+								/*echo "<td class='center'>";
 								Dropdown::show('PluginComproveedoresExperiencestype', array('value' => $data['plugin_comproveedores_experiencestypes_id'], 'comments' => false, 'addicon' => false));
-								echo "</td>";
+								echo "</td>";*/
 
-								/*echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";*/
+								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_communities",$data['plugin_comproveedores_communities_id'])."</td>";
 
-								echo "<td class='center'>";
+								/*echo "<td class='center'>";
 								Dropdown::show('PluginComproveedoresCommunity', array('value' => $data['plugin_comproveedores_communities_id'], 'comments' => false, 'addicon' => false));
-								echo "</td>";
+								echo "</td>";*/
 
 								echo "<td class='center'>".$data['cliente']."</td>";
 
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
-								//echo "<td class='center'>".$anio."</td>";*/
-								echo "<td class='center'>";
+								echo "<td class='center'>".$anio."</td>";
+								/*echo "<td class='center'>";
 								Dropdown::showFromArray('anio', $objExperiencia->getYears(),array('value'=>$anio));
-								echo "</td>";
+								echo "</td>";*/
 
 								//Formato al importe
 								$importe=number_format($data['importe'], 2, ',', '.');
@@ -186,7 +186,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 								/*echo "</td>";
 								echo "<td class='center'>".$data['observaciones']."</td>";*/
 			
-								/*echo"<td class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";*/
+								echo"<td rowspan='2' class='center'><span class='vsubmit' onclick='modificar(".$data['id'].");' name='Update'>MODIFICAR</span></td>";
 								echo "<td rowspan='2' class='center'>";
 								echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";
 								echo Html::hidden('id', array('value' => $data['id']));

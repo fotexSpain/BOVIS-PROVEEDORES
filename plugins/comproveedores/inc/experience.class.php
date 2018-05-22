@@ -548,6 +548,8 @@
 			echo "<div>";
 			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
+			echo"<span class='vsubmit' id='guardar_modificacion' name='Update'>GUARDAR MODIFICACIÓN</span>";
+			echo "&nbsp&nbsp&nbsp";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='limpiarFormulario();' name='addNoDelete' style='margin-right: 15px;'>LIMPIAR</span></div>";
 			echo "</div>";
 
@@ -622,6 +624,9 @@
 
 				$(document).ready(function() {
 
+					//ocultamos el botón guardar modificación
+					$('#guardar_modificacion').hide();
+
 					$('#nuevaExperiencia').on('click',function(){
       					$('#formulario').toggle();
       					var atributo = $(this).attr('src');
@@ -640,15 +645,6 @@
   						actualizarLista($(this).attr('name'));	
 					});
 					
-					/*for(i=1; i<=11; i++){
-						$( '#accordion' ).find('.tipo_experiencia_'+i).click(function() {
-  							actualizarLista('+i+');
-						});
-					}
-					$( '#accordion' ).find('.tipo_experiencia_sin_experiencia').click(function() {
-  						actualizarLista('sin_experiencia');
-					});*/
-
 				});
 
 				function limpiarFormulario(){
@@ -746,26 +742,157 @@
 	            	});
 
 	            	//Actualizar Lista expeciencias
-	            	tipo_experiencia_id=$('input[name=plugin_comproveedores_experiencestypes_id]').val();
+	            	
+	            	tabla_modificada='';
 
-	           		if(intervencion_bovis){
-
-	           			actualizarLista('intervencion_bovis', 'intervencion_bovis');
-
-	           		}else{
+	           		if(parametros['intervencion_bovis']==1){
 	            			
-	           			actualizarLista(tipo_experiencia_id, 'tipo_experiencia_'+tipo_experiencia_id);
+	            		actualizarLista('intervencion_bovis');
+	            		tabla_modificada='intervencion_bovis';
 
-	           		}
+	            	}
+	            	if(parametros['intervencion_bovis']==0){
+	            			
+	            		actualizarLista('sin_experiencia');
+	            		tabla_modificada='sin_experiencia';
 
+	            	}else{
+
+	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
+	            		tabla_modificada=parametros['plugin_comproveedores_experiencestypes_id'];
+	            	}
 
 	           		//Habilitamos el boton guardar modificación
 
 	           		$('#guardar_modificacion').show();
 
-	           		$('#guardar_modificacion').find('span').attr('onclick', 'guardarModificar('+tipo_experiencia_id+', '+intervencion_bovis+');');
+	           		$('#guardar_modificacion').attr('onclick', 'guardarModificacion(tabla_modificada)');
 
+				}
+
+				function guardarModificacion(tabla_modificada){
+
+					if($('#intervencionBovis').find('input').prop('checked')) {	
+	   					intervencion_bovis=1;
+					}else{	
+						intervencion_bovis=0;
 					}
+
+					if($('input[name=bim]').prop('checked')) {	
+	   					bim=1;
+					}else{	
+						bim=0;
+					}
+
+					if($('input[name=breeam]').prop('checked')) {		
+	   					breeam=1;
+					}else{	
+						breeam=0;
+					}
+
+					if($('input[name=leed]').prop('checked')) {
+	   					leed=1;
+					}else{	
+						leed=0;
+					}
+
+	   				if($('input[name=otros_certificados]').prop('checked')) {	
+	   					otros_certificados=1;
+					}else{
+						otros_certificados=0;
+					}
+
+	   				if($('input[name=cpd_tier]').prop('checked')) {	
+	   					cpd_tier=1;
+					}else{
+						cpd_tier=0;
+					}
+	   
+	   				$('select[name=anio] option:selected').each(function() {
+	      				anio=$( this ).text();
+	      				anio=anio+'-00-00 00:00';
+	   				});
+	   				$('select[name=estado] option:selected').each(function() {
+	      				estado=$( this ).val();
+	   				});
+
+	   					
+	                var parametros = {
+						'update':'GUARDAR MODIFICACION',
+						'cv_id' : $('input[name=cv_id]').val(),
+						'id'	: $('input[name=idExperiencia]').val(),
+						'estado':estado,
+						'intervencion_bovis'	:	intervencion_bovis,
+						'plugin_comproveedores_experiencestypes_id':$('input[name=plugin_comproveedores_experiencestypes_id]').val(),
+						'plugin_comproveedores_communities_id'	:	$('[name=plugin_comproveedores_communities_id]').val(),
+	               		'name' : $('#nombreExperiencia > textarea[name=name]').val(),
+	               		'cliente' : $('textarea[name=cliente]').val(),
+	               		'anio'	:	anio,
+	               		'importe': $('input[name=importe]').val(),
+	               		'duracion': $('input[name=duracion]').val(),
+	               		'bim'	:	bim,
+	               		'breeam':	breeam,
+	               		'leed'	:	leed,
+	               		'otros_certificados':	otros_certificados,
+	               		'cpd_tier'	:	cpd_tier,
+	               		'observaciones'	:	$('textarea[name=observaciones]').val()
+	                		
+	               	};
+
+					$.ajax({  
+						type: 'GET',  
+						async: false,                
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
+           				data: parametros, 
+						success:function(data){
+											
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
+
+	            	
+	            	//Actualizar para quitar la experiencia de la tabla, en el caso de que cambie de tabla
+	            	actualizarLista(tabla_modificada);
+
+	            	//Actualizar para visualizar la experiencia, en el caso de que cambie de tabla
+	            	if(parametros['intervencion_bovis']==1){
+	            			
+	            		actualizarLista('intervencion_bovis');
+
+	            	}
+	            	if(parametros['intervencion_bovis']==0){
+	            			
+	            		actualizarLista('sin_experiencia');
+
+	            	}else{
+
+	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
+
+	            	}
+						
+				}
+
+				function modificar(idExperiencia){
+
+					$.ajax({ 
+						async: false, 
+            			type: 'GET',
+            			data: {'idExperiencia':  idExperiencia},                  
+           				url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/refreshFormExperience.class.php',                    
+           				success:function(data){
+           					$('#actualizarFormulario').html(data);
+                		},
+                		error: function(result) {
+                   			 alert('Data not found');
+                		}
+            		});
+
+            		
+				}
 
 				function actualizarLista(tipo){
 

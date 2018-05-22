@@ -186,7 +186,22 @@ GLOBAL $DB,$CFG_GLPI;
 			echo "<div>";
 			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
-			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' onclick='guardarModificar(".$data["plugin_comproveedores_experiencestypes_id"].", ".$data['intervencion_bovis'].");' name='Update'>GUARDAR MODIFICACIÓN</span></div>";
+
+			//pasamos la tabla que se está modificando para actualizarla
+			$tabla_modificada='';
+			switch ($data["intervencion_bovis"]) {
+				case 1:
+					$tabla_modificada='intervencion_bovis';
+					break;
+				case 0:
+					$tabla_modificada='sin_experiencia';
+					break;
+				default:
+					$tabla_modificada=$data["plugin_comproveedores_experiencestypes_id"];
+					break;
+			}
+
+			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' onclick='guardarModificacion(\"$tabla_modificada\");' name='Update'>GUARDAR MODIFICACIÓN</span></div>";
 			echo "</div>";
 		}
 
