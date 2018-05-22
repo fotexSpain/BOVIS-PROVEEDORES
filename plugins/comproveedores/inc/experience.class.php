@@ -410,16 +410,16 @@
 			
 			echo $this->consultaAjax();
 
-			echo "<p style='margin: 10px 0px'> <img id='nuevaExperiencia'  src='../pics/meta_plus.png'></img> 
+			echo "<p style='margin: 10px 0px'> <img id='nuevaExperiencia'  style='width:16px;' src='../pics/meta_plus.png'></img> 
 			Añadir experiencia</p>";
 
 			echo"<form id='formulario' style='display:none' action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-			echo "<div class='center' id='actualizarFormulario'>";
+			echo "<div class='center' id='actualizarFormulario' >";
 			
-			echo"<table class='tab_cadre_fixe'><tbody>";
+			echo"<table id='tablaMantenimiento' class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
 
 			echo Html::hidden('idExperiencia');
@@ -427,7 +427,7 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td>" . __('Proy') . "</td>";
+			echo "<td>" . __('Meses') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
@@ -437,7 +437,7 @@
 			
 			echo "<td>" . __('CCAA') . "</td>";
 			
-			echo "<td>" . __('Cliente') . "</td>";
+			echo "<td>" . __('Meses') . "</td>";
 			
 			echo "<td>" . __('Año') . "</td>";
 
@@ -469,7 +469,7 @@
 			echo "</td>";
 
 			echo "<td>";
-			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";
+			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;"']);
 			echo "</td>";
 
 			echo "<td style='text-align: center'>";
@@ -485,7 +485,7 @@
 
 			echo"<tr class='tab_bg_1 center'>";
 			
-			echo "<td>" . __('Meses') . "</td>";
+			echo "<td>" . __('Cliente') . "</td>";
 			
 			echo "<td>" . __('BIM') . "</td>";
 			
@@ -504,7 +504,7 @@
 			echo"<tr class='tab_bg_1 center'>";
 
 			echo "<td>";
-			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;"']);
+			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";                        
 			echo "</td>";
 
 			echo "<td>";
@@ -567,24 +567,36 @@
   			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
   			echo"</div>";
 
-  			$tipos_experiencia_lista=array(
-    			"1" => "Edificios de oficinas",
-    			"2" => "Centros comerciales/locales comerciales",
-    			"3" => "Proyectos de hospitales/Centros sanitarios",
-    			"4" => "Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes",
-    			"5" => "Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos",
-    			"6" => "Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)",
-    			"7" => "Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)",
-    			"8" => "Proyectos industriales/Logísticos",
-    			"9" => "Proyectos de vivienda residenciales",
-    			"10" => "Obras de rehabilitación de edificios",
-    			"11" => "Centro de procesos de datos(CPD) y otros proyectos",
-			);
+                        $cadena= "select plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
+                            from glpi_plugin_comproveedores_experiences   as e
+                            LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
+                            where cv_id={$CvId}  
+                            group by plugin_comproveedores_experiencestypes_id";
+                        
+                        $result = $DB->query($cadena);
+                        foreach ($result as $fila){
+                            $tipos_experiencia_lista=array($fila['id']=>$fila['descripcion']." (".$fila['numero'].")");
+                        }
+                        
+                        
+//  			$tipos_experiencia_lista=array(
+//    			"1" => "Edificios de oficinas",
+//    			"2" => "Centros comerciales/locales comerciales",
+//    			"3" => "Proyectos de hospitales/Centros sanitarios",
+//    			"4" => "Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes",
+//    			"5" => "Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos",
+//    			"6" => "Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)",
+//    			"7" => "Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)",
+//    			"8" => "Proyectos industriales/Logísticos",
+//    			"9" => "Proyectos de vivienda residenciales",
+//    			"10" => "Obras de rehabilitación de edificios",
+//    			"11" => "Centro de procesos de datos(CPD) y otros proyectos",
+//			);
 
 			foreach ($tipos_experiencia_lista as $key => $value) {
 				
-				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia'>".$value."</h3>";
-  				echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_".$key."'>";  
+				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia' style='height:auto;'>".$value."</h3>";
+  				echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$key."'>";  
   				echo"</div>";
 
 			}
@@ -594,9 +606,11 @@
   			echo"</div>";
 
 			echo "</div>";
+//                        echo "<script type='text/javascript>
+//                                $('#actualizarFormulario').style.visibility='collapse';
+//                           
+//                        </script>";
 
-
-		
 		}
 
 		function consultaAjax(){
