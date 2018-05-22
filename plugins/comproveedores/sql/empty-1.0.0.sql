@@ -174,17 +174,18 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiencestypes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
-(1, 'Edificios de oficinas'),
-(2,	'Centros comerciales/locales comerciales'),
-(3, 'Proyectos de hospitales/Centros sanitarios'),
-(4, 'Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes'),
-(5, 'Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos'),
-(6, 'Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)'),
-(7, 'Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)'),
-(8, 'Proyectos industriales/Logísticos'),
-(9, 'Proyectos de vivienda residenciales'),
-(10, 'Obras de rehabilitación de edificios'),
-(11, 'Centro de procesos de datos(CPD) y otros proyectos');
+(1, 'Oficinas', 'Edificios de oficinas'),
+(2,	'Comerciales', 'Centros comerciales/locales comerciales'),
+(3, 'Hospitales', 'Proyectos de hospitales/Centros sanitarios'),
+(4, 'Hoteles', 'Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes'),
+(5, 'Culturales', 'Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos'),
+(6, 'Docentes', 'Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)'),
+(7, 'Deportes', 'Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)'),
+(8, 'Industriales', 'Proyectos industriales/Logísticos'),
+(9, 'Viviendas', 'Proyectos de vivienda residenciales'),
+(10, 'Rehabilitacion', 'Obras de rehabilitación de edificios'),
+(11, 'CPD', 'Centro de procesos de datos(CPD) y otros proyectos'),
+(11, 'Otros', 'Otros CPD');
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_integratedmanagementsystems` (
 	`id` int(11) NOT NULL auto_increment,
