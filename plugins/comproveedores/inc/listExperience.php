@@ -55,7 +55,9 @@ $objExperiencia=new PluginComproveedoresExperience;
 							if (Session::isMultiEntitiesMode())
 								echo "<th ".$color_titulos.">".__('Entity')."</th>";
 								//echo "<th ".$color_titulos.">".__('Bovis')."</th>";
-								echo "<th ".$color_titulos.">".__('Exper.')."</th>";
+								if($_GET['tipo']=='intervencion_bovis'){
+									echo "<th ".$color_titulos.">".__('Exper.')."</th>";
+								}
 								echo "<th ".$color_titulos.">".__('CCAA')."</th>";
 								echo "<th ".$color_titulos.">".__('Cliente')."</th>";
 								echo "<th ".$color_titulos.">".__('Año')."</th>";
@@ -65,7 +67,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<th ".$color_titulos.">".__('Bre.')."</th>";
 								echo "<th ".$color_titulos.">".__('Le.')."</th>";
 								echo "<th ".$color_titulos.">".__('Otr.')."</th>";
-								echo "<th ".$color_titulos.">".__('Cpd')."</th>";
+								//echo "<th ".$color_titulos.">".__('Cpd')."</th>";
 								//echo "<th ".$color_titulos.">".__('Observaciones')."</th>";
 								echo "<th ".$color_titulos.">".__('Modificar')."</th>";
 								echo "<th ".$color_titulos."'>".__('Eliminar')."</th>";
@@ -112,9 +114,9 @@ $objExperiencia=new PluginComproveedoresExperience;
 									//echo "No";
 								}
 								echo "</td>";*/
-
+								if($_GET['tipo']=='intervencion_bovis'){
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_plugin_comproveedores_experiencestypes",$data['plugin_comproveedores_experiencestypes_id'])."</td>";
-
+								}
 								/*echo "<td class='center'>";
 								Dropdown::show('PluginComproveedoresExperiencestype', array('value' => $data['plugin_comproveedores_experiencestypes_id'], 'comments' => false, 'addicon' => false));
 								echo "</td>";*/
@@ -141,48 +143,48 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
 								if($data['bim']=='1'){
-									echo"<input id='checkbox_bim' type='checkbox' value='0' checked>";
+									echo"<input id='checkbox_bim' type='checkbox' value='0' checked disabled='disabled' style='border: 2px solid #00882D;'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_bim' type='checkbox' value='1'>";
+									echo"<input id='checkbox_bim' type='checkbox' value='1' disabled='disabled'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['breeam']=='1'){
-									echo"<input id='checkbox_breeam' type='checkbox' value='0' checked>";
+									echo"<input id='checkbox_breeam' type='checkbox' value='0' checked disabled='disabled'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_breeam' type='checkbox' value='1'>";
+									echo"<input id='checkbox_breeam' type='checkbox' value='1' disabled='disabled'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['leed']=='1'){
-									echo"<input id='checkbox_leed' type='checkbox' value='0' checked>";
+									echo"<input id='checkbox_leed' type='checkbox' value='0' checked disabled='disabled'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_leed' type='checkbox' value='1'>";
+									echo"<input id='checkbox_leed' type='checkbox' value='1' disabled='disabled'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['otros_certificados']=='1'){
-									echo"<input id='checkbox_otros_certificados' type='checkbox' value='0' checked>";
+									echo"<input id='checkbox_otros_certificados' type='checkbox' value='0' checked disabled='disabled'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_otros_certificados' type='checkbox' value='1'>";
+									echo"<input id='checkbox_otros_certificados' type='checkbox' value='1' disabled='disabled'>";
 									//echo "No";
 								}
 								echo "</td>";
-								echo "<td class='center'>";
+								/*echo "<td class='center'>";
 								if($data['cpd_tier']=='1'){
-									echo"<input id='checkbox_cpd_tier' type='checkbox' value='0' checked>";
+									echo"<input id='checkbox_cpd_tier' type='checkbox' value='0' checked disabled='disabled'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_cpd_tier' type='checkbox' value='1'>";
+									echo"<input id='checkbox_cpd_tier' type='checkbox' value='1' disabled='disabled'>";
 									//echo "No";
-								}
+								}*/
 								/*echo "</td>";
 								echo "<td class='center'>".$data['observaciones']."</td>";*/
 			

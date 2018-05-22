@@ -427,7 +427,7 @@
 			echo"<th colspan='33'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'>";
 
-			echo "<td>" . __('Meses') . "</td>";
+			echo "<td>" . __('Proyectos') . "</td>";
 
 			echo "<td>" . __('Estado') . "</td>";
 			
@@ -504,7 +504,7 @@
 			echo"<tr class='tab_bg_1 center'>";
 
 			echo "<td>";
-			echo "<textarea cols='20' rows='3' name='cliente'></textarea>";                        
+			echo "<textarea cols='20' rows='3' name='cliente' ></textarea>";                        
 			echo "</td>";
 
 			echo "<td>";
@@ -548,8 +548,8 @@
 			echo "<div>";
 			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
-			echo"<span class='vsubmit' id='guardar_modificacion' name='Update'>GUARDAR MODIFICACIÓN</span>";
-			echo "&nbsp&nbsp&nbsp";
+			echo"<span class='vsubmit' id='guardar_modificacion' name='Update' style='margin-right:15px;'>GUARDAR MODIFICACIÓN</span>";
+			
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='limpiarFormulario();' name='addNoDelete' style='margin-right: 15px;'>LIMPIAR</span></div>";
 			echo "</div>";
 
@@ -565,53 +565,44 @@
 
 			echo "<div id='accordion'>";
 
-			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis</h3>";
+				$cadena2= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences group by intervencion_bovis order by bovis asc";
+
+                $result2 = $DB->query($cadena2);
+
+                $numero_bovis=array();
+                foreach ($result2 as $fila){
+                	$numero_bovis[]=$fila;
+                }
+
+			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis (".$numero_bovis[1]['numero'].")</h3>";
   			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
   			echo"</div>";
 
-                        $cadena= "select plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
+                $cadena= "select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
                             from glpi_plugin_comproveedores_experiences   as e
                             LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
-                            where cv_id={$CvId}  
+                            where cv_id={$CvId} and e.plugin_comproveedores_experiencestypes_id!='0'
                             group by plugin_comproveedores_experiencestypes_id";
                         
-                        $result = $DB->query($cadena);
-                        foreach ($result as $fila){
-                            $tipos_experiencia_lista=array($fila['id']=>$fila['descripcion']." (".$fila['numero'].")");
-                        }
-                        
-                        
-//  			$tipos_experiencia_lista=array(
-//    			"1" => "Edificios de oficinas",
-//    			"2" => "Centros comerciales/locales comerciales",
-//    			"3" => "Proyectos de hospitales/Centros sanitarios",
-//    			"4" => "Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes",
-//    			"5" => "Proyectos de equipamiento-museos, Centros culturales, Auditorios, Centros de convenciones, palacios congresos",
-//    			"6" => "Centros docentes(Universidades,Institutos de enseñanza, Guarderías infatiles,etc)",
-//    			"7" => "Complejos deportivos(Estadios de fútbol, Pabellones deportivos, Polideportivos, etc)",
-//    			"8" => "Proyectos industriales/Logísticos",
-//    			"9" => "Proyectos de vivienda residenciales",
-//    			"10" => "Obras de rehabilitación de edificios",
-//    			"11" => "Centro de procesos de datos(CPD) y otros proyectos",
-//			);
+                $result = $DB->query($cadena);
+                       
+                foreach ($result as $fila){
 
-			foreach ($tipos_experiencia_lista as $key => $value) {
-				
-				echo"<h3 name='".$key."' class='tipo_experiencia_sin_experiencia' style='height:auto;'>".$value."</h3>";
-  				echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$key."'>";  
-  				echo"</div>";
+                    echo"<h3 name='".$fila['id']."' class='tipo_experiencia_".$fila['id']."' style='height:auto;'>".
+                    $fila['descripcion']." (".$fila['numero'].")"
+                    ."</h3>";
 
-			}
+  					echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
+  					echo"</div>";
+                }
+                       
 
-			echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias</h3>";
+
+			echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias (".$numero_bovis[0]['numero'].")</h3>";
   			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_sin_experiencia'>";  
   			echo"</div>";
 
 			echo "</div>";
-//                        echo "<script type='text/javascript>
-//                                $('#actualizarFormulario').style.visibility='collapse';
-//                           
-//                        </script>";
 
 		}
 
@@ -627,6 +618,7 @@
 					//ocultamos el botón guardar modificación
 					$('#guardar_modificacion').hide();
 
+					//Ocultar y visualizar formulario experiencia
 					$('#nuevaExperiencia').on('click',function(){
       					$('#formulario').toggle();
       					var atributo = $(this).attr('src');
@@ -635,7 +627,7 @@
       					else
       						$('#nuevaExperiencia').attr('src','../pics/meta_plus.png'); 
    					});
-
+	
 					//Añadimos la función acordeon a las listas 
 	   				$( '#accordion' ).accordion({collapsible:true, active: false});
 	   				$( '.accordion_header .ui-accordion-header .ui-helper-reset .ui-state-default .ui-accordion-icons .ui-accordion-header-active .ui-state-active .ui-corner-top' ).css('background', '#1b2f62');
@@ -728,7 +720,7 @@
 	               	};
 	                	
 
-					$.ajax({  
+					/*$.ajax({  
 						type: 'GET',  
 						async: false,               
 	           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
@@ -739,7 +731,7 @@
 	               		error: function(result) {
 	                		alert('Data not found');
 	               		}
-	            	});
+	            	});*/
 
 	            	//Actualizar Lista expeciencias
 	            	
@@ -747,19 +739,24 @@
 
 	           		if(parametros['intervencion_bovis']==1){
 	            			
+
 	            		actualizarLista('intervencion_bovis');
 	            		tabla_modificada='intervencion_bovis';
 
 	            	}
-	            	if(parametros['intervencion_bovis']==0){
-	            			
+	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']=='0'){
+
 	            		actualizarLista('sin_experiencia');
 	            		tabla_modificada='sin_experiencia';
 
-	            	}else{
+	            	}
+	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']!='0'){
 
 	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
 	            		tabla_modificada=parametros['plugin_comproveedores_experiencestypes_id'];
+	            		cabecera_tabla=$('h3[name='+tabla_modificada+']').text();
+	            		alert(cabecera_tabla);
+						
 	            	}
 
 	           		//Habilitamos el boton guardar modificación
@@ -853,7 +850,7 @@
             		});
 
             		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
-
+            		alert('llego1');
 	            	
 	            	//Actualizar para quitar la experiencia de la tabla, en el caso de que cambie de tabla
 	            	actualizarLista(tabla_modificada);
@@ -864,12 +861,13 @@
 	            		actualizarLista('intervencion_bovis');
 
 	            	}
-	            	if(parametros['intervencion_bovis']==0){
+	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']=='0'){
 	            			
 	            		actualizarLista('sin_experiencia');
 
-	            	}else{
-
+	            	}
+	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']!='0'){
+	            		
 	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
 
 	            	}
@@ -877,6 +875,13 @@
 				}
 
 				function modificar(idExperiencia){
+
+					//visualizar formulario
+					if($('#formulario').attr('style','display: none;')){
+						$('#nuevaExperiencia').click();
+						$('#nuevaExperiencia').attr('src','../pics/meta_moins.png'); 
+					}
+					
 
 					$.ajax({ 
 						async: false, 

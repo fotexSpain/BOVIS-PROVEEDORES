@@ -367,7 +367,7 @@
 
 						function getYears(){
 							$year = date("Y");
-							for ($i= $year; $i >=  1945; $i--) {
+							for ($i= $year; $i >  ($year-4); $i--) {
 
 								$lista[$i]=$i;
 

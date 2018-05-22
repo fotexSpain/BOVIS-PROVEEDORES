@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_insurances` (
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiencestypes` (
 	`id` int(11) NOT NULL auto_increment,
 	`name`varchar(255),
-
+	`descripcion`varchar(255),
 	`is_deleted` tinyint(1) NOT NULL default '0',
 	`externalid` varchar(255) NULL,
 	`is_recursive` tinyint(1) NOT NULL default '0',
