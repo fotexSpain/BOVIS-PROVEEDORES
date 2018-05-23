@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiencestypes` (
 
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
+INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`, `descripcion`) VALUES
 (1, 'Oficinas', 'Edificios de oficinas'),
 (2,	'Comerciales', 'Centros comerciales/locales comerciales'),
 (3, 'Hospitales', 'Proyectos de hospitales/Centros sanitarios'),
@@ -185,7 +185,7 @@ INSERT INTO `glpi_plugin_comproveedores_experiencestypes` (`id`, `name`) VALUES
 (9, 'Viviendas', 'Proyectos de vivienda residenciales'),
 (10, 'Rehabilitacion', 'Obras de rehabilitación de edificios'),
 (11, 'CPD', 'Centro de procesos de datos(CPD) y otros proyectos'),
-(11, 'Otros', 'Otros CPD');
+(12, 'Otros', 'Otros CPD');
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_integratedmanagementsystems` (
 	`id` int(11) NOT NULL auto_increment,

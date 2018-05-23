@@ -563,19 +563,18 @@
 
 			echo "<div id='accordion'>";
 
-				$cadena2= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences group by intervencion_bovis order by bovis asc";
+				///////Intervencion Bovis			 	
+				$cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=1 group by intervencion_bovis";
 
-                $result2 = $DB->query($cadena2);
+                $result = $DB->query($cadena);
 
-                $numero_bovis=array();
-                foreach ($result2 as $fila){
-                	$numero_bovis[]=$fila;
+                foreach ($result as $fila){
+                	echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis (".$fila['numero'].")</h3>";
+  					echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
+  					echo"</div>";
                 }
-
-			echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis (".$numero_bovis[1]['numero'].")</h3>";
-  			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
-  			echo"</div>";
-
+                
+                //////Tipos de experiencias
                 $cadena= "select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
                             from glpi_plugin_comproveedores_experiences   as e
                             LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
@@ -593,15 +592,20 @@
   					echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
   					echo"</div>";
                 }
-                       
+                   
+                //////Sin experiencias    
+                $cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=0 group by intervencion_bovis";
 
+                $result = $DB->query($cadena);
 
-			echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias (".$numero_bovis[0]['numero'].")</h3>";
-  			echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_sin_experiencia'>";  
-  			echo"</div>";
+                foreach ($result as $fila){
 
-			echo "</div>";
+                	echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias (".$fila['numero'].")</h3>";
+  					echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_sin_experiencia'>";  
+  					echo"</div>";
 
+					echo "</div>";
+                }			
 		}
 
 		function consultaAjax(){
@@ -718,7 +722,7 @@
 	               	};
 	                	
 
-					/*$.ajax({  
+					$.ajax({  
 						type: 'GET',  
 						async: false,               
 	           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php',                    
@@ -729,7 +733,7 @@
 	               		error: function(result) {
 	                		alert('Data not found');
 	               		}
-	            	});*/
+	            	});
 
 	            	//Actualizar Lista expeciencias
 	            	
