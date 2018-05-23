@@ -38,7 +38,7 @@ echo "<div id='accordion'>";
 	                    $fila['descripcion']." (".$fila['numero'].")"
 	                    ."</h3>";
 
-		echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
+		echo"<div style='max-height:350px;min-height:350px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
 	  	echo"</div>";
 	}
 	                   
