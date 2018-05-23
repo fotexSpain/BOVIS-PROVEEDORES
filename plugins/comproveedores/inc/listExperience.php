@@ -47,7 +47,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 							}else{
 								$color_titulos="style='background-color:#E0ECF8;'";
 							}
-							echo"<br/>";
+							
 							
 							
 							echo"<th ".$color_titulos.">".__('Proy')."</th>";

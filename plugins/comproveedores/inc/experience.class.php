@@ -562,51 +562,9 @@
 			//LISTAR EXPERIENCIA DEL PROVEEDOR
 			///////////////////////////////*/
 
-			echo "<div id='accordion'>";
+			echo"<div id='cargar_listas'>";
 
-				///////Intervencion Bovis			 	
-				$cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=1 group by intervencion_bovis";
-
-                $result = $DB->query($cadena);
-
-                foreach ($result as $fila){
-                	echo"<h3 name='intervencion_bovis' class='tipo_experiencia_intervencion_bovis'>Intervención Bovis (".$fila['numero'].")</h3>";
-  					echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_intervencion_bovis'>";  
-  					echo"</div>";
-                }
-                
-                //////Tipos de experiencias
-                $cadena= "select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
-                            from glpi_plugin_comproveedores_experiences   as e
-                            LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
-                            where cv_id={$CvId} and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0 
-                            group by plugin_comproveedores_experiencestypes_id";
-                        
-                $result = $DB->query($cadena);
-                       
-                foreach ($result as $fila){
-
-                    echo"<h3 name='".$fila['id']."' class='tipo_experiencia_".$fila['id']."' style='height:auto;'>".
-                    $fila['descripcion']." (".$fila['numero'].")"
-                    ."</h3>";
-
-  					echo"<div style='max-height:350px;min-height:50px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
-  					echo"</div>";
-                }
-                   
-                //////Sin experiencias    
-                $cadena= "select count(*) as numero from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=0 and plugin_comproveedores_experiencestypes_id=0 group by intervencion_bovis";
-
-                $result = $DB->query($cadena);
-
-                foreach ($result as $fila){
-
-                	echo"<h3 name='sin_experiencia' class='tipo_experiencia_sin_experiencia'>Sin Experiencias (".$fila['numero'].")</h3>";
-  					echo"<div style='max-height: 350px; min-height: 350px;' class='tipo_experiencia_sin_experiencia'>";  
-  					echo"</div>";
-
-					echo "</div>";
-                }			
+            echo "</div>";		
 		}
 
 		function consultaAjax(){
@@ -630,17 +588,53 @@
       					else
       						$('#nuevaExperiencia').attr('src','../pics/meta_plus.png'); 
    					});
-	
-					//Añadimos la función acordeon a las listas 
-	   				$( '#accordion' ).accordion({collapsible:true, active: false});
-	   				$( '.accordion_header .ui-accordion-header .ui-helper-reset .ui-state-default .ui-accordion-icons .ui-accordion-header-active .ui-state-active .ui-corner-top' ).css('background', '#1b2f62');
-	   					
-					//Añadimos onclick a las lista para que se cargen a elegirlas
-					$('h3[class*=tipo_experiencia_]').click(function() {
-  						actualizarLista($(this).attr('name'));	
-					});
-					
+
+   					//Añadimos el acordeon con las listas de experiencias
+					acordeonExperiencia(null);
+
 				});
+
+				function acordeonExperiencia(parametros){
+
+					$('#cargar_listas').html('');
+					$.ajax({  
+						type: 'GET',  
+						async: false, 
+						data: {'cv_id' : $('input[name=cv_id]').val()},             
+	           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/accordionExperience.php',                     
+						success:function(data){
+							$('#cargar_listas').html(data);        					
+	               		},
+	               		error: function(result) {
+	                		alert('Data not found');
+	               		}
+	            	});
+					
+					//Abrimos la lista que se ha añadido o modificado
+					if(parametros!=null){
+						//Abrimos la lista que se a modificado
+	           			if(parametros['intervencion_bovis']==1){
+	            			
+	            			$('h3[name=intervencion_bovis]').click();
+
+	            		}
+	            		if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']=='0'){
+
+	            			$('h3[name=sin_experiencia]').click();
+
+	            		}
+	            		if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']!='0'){
+
+	            			$('h3[name='+parametros['plugin_comproveedores_experiencestypes_id']+']').click();
+
+	            		}
+					}
+					
+				}
+
+				function abrirLista(parametros){
+					
+				}
 
 				function AñadirNormal(){
 					
@@ -749,32 +743,9 @@
 	               		}
 	            	});
 
-	            	//Actualizar Lista expeciencias
+	            	//refrescamos el acordeon con las listas de experiencias
+					acordeonExperiencia(parametros);
 	            	
-	            	tabla_modificada='';
-
-	           		if(parametros['intervencion_bovis']==1){
-	            			
-
-	            		actualizarLista('intervencion_bovis');
-	            		tabla_modificada='intervencion_bovis';
-
-	            	}
-	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']=='0'){
-
-	            		actualizarLista('sin_experiencia');
-	            		tabla_modificada='sin_experiencia';
-
-	            	}
-	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']!='0'){
-
-	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
-	            		tabla_modificada=parametros['plugin_comproveedores_experiencestypes_id'];
-	            		cabecera_tabla=$('h3[name='+tabla_modificada+']').text();
-	            		alert(cabecera_tabla);
-						
-	            	}
-
 	           		//Habilitamos el boton guardar modificación
 
 	           		$('#guardar_modificacion').show();
@@ -864,28 +835,8 @@
                 		}
             		});
 
-            		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
-            		
-	            	
-	            	//Actualizar para quitar la experiencia de la tabla, en el caso de que cambie de tabla
-	            	actualizarLista(tabla_modificada);
-
-	            	//Actualizar para visualizar la experiencia, en el caso de que cambie de tabla
-	            	if(parametros['intervencion_bovis']==1){
-	            			
-	            		actualizarLista('intervencion_bovis');
-
-	            	}
-	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']=='0'){
-	            			
-	            		actualizarLista('sin_experiencia');
-
-	            	}
-	            	if(parametros['intervencion_bovis']==0 && parametros['plugin_comproveedores_experiencestypes_id']!='0'){
-	            		
-	            		actualizarLista(parametros['plugin_comproveedores_experiencestypes_id']);
-
-	            	}
+            		//refrescamos el acordeon con las listas de experiencias
+					acordeonExperiencia(parametros);
 						
 				}
 
