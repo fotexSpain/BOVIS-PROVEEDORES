@@ -193,7 +193,8 @@ GLOBAL $DB,$CFG_GLPI;
 			echo"</table>";
 
 			echo "<div style='margin-bottom: 15px; margin-top: 15px;'>";
-			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
+			/*echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";*/
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='AñadirNormal();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR</span></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
 
 			//pasamos la tabla que se está modificando para actualizarla
