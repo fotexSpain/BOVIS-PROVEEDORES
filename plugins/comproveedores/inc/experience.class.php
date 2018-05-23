@@ -410,130 +410,128 @@
 			
 			echo $this->consultaAjax();
 
-			echo "<p style='margin: 10px 0px'> <img id='nuevaExperiencia'  style='width:16px;' src='../pics/meta_plus.png'></img> 
-			Añadir experiencia</p>";
+			echo "<p style='vertical-align:middle; font-size: 15px; font-weight:bold; margin: 10px 0px'> <img id='nuevaExperiencia' style='vertical-align:middle; margin: 10px 0px;' src='../pics/meta_plus.png'> Añadir experiencia</p>";
 
 			echo"<form id='formulario' style='display:none' action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php method='post'>";		
 			echo Html::hidden('cv_id', array('value' => $CvId));
 
 			echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
-			echo "<div class='center' id='actualizarFormulario' >";
+			echo "<div class='center' id='actualizarFormulario'>";
 			
-			echo"<table id='tablaMantenimiento' class='tab_cadre_fixe'><tbody>";
+			echo"<table class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
 
 			echo Html::hidden('idExperiencia');
 
-			echo"<th colspan='33'>Experiencia</th></tr>";
-			echo"<tr class='tab_bg_1 center'>";
+			echo"<th colspan='9' style='background-color:#BDBDBD; border-top: 2px solid #BDBDBD; border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>Experiencia</th></tr>";
+			echo"<tr class='tab_bg_1 center'  style='background-color:#D8D8D8; border: 20px solid #BDBDDB;'>";
 
-			echo "<td>" . __('Proyectos') . "</td>";
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Proy') . "</td>";
 
-			echo "<td>" . __('Estado') . "</td>";
-			
-			echo  "<td>" . __('BOVIS') . "</td>";
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Estado') . "</td>";
 
-			echo  "<td class='tipos_experiencias'>" . __('Exper.') . "</td>";
-			
-			echo "<td>" . __('CCAA') . "</td>";
-			
-			echo "<td>" . __('Meses') . "</td>";
-			
-			echo "<td>" . __('Año') . "</td>";
+			echo  "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;' class='tipos_experiencias'>" . __('Exper.') . "</td>";
 
-			echo "<td>" . __('Importe') . "</td>";
+			echo "<td style='width:100px; font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Meses') . "</td>";
+
+			echo "<td style='width:12%;font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('BOVIS') . "</td>";
+			
+			echo "<td style='width:12%;font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('BIM') . "</td>";
+			
+			echo "<td style='width:12%;font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Breeam') . "</td>";
+			
+			echo "<td style='width:12%;font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Leed') . "</td>";
+			
+			echo "<td style='width:12%; font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Otros') . "</td>";
+
 
 			echo "</tr>";
 
-			echo"<tr class='tab_bg_1'>";
+			echo"<tr class='tab_bg_1' style='background-color:#D8D8D8; border: 20px;'>";
 
-			echo "<td id='nombreExperiencia'>";
-			echo "<textarea cols='20' rows='3' name='name'></textarea>";
+			echo "<td id='nombreExperiencia' style='border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			echo "<textarea style='padding:7px; resize: none; display:block; margin-left:auto; margin-right:auto;' cols='20' rows='3' name='name'></textarea>";
 			echo "</td>";
 
-			echo "<td style='text-align: center'>";
+			echo "<td style='text-align: center; border-right: 2px solid #BDBDBD;'>";
 			Dropdown::showFromArray('estado',array(1 =>'En curso' , 0 =>'Finalizado'));
 			echo "</td>";
 
-			echo "<td id='intervencionBovis' style='text-align-last: center'>";
-			//Dropdown::showYesNo('intervencion_bovis');
-			echo "<input type='checkbox' name='intervencion_bovis' value='1' >";
-			echo "</td>";
-
-			echo "<td class='tipos_experiencias' style='text-align: center'>";
+			echo "<td class='tipos_experiencias' style='text-align: center; border-right: 2px solid #BDBDBD;'>";
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
+
+			echo "<td style='text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;']);
 			echo "</td>";
 
-			echo "<td style='text-align: center'>";
-			Dropdown::show('PluginComproveedoresCommunity',$opt);
+			echo "<td id='intervencionBovis' style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			//Dropdown::showYesNo('intervencion_bovis');
+			echo "<input type='checkbox' name='intervencion_bovis' value='1'>";
 			echo "</td>";
 
-			echo "<td>";
-			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;"']);
-			echo "</td>";
-
-			echo "<td style='text-align: center'>";
-			Dropdown::showFromArray('anio',$this->getYears());
-			echo "</td>";
-
-
-			echo "<td id='importeExperiencia'>";
-			Html::autocompletionTextField($this, "importe", ['option' =>'style="width: 100px;"']);
-			echo "</td>";
-
-			echo "</tr>";
-
-			echo"<tr class='tab_bg_1 center'>";
-			
-			echo "<td>" . __('Cliente') . "</td>";
-			
-			echo "<td>" . __('BIM') . "</td>";
-			
-			echo "<td>" . __('Breeam') . "</td>";
-			
-			echo "<td>" . __('Leed') . "</td>";
-			
-			echo "<td>" . __('Otros') . "</td>";
-			
-			echo "<td>" . __('Cpd Tier') . "</td>";
-			
-			echo "<td>" . __('Observaciones') . "</td>";
-
-			echo "</tr>";
-
-			echo"<tr class='tab_bg_1 center'>";
-
-			echo "<td>";
-			echo "<textarea cols='20' rows='3' name='cliente' ></textarea>";                        
-			echo "</td>";
-
-			echo "<td>";
-			echo "<input type='checkbox' name='bim' value='1' style='text-align-last: center'>";
+			echo "<td style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			echo "<input type='checkbox' name='bim' value='1'>";
 			//Dropdown::showFromArray('bim', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
-			echo "<td>";
-			echo "<input type='checkbox' name='breeam' value='1' style='text-align-last: center'>";
+			echo "<td style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			echo "<input type='checkbox' name='breeam' value='1'>";
 			//Dropdown::showFromArray('breeam', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
-			echo "<td>";
-			echo "<input type='checkbox' name='leed' value='1' style='text-align-last: center'>";
+			echo "<td style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			echo "<input type='checkbox' name='leed' value='1'>";
 			//Dropdown::showFromArray('leed', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
-			echo "<td>";
-			echo "<input type='checkbox' name='otros_certificados' value='1' style='text-align-last: center'>";
+			echo "<td style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
+			echo "<input type='checkbox' name='otros_certificados' value='1'>";
 			//Dropdown::showFromArray('otros_certificados', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
 			echo "</td>";
 
-			echo "<td>";
-			echo "<input type='checkbox' name='cpd_tier' value='1' style='text-align-last: center'>";
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center' style='background-color:#d8d8d8;'>";
+			
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Cliente') . "</td>";
+			
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Año') . "</td>";
+			
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('CCAA') . "</td>";
+
+			echo "<td style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Importe') . "</td>";
+
+			echo Html::hidden("<td>" . __('Cpd Tier') . "</td>");
+			
+			echo "<td colspan='5' style='font-weight:bold; background-color:#E6E6E6; border-top: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>" . __('Observaciones') . "</td>";
+
+			echo "</tr>";
+
+			echo"<tr class='tab_bg_1 center' style='background-color:#D8D8D8;'>";
+
+			echo Html::hidden("<td>");
+			echo Html::hidden("<input type='checkbox' name='cpd_tier' value='1' style='text-align-last: center'>");
 			//Dropdown::showFromArray('cpd_tier', array(-1 =>'------', 1=>'Sí' , 0 =>'No'));
+			echo Html::hidden("</td>");
+
+			echo "<td style='text-align: center; border-bottom: 2px solid #BDBDBD; border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			echo "<textarea style='padding:7px; resize: none;' cols='20' rows='3' name='cliente'></textarea>";
 			echo "</td>";
 
-			echo "<td>";
-			echo "<textarea cols='20' rows='3' name='observaciones'></textarea>";
+			echo "<td style='border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			Dropdown::showFromArray('anio',$this->getYears());
+			echo "</td>";
+
+			echo "<td style='text-align: center; border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			Dropdown::show('PluginComproveedoresCommunity',$opt);
+			echo "</td>";
+
+			echo "<td id='importeExperiencia' style='text-align-last: center; border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			Html::autocompletionTextField($this, "importe", ['option' =>'style="width: 100px;']);
+			echo "</td>";
+
+			echo "<td colspan='5' style='border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
+			echo "<textarea style='padding:7px; width:95%; resize: none;' cols='20' rows='3' name='observaciones'></textarea>";
 			//Html::autocompletionTextField($this, "observaciones");
 			echo "</td>";
 
@@ -545,7 +543,7 @@
 			echo"</table>";
 
 
-			echo "<div>";
+			echo "<div style='margin-bottom: 15px; margin-top: 15px;'>";
 			echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
 			echo"<span class='vsubmit' id='guardar_modificacion' name='Update' style='margin-right:15px;'>GUARDAR MODIFICACIÓN</span>";
