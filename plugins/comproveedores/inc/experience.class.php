@@ -461,7 +461,7 @@
 			Dropdown::show('PluginComproveedoresExperiencestype', $opt);
 
 			echo "<td style='text-align-last: center; border-right: 2px solid #BDBDBD;'>";
-			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;']);
+			Html::autocompletionTextField($this, "duracion", ['option' =>'style="width: 100px;"']);
 			echo "</td>";
 
 			echo "<td id='intervencionBovis' style='width:12%; text-align-last: center; border-right: 2px solid #BDBDBD;'>";
@@ -527,7 +527,7 @@
 			echo "</td>";
 
 			echo "<td id='importeExperiencia' style='text-align-last: center; border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
-			Html::autocompletionTextField($this, "importe", ['option' =>'style="width: 100px;']);
+			Html::autocompletionTextField($this, "importe", ['option' =>'style="width: 100px;"']);
 			echo "</td>";
 
 			echo "<td colspan='5' style='border-bottom: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>";
@@ -578,7 +578,7 @@
                 $cadena= "select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
                             from glpi_plugin_comproveedores_experiences   as e
                             LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
-                            where cv_id={$CvId} and e.plugin_comproveedores_experiencestypes_id!='0'
+                            where cv_id={$CvId} and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0 
                             group by plugin_comproveedores_experiencestypes_id";
                         
                 $result = $DB->query($cadena);
@@ -594,7 +594,7 @@
                 }
                    
                 //////Sin experiencias    
-                $cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=0 group by intervencion_bovis";
+                $cadena= "select count(*) as numero from glpi_plugin_comproveedores_experiences where cv_id={$CvId} and intervencion_bovis=0 and plugin_comproveedores_experiencestypes_id=0 group by intervencion_bovis";
 
                 $result = $DB->query($cadena);
 
@@ -643,13 +643,21 @@
 
 				function limpiarFormulario(){
 
+					$('#nombreExperiencia > textarea[name=name]').val('');
+					$('[name=importe]').val('');
+					$('[name=duracion]').val('');
+					$('textarea[name=observaciones]').val('');
+					$('textarea[name=cliente]').val('');
+
+					$('input[name=plugin_comproveedores_experiencestypes_id]').val('0').change();
+					$('input[name=plugin_comproveedores_communities_id]').val('0').change();
 					$('#intervencionBovis').find('input').attr('checked', false);
 					$('input[name=bim]').attr('checked', false);
 					$('input[name=breeam]').attr('checked', false);
 					$('input[name=leed]').attr('checked', false);
 					$('input[name=otros_certificados]').attr('checked', false);
-					$('input[name=cpd_tier]').attr('checked', false);
-					$('select[name=anio]').val('2018');	
+					$('select[name=anio]').val('2018').change();	
+					$('select[name=estado]').val('1').change();
 
 				}
 		
@@ -686,11 +694,11 @@
 						otros_certificados=0;
 					}
 
-	   				if($('input[name=cpd_tier]').prop('checked')) {	
+	   				/*if($('input[name=cpd_tier]').prop('checked')) {	
 	   					cpd_tier=1;
 					}else{
 						cpd_tier=0;
-					}
+					}*/
 	   
 	   				$('select[name=anio] option:selected').each(function() {
 	      				anio=$( this ).text();
@@ -716,7 +724,6 @@
 	               		'breeam':	breeam,
 	               		'leed'	:	leed,
 	               		'otros_certificados':	otros_certificados,
-	               		'cpd_tier'	:	cpd_tier,
 	               		'observaciones'	:	$('textarea[name=observaciones]').val()
 	                		
 	               	};
@@ -801,11 +808,11 @@
 						otros_certificados=0;
 					}
 
-	   				if($('input[name=cpd_tier]').prop('checked')) {	
+	   				/*if($('input[name=cpd_tier]').prop('checked')) {	
 	   					cpd_tier=1;
 					}else{
 						cpd_tier=0;
-					}
+					}*/
 	   
 	   				$('select[name=anio] option:selected').each(function() {
 	      				anio=$( this ).text();
@@ -833,7 +840,6 @@
 	               		'breeam':	breeam,
 	               		'leed'	:	leed,
 	               		'otros_certificados':	otros_certificados,
-	               		'cpd_tier'	:	cpd_tier,
 	               		'observaciones'	:	$('textarea[name=observaciones]').val()
 	                		
 	               	};
@@ -852,7 +858,7 @@
             		});
 
             		////////Actualizar Lista expeciencias, la tabla en que se ha creador y la tabla en la que estaba
-            		alert('llego1');
+            		
 	            	
 	            	//Actualizar para quitar la experiencia de la tabla, en el caso de que cambie de tabla
 	            	actualizarLista(tabla_modificada);
@@ -884,7 +890,6 @@
 						$('#nuevaExperiencia').attr('src','../pics/meta_moins.png'); 
 					}
 					
-
 					$.ajax({ 
 						async: false, 
             			type: 'GET',

@@ -20,7 +20,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 
 	}
 	else{
-		$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." and plugin_comproveedores_experiencestypes_id='".$_GET['tipo']."' order by id desc";
+		$query ="SELECT * FROM glpi_plugin_comproveedores_experiences WHERE cv_id=".$_GET['cv_id']." and plugin_comproveedores_experiencestypes_id='".$_GET['tipo']."' and intervencion_bovis='0' order by id desc";
 
 	}
 		

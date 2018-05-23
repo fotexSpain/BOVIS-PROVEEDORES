@@ -67,7 +67,6 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_experiences` (
 	`breeam` tinyint(1) ,
 	`leed` tinyint(1) ,
 	`otros_certificados` tinyint(1) ,
-	`cpd_tier` tinyint(1) ,
 	`observaciones` varchar(255) ,
 	`cv_id` int(11) ,
 	`is_deleted` tinyint(1) NOT NULL default '0',

@@ -38,7 +38,7 @@ GLOBAL $DB,$CFG_GLPI;
 			echo"<table class='tab_cadre_fixe'><tbody>";
 			echo"<tr class='headerRow'>";
 
-			echo Html::hidden('idExperiencia');
+			echo Html::hidden('idExperiencia', ['value' => $_GET['idExperiencia']]);
 
 			echo"<th colspan='9' style='background-color:#BDBDBD; border-top: 2px solid #BDBDBD; border-left: 2px solid #BDBDBD; border-right: 2px solid #BDBDBD;'>Experiencia</th></tr>";
 			echo"<tr class='tab_bg_1 center'  style='background-color:#D8D8D8; border: 20px solid #BDBDDB;'>";
@@ -210,7 +210,10 @@ GLOBAL $DB,$CFG_GLPI;
 					break;
 			}
 
-			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' onclick='guardarModificacion(\"$tabla_modificada\");' name='Update'>GUARDAR MODIFICACIÓN</span></div>";
+			echo "<div style='display: inline-block;' id='guardar_modificacion'><span class='vsubmit' onclick='guardarModificacion(\"$tabla_modificada\");' name='Update' style='margin-right:15px;'>GUARDAR MODIFICACIÓN</span></div>";
+
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='limpiarFormulario();' name='addNoDelete' style='margin-right: 15px;'>LIMPIAR</span></div>";
+
 			echo "</div>";
 		}
 
