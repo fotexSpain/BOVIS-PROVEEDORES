@@ -91,7 +91,13 @@ $objExperiencia=new PluginComproveedoresExperience;
 
 							echo "<td style='display:none;' class='center'>".$data['id']."</td>";
 
-							echo "<td class='center'>".$data['name']."</td>";
+							if(strlen($data['name']) > 25)
+								{
+									$proyecto = substr($data['name'], 0, 25);
+									echo "<td class='center'>".$proyecto."..."."</td>";
+								}
+								else
+									echo "<td class='center'>".$data['name']."</td>";
 
 							if (Session::isMultiEntitiesMode())
 								echo "<td class='center'>".Dropdown::getDropdownName("glpi_entities",$data['entities_id'])."</td>";
@@ -127,7 +133,13 @@ $objExperiencia=new PluginComproveedoresExperience;
 								Dropdown::show('PluginComproveedoresCommunity', array('value' => $data['plugin_comproveedores_communities_id'], 'comments' => false, 'addicon' => false));
 								echo "</td>";*/
 
-								echo "<td class='center'>".$data['cliente']."</td>";
+								if(strlen($data['cliente']) > 25)
+								{
+									$cliente = substr($data['cliente'], 0, 25);
+									echo "<td class='center'>".$cliente."..."."</td>";
+								}
+								else
+									echo "<td class='center'>".$data['cliente']."</td>";
 
 								$anio = date("Y", strtotime($data['anio']));
 								$anio++;
