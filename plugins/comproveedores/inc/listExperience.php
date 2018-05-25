@@ -32,7 +32,7 @@ $objExperiencia=new PluginComproveedoresExperience;
 			
 
 				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
-						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='16' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
+						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='13' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
 							echo"<br/>";
 						echo "</tr>";
 						$numero_registros=1;
@@ -211,9 +211,9 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "</tr>";
 								
 								//echo "<tr><th ".$color_titulos." colspan='14'>".__('Observaciones')."</th></tr>";
-								echo "<tr><td id='observaciones' colspan='14' class='center'>".$data['observaciones']."</td></tr>";
+								echo "<tr><td id='observaciones' colspan='11' class='center'>".$data['observaciones']."</td></tr>";
 
-								echo "<tr><td><td></tr>";
+								echo "<tr><td colspan='13' style='border: hidden'></td></tr>";
 								echo"</form>";
 
 							$numero_registros++;
