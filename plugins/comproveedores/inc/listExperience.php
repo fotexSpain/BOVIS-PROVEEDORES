@@ -32,24 +32,29 @@ $objExperiencia=new PluginComproveedoresExperience;
 			
 
 				echo "<div class='actualizarLista' align='center'><table id='data_table_".$_GET['tipo']."' class='tab_cadre_fixehov'>";
-						echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='13' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
-							echo"<br/>";
-						echo "</tr>";
+                                
+                                                                                                                if($_GET['tipo']=='intervencion_bovis'){
+                                                                                                                    
+                                                                                                                    echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
+                                                                                                                    
+                                                                                                                    
+                                                                                                                }
+                                                                                                                else{
+                                                                                                                    
+                                                                                                                    echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='13' style='background-color:#8cabdb;'>Experiencias del proveedor</th></tr>";
+                                                                                                                 
+                                                                                                                    
+                                                                                                                }
+                                                                                                                
 						$numero_registros=1;
 						$color_titulos='';
 					while ($data=$DB->fetch_array($result)) {
 
 							
 							echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
-
-							if($numero_registros%2==0){
-								$color_titulos="style='background-color:#CED8F6;'";
-							}else{
-								$color_titulos="style='background-color:#E0ECF8;'";
-							}
 							
-							
-							
+                                                                                                                                   $color_titulos="style='background-color:#E0ECF8;'";
+			
 							echo"<th ".$color_titulos.">".__('Proy')."</th>";
 							echo "<th ".$color_titulos.">".__('Estado')."</th>";
 							if (Session::isMultiEntitiesMode())
@@ -209,12 +214,21 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo"<input title='Quitar acceso' type='submit' class='submit' value='QUITAR' name='purge'/>";
 								echo "</td>";
 								echo "</tr>";
-								
-								//echo "<tr><th ".$color_titulos." colspan='14'>".__('Observaciones')."</th></tr>";
-								echo "<tr><td id='observaciones' colspan='11' class='center'>".$data['observaciones']."</td></tr>";
-
-								echo "<tr><td colspan='13' style='border: hidden'></td></tr>";
 								echo"</form>";
+								//echo "<tr><th ".$color_titulos." colspan='14'>".__('Observaciones')."</th></tr>";    
+                                                                                                                                                     if($_GET['tipo']=='intervencion_bovis'){
+                                                                                                                                                         
+                                                                                                                                                        echo "<tr><td id='observaciones' colspan='12' class='center'>".$data['observaciones']."</td></tr>";
+                                                                                                                                                        echo "<tr><td colspan='14' style='border: hidden'></td></tr>";
+                                                                                                                                                         
+                                                                                                                                                     }else{
+                                                                                                                                                         
+                                                                                                                                                         echo "<tr><td id='observaciones' colspan='11' class='center'>".$data['observaciones']."</td></tr>";
+                                                                                                                                                         echo "<tr><td colspan='13' style='border: hidden'></td></tr>";
+                                                                                                                                                         
+                                                                                                                                                     }
+                                                             
+								
 
 							$numero_registros++;
 
