@@ -1641,3 +1641,49 @@ DROP TABLE `glpi_plugin_com' at line 2
   inc\plugin.class.php:685                           plugin_comproveedores_uninstall()
   :                                                  Plugin->uninstall()
   front\plugin.form.php:48                           call_user_func()
+2018-05-22 22:51:32 [2@POR114]
+  *** MySQL query error:
+  SQL: SHOW COLUMNS FROM `glpi_commondbtms`
+  Error: Table 'glpibovis.glpi_commondbtms' doesn't exist
+  Backtrace :
+  inc\dbmysql.class.php:402                          
+  inc\commondbtm.class.php:365                       DBmysql->list_fields()
+  ajax\autocompletion.php:52                         CommonDBTM->getEmpty()
+2018-05-22 22:51:35 [2@POR114]
+  *** MySQL query error:
+  SQL: SHOW COLUMNS FROM `glpi_commondbtms`
+  Error: Table 'glpibovis.glpi_commondbtms' doesn't exist
+  Backtrace :
+  inc\dbmysql.class.php:402                          
+  inc\commondbtm.class.php:365                       DBmysql->list_fields()
+  ajax\autocompletion.php:52                         CommonDBTM->getEmpty()
+2018-05-24 06:21:52 [2@POR114]
+  *** MySQL query error:
+  SQL: SHOW COLUMNS FROM `glpi_printermodels`
+  Error: Table 'glpibovis.glpi_printermodels' doesn't exist
+  Backtrace :
+  inc\dbmysql.class.php:402                          
+  inc\commondbtm.class.php:365                       DBmysql->list_fields()
+  inc\commondbtm.class.php:2783                      CommonDBTM->getEmpty()
+  inc\dropdown.class.php:1127                        CommonDBTM->isEntityAssign()
+  front\dropdown.php:47                              Dropdown::showItemTypeList()
+2018-05-24 06:48:06 [2@POR114]
+  *** MySQL query error:
+  SQL: select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
+	                            from glpi_plugin_comproveedores_experiences   as e
+	                            FULL OUTER JOIN join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
+	                            where cv_id=2 and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0 
+	                            group by plugin_comproveedores_experiencestypes_id
+  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL OUTER JOIN join glpi_plugin_comproveedores_experiencestypes  as t on e.plug' at line 3
+  Backtrace :
+  ...s\comproveedores\inc\accordionExperience.php:33 
+2018-05-24 06:48:35 [2@POR114]
+  *** MySQL query error:
+  SQL: select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
+	                            from glpi_plugin_comproveedores_experiences   as e
+	                            FULL OUTER JOIN glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
+	                            where cv_id=2 and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0 
+	                            group by plugin_comproveedores_experiencestypes_id
+  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL OUTER JOIN glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_co' at line 3
+  Backtrace :
+  ...s\comproveedores\inc\accordionExperience.php:33 

@@ -13,7 +13,7 @@ echo consultaJquery();
 echo "<div id='accordion'>";
 
 	///////Intervencion Bovis			 	
-	$cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$_GET['cv_id']} and intervencion_bovis=1 group by intervencion_bovis";
+	$cadena= "select count(*) as numero, intervencion_bovis as bovis from glpi_plugin_comproveedores_experiences where cv_id={$_GET['cv_id']} and intervencion_bovis=1";
 
 	$result = $DB->query($cadena);
 
@@ -24,16 +24,15 @@ echo "<div id='accordion'>";
 	}
 	                
 	//////Tipos de experiencias
-	$cadena= "select e.plugin_comproveedores_experiencestypes_id as id, t.descripcion, count(*) as numero
-	                            from glpi_plugin_comproveedores_experiences   as e
-	                            LEFT join glpi_plugin_comproveedores_experiencestypes  as t on e.plugin_comproveedores_experiencestypes_id = t.id
-	                            where cv_id={$_GET['cv_id']} and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0 
-	                            group by plugin_comproveedores_experiencestypes_id";
+	$cadena= "select t.descripcion, t.id, (select count(*) from glpi_plugin_comproveedores_experiences as e
+ 			where e.plugin_comproveedores_experiencestypes_id = t.id && cv_id={$_GET['cv_id']} and e.plugin_comproveedores_experiencestypes_id!='0' and intervencion_bovis=0) as numero 
+ 					 from glpi_plugin_comproveedores_experiencestypes as t";
 	                        
 	$result = $DB->query($cadena);
 	                       
 	foreach ($result as $fila){
-
+ 
+		
 		echo"<h3 name='".$fila['id']."' class='tipo_experiencia_".$fila['id']."' style='height:auto;'>".
 	                    $fila['descripcion']." (".$fila['numero'].")"
 	                    ."</h3>";
@@ -41,9 +40,11 @@ echo "<div id='accordion'>";
 		echo"<div style='max-height:350px;min-height:350px;background-color: rgb(244, 245, 245);' class='tipo_experiencia_".$fila['id']."'>";  
 	  	echo"</div>";
 	}
-	                   
+	              
+
 	//////Sin experiencias    
-	$cadena= "select count(*) as numero from glpi_plugin_comproveedores_experiences where cv_id={$_GET['cv_id']} and intervencion_bovis=0 and plugin_comproveedores_experiencestypes_id=0 group by intervencion_bovis";
+	$cadena= "select count(*) as numero from glpi_plugin_comproveedores_experiences 
+ 				where cv_id={$_GET['cv_id']} and plugin_comproveedores_experiencestypes_id=0 and intervencion_bovis=0 ";
 
 	$result = $DB->query($cadena);
 

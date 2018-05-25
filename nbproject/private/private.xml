@@ -3,37 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/refreshFormExperience.class.php</file>
-            <file>file:/C:/wamp/www/bovis/inc/supplier.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/insurance.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/experiencestype.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/comproveedore.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/financial.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/roltype.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/empleado.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/profile.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/user.class.php</file>
-            <file>file:/C:/wamp/www/bovis/inc/supplier_ticket.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/listSupplier.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/category.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/listspecialty.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/featuredcompany.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/annualbilling.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/filtroSupplier.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/integratedmanagementsystem.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/_menu.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/community.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/previousnamescompany.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/listExperience.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/lossratio.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/cvmenu.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/comunidades.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/specialty.class.php</file>
-            <file>file:/C:/wamp/www/bovis/inc/suppliertype.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/cv.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/experience.class.php</file>
-            <file>file:/C:/wamp/www/bovis/plugins/comproveedores/inc/subcontractingcompany.class.php</file>
+            <file>file:/C:/wamp64/www/BOVIS-PROVEEDORES/plugins/comproveedores/inc/experience.class.php</file>
         </group>
     </open-files>
 </project-private>
