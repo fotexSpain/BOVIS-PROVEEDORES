@@ -388,7 +388,7 @@
 		function showFormNoCV($ID, $options=[]) {
 			//Aqui entra cuando no tien gestionado el curriculum
 
-			echo "<div>Necesitas gestionar el CV antes de añadir Sistema integrado de gestión</div>";
+			echo "<div>Necesitas gestionar el CV antes de acceder a Sistema integrado de gestión</div>";
 			echo "<br>";
 		}
 

@@ -378,7 +378,7 @@
 						function showFormNoCV($ID, $options=[]) {
 			//Aqui entra cuando no tien gestionado el curriculum
 
-							echo "<div>Necesitas gestionar el CV antes de añadir expeciencias</div>";
+							echo "<div>Necesitas gestionar el CV antes de añadir empleados en plantilla</div>";
 							echo "<br>";
 						}
 					}
