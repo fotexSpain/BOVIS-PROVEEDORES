@@ -65,10 +65,10 @@ class Central extends CommonGLPI {
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->getType() == __CLASS__) {
-         $tabs[1] = __('Personal View');
+         $tabs[1] = __('Recordatorios');/*__('Personal View');
          $tabs[2] = __('Group View');
          $tabs[3] = __('Global View');
-         $tabs[4] = _n('RSS feed', 'RSS feeds', Session::getPluralNumber());
+         $tabs[4] = _n('RSS feed', 'RSS feeds', Session::getPluralNumber());*/
 
          return $tabs;
       }
@@ -84,7 +84,7 @@ class Central extends CommonGLPI {
                $item->showMyView();
                break;
 
-            case 2 :
+            /*case 2 :
                $item->showGroupView();
                break;
 
@@ -94,7 +94,7 @@ class Central extends CommonGLPI {
 
             case 4 :
                $item->showRSSView();
-               break;
+               break;*/
          }
       }
       return true;
@@ -104,7 +104,7 @@ class Central extends CommonGLPI {
    /**
     * Show the central global view
    **/
-   static function showGlobalView() {
+   /*static function showGlobalView() {
 
       $showticket  = Session::haveRight("ticket", Ticket::READALL);
       $showproblem = Session::haveRight("problem", Problem::READALL);
@@ -140,7 +140,7 @@ class Central extends CommonGLPI {
          echo "<br>";
          Ticket::showCentralNewList();
       }
-   }
+   }*/
 
 
    /**
@@ -176,7 +176,9 @@ class Central extends CommonGLPI {
                                "install/install.php");
          }
       }
-
+      
+      //ADVERTENCIA PARA DESARROLLADORES(USAR DEBUGGER)
+        
       if ($_SESSION['glpi_use_mode'] == Session::DEBUG_MODE) {
          if (!DBMysql::isMySQLStrictMode($comment)) {
             $warnings[] = sprintf(__('SQL strict mode is not fully enabled, recommended for development: %s'), $comment);
@@ -238,15 +240,22 @@ class Central extends CommonGLPI {
          Problem::showCentralList(0, "process", false);
          ProblemTask::showCentralList(0, "todo", false);
       }
+
       echo "</td></tr>";
       echo "</table></td>";
       echo "<td class='top'  width='50%'><table class='central'>";
       echo "<tr class='noHover'><td>";
       Planning::showCentral(Session::getLoginUserID());
+
+
+      //REMINDER PERSONAL
       Reminder::showListForCentral();
+
+      //REMINDER PUBLIC
+       /*
       if (Session::haveRight("reminder_public", READ)) {
          Reminder::showListForCentral(false);
-      }
+      }*/
       echo "</td></tr>";
       echo "</table></td></tr></table>";
    }
@@ -257,7 +266,7 @@ class Central extends CommonGLPI {
     *
     * @since version 0.84
    **/
-   static function showRSSView() {
+   /*static function showRSSView() {
 
       echo "<table class='tab_cadre_central'>";
 
@@ -271,13 +280,13 @@ class Central extends CommonGLPI {
       }
       echo "</td></tr>";
       echo "</table>";
-   }
+   }*/
 
 
    /**
     * Show the central group view
    **/
-   static function showGroupView() {
+   /*static function showGroupView() {
 
       $showticket = Session::haveRightsOr("ticket", [Ticket::READALL, Ticket::READASSIGN]);
 
@@ -311,6 +320,6 @@ class Central extends CommonGLPI {
       }
       echo "</td></tr>";
       echo "</table></td></tr></table>";
-   }
+   }*/
 
 }

@@ -90,7 +90,18 @@ if (isset($_POST["add"])) {
 
          case 'Supplier' :
             if (isset($_POST['users_id']) && $_POST['users_id']) {
-               $item = new Reminder_User();
+                $query="SELECT id FROM glpi_users WHERE profiles_id=9 and supplier_id=". $_POST['users_id']." order by id desc";
+                $result = $DB->query($query);
+
+                $i=0;
+                while ($data=$DB->fetch_array($result)) {
+                    $usersSupplier[$i]=$data["id"];
+
+                    $i++;
+                };
+                $item = new Reminder_User();
+
+
             }
             break;
 
@@ -111,7 +122,17 @@ if (isset($_POST["add"])) {
             break;
       }
       if (!is_null($item)) {
-         $item->add($_POST);
+          if (isset($usersSupplier)){
+              $i=0;
+              while ($i<count($usersSupplier)) {
+
+                  $_POST['users_id']=$usersSupplier[$i];
+                  $item->add($_POST);
+                  $i++;
+              }
+          }else {
+              $item->add($_POST);
+          }
          Event::log($_POST["reminders_id"], "reminder", 4, "tools",
                     //TRANS: %s is the user login
                     sprintf(__('%s adds a target'), $_SESSION["glpiname"]));

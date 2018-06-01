@@ -59,9 +59,9 @@ class Reminder extends CommonDBVisible {
 
    static function getTypeName($nb = 0) {
 
-      if (Session::haveRight('reminder_public', READ)) {
+      /*if (Session::haveRight('reminder_public', READ)) {
          return _n('Reminder', 'Reminders', $nb);
-      }
+      }*/
       return _n('Personal reminder', 'Personal reminders', $nb);
    }
 
@@ -138,7 +138,7 @@ class Reminder extends CommonDBVisible {
 
       // Users
       $this->users    = Reminder_User::getUsers($this->fields['id']);
-
+       
       // Entities
       $this->entities = Entity_Reminder::getEntities($this->fields['id']);
 
@@ -423,7 +423,7 @@ class Reminder extends CommonDBVisible {
     * @param $options   array
    **/
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
-
+       
       if (!is_array($values)) {
          $values = [$field => $values];
       }
@@ -500,11 +500,15 @@ class Reminder extends CommonDBVisible {
     * @param $tabnum       (default 1)
     * @param $withtemplate (default 0)
    **/
+   //Aquí está el objeto que andamos buscando, el $item
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       switch ($item->getType()) {
          case 'Reminder' :
+             /*var_dump($item);
+             exit();*/
             $item->showVisibility();
+             
             return true;
       }
       return false;
@@ -621,7 +625,9 @@ class Reminder extends CommonDBVisible {
     *     - target filename : where to go when done.
     *     - from_planning_ajax : set to disable planning form part
     **/
+   //Formulario de Personal reminder
    function showForm($ID, $options = []) {
+       
       global $CFG_GLPI;
 
       $this->initForm($ID, $options);
@@ -812,6 +818,7 @@ class Reminder extends CommonDBVisible {
     * @return array of planning item
    **/
    static function populatePlanning($options = []) {
+       
       global $DB, $CFG_GLPI;
 
       $default_options = [
@@ -960,6 +967,7 @@ class Reminder extends CommonDBVisible {
     * @return Already planned information
     **/
    static function getAlreadyPlannedInformation(array $val) {
+      
       global $CFG_GLPI;
 
       //TRANS: %1$s is the begin date, %2$s is the end date
@@ -984,6 +992,7 @@ class Reminder extends CommonDBVisible {
     * @return Nothing (display function)
    **/
    static function displayPlanningItem(array $val, $who, $type = "", $complete = 0) {
+        
       global $CFG_GLPI;
 
       $html = "";
@@ -1027,6 +1036,7 @@ class Reminder extends CommonDBVisible {
    }
 
 
+   //ESTO DE AQUÍ NO ES IMPORTANTE PARA LO QUE TENGO QUE HACER AHORA
    /**
     * Show list for central view
     *
@@ -1035,6 +1045,7 @@ class Reminder extends CommonDBVisible {
     * @return Nothing (display function)
     **/
    static function showListForCentral($personal = true) {
+       
       global $DB, $CFG_GLPI;
 
       $users_id = Session::getLoginUserID();
@@ -1044,7 +1055,8 @@ class Reminder extends CommonDBVisible {
       $restrict_visibility = " AND (`glpi_reminders`.`begin_view_date` IS NULL
                                     OR `glpi_reminders`.`begin_view_date` < '$now')
                               AND (`glpi_reminders`.`end_view_date` IS NULL
-                                   OR `glpi_reminders`.`end_view_date` > '$now') ";
+                                   OR `glpi_reminders`.`end_view_date` > '$now') 
+                                   OR   `glpi_reminders`.`users_id` = '$users_id'";
 
       if ($personal) {
 
@@ -1055,16 +1067,20 @@ class Reminder extends CommonDBVisible {
 
          $query = "SELECT `glpi_reminders`.*
                    FROM `glpi_reminders`
-                   WHERE `glpi_reminders`.`users_id` = '$users_id'
+                   LEFT JOIN `glpi_reminders_users`
+						ON `glpi_reminders`.`id`=`glpi_reminders_users`.`reminders_id`
+                   WHERE `glpi_reminders_users`.`users_id` = '$users_id'
                          AND (`glpi_reminders`.`end` >= '$today'
                               OR `glpi_reminders`.`is_planned` = '0')
                          $restrict_visibility
+                         GROUP BY `glpi_reminders`.`id` 
                    ORDER BY `glpi_reminders`.`name`";
 
          $titre = "<a href='".$CFG_GLPI["root_doc"]."/front/reminder.php'>".
                     _n('Personal reminder', 'Personal reminders', Session::getPluralNumber())."</a>";
 
       } else {
+          //esto no se usa
          // Show public reminders / not mines : need to have access to public reminders
          if (!self::canView()) {
             return false;
@@ -1090,9 +1106,14 @@ class Reminder extends CommonDBVisible {
          } else {
             $titre = _n('Public reminder', 'Public reminders', Session::getPluralNumber());
          }
+         //fin esto no se usa
       }
 
       $result = $DB->query($query);
+      
+      /*echo $query;
+      var_dump($result->num_rows);
+      die();*/
       $nb     = $DB->numrows($result);
 
       echo "<br><table class='tab_cadrehov'>";
