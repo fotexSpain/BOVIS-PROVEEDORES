@@ -160,37 +160,37 @@ $objExperiencia=new PluginComproveedoresExperience;
 								echo "<td class='center'>".$data['duracion']."</td>";
 								echo "<td class='center'>";
 								if($data['bim']=='1'){
-									echo"<input id='checkbox_bim' type='checkbox' value='0' checked disabled='disabled' style='border: 2px solid #00882D;'>";
+                                                                                                                                                echo"<img  id='checkbox_bim' value='0' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_bim' type='checkbox' value='1' disabled='disabled'>";
+									echo"<img  id='checkbox_bim' value='1' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['breeam']=='1'){
-									echo"<input id='checkbox_breeam' type='checkbox' value='0' checked disabled='disabled'>";
+                                                                                                                                                echo"<img  id='checkbox_breeam' value='0' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_breeam' type='checkbox' value='1' disabled='disabled'>";
+                                                                                                                                                echo"<img  id='checkbox_breeam' value='1' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
 								if($data['leed']=='1'){
-									echo"<input id='checkbox_leed' type='checkbox' value='0' checked disabled='disabled'>";
+                                                                                                                                                echo"<img  id='checkbox_leed' value='0' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_leed' type='checkbox' value='1' disabled='disabled'>";
+                                                                                                                                                echo"<img  id='checkbox_leed' value='1' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'>";
 									//echo "No";
 								}
 								echo "</td>";
 								echo "<td class='center'>";
-								if($data['otros_certificados']=='1'){
-									echo"<input id='checkbox_otros_certificados' type='checkbox' value='0' checked disabled='disabled'>";
+								if($data['otros_certificados']=='1'){									
+                                                                                                                                               echo"<img  id='checkbox_otros_certificados' value='0' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'>";
 									//echo "Si";
 								}else{
-									echo"<input id='checkbox_otros_certificados' type='checkbox' value='1' disabled='disabled'>";
+                                                                                                                                                echo"<img  id='checkbox_otros_certificados' value='1' style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'>";
 									//echo "No";
 								}
 								echo "</td>";

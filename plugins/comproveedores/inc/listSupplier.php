@@ -4,184 +4,97 @@ use Glpi\Event;
 
 GLOBAL $DB,$CFG_GLPI;
 
-	$tablas='';
-	$where='';
-	$select='';
-	$repeticion_empresa='';
+$where='';
 
-	// el elemento tipo experiencia no es necesario, ya que no esta en la consulta
-	$elementos_consulta=['name', 'intervencion_bovis', 'bim', 'leed', 'breeam', 'otros_certificados', 'cpd_tier'];
+$query ="SELECT 
+if(paquetes.projecttasks_id=0
+    and 
+ (select (Select count(*) from glpi_projecttasks as subpaquetes1 where paquetes1.id=subpaquetes1.projecttasks_id and subpaquetes1.supplier_id=proveedores.id) as 'numero' from glpi_projecttasks as paquetes1 where paquetes1.id=paquetes.id)!=0, '0', '1') as 'visualizar',
 
-	//Comprobamos si hay algun filtro, en el caso de haber un filtro, añadimos el WHERE a la consulta
-	foreach ($elementos_consulta as $key => $value) {
-		if(isset($_GET[$value]) and $_GET[$value]!=''){
-			$where=" where ";
-		}
+proveedores.id as 'proveedor_id',
+
+proveedores.name as 'proveedor_nombre',
+
+proveedores.cif as 'cif',
+
+proveedores.cv_id as 'cv',
+
+proyectos.name as 'proyecto_nombre',
+
+IF (paquetes.projecttasks_id <> '0', 
+        (Select subpaquetes.name from glpi_projecttasks as subpaquetes where subpaquetes.id=paquetes.projecttasks_id) , paquetes.name ) as 'paquete_nombre',
+
+IF (projecttasks_id <> '0', paquetes.name, '' ) as 'subpaquete_nombre'
+
+FROM glpi_suppliers as proveedores 
+
+LEFT JOIN  glpi_projecttasks as paquetes 
+	on proveedores.id=paquetes.supplier_id
+
+LEFT JOIN  glpi_projects as proyectos 
+	on proyectos.id=paquetes.projects_id";
+
+//comprobamos que se a enviado algún filtro de busqueda
+foreach ($_GET as $value) {
+        if($value!='' && $value!='Siguiente'){
+            $where=" where ";
+        }   
+}
+
+ //Añadimos los filtros al where de la consulta
+if($_GET['nombre_proveedor']!=''){
+     $where=$where."UPPER(proveedores.name) LIKE UPPER('%".$_GET['nombre_proveedor']."%') and ";
+ }
+if($_GET['cif']!=''){
+     $where=$where."proveedores.cif='".$_GET['cif']."' and ";
+ }
+ if($_GET['nombre_proyecto']!=''){
+        $where=$where."proyectos.name='".$_GET['nombre_proyecto']."' and ";
+ }
+ if($_GET['codigo_proyecto']!=''){
+      $where=$where."proyectos.code='".$_GET['codigo_proyecto']."' and ";
+ }
+
+ //eliminamos el ultimo and y ordenamos por proveedor
+$posicion= strpos($where, ' and');
+$where = substr($where, 0, $posicion);
+$where=$where." order by proveedores.id desc";
+
+//añadimos el where a la consulta
+ $query=$query.$where;
+
+$result = $DB->query($query);
+
+            echo "<div align='center'><table class='tab_cadre_fixehov'>";
+	echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Lista de proveedores</th></tr>";
+	echo"<br/>";
+	echo "<tr>";
+                            echo "<th>".__('Nombre')."</th>";
+                            echo "<th>".__('CIF')."</th>";
+                            echo "<th>".__('Proyecto')."</th>";
+                            echo "<th>".__('Paquete')."</th>";
+                            echo "<th>".__('SubPaquete')."</th>";
+                            echo "<th>".__('CV')."</th>";
+                   echo "</tr>";
+
+	while ($data=$DB->fetch_array($result)) {
+                            if($data['visualizar']!=0){
+                                 echo "<tr class='tab_bg_2'>";
+                                     echo "<td class='center'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["proveedor_id"]."'>".$data["proveedor_nombre"]."</a></td>";               
+		echo "<td class='center'>".$data['cif']."</td>";
+		echo "<td class='center'>".$data['proyecto_nombre']."</td>";
+                                     echo "<td class='center'>".$data['paquete_nombre']."</td>";
+                                      echo "<td class='center'>".$data['subpaquete_nombre']."</td>";
+                                      if($data['cv']=='1'){
+                                           echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                                      }
+                                      else{
+                                           echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                                      }
+                                    
+                                echo "</tr>";
+                            }   
 	}
-	
-	//Añadimos la tabla y la referencia
-	
-	$tablas=' glpi_suppliers as suppliers LEFT JOIN glpi_plugin_comproveedores_experiences as experiences on suppliers.cv_id=experiences.cv_id';
-
-	/////////
-
-	if(isset($_GET['tipos_experiencias'])){
-		$filtro_tipo_experiencia=$_GET['tipos_experiencias'];
-	}
-
-	///////tabla Experiencias////////
-
-	//Los campos del filtro
-
-	if(isset($_GET['name']) and $_GET['name']!=''){
-
-		$where=$where." UPPER(suppliers.name) LIKE UPPER('%".$_GET['name']."%') and";
-	}
-	if(isset($_GET['intervencion_bovis']) and $_GET['intervencion_bovis']!=''){
-		$where=$where." experiences.intervencion_bovis=".$_GET['intervencion_bovis']." and";
-	}
-	if(isset($_GET['bim']) and $_GET['bim']!=''){
-		$where=$where." experiences.bim=".$_GET['bim']." and";
-	}
-	if(isset($_GET['leed']) and $_GET['leed']!=''){
-		$where=$where." experiences.leed=".$_GET['leed']." and";
-	}
-	if(isset($_GET['breeam']) and $_GET['breeam']!=''){
-		$where=$where." experiences.breeam=".$_GET['breeam']." and";
-	}
-	if(isset($_GET['otros_certificados']) and $_GET['otros_certificados']!=''){
-		$where=$where." experiences.otros_certificados=".$_GET['otros_certificados']." and";
-	}
-	if(isset($_GET['cpd_tier']) and $_GET['cpd_tier']!=''){
-		$where=$where." experiences.cpd_tier=".$_GET['cpd_tier']." and";
-	}
-
-	//////Eliminamos el ultimo AND del WHERE
-	$posicion= strpos($where, ' and');
-	$where = substr($where, 0, $posicion);
-
-	//Los campos que se visualizaran en la tabla
-	$select=$select."(SELECT COUNT(cv_id) from glpi_plugin_comproveedores_experiences as a where a.cv_id=suppliers.cv_id GROUP by cv_id) as numRepeticiones, ";
-	$select=$select."suppliers.id as is_supplier, 
-	 suppliers.cv_id as cv_id, 
-	 suppliers.name as empresa,
-	 experiences.id as id_experiencia, 
-	 experiences.name as nombre_experiencia, 
-	 experiences.estado, 
-	 experiences.intervencion_bovis, 
-	 experiences.plugin_comproveedores_experiencestypes_id as tipo_experiencia";
-
-	//Consulta
-	$query ="SELECT ".$select." FROM ".$tablas.$where." order by suppliers.id asc";
-
-	$result = $DB->query($query);
-
-		//Ocultar lista, si no existe ninguna expeciencia
-		if($result->num_rows!=0){
-
-			echo"<table class='tab_cadre_fixehov'><tbody>";
-			
-				echo"<th colspan='14'>Lista de Proveedores</th></tr>";
-				echo"<tr class='tab_bg_1 center'>";
-					echo "<th>Empresa</th>";
-					echo "<th>Cartera actual de trabajo</th>";
-					echo "<th>Intervención BOVIS</th>";
-					echo "<th>Edificios de oficinas</th>";
-					echo "<th>Centros comerciales/locales comerciales</th>";
-					echo "<th>Proyectos de hospitales/Centros sanitarios</th>";
-					echo "<th>Proyectos de hoteles/Residencias 3ª edad/Residencias estudiantes</th>";
-					echo "<th>Proyectos de equipamiento-museos, Centros culturales, ...</th>";
-					echo "<th>Centros docentes(Universidades,Institutos de enseñanza,...)</th>";
-					echo "<th>Complejos deportivos(Estadios de fútbol,...)</th>";
-					echo "<th>Proyectos industriales/Logísticos</th>";
-					echo "<th>Proyectos de vivienda residenciales</th>";
-					echo "<th>Obras de rehabilitación de edificios</th>";
-					echo "<th>Centro de procesos de datos(CPD) y otros proyectos</th>";
-
-				echo "</tr>";
-				
-			while ($data=$DB->fetch_array($result)) {
-			
-				echo"<tr class='tab_bg_2'>";
-					
-					if($repeticion_empresa!=$data['empresa']){
-						echo "<td rowspan=".$data['numRepeticiones']." class='center'>
-							<a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["is_supplier"]."'>".$data['empresa']."
-						</td>";
-					}else{
-						echo "<td></td>";
-					}
-					
-					$repeticion_empresa=$data['empresa'];
-
-					//comprueba que el provedor tiene alguna experiencia, el el caso de no tener solo montara el nombre del proveedor
-					if(isset($data['nombre_experiencia'])){
-
-						if(isset($data['estado']) and $data['estado']==1){
-							echo "<td  class='center'>
-								<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
-							</td>";
-						}else{
-							echo "<td></td>";
-						}
-
-
-						if(isset($data['intervencion_bovis']) and $data['intervencion_bovis']==1){
-							echo "<td  class='center'>
-								<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
-							</td>";
-						}else{
-							echo "<td></td>";
-						}
-
-						//Creamos las 11 columnas de tipos de experiencias
-						for($i=1; $i<=11; $i++){
-
-							$ocultar_experiencia=true;
-
-							//Si existe la experiencia y el id es igual a la de la columna que tiene que aparecer 
-							if(isset($data['tipo_experiencia']) and $data['tipo_experiencia']==$i){
-
-								//Si Existe el filtro de tipos de experiencia, Sino que muestre todo los tipos. 
-								if(isset($filtro_tipo_experiencia)){
-									foreach ($filtro_tipo_experiencia as $key => $value) {
-										
-										//Comprueba que el tipo a mostar esta en el filtro
-										if($data["tipo_experiencia"]==$value){
-											echo "<td  class='center'>
-											<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
-											</td>";
-											$ocultar_experiencia=false;
-										}
-									}
-									if($ocultar_experiencia){
-										echo "<td></td>";
-									}
-								}
-								else{
-									echo "<td  class='center'>
-											<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/experience.form.php?id=".$data["id_experiencia"]."'>".$data['nombre_experiencia']."
-											</td>";
-								}
-								
-							}
-							else{
-								echo "<td></td>";
-							}
-
-						}
-						
-					}
-					else{
-						for($i=1; $i<=13; $i++){
-							echo"<td  class='center'></td>";
-						}
-					}
-
-				echo "</tr>";
-
-
-			}
-
-			echo "</table>";				
-		}
+	echo"<br/>";
+	echo "</table></div>";
+	echo"<br>";
