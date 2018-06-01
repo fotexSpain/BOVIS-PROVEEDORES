@@ -7,5 +7,6 @@ ALTER TABLE `glpi_suppliers` ADD `cv_id` INT(11);
 ALTER TABLE `glpi_suppliers` ADD `cif` varchar(255);
 ALTER TABLE `glpi_suppliers` ADD `forma_juridica` varchar(255);
 ALTER TABLE `glpi_suppliers` ADD `locations_id` int(11) NOT NULL default '0';
+ALTER TABLE `glpi_projecttasks` ADD `supplier_id` INT(11) NULL DEFAULT '0';
 
 
