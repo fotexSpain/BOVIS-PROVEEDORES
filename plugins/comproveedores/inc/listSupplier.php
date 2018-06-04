@@ -9,7 +9,13 @@ $where='';
 $query ="SELECT 
 if(paquetes.projecttasks_id=0
     and 
- (select (Select count(*) from glpi_projecttasks as subpaquetes1 where paquetes1.id=subpaquetes1.projecttasks_id and subpaquetes1.supplier_id=proveedores.id) as 'numero' from glpi_projecttasks as paquetes1 where paquetes1.id=paquetes.id)!=0, '0', '1') as 'visualizar',
+ (select (Select count(*) as numero
+from glpi_projecttasks as subpaquetes1 
+LEFT JOIN  glpi_projecttaskteams as paquetes_proveedor 
+	on subpaquetes1.id=paquetes_proveedor.projecttasks_id
+where paquetes1.id=subpaquetes1.projecttasks_id 
+and paquetes_proveedor.items_id=proveedores.id
+) as 'numero' from glpi_projecttasks as paquetes1 where paquetes1.id=paquetes.id)!=0, '0', '1') as 'visualizar',
 
 proveedores.id as 'proveedor_id',
 
@@ -24,13 +30,16 @@ proyectos.name as 'proyecto_nombre',
 IF (paquetes.projecttasks_id <> '0', 
         (Select subpaquetes.name from glpi_projecttasks as subpaquetes where subpaquetes.id=paquetes.projecttasks_id) , paquetes.name ) as 'paquete_nombre',
 
-IF (projecttasks_id <> '0', paquetes.name, '' ) as 'subpaquete_nombre'
+IF (paquetes.projecttasks_id <> '0', paquetes.name, '' ) as 'subpaquete_nombre'
 
 FROM glpi_suppliers as proveedores 
 
-LEFT JOIN  glpi_projecttasks as paquetes 
-	on proveedores.id=paquetes.supplier_id
-
+LEFT JOIN  glpi_projecttaskteams as paquetes_proveedor 
+	on proveedores.id=paquetes_proveedor.items_id
+    
+LEFT JOIN glpi_projecttasks as paquetes
+	on paquetes_proveedor.projecttasks_id=paquetes.id
+    
 LEFT JOIN  glpi_projects as proyectos 
 	on proyectos.id=paquetes.projects_id";
 

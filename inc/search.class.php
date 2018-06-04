@@ -77,19 +77,50 @@ class Search {
 
       $params = self::manageParams($itemtype, $_GET);
       echo "<div class='search_page'>";
+      
+      switch ($itemtype) {
+            case 'Supplier':
+                 if(count ($_GET)>0){
+                    include "../plugins/comproveedores/inc/listSupplier.php";
+                }else{
+                     include "../plugins/comproveedores/inc/buscadorSupplier.php";
+                }
+                break;
+            case 'Project':
+                
+                //Añadimos un nuevo campo al formulario
+                $params['criteria'][1]['field']='';
+                
+                //añadimos los valores predeterminados del formulario de busqueda
+                $_SESSION['glpisearch']['Project']['criteria'][0]['field']='1';
+                $_SESSION['glpisearch']['Project']['criteria'][0]['searchtype']='contains';
+                $_SESSION['glpisearch']['Project']['criteria'][1]['field']='4';
+                $_SESSION['glpisearch']['Project']['criteria'][1]['searchtype']='contains';
+               
+                //Ocultar los botones añadir y el desplegable AND del showGenericSearch linea 1917
+                echo "<script type='text/javascript'>
+                    $(function() {
 
-      if($itemtype=='Supplier'){
-    
-          if(count ($_GET)>0){
-                 include "../plugins/comproveedores/inc/listSupplier.php";
-          }else{
-               include "../plugins/comproveedores/inc/buscadorSupplier.php";
-          }
-      }else{
+                        $('[id*=searchrowProject]').find('.pointer').hide();
+                        $('[id*=s2id_dropdown_criteria_1__link_]').html('&nbsp;&nbsp');
+                        $('[id*=s2id_dropdown_criteria_0__searchtype_]').hide();
+                        $('[id*=s2id_dropdown_criteria_1__searchtype_]').hide();
+                
+                        //spansearchtypecriteriaProject1---- input --- size mas tamaño
+                        $('[id*=spansearchtypecriteriaProject] input').attr('size','35');
 
-        self::showGenericSearch($itemtype, $params);
-        self::showList($itemtype, $params);
-      }
+                     });
+                </script>";
+                
+                self::showGenericSearch($itemtype, $params);
+                self::showList($itemtype, $params);
+                
+               // include "../plugins/comproveedores/inc/listSupplier.php";
+                break;
+            default:
+                self::showGenericSearch($itemtype, $params);
+                self::showList($itemtype, $params);
+        }
       /*self::showGenericSearch($itemtype, $params);
       self::showList($itemtype, $params);*/
       echo "</div>";
@@ -1893,39 +1924,9 @@ class Search {
       $p['addhidden']    = [];
       $p['actionname']   = 'search';
       $p['actionvalue']  = _sx('button', 'Search');
-
+     
       foreach ($params as $key => $val) {
          $p[$key] = $val;
-      }
-
-      if($itemtype=='Supplier'){
-        echo "<script type='text/javascript'>
-
-          $(document).ready(function() {
-
-            for(i=0; i<3; i++){
-              $('[id*=searchrowSupplier]').find('.pointer').click();
-            }
-      
-            $('select[id*=dropdown_criteria_0__field]').val('1').change();
-
-             setTimeout('pruebaAñadir()',500);
-
-          });
-
-          function pruebaAñadir(){
-
-            $('select[id*=dropdown_criteria_1__field]').append($('<option>', {value:300, text:'CIF'}));
-            $('select[id*=dropdown_criteria_2__field]').append($('<option>', {value:301, text:'Proyecto'}));
-            $('select[id*=dropdown_criteria_3__field]').append($('<option>', {value:302, text:'Código Proyecto'}));
-
-            $('select[id*=dropdown_criteria_1__field]').val('300').change();
-            $('select[id*=dropdown_criteria_2__field]').val('301').change();
-            $('select[id*=dropdown_criteria_3__field]').val('302').change();
-
-          }
-
-        </script>";
       }
       
       echo "<form name='searchform$itemtype' method='get' action=\"".$p['target']."\">";
@@ -1952,39 +1953,41 @@ class Search {
                                                             "/pics/deplier_up.png\">";
          echo "</td>";
       }
-
+     
       echo "<td>";
 
       echo "<table class='tab_format' id='$searchcriteriatableid'>";
 
       // Display normal search parameters
+     
       for ($i=0; $i<count($p['criteria']); $i++) {
          $_POST['itemtype'] = $itemtype;
          $_POST['num']      = $i;
+         //var_dump($searchcriteriatableid);
          include(GLPI_ROOT.'/ajax/searchrow.php');
       }
-
+       
       $metanames = [];
       $linked =  self::getMetaItemtypeAvailable($itemtype);
-
+  
       if (is_array($linked) && (count($linked) > 0)) {
          for ($i=0; $i<count($p['metacriteria']); $i++) {
 
             $_POST['itemtype'] = $itemtype;
-            $_POST['num'] = $i;
-            include(GLPI_ROOT.'/ajax/searchmetarow.php');
+            $_POST['num'] = $i;         
+            include(GLPI_ROOT.'/ajax/searchmetarow.php');           
          }
-      }
+      } 
       echo "</table>\n";
       echo "</td>\n";
-
+     
       echo "<td width='150px'>";
       echo "<table width='100%'>";
-
+       
       // Display deleted selection
 
       echo "<tr>";
-
+     
       // Display submit button
       echo "<td width='80' class='center'>";
       echo "<input type='submit' name='".$p['actionname']."' value=\"".$p['actionvalue']."\" class='submit' >";
