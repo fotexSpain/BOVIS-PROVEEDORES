@@ -67,6 +67,7 @@
 			$this->addStandardTab('PluginComproveedoresIntegratedmanagementsystem', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresFinancial', $ong, $options);
 			$this->addStandardTab('PluginComproveedoresUser', $ong, $options);
+                                                $this->addStandardTab('PluginComproveedoresValuation', $ong, $options);
 
 
 			return $ong;

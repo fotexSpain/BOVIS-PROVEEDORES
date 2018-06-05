@@ -322,5 +322,24 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_previousnamescompanies` (
 	UNIQUE (`externalid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
+	`id` int(11) NOT NULL auto_increment,
+	`projecttasks_id` int(11) NOT NULL default '0',
+    `supplier_id` int(11) NOT NULL default '0',
+    `calidad` int(1) NOT NULL default '0',
+    `plazo` int(1) NOT NULL default '0',
+    `costes` int(1) NOT NULL default '0',
+    `cultura` int(1) NOT NULL default '0',
+    `suministros_y_subcontratistas` int(1) NOT NULL default '0',
+    `sys_y_medioambiente` int(1) NOT NULL default '0',
+    
+	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
