@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_previousnamescompanies` (
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
 	`id` int(11) NOT NULL auto_increment,
 	`projecttasks_id` int(11) NOT NULL default '0',
-    `supplier_id` int(11) NOT NULL default '0',
+    `cv_id` int(11) NOT NULL default '0',
     `calidad` int(1) NOT NULL default '0',
     `plazo` int(1) NOT NULL default '0',
     `costes` int(1) NOT NULL default '0',

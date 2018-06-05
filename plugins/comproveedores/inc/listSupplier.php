@@ -94,7 +94,7 @@ $result = $DB->query($query);
 		echo "<td class='center'>".$data['proyecto_nombre']."</td>";
                                      echo "<td class='center'>".$data['paquete_nombre']."</td>";
                                       echo "<td class='center'>".$data['subpaquete_nombre']."</td>";
-                                      if($data['cv']=='1'){
+                                      if(!empty($data['cv'])){
                                            echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
                                       }
                                       else{

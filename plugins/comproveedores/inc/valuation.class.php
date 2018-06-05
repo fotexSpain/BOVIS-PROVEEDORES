@@ -89,14 +89,14 @@
 
 		function showFormItemValuation($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
-
-			$CvId=$item->fields['supplier_id']; 
+                
+			$CvId=$item->fields['id']; 
 			$query2 ="SELECT"
                                                                          . "(SELECT projects_id "
                                                                         . "FROM glpi_projecttasks as paquetes "
                                                                         . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
                                                 . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
-                                                 . "WHERE supplier_id=$CvId";
+                                                 . "WHERE cv_id=$CvId";
                         
 			$result2 = $DB->query($query2);
                                                 
@@ -128,12 +128,12 @@
                                                                                                                                      echo"<br>";
                                                                                                                                     echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
                                                                                                                                 echo"</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'></td>";	
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'></td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'>".$data['calidad']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'>".$data['plazo']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'>".$data['costes']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'>".$data['cultura']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'>".$data['suministros_y_subcontratistas']."</td>";	
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'>".$data['sys_y_medioambiente']."</td>";
 								
                                                                                 }
                                                                         }
@@ -167,14 +167,14 @@
                 
                                 function showFormItem($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
-
-			$CvId=$item->fields['id']; 
+                        
+			$CvId=$item->fields['cv_id']; 
 			$query2 ="SELECT"
                                                                          . "(SELECT projects_id "
                                                                         . "FROM glpi_projecttasks as paquetes "
                                                                         . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
                                                 . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
-                                                 . "WHERE supplier_id=$CvId";
+                                                 . "WHERE cv_id=$CvId";
                         
 			$result2 = $DB->query($query2);
                                                 
@@ -207,12 +207,12 @@
                                                                                                                                      echo"<br>";
                                                                                                                                     echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
                                                                                                                                 echo"</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'></td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'></td>";	
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'></td>";
+												echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'>".$data['calidad']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'>".$data['plazo']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'>".$data['costes']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'>".$data['cultura']."</td>";
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'>".$data['suministros_y_subcontratistas']."</td>";	
+								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'>".$data['sys_y_medioambiente']."</td>";
 								
 						}
                                                                         }
