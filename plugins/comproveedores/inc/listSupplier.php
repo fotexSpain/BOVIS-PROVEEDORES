@@ -65,7 +65,7 @@ if($_GET['cif']!=''){
  }
 
  //eliminamos el ultimo and y ordenamos por proveedor
-$posicion= strpos($where, ' and');
+$posicion= strripos($where, ' and');
 $where = substr($where, 0, $posicion);
 $where=$where." order by proveedores.id desc";
 

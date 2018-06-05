@@ -113,9 +113,7 @@ class Search {
                 </script>";
                 
                 self::showGenericSearch($itemtype, $params);
-                self::showList($itemtype, $params);
-                
-               // include "../plugins/comproveedores/inc/listSupplier.php";
+                include "../plugins/comproveedores/inc/listProject.php";
                 break;
             default:
                 self::showGenericSearch($itemtype, $params);
