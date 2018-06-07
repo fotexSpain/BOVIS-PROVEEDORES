@@ -235,7 +235,22 @@ class CommonGLPI {
       if (self::isLayoutExcludedPage()
           || !self::isLayoutWithMain()
           || !method_exists($this, "showForm")) {
-         $ong[$this->getType().'$main'] = $this->getTypeName(1);
+          
+         //Si estamos en la página Projecttacks que elija entre paquete y subapquete del primer tab, 
+         //sino que entre en las otras páginas por defecto
+         if($this->getType()=='ProjectTask'){
+                //Cambiamos el valor que se mostrara en el primer tab, dependiendo si estamos en un paquete o en un subpaquete
+                if($this->fields['projecttasks_id']==0){
+                    //Paquete
+                    $ong[$this->getType().'$main'] = $this->getTypeName(1);
+                }else{
+                    //SubPaquete
+                    $ong[$this->getType().'$main'] = $this->getTypeName(3);
+                }
+        }else{
+              $ong[$this->getType().'$main'] = $this->getTypeName(1);
+        }
+        
       }
       return $this;
    }

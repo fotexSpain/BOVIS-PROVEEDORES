@@ -106,14 +106,16 @@ class Search {
                         $('[id*=s2id_dropdown_criteria_0__searchtype_]').hide();
                         $('[id*=s2id_dropdown_criteria_1__searchtype_]').hide();
                 
-                        //spansearchtypecriteriaProject1---- input --- size mas tamaño
                         $('[id*=spansearchtypecriteriaProject] input').attr('size','35');
-
+                        
+                        $('[id*=dropdown_criteria_0__field_').attr('disabled','true');
+                        $('[id*=dropdown_criteria_1__field_').attr('disabled','true');
+                        
                      });
                 </script>";
                 
                 self::showGenericSearch($itemtype, $params);
-                include "../plugins/comproveedores/inc/listProject.php";
+                include "../plugins/comproveedores/inc/listProject.php";             
                 break;
             default:
                 self::showGenericSearch($itemtype, $params);

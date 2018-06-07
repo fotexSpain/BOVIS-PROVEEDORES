@@ -64,8 +64,14 @@ class ProjectTask extends CommonDBChild {
 
 
 
-   static function getTypeName($nb = 0) {
-      return _n('Project task', 'Project tasks', $nb);
+   static function getTypeName($nb=0) {
+       
+       if($nb<=1){
+           return _n('Paquete', 'Paquetes', $nb);
+       }else{
+           $nb=$nb-2;
+            return _n('SubPaquete', 'SubPaquetes', $nb);
+       } 
    }
 
 
@@ -923,14 +929,14 @@ class ProjectTask extends CommonDBChild {
    **/
    static function showFor($item) {
       global $DB, $CFG_GLPI;
-
+      
       $ID = $item->getField('id');
-
+      $sin_proveedor='';
       if (!$item->canViewItem()) {
          return false;
       }
 
-      $columns = ['name'             => self::getTypeName(Session::getPluralNumber()),
+      /*$columns = ['name'             => self::getTypeName(Session::getPluralNumber()),
                        'tname'            => __('Type'),
                        'sname'            => __('Status'),
                        'percent_done'     => __('Percent done'),
@@ -938,7 +944,20 @@ class ProjectTask extends CommonDBChild {
                        'plan_end_date'    => __('Planned end date'),
                        'planned_duration' => __('Planned duration'),
                        '_effect_duration' => __('Effective duration'),
-                       'fname'            => __('Father'),];
+                       'fname'            => __('Father'),];*/
+      $columns = ['name_paquete'             =>__('Name') ,
+                       'code'            => __('Código paquete'),
+                       'content'            => __('Description'),
+                       'proveedor_id'     => __('Supplier'),
+                       'proveedor_cif'  => __('CIF'),
+                       'plan_start_date'    => __('Fecha de comienzo'),
+                       'plan_end_date'    => __('Fecha de finalización'),
+                       'state' => __('State'),
+                       'fname'            => __('SubPaquete'),];
+      
+        if(get_class($item)=='ProjectTask'){
+            unset($columns['fname']);
+        }
 
       if (isset($_GET["order"]) && ($_GET["order"] == "DESC")) {
          $order = "DESC";
@@ -1017,10 +1036,29 @@ class ProjectTask extends CommonDBChild {
          $where     .= " AND `namet3`.`items_id` = `glpi_projectstates`.`id` ";
       }
 
-      $query = "SELECT `glpi_projecttasks`.*,
+      $query = "SELECT 
+          
+                        IF(glpi_projecttasks.projecttasks_id!=0 
+                        
+                        or 
+                        
+                        (select (Select count(*) as numero 
+                        from glpi_projecttasks as subpaquetes1 
+                        where paquetes1.id=subpaquetes1.projecttasks_id)
+                         as 'numero' 
+                         from glpi_projecttasks as paquetes1 
+                         where paquetes1.id=glpi_projecttasks.id)=0,
+                         
+                         '1', '0') as 'visualizar',
+                       
+                        IF(glpi_projecttasks.projecttasks_id=0, glpi_projecttasks.name, father.name) as 'name_paquete',
+                       `glpi_projecttasks`.*,
                        `glpi_projecttasktypes`.`name` AS tname,
                        `glpi_projectstates`.`name` AS sname,
                        `glpi_projectstates`.`color`,
+                       `proveedor`.`id` AS proveedor_id, 
+                       `proveedor`.`name` AS proveedor_name, 
+                       `proveedor`.`cif` AS proveedor_cif, 
                        `father`.`name` AS fname,
                        `father`.`id` AS fID
                        $addselect
@@ -1032,6 +1070,10 @@ class ProjectTask extends CommonDBChild {
                    ON (`glpi_projectstates`.`id` = `glpi_projecttasks`.`projectstates_id`)
                 LEFT JOIN `glpi_projecttasks` as father
                    ON (`father`.`id` = `glpi_projecttasks`.`projecttasks_id`)
+                LEFT JOIN `glpi_projecttaskteams` as asig_proveedor
+                   ON (`asig_proveedor`.`projecttasks_id` = `glpi_projecttasks`.`id`)
+                LEFT JOIN `glpi_suppliers` as proveedor
+                   ON (`proveedor`.`id` = `asig_proveedor`.`items_id`)
                 $where
                 ORDER BY $sort $order";
 
@@ -1058,42 +1100,127 @@ class ProjectTask extends CommonDBChild {
             }
             $header .= "</tr>\n";
             echo $header;
-
+            
             while ($data=$DB->fetch_assoc($result)) {
-               Session::addToNavigateListItems('ProjectTask', $data['id']);
-               $rand = mt_rand();
-               echo "<tr class='tab_bg_2'>";
-               echo "<td>";
-               $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
-                         $data['id']."'>".$data['name'].
-                         (empty($data['name'])?"(".$data['id'].")":"")."</a>";
-               echo sprintf(__('%1$s %2$s'), $link,
-                             Html::showToolTip($data['content'],
-                                               ['display' => false,
-                                                     'applyto' => "ProjectTask".$data["id"].$rand]));
-               echo "</td>";
-               $name = !empty($data['transname2'])?$data['transname2']:$data['tname'];
-               echo "<td>".$name."</td>";
-               echo "<td";
-               $statename = !empty($data['transname3'])?$data['transname3']:$data['sname'];
-               echo " style=\"background-color:".$data['color']."\"";
-               echo ">".$statename."</td>";
-               echo "<td>";
-               echo Dropdown::getValueWithUnit($data["percent_done"], "%");
-               echo "</td>";
-               echo "<td>".Html::convDateTime($data['plan_start_date'])."</td>";
-               echo "<td>".Html::convDateTime($data['plan_end_date'])."</td>";
-               echo "<td>".Html::timestampToString($data['planned_duration'], false)."</td>";
-               echo "<td>".Html::timestampToString(self::getTotalEffectiveDuration($data['id']),
-                                                   false)."</td>";
-               echo "<td>";
-               if ($data['projecttasks_id']>0) {
-                  $father = Dropdown::getDropdownName('glpi_projecttasks', $data['projecttasks_id']);
-                  echo "<a id='ProjectTask".$data["projecttasks_id"].$rand."' href='projecttask.form.php?id=".
-                           $data['projecttasks_id']."'>".$father.
-                           (empty($father)?"(".$data['projecttasks_id'].")":"")."</a>";
-               }
-               echo "</td></tr>";
+                
+                //Visualizaremos los Subpaquetes solo en la lista de un paquete especifico, 
+                //en la de proyecto aparecera solo el nombre del subpaquete en la ultima columna
+               if($data["projecttasks_id"]==0 || get_class($item)=='ProjectTask'){
+                    Session::addToNavigateListItems('ProjectTask', $data['id']);
+                    $rand = mt_rand();
+                    
+                        //Visualizamos los paquetes sin proveedor asignado
+                        if($sin_proveedor!=$data["id"]){
+                                echo "<tr class='tab_bg_2 center'>";
+                                echo "<td>";
+                                 $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
+                                 $data['id']."'>".$data['name'].
+                                 (empty($data['name'])?"(".$data['id'].")":"")."</a>";
+                                 echo sprintf(__('%1$s %2$s'), $link,
+                                      Html::showToolTip($data['content'],
+                                                        ['display' => false,
+                                                              'applyto' => "ProjectTask".$data["id"].$rand]));
+
+                                 echo "</td>";
+                                 $name = !empty($data['transname2'])?$data['transname2']:$data['code'];
+                                 echo "<td>".$name."</td>";
+                                 /* echo "<td";
+                                 $statename = !empty($data['transname3'])?$data['transname3']:$data['content'];
+                                 echo " style=\"background-color:".$data['color']."\"";
+                                 echo ">".$statename."</td>";*/
+                                 echo "<td>".$data['content']."</td>";
+                                 echo "<td>";
+                                 echo "SIN PROVEEDOR";
+                                 echo "</td>";
+                                 echo "<td></td>";
+                                 echo "<td>".Html::convDateTime($data['plan_start_date'])."</td>";
+                                 echo "<td>".Html::convDateTime($data['plan_end_date'])."</td>";
+                                 echo "<td>".$data['sname']."</td>";
+                                 
+                                 $query2="SELECT `glpi_projecttasks`.* 
+                                    FROM `glpi_projecttasks`
+                                    LEFT JOIN `glpi_projecttaskteams` as asig_proveedor ON (`asig_proveedor`.`projecttasks_id` = glpi_projecttasks.id) 
+                                    WHERE `glpi_projecttasks`.`projecttasks_id`=".$data["id"]." and asig_proveedor.items_id is NULL";
+                                
+                                echo "<td>";
+                                if ($result2 = $DB->query($query2)) {
+
+                                         while ($data2=$DB->fetch_assoc($result2)) {
+                                             
+                                            
+                                                $father = Dropdown::getDropdownName('glpi_projecttasks', $data2['id']);
+                                                echo "<a id='ProjectTask".$data2["id"].$rand."' href='projecttask.form.php?id=".
+                                                         $data2['id']."'>".$father.
+                                                (empty($father)?"(".$data2['id'].")":"")."</a>";
+                                                echo "<br>";
+                                                echo "<br>";
+                                         }
+                                         
+                                }
+                                echo "</td>";
+                            
+                                $sin_proveedor=$data["id"];
+                         }
+                
+                        echo "<tr class='tab_bg_2 center'>";
+                        echo "<td>";
+                        $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
+                        $data['id']."'>".$data['name'].
+                        (empty($data['name'])?"(".$data['id'].")":"")."</a>";
+                        echo sprintf(__('%1$s %2$s'), $link,
+                        Html::showToolTip($data['content'],
+                        ['display' => false,
+                         'applyto' => "ProjectTask".$data["id"].$rand]));
+
+                        echo "</td>";
+                        $name = !empty($data['transname2'])?$data['transname2']:$data['code'];
+                        echo "<td>".$name."</td>";
+                         /* echo "<td";
+                        $statename = !empty($data['transname3'])?$data['transname3']:$data['content'];
+                        echo " style=\"background-color:".$data['color']."\"";
+                        echo ">".$statename."</td>";*/
+                        echo "<td>".$data['content']."</td>";
+                        echo "<td>";
+                        echo $data["proveedor_name"];
+                        echo "</td>";
+                        echo "<td>".$data['proveedor_cif']."</td>";
+                        echo "<td>".Html::convDateTime($data['plan_start_date'])."</td>";
+                        echo "<td>".Html::convDateTime($data['plan_end_date'])."</td>";
+                        echo "<td>".$data['sname']."</td>";
+                                 
+                        //Visualizamos los subpaquetes
+                        if(get_class($item)!='ProjectTask'){
+                           
+                                if ($data['projecttasks_id']==0) {
+                                 
+                                        $query2="SELECT `glpi_projecttasks`.* 
+                                            FROM `glpi_projecttasks`
+                                            LEFT JOIN `glpi_projecttaskteams` as asig_proveedor ON (`asig_proveedor`.`projecttasks_id` = glpi_projecttasks.id) 
+                                            WHERE `glpi_projecttasks`.`projecttasks_id`=".$data["id"]." and asig_proveedor.items_id is NOT NULL and asig_proveedor.items_id=".$data["proveedor_id"];
+
+                                        echo "<td style='padding:0px;'>";
+                                        
+                                        if ($result2 = $DB->query($query2)) {
+                                              
+                                                 while ($data2=$DB->fetch_assoc($result2)) {
+                                                        
+                                                            echo "<div style='border-bottom:1px solid #cccccc; border-top:1px solid #cccccc; padding-top:15px; padding-bottom:15px;'>";
+                                                            $father = Dropdown::getDropdownName('glpi_projecttasks', $data2['id']);
+                                                            echo "<a id='ProjectTask".$data2["id"].$rand."' href='projecttask.form.php?id=".
+                                                                     $data2['id']."'>".$father.
+                                                            (empty($father)?"(".$data2['id'].")":"")."</a>";
+                                                           echo "</div>";
+                                                          
+                                                 }
+                                              
+                                        }
+                                        echo "</td>";
+                                }
+                             
+                        echo"</tr>";
+                                                
+                        }           
+                }
             }
             echo $header;
             echo "</table>\n";
@@ -1110,7 +1237,6 @@ class ProjectTask extends CommonDBChild {
 
 
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
-
       $nb = 0;
       switch ($item->getType()) {
          case 'Project' :
@@ -1118,14 +1244,18 @@ class ProjectTask extends CommonDBChild {
                $nb = countElementsInTable($this->getTable(),
                                           ['projects_id' => $item->getID()]);
             }
-            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
+            return self::createTabEntry($this->getTypeName(0), $nb);
 
          case __CLASS__ :
             if ($_SESSION['glpishow_count_on_tabs']) {
                $nb = countElementsInTable($this->getTable(),
                                           ['projecttasks_id' => $item->getID()]);
             }
-            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
+            
+           //si entramos en un subpaquete que no aparecta el tab para añadir paquetes al subpaquete
+            if($item->fields['projecttasks_id']==0){
+                return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
+            }
       }
       return '';
    }
