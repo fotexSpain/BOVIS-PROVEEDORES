@@ -1110,7 +1110,7 @@ class ProjectTask extends CommonDBChild {
                     $rand = mt_rand();
                     
                         //Visualizamos los paquetes sin proveedor asignado
-                        if($sin_proveedor!=$data["id"]){
+                        if($sin_proveedor!=$data["id"] && $data["projecttasks_id"]==0){
                                 echo "<tr class='tab_bg_2 center'>";
                                 echo "<td>";
                                  $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
