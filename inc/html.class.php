@@ -1323,11 +1323,11 @@ class Html {
                                              'Planning', 'Stat', 'TicketRecurrent'];
 
       $menu['management']['title']   = __('Management');
-      $menu['management']['types']   = ['SoftwareLicense','Budget', 'Supplier', 'Contact', 'Contract',
+      $menu['management']['types']   = ['Project','SoftwareLicense','Budget', 'Supplier', 'Contact', 'Contract',
                                         'Document', 'Line', 'Certificate'];
 
       $menu['tools']['title']        = __('Tools');
-      $menu['tools']['types']        = ['Project', 'Reminder', 'RSSFeed', 'KnowbaseItem',
+      $menu['tools']['types']        = ['Reminder', 'RSSFeed', 'KnowbaseItem',
                                              'ReservationItem', 'Report', 'MigrationCleaner',
                                              'SavedSearch'];
 
@@ -6029,7 +6029,7 @@ class Html {
          }
       }
 
-     /* echo"<pre>";
+     /*echo"<pre>";
 
       var_dump($menu);
       echo"</pre>";
