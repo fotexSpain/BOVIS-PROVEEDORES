@@ -203,6 +203,8 @@ class Project extends CommonDBTM {
          $menu['project']['options']['task']['title'] = __('My tasks');
          $menu['project']['options']['task']['page']  = ProjectTask::getSearchURL(false);
          return $menu;
+         var_dump($menu);
+         exit();
       }
       return false;
    }

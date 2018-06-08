@@ -38,16 +38,16 @@ if(!empty($_GET['criteria'])){
 
     //nombre del proyectos
     if(!empty($_GET['criteria'][0]['value'])){
-         $where=$where."UPPER(proyectos.name) LIKE UPPER('%".$_GET['criteria'][0]['value']."%') and ";
+         $where=$where."UPPER(proyectos.name) LIKE UPPER('%".$_GET['criteria'][0]['value']."%') or ";
      }
 
      //código del proyecto
      if(!empty($_GET['criteria'][1]['value'])){
-          $where=$where."proyectos.code='".$_GET['criteria'][1]['value']."' and ";
+          $where=$where."proyectos.code='".$_GET['criteria'][1]['value']."' or ";
      }
 
      //eliminamos el ultimo and y ordenamos por proveedor
-    $posicion= strripos($where, ' and ');
+    $posicion= strripos($where, ' or ');
     $where = substr($where, 0, $posicion);
 }
 

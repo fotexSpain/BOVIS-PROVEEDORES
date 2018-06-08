@@ -198,7 +198,7 @@ class ProjectTask extends CommonDBChild {
 
       $ong = [];
       $this->addDefaultFormTab($ong);
-      $this->addStandardTab(__CLASS__, $ong, $options);
+      $this->addStandardTab('PluginComproveedoresSubpaquete', $ong, $options);
       $this->addStandardTab('ProjectTaskTeam', $ong, $options);
       $this->addStandardTab('Document_Item', $ong, $options);
       $this->addStandardTab('ProjectTask_Ticket', $ong, $options);
@@ -952,8 +952,7 @@ class ProjectTask extends CommonDBChild {
                        'proveedor_cif'  => __('CIF'),
                        'plan_start_date'    => __('Fecha de comienzo'),
                        'plan_end_date'    => __('Fecha de finalización'),
-                       'state' => __('State'),
-                       'fname'            => __('SubPaquete'),];
+                       'state' => __('State')];
       
         if(get_class($item)=='ProjectTask'){
             unset($columns['fname']);
@@ -1110,7 +1109,7 @@ class ProjectTask extends CommonDBChild {
                     $rand = mt_rand();
                     
                         //Visualizamos los paquetes sin proveedor asignado
-                        if($sin_proveedor!=$data["id"] && $data["projecttasks_id"]==0){
+                       /* if($sin_proveedor!=$data["id"] && $data["projecttasks_id"]==0){
                                 echo "<tr class='tab_bg_2 center'>";
                                 echo "<td>";
                                  $link = "<a id='ProjectTask".$data["id"].$rand."' href='projecttask.form.php?id=".
@@ -1128,7 +1127,7 @@ class ProjectTask extends CommonDBChild {
                                  $statename = !empty($data['transname3'])?$data['transname3']:$data['content'];
                                  echo " style=\"background-color:".$data['color']."\"";
                                  echo ">".$statename."</td>";*/
-                                 echo "<td>".$data['content']."</td>";
+                                 /*echo "<td>".$data['content']."</td>";
                                  echo "<td>";
                                  echo "SIN PROVEEDOR";
                                  echo "</td>";
@@ -1160,7 +1159,7 @@ class ProjectTask extends CommonDBChild {
                                 echo "</td>";
                             
                                 $sin_proveedor=$data["id"];
-                         }
+                         }*/
                 
                         echo "<tr class='tab_bg_2 center'>";
                         echo "<td>";
@@ -1189,7 +1188,7 @@ class ProjectTask extends CommonDBChild {
                         echo "<td>".$data['sname']."</td>";
                                  
                         //Visualizamos los subpaquetes
-                        if(get_class($item)!='ProjectTask'){
+                       /* if(get_class($item)!='ProjectTask'){
                            
                                 if ($data['projecttasks_id']==0) {
                                  
@@ -1219,7 +1218,7 @@ class ProjectTask extends CommonDBChild {
                              
                         echo"</tr>";
                                                 
-                        }           
+                        }         */  
                 }
             }
             echo $header;
