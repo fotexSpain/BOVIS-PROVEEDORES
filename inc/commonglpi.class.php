@@ -239,14 +239,31 @@ class CommonGLPI {
          //Si estamos en la página Projecttacks que elija entre paquete y subapquete del primer tab, 
          //sino que entre en las otras páginas por defecto
          if($this->getType()=='ProjectTask'){
-                //Cambiamos el valor que se mostrara en el primer tab, dependiendo si estamos en un paquete o en un subpaquete
-                if($this->fields['projecttasks_id']==0){
-                    //Paquete
-                    $ong[$this->getType().'$main'] = $this->getTypeName(1);
-                }else{
-                    //SubPaquete
-                    $ong[$this->getType().'$main'] = $this->getTypeName(3);
-                }
+             
+                // si existe $this->fields['projecttasks_id'] es que estamos en el show de un paquete/Susbpaquete,
+                //sino existe, estamos creando un nuevo paquete/subpaquete
+               if(isset($this->fields['projecttasks_id'])){
+                   
+                        //Cambiamos el valor que se mostrara en el primer tab, dependiendo si estamos en un paquete o en un subpaquete
+                        if($this->fields['projecttasks_id']==0){
+                            //Paquete
+                            $ong[$this->getType().'$main'] = $this->getTypeName(1);
+                        }else{
+                            //SubPaquete
+                            $ong[$this->getType().'$main'] = $this->getTypeName(3);
+                        }
+               }else{
+                   
+                        //Cambiamos el valor que se mostrara en la caberera del crear paquete/Subpaquete
+                       if($_GET['projecttasks_id']==''){
+                            //Paquete
+                            $ong[$this->getType().'$main'] = $this->getTypeName(1);
+                       }else{
+                           //SubPaquete
+                           $ong[$this->getType().'$main'] = $this->getTypeName(3);
+                       }
+               }
+            
         }else{
               $ong[$this->getType().'$main'] = $this->getTypeName(1);
         }
@@ -871,7 +888,17 @@ class CommonGLPI {
          echo Toolbox::substr($glpilisttitle, 0, 100)."...";
          echo "</a></td>";
 
-         $name = $this->getTypeName(1);
+         //Diferenciamos entre paquete y subpaquete en la cabecera de la página ProjectTask
+         if($this->getType()=='ProjectTask'){
+                if($this->fields['projecttasks_id']==0){
+                    $name = $this->getTypeName(1);
+                }else{
+                    $name = $this->getTypeName(3);
+                }
+             }else{
+                 $name = $this->getTypeName(1);
+             }
+        // $name = $this->getTypeName(1);
          if (isset($this->fields['id']) && ($this instanceof CommonDBTM)) {
             $name = sprintf(__('%1$s - %2$s'), $name, $this->getName());
             if ($_SESSION['glpiis_ids_visible'] || empty($name)) {

@@ -2437,17 +2437,39 @@ class CommonDBTM extends CommonGLPI {
                ]
             );
          } else if ($this->isNewID($ID)) {
-            $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
-            printf(__('%1$s - %2$s'), __('New item'), $nametype);
+             
+               //Diferenciamos entre paquete y subpaquete de la cabecera de la página ProjectTask cuando creamos uno nuevo
+              if($this->getType()=='ProjectTask'){
+                if($this->fields['projecttasks_id']==0){
+                     $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+                }else{
+                     $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(3);
+                }
+             }else{
+                 $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+             }
+            //$nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+            printf(__('%1$s - %2$s'), __('New item'), $nametype);   
          } else {
-            $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+             
+             //Diferenciamos entre paquete y subpaquete de la cabecera de la página ProjectTask cuando visualizamos uno especifico
+             if($this->getType()=='ProjectTask'){
+                if($this->fields['projecttasks_id']==0){
+                     $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+                }else{
+                     $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(3);
+                }
+             }else{
+                 $nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
+             }
+            //$nametype = $params['formtitle'] !== null ? $params['formtitle'] : $this->getTypeName(1);
             if (!$params['noid'] && ($_SESSION['glpiis_ids_visible'] || empty($nametype))) {
                //TRANS: %1$s is the Itemtype name and $2$d the ID of the item
                $nametype = sprintf(__('%1$s - ID %2$d'), $nametype, $ID);
             }
-            echo $nametype;
+            echo $nametype;  
          }
-         $entityname = '';
+         $entityname = '';      
          if (isset($this->fields["entities_id"])
             && Session::isMultiEntitiesMode()
             && $this->isEntityAssign()) {
