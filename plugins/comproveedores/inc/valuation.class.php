@@ -111,7 +111,7 @@
 					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Plazo')."</th>";
 					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Costes')."</th>";
 					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Cultura')."</th>";
-					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Suministros y subcontratistas')."</th>";
+					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Suministros y Subcontratistas')."</th>";
                                                                                 echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SyS y Medioambiente')."</th>";
 					echo "</tr>";
                                                                         
@@ -128,12 +128,13 @@
                                                                                                                                      echo"<br>";
                                                                                                                                     echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
                                                                                                                                 echo"</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'>".$data['calidad']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'>".$data['plazo']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'>".$data['costes']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'>".$data['cultura']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'>".$data['suministros_y_subcontratistas']."</td>";	
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'>".$data['sys_y_medioambiente']."</td>";
+								echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['calidad'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['plazo'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['costes'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['cultura'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['suministros_y_subcontratistas'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['sys_y_medioambiente'].".png></td>";
+				
 								
                                                                                 }
                                                                         }
@@ -143,19 +144,20 @@
                                                                 echo "<br><br>";
                                                                 echo "<div align='center'><table>";
                                                                     echo "<tr>";
-                                                                        echo "<td style='width: 50px; height:40px; background-color:#FF0000'></td>";
+                                                                    
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_1.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación MALA</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#FF8000'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_2.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación POBRE</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#FFFF00'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_3.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación ACEPTABLE</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#64FE2E'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_4.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación BUENA</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#04B404'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_5.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación EXCELENTE</td>";
                                                                         
                                                                     echo "</tr>";
@@ -207,12 +209,13 @@
                                                                                                                                      echo"<br>";
                                                                                                                                     echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
                                                                                                                                 echo"</td>";
-												echo "<td class='center' style='background-color:".$this->colorValoracion($data['calidad'])."; border: 1px solid #BDBDDB;'>".$data['calidad']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['plazo'])."; border: 1px solid #BDBDDB;'>".$data['plazo']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['costes'])."; border: 1px solid #BDBDDB;'>".$data['costes']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['cultura'])."; border: 1px solid #BDBDDB;'>".$data['cultura']."</td>";
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['suministros_y_subcontratistas'])."; border:1px solid #BDBDDB;'>".$data['suministros_y_subcontratistas']."</td>";	
-								echo "<td class='center' style='background-color:".$this->colorValoracion($data['sys_y_medioambiente'])."; border: 1px solid #BDBDDB;'>".$data['sys_y_medioambiente']."</td>";
+												echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['calidad'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['plazo'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['costes'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['cultura'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['suministros_y_subcontratistas'].".png></td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['sys_y_medioambiente'].".png></td>";
+				
 								
 						}
                                                                         }
@@ -222,19 +225,19 @@
                                                                 echo "<br><br>";
                                                                 echo "<div align='center'><table>";
                                                                     echo "<tr>";
-                                                                        echo "<td style='width: 50px; height:40px; background-color:#FF0000'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_1.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación MALA</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#FF8000'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_2.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación POBRE</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#FFFF00'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_3.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación ACEPTABLE</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#64FE2E'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_4.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación BUENA</td>";
                                                                         
-                                                                        echo "<td style='width: 50px; height:50px; background-color:#04B404'></td>";
+                                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_5.png></td>";                                                            
                                                                         echo "<td  style='width: 50px;'>Calificación EXCELENTE</td>";
                                                                         
                                                                     echo "</tr>";
@@ -243,40 +246,7 @@
 				
 					
 		}
-                
-                                function colorValoracion($num){
-                                    $color;
-                                    switch ($num) {
-                                        case 1:
-
-                                            $color='#FF0000';
-                                            break;
-                                        case 2:
-
-                                             $color='#FF8000';
-                                            break;
-                                        case 3:
-
-                                             $color='#FFFF00';
-                                            break;
-                                        case 4:
-
-                                             $color='#64FE2E';
-                                            break;
-                                        case 5:
-
-                                             $color='#04B404';
-                                            break;
-
-                                        default:
-                                              $color='#FFFFFF';
-                                            break;
-                                    }
-                                    
-                                    return $color;
-                                }
-
-
+                       
 		function showFormNoCV($ID, $options=[]) {
 			//Aqui entra cuando no tien gestionado el curriculum
 

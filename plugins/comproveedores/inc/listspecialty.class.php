@@ -135,7 +135,7 @@ class PluginComproveedoresListspecialty extends CommonDBTM{
 
 			echo"</tr>";
 
-			echo"<td><input type='submit' class='submit' name='add_tipo_especialidad' value='AÑADIR' /></td>";
+			echo"<td><input type='submit' class='submit' name='add' value='AÑADIR' /></td>";
 			echo"<tr class='tab_bg_1'>";
 			echo"</tr>";
 			echo"</tbody>";

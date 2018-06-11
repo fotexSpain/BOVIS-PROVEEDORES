@@ -24,6 +24,7 @@
 
 	
 	if(isset($_POST['add'])){
+            
 		$PluginlistSpecialty->check(-1, CREATE, $_POST);
 
 		$newID = $PluginlistSpecialty->add($_POST);
