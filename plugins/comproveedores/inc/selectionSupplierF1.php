@@ -83,7 +83,7 @@ echo"<table class='tab_cadre_fixe'>";
         
         
             echo"<tr class='tab_bg_1 center'>";
-		echo "<td colspan='6'onclick='seleccionProvedorFiltro2(".$_GET['paquete_id'].")'><span  class='vsubmit' style='margin-right: 15px;'>SIGUIENTE</span></td>";
+		echo "<td colspan='6'onclick='seleccionProvedorFiltro(".$_GET['paquete_id'].")'><span  class='vsubmit' style='margin-right: 15px;'>SIGUIENTE</span></td>";
             echo "</tr>";
 			
 echo "</table>";
@@ -127,7 +127,7 @@ function consultaAjax(){
 
 	}
         
-        function seleccionProvedorFiltro2(paquete_id){
+        function seleccionProvedorFiltro(paquete_id){
         
             var d = new Date();
             var year = d.getFullYear();

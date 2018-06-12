@@ -112,11 +112,12 @@ $result = $DB->query($query);
                    echo "</tr>";
 
 	while ($data=$DB->fetch_array($result)) {
-                            
-                        if($data["name"]!=NULL){
-                                                   
+                                                                              
                             echo "<tr class='tab_bg_2'>";
-                             echo "<td class='center' style=' border: 1px solid #BDBDDB;'><input type='checkbox'/></td>";
+                                    echo "<td  class='center' style=' border: 1px solid #BDBDDB;'>";
+                                                echo"<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";
+                                    echo"</td>";
+                                    
                                     echo "<td class='center' style=' border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["supplier_id"]."'>".$data["name"]."</a></td>";   
                                     if(!empty($data['calidad'])){
                                           echo "<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['especialidad']."</td>";
@@ -168,7 +169,7 @@ $result = $DB->query($query);
                                     }
 
                            echo "</tr>";
-                        }
+                        
 	}
 	echo"<br/>";
 	echo "</table></div></br>";

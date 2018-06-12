@@ -55,7 +55,83 @@
 		
 		Html::back();
 
-	} else {
+	} else if (isset($_GET["actualizar_lista"])) {
+            
+                        $quitar_proveedores='';
+		
+                        $query ="select proveedor.id
+                                    from glpi_suppliers as proveedor
+                                    left join glpi_plugin_comproveedores_experiences as experiencia on proveedor.cv_id=experiencia.cv_id";
+                        $where='';
+                        
+                        //Todos los parametros
+                        if($_GET['nombre_proveedor']!='' 
+                                || !empty($_GET['arrayProveedoresElegidos'])
+                                || !empty($_GET['experiencia_id'])){
+                                $where=" where ";
+                        }   
+                        
+                        if($_GET['nombre_proveedor']!=''){
+                            $where=$where."UPPER(proveedor.name) NOT  LIKE UPPER('%".$_GET['nombre_proveedor']."%') and ";
+                            //$where=$where."UPPER(proveedor.name) NOT  LIKE UPPER('%cons%') and ";
+                        }
+                        
+                          //añadimos a la consulta los id de los proveedores elegidos
+                       if(!empty($_GET['experiencia_id'])){
+                           
+                            $experiencias_elegidas='';
+                                                                
+                            foreach ($_GET['experiencia_id'] as $value) {
+                                if(!empty($value)){
+                                     $experiencias_elegidas=$experiencias_elegidas.$value.",";
+                                }
+                            }
+                            $experiencias_elegidas = substr($experiencias_elegidas, 0, -1);
+                            $where=$where."experiencia.plugin_comproveedores_experiencestypes_id NOT IN(".$experiencias_elegidas.") and ";
+                            
+                       }
+                        
+                            //añadimos a la consulta los id de los proveedores elegidos
+                       if(!empty($_GET['arrayProveedoresElegidos'])){
+                           
+                            $proveedores_elegidos='';
+                                                                
+                            foreach ($_GET['arrayProveedoresElegidos'] as $value) {
+                                if(!empty($value)){
+                                     $proveedores_elegidos=$proveedores_elegidos.$value.",";
+                                }
+                            }
+                            $proveedores_elegidos = substr($proveedores_elegidos, 0, -1);
+                            $where=$where."proveedor.id in (".$proveedores_elegidos.") and ";
+                            
+                       }
+                       
+                        $posicion= strripos($where, ' and');
+                        $where = substr($where, 0, $posicion);
+                            
+                        $query=$query.$where;
+                        
+                       $result = $DB->query($query);
+		
+                        while ($data=$DB->fetch_array($result)) {
+                           if(!empty($data['id'])){
+		$quitar_proveedores=$quitar_proveedores.$data['id'].",";
+                           }
+                        }
+                        $quitar_proveedores = substr($quitar_proveedores, 0, -1);
+                        //retornamos  los ids
+                        echo $quitar_proveedores;
+                        
+                        
+                        /*$arrayjjj=$_GET['arrayProveedoresElegidos'];
+                       $quitar_proveedores='';
+                                                                
+                        foreach ($arrayjjj as $value) {
+                            $quitar_proveedores=$quitar_proveedores.$value.",";
+                        }
+                        echo $quitar_proveedores;
+                        echo $query;*/
+	}else {
 		$PluginSelectionSupplier->checkGlobal(READ);
 
 		$plugin = new Plugin();
