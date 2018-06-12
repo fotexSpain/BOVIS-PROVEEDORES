@@ -27,6 +27,8 @@ echo"<table class='tab_cadre_fixe'>";
             echo "<td>";
                 Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")));
             echo "</td>";
+            echo "<td style='text-align:left'>x1000€</td>";
+               
         echo "</tr>";
 
 	echo"<tr class='tab_bg_1 center'>";
@@ -39,6 +41,7 @@ echo"<table class='tab_cadre_fixe'>";
             echo "<td>";
                 Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-1));
             echo "</td>";
+            echo "<td style='text-align:left'>x1000€</td>";
 	echo "</tr>";
         
         echo"<tr class='tab_bg_1 center'>";
@@ -59,6 +62,7 @@ echo"<table class='tab_cadre_fixe'>";
             echo "<td>";
                 Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-2));
             echo "</td>";
+            echo "<td style='text-align:left'>x1000€</td>";
 	echo "</tr>";
         
         echo"<tr class='tab_bg_1 center'>";

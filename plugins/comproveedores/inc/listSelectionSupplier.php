@@ -5,7 +5,6 @@ use Glpi\Event;
 GLOBAL $DB,$CFG_GLPI;
 
 $where='';
-$where2='';
 
 //comprobamos que se a enviado algún filtro de busqueda
 foreach ($_GET as $value) {
@@ -21,26 +20,58 @@ if($_GET['nombre_proveedor']!=''){
 if(isset($_GET['especialidad_id'])){
      $where=$where."especialidad.id='".$_GET['especialidad_id']."' and ";
  }
- /*if($_GET['nombre_proyecto']!=''){
-        $where=$where."proyectos.name='".$_GET['nombre_proyecto']."' and ";
+        //Facturación año actual
+ if($_GET['facturacion_year_1']!=''){
+     
+        //quitamos los posible puntos y añadimos los 3 ceros (x1000) 
+        $_GET['facturacion_year_1']=str_replace('.', '', $_GET['facturacion_year_1']);
+        $_GET['facturacion_year_1']=$_GET['facturacion_year_1'].'000';
+        
+        $where=$where." ( select facturacion1.facturacion 
+        from  glpi_plugin_comproveedores_annualbillings as facturacion1 
+        left join glpi_suppliers as proveedor1
+        on proveedor1.cv_id=facturacion1.cv_id 
+        where YEAR(anio)=YEAR(now()) and proveedor1.id=proveedor.id )=".$_GET['facturacion_year_1']." and ";
  }
- if($_GET['codigo_proyecto']!=''){
-      $where=$where."proyectos.code='".$_GET['codigo_proyecto']."' and ";
- }*/
+        //Facturación año actual-1
+ if($_GET['facturacion_year_2']!=''){
+     
+        //quitamos los posible puntos y añadimos los 3 ceros (x1000) 
+      $_GET['facturacion_year_2']=str_replace('.', '', $_GET['facturacion_year_2']);
+      $_GET['facturacion_year_2']=$_GET['facturacion_year_2'].'000';
+     
+      $where=$where." ( select facturacion1.facturacion 
+        from  glpi_plugin_comproveedores_annualbillings as facturacion1 
+        left join glpi_suppliers as proveedor1
+        on proveedor1.cv_id=facturacion1.cv_id 
+        where YEAR(anio)=YEAR(now())-1 and proveedor1.id=proveedor.id )=".$_GET['facturacion_year_2']." and ";
+ }
+        //Facturación año actual-2
+ if($_GET['facturacion_year_3']!=''){
+     
+       //quitamos los posible puntos y añadimos los 3 ceros (x1000) 
+      $_GET['facturacion_year_3']=str_replace('.', '', $_GET['facturacion_year_3']);
+      $_GET['facturacion_year_3']=$_GET['facturacion_year_3'].'000';
+     
+      $where=$where." ( select facturacion1.facturacion 
+        from  glpi_plugin_comproveedores_annualbillings as facturacion1 
+        left join glpi_suppliers as proveedor1
+        on proveedor1.cv_id=facturacion1.cv_id 
+        where YEAR(anio)=YEAR(now())-2 and proveedor1.id=proveedor.id )=".$_GET['facturacion_year_3']." and ";
+ }
 
  //eliminamos el ultimo and y ordenamos por proveedor
 $posicion= strripos($where, ' and');
 $where = substr($where, 0, $posicion);
-//$where=$where." order by proveedor.id desc";
+$where=$where." group by proveedor.name order by proveedor.name desc";
 
-//añadimos el where a la consulta
-
+//Creamos la consulta y añadimos el where a la consulta
 $query ="select 
 proveedor.id as supplier_id,
 proveedor.name, 
 GROUP_CONCAT(distinct especialidad.name SEPARATOR '\n')  as especialidad, 
 facturacion.facturacion, 
-1 as existe_cv_id,
+proveedor.cv_id,
 ROUND(Sum(valoracion.calidad)/count(valoracion.calidad)) as calidad, 
 ROUND(Sum(valoracion.plazo)/count(valoracion.plazo)) as plazo,
 ROUND(Sum(valoracion.costes)/count(valoracion.costes)) as costes, 
@@ -56,36 +87,6 @@ LEFT JOIN glpi_plugin_comproveedores_listspecialties as lista_especialidades
 on lista_especialidades.cv_id=proveedor.cv_id
 LEFT JOIN glpi_plugin_comproveedores_specialties as especialidad 
 on especialidad.id=lista_especialidades.plugin_comproveedores_specialties_id ".$where;
-
-if(!isset($_GET['esperiencia_id']) && 
-        empty($_GET['facturacion_year_1']) && 
-        empty($_GET['facturacion_year_2']) && 
-        empty($_GET['facturacion_year_3'])){
-    
-    if($_GET['nombre_proveedor']!=''){
-        $where2="and UPPER(proveedor.name) LIKE UPPER('%".$_GET['nombre_proveedor']."%')";
-    }
-    
-    $query =$query." Union 
-    select 
-    proveedor.id as supplier_id,
-    proveedor.name, 
-    null as especialidad,
-    null as facturacion,
-    0 as existe_cv_id,
-    null as calidad, 
-    null as plazo,
-    null as costes, 
-    null as cultura, 
-    null as suministros_y_subcontratistas, 
-    null as sys_y_medioambiente
-    from glpi_suppliers as proveedor 
-    where cv_id is null ".$where2;
-    
-    
-}
-
-echo $query;
 
 $result = $DB->query($query);
 
@@ -122,7 +123,7 @@ $result = $DB->query($query);
                                     }else{
                                           echo "<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
-                                    if(!empty($data['existe_cv_id'])){
+                                    if(!empty($data['cv_id'])){
                                             echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
                                     }
                                     else{
