@@ -41,7 +41,7 @@
 		$_POST['fecha_fin']=date('Y-m-d H:i:s');
 		$PluginSelectionSupplier->check($_POST['id'], DELETE);
 		$PluginSelectionSupplier->delete($_POST);
-		//Html::redirect($CFG_GLPI["root_doc"]."/plugins/comproveedores/front/cv.form.php");
+		
 		Html::back();
 
 	} else if (isset($_POST["restore"])) {
@@ -57,9 +57,9 @@
 
 	} else if (isset($_GET["actualizar_lista"])) {
             
-                        $quitar_proveedores='';
+                        $proveedores_aptos='';
 		
-                        $query ="select proveedor.id
+                        $query ="select distinct proveedor.id
                                     from glpi_suppliers as proveedor
                                     left join glpi_plugin_comproveedores_experiences as experiencia on proveedor.cv_id=experiencia.cv_id";
                         $where='';
@@ -67,16 +67,22 @@
                         //Todos los parametros
                         if($_GET['nombre_proveedor']!='' 
                                 || !empty($_GET['arrayProveedoresElegidos'])
-                                || !empty($_GET['experiencia_id'])){
+                                || !empty($_GET['experiencia_id'])
+                                || !empty($_GET['intervencion_bovis'])
+                                || !empty($_GET['bim'])
+                                || !empty($_GET['breeam'])
+                                || !empty($_GET['leed'])
+                                || !empty($_GET['otros_certificados'])){
+                            
                                 $where=" where ";
                         }   
                         
                         if($_GET['nombre_proveedor']!=''){
-                            $where=$where."UPPER(proveedor.name) NOT  LIKE UPPER('%".$_GET['nombre_proveedor']."%') and ";
-                            //$where=$where."UPPER(proveedor.name) NOT  LIKE UPPER('%cons%') and ";
+                            
+                            $where=$where."UPPER(proveedor.name)  LIKE UPPER('%".$_GET['nombre_proveedor']."%') and ";
                         }
                         
-                          //añadimos a la consulta los id de los proveedores elegidos
+                          //añadimos a la consulta el tipo de experiencia
                        if(!empty($_GET['experiencia_id'])){
                            
                             $experiencias_elegidas='';
@@ -87,7 +93,32 @@
                                 }
                             }
                             $experiencias_elegidas = substr($experiencias_elegidas, 0, -1);
-                            $where=$where."experiencia.plugin_comproveedores_experiencestypes_id NOT IN(".$experiencias_elegidas.") and ";
+                            $where=$where."experiencia.plugin_comproveedores_experiencestypes_id IN(".$experiencias_elegidas.") and ";
+                            
+                       }
+                        if(!empty($_GET['intervencion_bovis'])){
+                         
+                            $where=$where."experiencia.intervencion_bovis=".$_GET['intervencion_bovis']." and ";
+                            
+                       }
+                        if(!empty($_GET['bim'])){
+                         
+                            $where=$where."experiencia.bim=".$_GET['bim']." and ";
+                            
+                       }
+                        if(!empty($_GET['breeam'])){
+                         
+                            $where=$where."experiencia.breeam=".$_GET['breeam']." and ";
+                            
+                       }
+                        if(!empty($_GET['leed'])){
+                         
+                            $where=$where."experiencia.leed=".$_GET['leed']." and ";
+                            
+                       }
+                        if(!empty($_GET['otros_certificados'])){
+                         
+                            $where=$where."experiencia.otros_certificados=".$_GET['otros_certificados']." and ";
                             
                        }
                         
@@ -115,22 +146,14 @@
 		
                         while ($data=$DB->fetch_array($result)) {
                            if(!empty($data['id'])){
-		$quitar_proveedores=$quitar_proveedores.$data['id'].",";
+		$proveedores_aptos=$proveedores_aptos.$data['id'].",";
                            }
                         }
-                        $quitar_proveedores = substr($quitar_proveedores, 0, -1);
+                        $proveedores_aptos = substr($proveedores_aptos, 0, -1);
                         //retornamos  los ids
-                        echo $quitar_proveedores;
+                        echo $proveedores_aptos;
                         
-                        
-                        /*$arrayjjj=$_GET['arrayProveedoresElegidos'];
-                       $quitar_proveedores='';
-                                                                
-                        foreach ($arrayjjj as $value) {
-                            $quitar_proveedores=$quitar_proveedores.$value.",";
-                        }
-                        echo $quitar_proveedores;
-                        echo $query;*/
+                      
 	}else {
 		$PluginSelectionSupplier->checkGlobal(READ);
 

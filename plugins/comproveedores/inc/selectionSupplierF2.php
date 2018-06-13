@@ -119,13 +119,48 @@ function consultaAjax(){
                                 experiencias_id.push($('.selector_proveedor').find('input[name=tipos_experiencias_'+i+']').val());
                             }
                         }
-                        
+                      
+                        if($('.selector_proveedor > input[name=intervencion_bovis]').prop('checked')) {	
+	   	intervencion_bovis=1;
+                        }else{	
+		intervencion_bovis=0;
+                        }
+
+                        if($('.selector_proveedor > input[name=bim]').prop('checked')) {	
+	   	bim=1;
+                        }else{	
+		bim=0;
+                        }
+
+                        if($('.selector_proveedor > input[name=breeam]').prop('checked')) {		
+	   	breeam=1;
+                        }else{	
+		breeam=0;
+                        }
+
+                        if($('.selector_proveedor > input[name=leed]').prop('checked')) {
+	   	leed=1;
+                        }else{	
+		leed=0;
+                        }
+
+                        if($('.selector_proveedor > input[name=otros_certificados]').prop('checked')) {	
+	   	otros_certificados=1;
+                        }else{
+		otros_certificados=0;
+                        }
+
                        var parametros = {
-                               'actualizar_lista': 'actualizar_lista',
-                               'paquete_id':paquete_id,
-                               'arrayProveedoresElegidos' : arrayProveedoresElegidos,
-                               'nombre_proveedor': $('.selector_proveedor > input[name=nombre_proveedor]').val(),
-                               'experiencia_id': experiencias_id
+                                'actualizar_lista': 'actualizar_lista',
+                                'paquete_id':paquete_id,
+                                'arrayProveedoresElegidos' : arrayProveedoresElegidos,
+                                'nombre_proveedor': $('.selector_proveedor > input[name=nombre_proveedor]').val(),
+                                'experiencia_id': experiencias_id,
+                                'intervencion_bovis':intervencion_bovis,
+                                'bim':bim,
+                                'breeam':breeam,
+                                'leed':leed,
+                                'otros_certificados':otros_certificados
                         };
 
                         $.ajax({  
@@ -133,17 +168,36 @@ function consultaAjax(){
                             url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/selectionsupplier.form.php',
                             data: parametros,   		
                             success:function(data){
-                               alert(data);
-                                var proveedores_quitar=data.split(',');
-                                                                
-                                for(var i=0;i<=proveedores_quitar.length;i++){
-                                   
-                                    delete  arrayProveedoresElegidos[proveedores_quitar[i]];
-                                    experiencias_id.length=0;
-                                    $('#proveedor_'+proveedores_quitar[i]).prop('checked', false); 
-                                    
-                                }
                                 
+                                //Pasamos los id de los proveedore a un array
+                                var proveedores_aptos=data.split(',');
+                                existe_proveedor=false;
+                                
+                                for(var i=0;i<=arrayProveedoresElegidos.length;i++){
+                                
+                                        //Recorremos en array para comprobar si coinciden
+                                        for(var j=0;j<=proveedores_aptos.length;j++){
+                                       
+                                                //Si coinciden no se elimina, cumple con los requisitos del filtro
+                                                if(proveedores_aptos[j]==arrayProveedoresElegidos[i] 
+                                                && proveedores_aptos[j]!=null 
+                                                && arrayProveedoresElegidos[i]!=null){
+       
+                                                        existe_proveedor=true;
+                                               }
+                                        }
+                                        
+                                        //Si no cumple los requisitos del filtro, ponemos el checkbox a falso y lo quitamos de arrayProveedoresElegidos
+                                        if(!existe_proveedor && arrayProveedoresElegidos[i]!=null){
+                                        
+                                                $('#proveedor_'+arrayProveedoresElegidos[i]).prop('checked', false); 
+                                                delete  arrayProveedoresElegidos[i];                                                                                               
+                                        }else{
+                                        
+                                                existe_proveedor=false;
+                                        }
+                                }
+                               
                             },
                             error: function(result) {
                                 alert('Data not found');

@@ -72,12 +72,12 @@ proveedor.name,
 GROUP_CONCAT(distinct especialidad.name SEPARATOR '\n')  as especialidad, 
 facturacion.facturacion, 
 proveedor.cv_id,
-ROUND(Sum(valoracion.calidad)/count(valoracion.calidad)) as calidad, 
-ROUND(Sum(valoracion.plazo)/count(valoracion.plazo)) as plazo,
-ROUND(Sum(valoracion.costes)/count(valoracion.costes)) as costes, 
-ROUND(Sum(valoracion.cultura)/count(valoracion.cultura)) as cultura, 
-ROUND(Sum(valoracion.suministros_y_subcontratistas)/count(valoracion.suministros_y_subcontratistas)) as suministros_y_subcontratistas, 
-ROUND(Sum(valoracion.sys_y_medioambiente)/count(valoracion.sys_y_medioambiente)) as sys_y_medioambiente
+ROUND(Sum(valoracion.calidad)/count(valoracion.calidad),1) as calidad, 
+ROUND(Sum(valoracion.plazo)/count(valoracion.plazo),1) as plazo,
+ROUND(Sum(valoracion.costes)/count(valoracion.costes),1) as costes, 
+ROUND(Sum(valoracion.cultura)/count(valoracion.cultura),1) as cultura, 
+ROUND(Sum(valoracion.suministros_y_subcontratistas)/count(valoracion.suministros_y_subcontratistas),1) as suministros_y_subcontratistas, 
+ROUND(Sum(valoracion.sys_y_medioambiente)/count(valoracion.sys_y_medioambiente),1) as sys_y_medioambiente
 from glpi_suppliers as proveedor 
 LEFT JOIN glpi_plugin_comproveedores_annualbillings as facturacion
 on facturacion.cv_id=proveedor.cv_id and YEAR(facturacion.anio)=YEAR(now())
@@ -119,7 +119,7 @@ $result = $DB->query($query);
                                     echo"</td>";
                                     
                                     echo "<td class='center' style=' border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["supplier_id"]."'>".$data["name"]."</a></td>";   
-                                    if(!empty($data['calidad'])){
+                                    if(!empty($data['especialidad'])){
                                           echo "<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['especialidad']."</td>";
                                     }else{
                                           echo "<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
@@ -132,37 +132,37 @@ $result = $DB->query($query);
                                     }
                                     echo "<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['facturacion']."</td>";
                                     if(!empty($data['calidad'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['calidad'].".png></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                      if(!empty($data['plazo'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['plazo'].".png></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                      if(!empty($data['costes'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['costes'].".png></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                      if(!empty($data['cultura'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['cultura'].".png></td>";
+                                         echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                      if(!empty($data['suministros_y_subcontratistas'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['suministros_y_subcontratistas'].".png></td>";
+                                         echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                     if(!empty($data['sys_y_medioambiente'])){
-                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img style='vertical-align:middle;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_".$data['sys_y_medioambiente'].".png></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
                                     }
                                     else{
                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
@@ -175,3 +175,33 @@ $result = $DB->query($query);
 	echo "</table></div></br>";
                 echo "<div><span  style='font-weight: bold; size:20px;'>*</span>Si un proveedor no contiene CV, no tendra ni valoraciones, ni especialidad, ni facturación.</div>";
 	echo"<br>";
+        
+        function getColorValoracion($valor){
+	           
+            switch ($valor) {
+                case $valor<=1:
+
+                        $color=1;
+                    break;
+                case $valor<=2 && $valor>1:
+
+                        $color=2;
+                   break;
+                case $valor<=3 && $valor>2:
+
+                        $color=3;
+                    break;
+                case $valor<=4 && $valor>3:
+
+                        $color=4;
+                    break;
+                case $valor<=5 && $valor>4:
+
+                        $color=5;
+                    break;
+                default:
+                    break;
+            }
+
+	return $color;
+        }
