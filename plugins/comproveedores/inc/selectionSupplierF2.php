@@ -100,14 +100,16 @@ function consultaAjax(){
                 var arrayProveedoresElegidos= new Array();
 
                 function setListaProveedorfiltro(supplier_id){
-                       
+                   
                         if($('#proveedor_'+supplier_id).prop('checked')){
+                           
                            arrayProveedoresElegidos[supplier_id]=supplier_id;
                         }
                         else{
+                           
                             delete  arrayProveedoresElegidos[supplier_id];
                         }
-	}
+	           }
         
                 function filtrarListaProveedores(paquete_id){
                 
@@ -128,7 +130,7 @@ function consultaAjax(){
 
                         $.ajax({  
                             type: 'GET',        		
-                            url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/SelectionSupplier.form.php',
+                            url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/selectionsupplier.form.php',
                             data: parametros,   		
                             success:function(data){
                                alert(data);
