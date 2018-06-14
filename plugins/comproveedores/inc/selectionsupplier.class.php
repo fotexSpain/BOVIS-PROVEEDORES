@@ -83,10 +83,8 @@
                         
                         echo $this->consultaAjax();
 
-			$projecttasks_id=$item->fields['id']; 
-                        echo "<div id='selector_proveedor' align='center'>";
-                        echo "<div style='display: inline-block;' onclick='seleccionProvedorFiltro(".$projecttasks_id.")'><span class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR </span></div>";
-			
+                        $projecttasks_id=$item->fields['id']; 
+                        	
                              $query ="SELECT 
                                 proveedores.name, 
                                 proveedores.cif, 
@@ -96,9 +94,16 @@
                                 WHERE projectaskteams.projecttasks_id=$projecttasks_id" ;
                                                
 			$result = $DB->query($query);
-
+                        
+                                                echo "<div id='selector_proveedor' align='center'>";
+                                                
+                                                //Sino tiene proveedores que se visualize, si tiene un proveedore se ocultara
+                                                 if($result->num_rows==0){
+                                                    echo "<div style='display: inline-block;' onclick='seleccionProvedorFiltro(".$projecttasks_id.")'><span class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR </span></div>";
+                                                 }
+                                                 
                                                 echo "<table class='tab_cadre_fixehov'>";
-                                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='6'>Proveedores seleccionados</th></tr>";
+                                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='6'>Proveedor seleccionado</th></tr>";
                                                 echo"<br/>";
                                                 echo "<tr><th>".__('Proveedor')."</th>";
                                                         echo "<th>".__('CIF')."</th>";
