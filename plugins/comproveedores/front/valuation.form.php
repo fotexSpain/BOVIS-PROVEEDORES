@@ -55,7 +55,15 @@
 		
 		Html::back();
 
-	} else {
+	}else if(isset($_GET['guardar_valoracion'])){
+            
+                         
+            var_dump($_GET);
+		/*$PluginValuation->check($_POST['id'], UPDATE);
+		$PluginValuation->update($_POST);
+
+		Html::back();*/
+	}  else {
 		$PluginValuation->checkGlobal(READ);
 
 		$plugin = new Plugin();

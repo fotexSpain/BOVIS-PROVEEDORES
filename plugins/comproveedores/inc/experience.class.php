@@ -237,7 +237,7 @@
 
 			echo "<div style='margin-bottom: 15px; margin-top: 15px;'>";
 			/*echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";*/
-			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='AñadirNormal();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR</span></div>";
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirNormal();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR</span></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
 			echo"<span class='vsubmit' id='guardar_modificacion' name='Update' style='margin-right:15px;'>GUARDAR MODIFICACIÓN</span>";
 			
@@ -539,7 +539,7 @@
 
 			echo "<div style='margin-bottom: 15px; margin-top: 15px;'>";
 			/*echo "<div style='display: inline-block;'><input type='submit' class='submit' name='add' value='AÑADIR' style='margin-right: 15px;'/></div>";*/
-			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='AñadirNormal();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR</span></div>";
+			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirNormal();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR</span></div>";
 			echo "<div style='display: inline-block;'><span class='vsubmit' onclick='añadirSinBorrar();' name='addNoDelete' style='margin-right: 15px;'>AÑADIR SIN BORRAR </span></div>";
 			echo"<span class='vsubmit' id='guardar_modificacion' name='Update' style='margin-right:15px;'>GUARDAR MODIFICACIÓN</span>";
 			
@@ -626,7 +626,7 @@
 					
 				}
 
-				function AñadirNormal(){
+				function añadirNormal(){
 					
 					añadirSinBorrar();
 					limpiarFormulario();
