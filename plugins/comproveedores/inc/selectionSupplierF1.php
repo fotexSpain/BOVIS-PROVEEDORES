@@ -83,7 +83,10 @@ echo"<table class='tab_cadre_fixe'>";
         
         
             echo"<tr class='tab_bg_1 center'>";
-		echo "<td colspan='6'onclick='seleccionProvedorFiltro(".$_GET['paquete_id'].")'><span  class='vsubmit' style='margin-right: 15px;'>SIGUIENTE</span></td>";
+                        echo "<td colspan='6'onclick='seleccionProvedorFiltro(".$_GET['paquete_id'].")'>";
+                                echo "<span class='vsubmit' style='margin-right: 15px;' onClick='location.reload();'>ATRAS</span>";
+                                echo"<span  class='vsubmit' style='margin-right: 15px;'>SIGUIENTE</span>";
+                        echo "</td>";
             echo "</tr>";
 			
 echo "</table>";

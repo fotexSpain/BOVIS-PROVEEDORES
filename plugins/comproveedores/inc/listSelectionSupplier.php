@@ -125,12 +125,15 @@ $result = $DB->query($query);
                                           echo "<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                     }
                                     if(!empty($data['cv_id'])){
-                                            echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
                                     }
                                     else{
-                                            echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                                        echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
                                     }
-                                    echo "<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['facturacion']."</td>";
+                                    
+                                    $facturacion=substr(number_format($data['facturacion'], 0, '', '.'),0,strlen(number_format($data['facturacion'], 0, '', '.')));
+                                    
+                                    echo "<td class='center' style=' border: 1px solid #BDBDDB;'>".$facturacion."</td>";
                                     if(!empty($data['calidad'])){
                                         echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
                                     }
@@ -174,7 +177,8 @@ $result = $DB->query($query);
 	echo"<br/>";
 	echo "</table></div></br>";
                 echo "<div><span  style='font-weight: bold; size:20px;'>*</span>Si un proveedor no contiene CV, no tendra ni valoraciones, ni especialidad, ni facturación.</div>";
-	echo"<br>";
+                echo"<br>";
+               
         
         function getColorValoracion($valor){
 	           

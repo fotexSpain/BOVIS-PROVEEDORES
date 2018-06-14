@@ -13,23 +13,23 @@ echo consultaAjax();
 echo"<table class='tab_cadre_fixe'><tbody>";
 			
         echo"<th colspan='6'>Selección Proveedor</th></tr>";
-        echo"<tr class='tab_bg_1 center'>";
-                echo "<td >" . __('Nombre') . "</td>";
-                echo "<td class='selector_proveedor' style='text-align:left;'>";
+        echo"<tr class='tab_bg_1 center' >";
+                echo "<td style='width:150px; text-align: center;'>" . __('Nombre') . "</td>";
+                echo "<td style='width:300px; text-align: left;' class='selector_proveedor' style='text-align:left;'>";
                         Html::autocompletionTextField($objCommonDBT,'nombre_proveedor');
                 echo "</td>";
 
                 echo "<td>" . __('Intervención de BOVIS') . "</td>";
-                echo "<td class='selector_proveedor'>";
+                echo "<td class='selector_proveedor' style='text-align: left;'>";
                         echo"<input type='checkbox' name='intervencion_bovis'/>";
                 echo "</td>";			
         echo "</tr>";
 
-        echo"<tr class='tab_bg_1 center'>";         
+        echo"<tr class='tab_bg_1 center' style='vertical-align: top;'>";         
                 echo "<td rowspan='5'>" . __('Tipos de experiencias') . "</td>";
                         $lista=getTiposExperiencias();
                         echo "<td rowspan='5' class='selector_proveedor' >";
-		echo "<div style='text-align:left; width: 150px; height: 100px; overflow-y: scroll; border: 1px solid #BDBDBD'>";
+		echo "<div style='text-align:left; width: 300px; height: 100px; overflow-y: scroll; border: 1px solid #BDBDBD'>";
                                         foreach ($lista as $key => $value) {
 			echo "&nbsp&nbsp<input type='checkbox' name='tipos_experiencias_$key' value=$key />&nbsp&nbsp".$value."<br />";
                                         }
@@ -37,36 +37,37 @@ echo"<table class='tab_cadre_fixe'><tbody>";
                 echo "</td>";               
         echo "</tr>";
 
-        echo"<tr class='tab_bg_1 center'>";
+        echo"<tr class='tab_bg_1 center' >";
                 echo "<td>" . __('BIM') . "</td>";
-                        echo "<td class='selector_proveedor'>";
+                        echo "<td class='selector_proveedor' style='text-align: left;'>";
                                 echo"<input type='checkbox' name='bim'/>";
                         echo "</td>";
         echo "</tr>";
 
         echo"<tr class='tab_bg_1 center'>";
                 echo "<td>" . __('LEED') . "</td>";
-	echo "<td class='selector_proveedor'>";
+	echo "<td class='selector_proveedor' style='text-align: left;'>";
                         echo"<input type='checkbox' name='leed'/>";
 	echo "</td>";
         echo "</tr>";
 
         echo"<tr class='tab_bg_1 center '>";
                 echo "<td>" . __('BREEAM') . "</td>";
-                echo "<td class='selector_proveedor'>";
+                echo "<td class='selector_proveedor' style='text-align: left;'>";
                         echo"<input type='checkbox' name='breeam'/>";
                 echo "</td>";                       
         echo "</tr>";
 
         echo"<tr class='tab_bg_1 center'>";
-                echo "<td>" . __('Otros certificados') . "</td>";
-	echo "<td class='selector_proveedor'>";
+                echo "<td center>" . __('Otros certificados') . "</td>";
+	echo "<td class='selector_proveedor' style='text-align: left;'>";
                         echo"<input type='checkbox' name='otros_certificados'/>";
 	echo "</td>";
         echo "</tr>";
 
         echo"<tr class='tab_bg_1 center'>";
-                echo"<td colspan='6'>";
+                echo"<td colspan='4' center>";
+                        echo "<span class='vsubmit' style='margin-right: 15px;' onClick='location.reload();'>ATRAS</span>";
                         echo "<span onclick='filtrarListaProveedores(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>FILTRAR</span>";
                  echo"</td>";
         echo "</tr>";
@@ -74,6 +75,11 @@ echo"<table class='tab_cadre_fixe'><tbody>";
 echo "</table>";
 
 include 'listSelectionSupplier.php';
+
+echo "<span onclick='inlcuirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
+echo"<br>";
+echo"<br>";
+echo"<br>";
 
 function getTiposExperiencias(){
 	GLOBAL $DB,$CFG_GLPI;
@@ -109,7 +115,7 @@ function consultaAjax(){
                            
                             delete  arrayProveedoresElegidos[supplier_id];
                         }
-	           }
+	}
         
                 function filtrarListaProveedores(paquete_id){
                 
@@ -204,6 +210,42 @@ function consultaAjax(){
                             }
                         });
 				
+	}
+        
+                function inlcuirProveedoresAlPaquete(paquete_id){
+                
+                        
+                        var numProveedores=0;
+                     
+                      
+
+                        for(var i=0;i<=arrayProveedoresElegidos.length;i++){
+                                
+                                if(arrayProveedoresElegidos[i]!=null){
+                                        numProveedores++;
+                                }
+                                   
+                        }
+                       
+                        if(numProveedores==1){
+                                var parametros = {
+                                        'add_proveedor_al_paquete': 'add_proveedor_al_paquete',
+                                        'paquete_id':paquete_id,
+                                        'arrayProveedoresElegidos' : arrayProveedoresElegidos,   
+                                };
+
+                                $.ajax({  
+                                    type: 'GET',        		
+                                    url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/selectionsupplier.form.php',
+                                    data: parametros,   		
+                                    success:function(data){
+                                        location.reload();
+                                    },
+                                    error: function(result) {
+                                        alert('Data not found');
+                                    }
+                                });
+                        }
 	}
 	
 	function cambiarCategorias(valor){

@@ -12,6 +12,8 @@
 	include ("../../../inc/includes.php");
 	global $DB;
 	Session::checkLoginUser();
+        
+                $team = new ProjectTaskTeam();
 	
 	if(!isset($_GET["id"])) {
 		$_GET["id"] = "";
@@ -154,6 +156,29 @@
                         echo $proveedores_aptos;
                         
                       
+	}else if (isset($_GET["add_proveedor_al_paquete"])) {
+                        $proveedores=$_GET['arrayProveedoresElegidos'];
+ 
+                       foreach ($proveedores as $key => $value) {
+                                
+                                if(!empty($value)){
+
+                                        $add['projecttasks_id']=$_GET["paquete_id"];
+                                        $add['itemtype']="Supplier";
+                                        $add['items_id']=$value;
+
+                                        $team->check(-1, CREATE, $add);
+                                        if ($team->add($add)) {
+                                                 Event::log($_GET["paquete_id"], "projecttask", 4, "maintain",
+                                                   //TRANS: %s is the user login
+                                                sprintf(__('%s adds a team member'), $_SESSION["glpiname"]));
+                                        }
+                                }        
+                        }
+                         
+                      
+                        Html::back();
+
 	}else {
 		$PluginSelectionSupplier->checkGlobal(READ);
 
