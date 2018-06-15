@@ -175,66 +175,79 @@
                                         GLOBAL $DB,$CFG_GLPI;
                                         
                                         $paquete_id=$item->fields['id'];
-                                                                                
-                                        echo"<script>
+                                        $contenido_valoracion=0;
+                                        echo"<script type='text/javascript'>
                                             
-                                                        var arrayValoracion= new Array();
+                                                        var arrayValoracion = [];
+
+                                                        //init the grid matrix
+                                                        for ( var i = 1; i <=3; i++ ) {
+                                                            arrayValoracion[i] = []; 
+                                                        }
                                                         
                                                         $( function() {
                                                                 $( '#tabsHorizontal' ).tabs();
                                                         });
-                                                        function valorElegido(valor_criterio, tipo_criterio){
+                                                        function valorElegido(valor_criterio, tipo_criterio, valoracion){
                                                                 
                                                                 for(i=1;i<=5;i++){
                                                                         if(valor_criterio==i){
                                                                             
-                                                                                $('#'+tipo_criterio+'_'+valor_criterio+'').css({
+                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({
                                                                                         'background-image':'url(".$CFG_GLPI["root_doc"]."/pics/valoracion_'+valor_criterio+'.png)',
                                                                                         'background-repeat':'no-repeat',
                                                                                         'background-position':'center'});
-                                                                                $('#'+tipo_criterio+'_'+valor_criterio+'').html(valor_criterio);
+                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html(valor_criterio);
                                                                                 
                                                                                 //añadimos el valor elegido a arrayValoracion
-                                                                                arrayValoracion[tipo_criterio]=valor_criterio;
-                                                                               
+                                                                               arrayValoracion[valoracion][tipo_criterio]=valor_criterio;                                                                        
                                                                         }
                                                                         else{
-                                                                                $('#'+tipo_criterio+'_'+i+'').css({'background-image':'none'});
-                                                                                $('#'+tipo_criterio+'_'+i+'').html('');
+                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({'background-image':'none'});
+                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html('');
+                                                                                
                                                                         }
                                                                        
                                                                 }
                                                                 
                                                         }
-                                                        function guardarValoracion(paquete_id, numero_valoracion){
+                                                        function guardarYModificarValoracion(paquete_id, numero_valoracion, valoracion_id, metodo){
                                                                 
                                                                 var valoracionesCompletada=true;
                                                                
                                                                 //Si arrayValoracion no tiene todo los campos completado, no se añadira la valoración
-                                                                if(arrayValoracion.length==6){
-                                                                
-                                                                        for(i=0;i<arrayValoracion.length;i++){
+                                                                if( arrayValoracion[numero_valoracion].length==6){
+                                                                         
+                                                                        for(i=0;i<arrayValoracion[numero_valoracion].length;i++){
 
-                                                                                if(arrayValoracion[i]==null ){
-                                                                                        valoracionesCompletada=false;
+                                                                                if(arrayValoracion[numero_valoracion][i]==null ){
+                                                                                        valoracionesCompletada=false; 
                                                                                 }
                                                                         }
-
+                                                                        
                                                                         if(valoracionesCompletada){
-
+                                                                               
                                                                                 var parametros = {
-                                                                                       'guardar_valoracion': 'guardar_valoracion',
+                                                                                       'metodo': metodo,
+                                                                                       'valoracion_id': valoracion_id,
                                                                                        'paquete_id':paquete_id,
                                                                                        'numero_valoracion' : numero_valoracion,
-                                                                                       'arrayValoracion': arrayValoracion     
+                                                                                       'arrayValoracion': arrayValoracion[numero_valoracion]    
                                                                                 };
-
+                                                                              
                                                                                 $.ajax({ 
                                                                                        type: 'GET',
                                                                                        data: parametros,                  
                                                                                        url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
                                                                                        success:function(data){
-                                                                                                alert(data);
+                                                                                                if(metodo=='add_valoracion'){
+                                                                                                
+                                                                                                         $('#boton_guardar_'+numero_valoracion).html(
+                                                                                                                '<span onclick=\'guardarYModificarValoracion('+paquete_id+','+numero_valoracion+','+data+',\"update_valoracion\")\' class=\'vsubmit\' style=\'margin-right: 15px;\'>MODIFICAR VALORACIÓN</span>'
+                                                                                                         );
+
+                                                                                                }
+                                                                                               
                                                                                        },
                                                                                        error: function(result) {
                                                                                            alert('Data not found');
@@ -243,7 +256,7 @@
                                                                         }
                                                                 }
                                                         }
-                                                </script>";
+                                        </script>";
                                               
                                          echo"<div id='tabsHorizontal' style='display: inline-block;'>";
                                                 echo"<ul style='display: -webkit-box;'>";
@@ -261,7 +274,7 @@
                                                                 $this->modificarValoracionPaquete(2, $paquete_id);
                                                         echo"</div>";
                                                 echo"</div>";
-                                                echo"<div id='tabs-3'>";
+                                                 echo"<div id='tabs-3'>";
                                                          echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
                                                                 $this->modificarValoracionPaquete(3, $paquete_id);
                                                         echo"</div>";
@@ -272,19 +285,9 @@
                 
                                 function modificarValoracionPaquete($valoracion, $paquete_id){
                                    GLOBAL $DB,$CFG_GLPI;
-                        
-			
-                                       /* $query2 ="SELECT"
-                                                                         . "(SELECT projects_id "
-                                                                        . "FROM glpi_projecttasks as paquetes "
-                                                                        . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
-                                                . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
-                                                 . "WHERE cv_id=$CvId";
-                        
-                                        $result2 = $DB->query($query2);*/
-                                                
+                                                                       
                                         echo "<div align='center'><table class='tab_cadre_fixehov'>";
-                                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
+                                                echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
                                                 echo"<br/>";
                                                 echo "<tr><th></th>";
                                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
@@ -294,26 +297,66 @@
                                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
                                                 echo "</tr>";
 
-                                                $arrayValoraciones=['Calidad', 'Plazo', 'Costes', 'Cultura', 'Suministros y subcontratistas', 'Sys y Medioambiente'];     
+                                                $arrayValoraciones[0]=['calidad', 'Calidad'];
+                                                $arrayValoraciones[1]=['plazo', 'Plazo'];
+                                                $arrayValoraciones[2]=['costes', 'Costes'];
+                                                $arrayValoraciones[3]=['cultura', 'Cultura'];
+                                                $arrayValoraciones[4]=['suministros_y_subcontratistas', 'Suministros y Subcontratistas'];
+                                                $arrayValoraciones[5]=['sys_y_medioambiente', 'Sys y Medioambiente'];
+                                                
+                                                
+                                                    
 
                                                 foreach ($arrayValoraciones as $key => $value) {
                                                     
                                                         echo "<tr class='tab_bg_2' style='height:60px;'>";
-                                                                echo "<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value</td>";
-                                                                echo"<td  class='center' id='".$key."_1' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1, \"$key\")'></td>";
-                                                                echo"<td class='center' id='".$key."_2' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, \"$key\")'></td>";
-                                                                echo"<td class='center' id='".$key."_3' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3, \"$key\")'></td>";
-                                                                echo"<td class='center' id='".$key."_4' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4, \"$key\")'></td>";
-                                                                echo"<td class='center' id='".$key."_5'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5, \"$key\")'></td>";
+                                                                echo"<td class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
+                                                                echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
+                                                                echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
+                                                                echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
+                                                                echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
+                                                                echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
                                                         echo "</tr>";    
                                                 }
 
                                                 echo"<br/>";
                                         echo "</table></div>";
-                                                        
-                                        echo "<br><br>";
-                                               
-                                        echo "<span onclick='guardarValoracion(".$paquete_id.",".$valoracion.")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
+                                      
+                                        $query ="SELECT * 
+                                            FROM glpi_plugin_comproveedores_valuations as valoracion
+                                            where valoracion.projecttasks_id=".$paquete_id." and valoracion.num_evaluacion=".$valoracion;
+                        
+                                        $result = $DB->query($query);
+                                        $contenido_valoracion=1;             
+                                        while ($data=$DB->fetch_array($result)) {
+                                            
+                                                //Creamos un script donde se cagarán los valores de la consulta
+                                                echo"<script type='text/javascript'>      
+                                                        $( function() {";
+                                                
+                                                                foreach ($arrayValoraciones as $key => $value) {
+                                                                     $valor=$data[$value[0]];
+                                                                    echo"valorElegido($valor, $key, $valoracion);";
+                                                                } 
+                                                                  
+                                                         echo"});
+                                                </script>";
+                                                 
+                                        
+                                                $valoracion_id=$data['id'];   
+                                        }
+                                        
+                                         echo "<br><br>";
+                                        echo"<div  id='boton_guardar_$valoracion'>";
+                                                if($result->num_rows!=0){ 
+
+                                                       echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,$valoracion_id,\"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR VALORACIÓN</span>";
+                                               }  
+                                               else{
+
+                                                       echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,-1,\"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR VALORACIÓN</span>";      
+                                               }    
+                                        echo"</div>";
                                         echo"<br>";
                                         echo"<br>";
                                 }
@@ -330,10 +373,6 @@
                                                  . "WHERE cv_id=$CvId";
                         
 			$result2 = $DB->query($query2);
-                                                
-                        
-			
-			
 
 				echo "<div align='center'><table class='tab_cadre_fixehov'>";
 				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoraciones</th></tr>";
