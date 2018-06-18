@@ -175,16 +175,21 @@ class Project extends CommonDBTM {
       $this->addStandardTab('ProjectTask', $ong, $options);
       $this->addStandardTab('ProjectTeam', $ong, $options);
       $this->addStandardTab(__CLASS__, $ong, $options);
-      $this->addStandardTab('ProjectCost', $ong, $options);
-      $this->addStandardTab('Change_Project', $ong, $options);
-      $this->addStandardTab('Item_Project', $ong, $options);
-      $this->addStandardTab('Document_Item', $ong, $options);
-      $this->addStandardTab('Contract_Item', $ong, $options);
-      $this->addStandardTab('Notepad', $ong, $options);
-      $this->addStandardTab('KnowbaseItem_Item', $ong, $options);
+     // $this->addStandardTab('ProjectCost', $ong, $options);
+      //$this->addStandardTab('Change_Project', $ong, $options);
+      //$this->addStandardTab('Item_Project', $ong, $options);
+      //$this->addStandardTab('Document_Item', $ong, $options);
+      //$this->addStandardTab('Contract_Item', $ong, $options);
+      //$this->addStandardTab('Notepad', $ong, $options);
+      //$this->addStandardTab('KnowbaseItem_Item', $ong, $options);
       $this->addStandardTab('Log', $ong, $options);
       $this->addStandardTab('PluginComproveedoresValuation', $ong, $options);
-
+      
+      //Quitamos el número al lado del tab paquete
+      $ong['ProjectTask$1']=substr($ong['ProjectTask$1'],0, 8);
+      //Eliminamos el tab peoyectos
+      unset($ong['Project$1']);
+      
       return $ong;
    }
 
@@ -1035,12 +1040,16 @@ class Project extends CommonDBTM {
                                             'timestep'   => 1,
                                             'maybeempty' => false]);
       echo "</td>";
-      if ($ID) {
+       echo "<td>"._x('item', 'State')."</td>";
+      echo "<td>";
+      ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
+      echo "</td>";
+     /* if ($ID) {
          echo "<td>".__('Last update')."</td>";
          echo "<td >". Html::convDateTime($this->fields["date_mod"])."</td>";
       } else {
          echo "<td colspan='2'>&nbsp;</td>";
-      }
+      }*/
       echo "</tr>";
 
       echo "<tr class='tab_bg_1'>";
@@ -1048,13 +1057,13 @@ class Project extends CommonDBTM {
       echo "<td>";
       Html::autocompletionTextField($this, 'name');
       echo "</td>";
-      echo "<td>".__('Code')."</td>";
+      
+        echo "<td>".__('Show on global GANTT')."</td>";
       echo "<td>";
-      Html::autocompletionTextField($this, 'code');
+      Dropdown::showYesNo("show_on_global_gantt", $this->fields["show_on_global_gantt"]);
       echo "</td>";
-      echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      /*echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Priority')."</td>";
       echo "<td>";
       CommonITILObject::dropdownPriority(['value' => $this->fields['priority'],
@@ -1066,14 +1075,15 @@ class Project extends CommonDBTM {
                             'value'    => $this->fields['projects_id'],
                             'used'     => [$this->fields['id']]]);
       echo "</td>";
-      echo "</tr>";
+      echo "</tr>";*/
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>"._x('item', 'State')."</td>";
+      
+      echo "<td>".__('Code')."</td>";
       echo "<td>";
-      ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
+      Html::autocompletionTextField($this, 'code');
       echo "</td>";
-      echo "<td>".__('Percent done')."</td>";
+       echo "<td>".__('Porcentaje')."</td>";
       echo "<td>";
       Dropdown::showNumber("percent_done", ['value' => $this->fields['percent_done'],
                                                  'min'   => 0,
@@ -1082,17 +1092,21 @@ class Project extends CommonDBTM {
                                                  'unit'  => '%']);
       echo "</td>";
       echo "</tr>";
+      echo "<tr>";
+      echo "</td>";
+      echo "<td>".__('Fecha de finalización')."</td>";
+      echo "<td>";
+      Html::showDateTimeField("real_end_date", ['value' => $this->fields['real_end_date']]);
+      echo "</td></tr>\n";
+      //echo "</tr>";
 
-      echo "<tr class='tab_bg_1'>";
-      echo "<td>".__('Type')."</td>";
+      /* echo "<tr class='tab_bg_1'>";
+     echo "<td>".__('Type')."</td>";
       echo "<td>";
       ProjectType::dropdown(['value' => $this->fields["projecttypes_id"]]);
       echo "</td>";
-      echo "<td>".__('Show on global GANTT')."</td>";
-      echo "<td>";
-      Dropdown::showYesNo("show_on_global_gantt", $this->fields["show_on_global_gantt"]);
-      echo "</td>";
-      echo "</tr>";
+    
+      echo "</tr>";*/
 
       echo "<tr><td colspan='4' class='subheader'>".__('Manager')."</td></tr>";
 
@@ -1104,15 +1118,17 @@ class Project extends CommonDBTM {
                            'right'  => 'see_project',
                            'entity' => $this->fields["entities_id"]]);
       echo "</td>";
-      echo "<td>".__('Group')."</td>";
+     /* echo "<td>".__('Group')."</td>";
       echo "<td>";
       Group::dropdown(['name'      => 'groups_id',
                             'value'     => $this->fields['groups_id'],
                             'entity'    => $this->fields['entities_id'],
                             'condition' => '`is_manager`']);
-      echo "</td></tr>\n";
+      echo "</td></tr>\n";*/
+      
+      echo"</tr>";
 
-      echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
+      /*echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Planned start date')."</td>";
@@ -1164,7 +1180,7 @@ class Project extends CommonDBTM {
       echo "<textarea id='comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
            "</textarea>";
       echo "</td>";
-      echo "</tr>\n";
+      echo "</tr>\n";*/
 
       $this->showFormButtons($options);
 
