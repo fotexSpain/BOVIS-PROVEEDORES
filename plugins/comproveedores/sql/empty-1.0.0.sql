@@ -334,6 +334,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
         `sys_y_medioambiente` int(1) NOT NULL default '0',
         `fecha` date NULL,
         `num_evaluacion` int(1) NOT NULL default '0',
+        `comentario` VARCHAR(255) NULL DEFAULT NULL,
 
         `is_deleted` tinyint(1) NOT NULL default '0',
         `externalid` varchar(255) NULL,

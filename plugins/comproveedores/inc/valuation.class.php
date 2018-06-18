@@ -24,31 +24,32 @@
 			return 'Valoraciones';
 		}
 
-		static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){
+                                static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){
+;
+                                        global $CFG_GLPI;
+                                        $self = new self();
 
-			global $CFG_GLPI;
-			$self = new self();
-                        
-                        if($item->getType()=='Supplier'){	
+                                                if($item->getType()=='Supplier'){	
 
-				if(isset($item->fields['cv_id'])){
-			
-                                    $self->showFormItemValuationProveedor($item, $withtemplate);
+                                                        if(isset($item->fields['cv_id'])){
 
-				}else{
-				
-                                    $self->showFormNoCV($item, $withtemplate);
-				}
-				
-			}else if($item->getType()=='PluginComproveedoresCv'){
-				$self->showFormValuationProveedor($item, $withtemplate);
-			}else if($item->getType()=='ProjectTask'){
-				$self->showFormValuationPaquete($item, $withtemplate);
-			}
+                                                                $self->showFormItemValuationProveedor($item, $withtemplate);
+                                                        }else{
 
-                                                
+                                                                $self->showFormNoCV($item, $withtemplate);
+                                                        }
 
-		}
+                                                }else if($item->getType()=='PluginComproveedoresCv'){
+                                                    
+                                                        $self->showFormValuationProveedor($item, $withtemplate);
+                                                }else if($item->getType()=='ProjectTask'){
+                                                    
+                                                        $self->showFormValuationPaquete($item, $withtemplate);
+                                                }else if($item->getType()=='Project'){
+                                                    
+                                                        $self->showFormValuationProyecto($item, $withtemplate);
+                                                }            
+                                }
 
 		function getSearchOptions(){
 
@@ -167,6 +168,136 @@
 				
 				
 		}
+                
+                function showFormValuationProyecto($item, $withtemplate='') {
+                                    
+                        GLOBAL $DB,$CFG_GLPI;
+                        
+                        $proyecto_id=$item->fields['id']; 
+                        $query2 ="select 
+                                        paquetes.code as codigo_paquete, 
+                                        paquetes.name as nombre_paquete, 
+                                        paquetes.comment as comentario_paquete, 
+                                        proveedor.name as nombre_proveedor,
+                                        proveedor.cif as nif_proveedor,
+                                        valoracion.id as valoracion_id,
+                                        valoracion.calidad,
+                                        valoracion.plazo,
+                                        valoracion.costes, 
+                                        valoracion.cultura, 
+                                        valoracion.suministros_y_subcontratistas, 
+                                        valoracion.sys_y_medioambiente,
+                                        valoracion.comentario as comentario_valoracion
+                                        from glpi_projecttasks as paquetes 
+                                        left join glpi_projecttaskteams as projecttaskteams on paquetes.id=projecttaskteams.projecttasks_id
+                                        left join glpi_suppliers as proveedor on proveedor.id=projecttaskteams.items_id
+                                        left join glpi_projects as proyectos on proyectos.id=paquetes.projects_id
+                                        left join glpi_plugin_comproveedores_valuations as valoracion on valoracion.cv_id=proveedor.cv_id
+                                        where proyectos.id=$proyecto_id and 
+                                        (valoracion.id = (select id from glpi_plugin_comproveedores_valuations as valoracion1 where valoracion1.projecttasks_id=paquetes.id order by valoracion1.num_evaluacion desc limit 1) or valoracion.id IS NULL)";
+
+                        $result2 = $DB->query($query2);
+
+                        echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                        echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoraciones</th></tr>";
+                        echo"<br/>";
+                        echo "<tr><th></th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Paquetes')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Descripción')."</th>";
+		echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
+		echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
+		echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
+		echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SYS')."</th>";
+                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Cometario')."</th>";
+                                
+                        echo "</tr>";
+                                        
+                        //Ocultar lista, si no existe ninguna valoración
+                       if($result2->num_rows!=0){
+		while ($data=$DB->fetch_array($result2)) {
+                                        
+                                        echo "<tr style='height:50px;' class='tab_bg_2'>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>";
+                                                        if(!empty($data["valoracion_id"])){
+                                                                 echo"<a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php?id=".$data["valoracion_id"]."'><span class='vsubmit' style='margin-right: 15px;'>MODIFICAR</span></a>";
+                                                        }                                                       
+                                                echo"</td>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['codigo_paquete']."</td>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['nombre_paquete']."</td>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['comentario_paquete']."</td>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['nombre_proveedor']."</td>";
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['nif_proveedor']."</td>";
+                                                if(!empty($data['calidad'])){
+                                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['plazo'])){
+                                                         echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['costes'])){
+                                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['cultura'])){
+                                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['suministros_y_subcontratistas'])){
+                                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['sys_y_medioambiente'])){
+                                                        echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
+                                                }
+                                                else{
+                                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['comentario_valoracion']."</td>";
+                                        echo"</tr>";
+		}
+                        }
+                        echo"<br/>";
+                        echo "</table></div>";
+                                                        
+                        echo "<br><br>";
+                        echo "<div align='center'><table>";
+                                echo "<tr>";
+                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_1.png></td>";                                                            
+                                        echo "<td  style='width: 50px;'>Calificación MALA</td>";
+
+                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_2.png></td>";                                                            
+                                        echo "<td  style='width: 50px;'>Calificación POBRE</td>";
+
+                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_3.png></td>";                                                            
+                                        echo "<td  style='width: 50px;'>Calificación ACEPTABLE</td>";
+
+                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_4.png></td>";                                                            
+                                        echo "<td  style='width: 50px;'>Calificación BUENA</td>";
+
+                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_5.png></td>";                                                            
+                                        echo "<td  style='width: 50px;'>Calificación EXCELENTE</td>";
+
+                                echo "</tr>";
+                        echo "</table></div>";
+                        echo"<br>";
+		
+	}
                 
                 function showFormValuationPaquete($item, $withtemplate='') {
                                     

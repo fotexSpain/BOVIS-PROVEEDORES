@@ -183,6 +183,7 @@ class Project extends CommonDBTM {
       $this->addStandardTab('Notepad', $ong, $options);
       $this->addStandardTab('KnowbaseItem_Item', $ong, $options);
       $this->addStandardTab('Log', $ong, $options);
+      $this->addStandardTab('PluginComproveedoresValuation', $ong, $options);
 
       return $ong;
    }
