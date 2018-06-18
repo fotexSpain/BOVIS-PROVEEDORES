@@ -29,15 +29,15 @@
 			global $CFG_GLPI;
 			$self = new self();
                         
-                                                if($item->getType()=='Supplier'){	
+                        if($item->getType()=='Supplier'){	
 
 				if(isset($item->fields['cv_id'])){
 			
-                                                                        $self->showFormItemValuationProveedor($item, $withtemplate);
+                                    $self->showFormItemValuationProveedor($item, $withtemplate);
 
 				}else{
 				
-					$self->showFormNoCV($item, $withtemplate);
+                                    $self->showFormNoCV($item, $withtemplate);
 				}
 				
 			}else if($item->getType()=='PluginComproveedoresCv'){
@@ -95,11 +95,11 @@
                 
 			$CvId=$item->fields['id']; 
 			$query2 ="SELECT"
-                                                                         . "(SELECT projects_id "
-                                                                        . "FROM glpi_projecttasks as paquetes "
-                                                                        . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
-                                                . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
-                                                 . "WHERE cv_id=$CvId";
+                            . "(SELECT projects_id "
+                            . "FROM glpi_projecttasks as paquetes "
+                            . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
+                            . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
+                            . "WHERE cv_id=$CvId order by valoraciones.num_evaluacion desc limit 1";
                         
 			$result2 = $DB->query($query2);
                                                 
@@ -125,18 +125,16 @@
 								$data['is_deleted']=1;
 							}
 
-							echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-                                                                                                                                echo "<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>";
-                                                                                                                                    echo"<div>".Dropdown::getDropdownName("glpi_projects",$data['project_id'])."</div>";
-                                                                                                                                     echo"<br>";
-                                                                                                                                    echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
-                                                                                                                                echo"</td>";
-								echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
-                                                                                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
+							echo "<tr style='height:50px;' class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
+                                                            echo "<td class='center' style='width:10px; text-align:left; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>";
+                                                                echo"<div>".Dropdown::getDropdownName("glpi_projects",$data['project_id'])."</div>";
+                                                            echo"</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
+                                                            echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
 				
 								
                                                                                 }
@@ -170,92 +168,23 @@
 				
 		}
                 
-                                function showFormValuationPaquete($item, $withtemplate='') {
+                function showFormValuationPaquete($item, $withtemplate='') {
                                     
                                         GLOBAL $DB,$CFG_GLPI;
                                         
                                         $paquete_id=$item->fields['id'];
                                         $contenido_valoracion=0;
                                         echo"<script type='text/javascript'>
+                                            $( function() {
+                                                $( '#tabsHorizontal' ).tabs();
+                                            });
                                             
-                                                        var arrayValoracion = [];
+                                            var arrayValoracion = [];
 
-                                                        //init the grid matrix
-                                                        for ( var i = 1; i <=3; i++ ) {
-                                                            arrayValoracion[i] = []; 
-                                                        }
+                                            for ( var i = 1; i <=3; i++ ) {
+                                                arrayValoracion[i] = []; 
+                                            }
                                                         
-                                                        $( function() {
-                                                                $( '#tabsHorizontal' ).tabs();
-                                                        });
-                                                        function valorElegido(valor_criterio, tipo_criterio, valoracion){
-                                                                
-                                                                for(i=1;i<=5;i++){
-                                                                        if(valor_criterio==i){
-                                                                            
-                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({
-                                                                                        'background-image':'url(".$CFG_GLPI["root_doc"]."/pics/valoracion_'+valor_criterio+'.png)',
-                                                                                        'background-repeat':'no-repeat',
-                                                                                        'background-position':'center'});
-                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html(valor_criterio);
-                                                                                
-                                                                                //añadimos el valor elegido a arrayValoracion
-                                                                               arrayValoracion[valoracion][tipo_criterio]=valor_criterio;                                                                        
-                                                                        }
-                                                                        else{
-                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({'background-image':'none'});
-                                                                                $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html('');
-                                                                                
-                                                                        }
-                                                                       
-                                                                }
-                                                                
-                                                        }
-                                                        function guardarYModificarValoracion(paquete_id, numero_valoracion, valoracion_id, metodo){
-                                                                
-                                                                var valoracionesCompletada=true;
-                                                               
-                                                                //Si arrayValoracion no tiene todo los campos completado, no se añadira la valoración
-                                                                if( arrayValoracion[numero_valoracion].length==6){
-                                                                         
-                                                                        for(i=0;i<arrayValoracion[numero_valoracion].length;i++){
-
-                                                                                if(arrayValoracion[numero_valoracion][i]==null ){
-                                                                                        valoracionesCompletada=false; 
-                                                                                }
-                                                                        }
-                                                                        
-                                                                        if(valoracionesCompletada){
-                                                                               
-                                                                                var parametros = {
-                                                                                       'metodo': metodo,
-                                                                                       'valoracion_id': valoracion_id,
-                                                                                       'paquete_id':paquete_id,
-                                                                                       'numero_valoracion' : numero_valoracion,
-                                                                                       'arrayValoracion': arrayValoracion[numero_valoracion]    
-                                                                                };
-                                                                              
-                                                                                $.ajax({ 
-                                                                                       type: 'GET',
-                                                                                       data: parametros,                  
-                                                                                       url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
-                                                                                       success:function(data){
-                                                                                                if(metodo=='add_valoracion'){
-                                                                                                
-                                                                                                         $('#boton_guardar_'+numero_valoracion).html(
-                                                                                                                '<span onclick=\'guardarYModificarValoracion('+paquete_id+','+numero_valoracion+','+data+',\"update_valoracion\")\' class=\'vsubmit\' style=\'margin-right: 15px;\'>MODIFICAR VALORACIÓN</span>'
-                                                                                                         );
-
-                                                                                                }
-                                                                                               
-                                                                                       },
-                                                                                       error: function(result) {
-                                                                                           alert('Data not found');
-                                                                                       }
-                                                                                });
-                                                                        }
-                                                                }
-                                                        }
                                         </script>";
                                               
                                          echo"<div id='tabsHorizontal' style='display: inline-block;'>";
@@ -282,95 +211,197 @@
                                         echo"</div>";   
 			
 		}
-                
-                                function modificarValoracionPaquete($valoracion, $paquete_id){
-                                   GLOBAL $DB,$CFG_GLPI;
+           
+                function modificarValoracionPaquete($valoracion, $paquete_id){
+                    GLOBAL $DB,$CFG_GLPI;
+                                   
+                    echo $this->consultaAjax();                 
                                                                        
-                                        echo "<div align='center'><table class='tab_cadre_fixehov'>";
-                                                echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
-                                                echo"<br/>";
-                                                echo "<tr><th></th>";
-                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
-                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Pobre')."</th>";
-                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
-                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
-                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
-                                                echo "</tr>";
+                    echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
+                    echo"<br/>";
+                    echo "<tr><th></th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Pobre')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
+                    echo "</tr>";
 
-                                                $arrayValoraciones[0]=['calidad', 'Calidad'];
-                                                $arrayValoraciones[1]=['plazo', 'Plazo'];
-                                                $arrayValoraciones[2]=['costes', 'Costes'];
-                                                $arrayValoraciones[3]=['cultura', 'Cultura'];
-                                                $arrayValoraciones[4]=['suministros_y_subcontratistas', 'Suministros y Subcontratistas'];
-                                                $arrayValoraciones[5]=['sys_y_medioambiente', 'Sys y Medioambiente'];
+                        $arrayValoraciones[0]=['calidad', 'Calidad'];
+                        $arrayValoraciones[1]=['plazo', 'Plazo'];
+                        $arrayValoraciones[2]=['costes', 'Costes'];
+                        $arrayValoraciones[3]=['cultura', 'Cultura'];
+                        $arrayValoraciones[4]=['suministros_y_subcontratistas', 'Suministros y Subcontratistas'];
+                        $arrayValoraciones[5]=['sys_y_medioambiente', 'Sys y Medioambiente'];
                                                 
                                                 
                                                     
 
-                                                foreach ($arrayValoraciones as $key => $value) {
+                    foreach ($arrayValoraciones as $key => $value) {
                                                     
-                                                        echo "<tr class='tab_bg_2' style='height:60px;'>";
-                                                                echo"<td class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
-                                                                echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
-                                                                echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
-                                                                echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
-                                                                echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
-                                                                echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
-                                                        echo "</tr>";    
-                                                }
+                        echo "<tr class='tab_bg_2' style='height:60px;'>";
+                            echo"<td class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
+                            echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
+                        echo "</tr>";    
+                    }
 
-                                                echo"<br/>";
-                                        echo "</table></div>";
+                    echo"<br/>";
+                    echo "</table></div>";
                                       
-                                        $query ="SELECT * 
-                                            FROM glpi_plugin_comproveedores_valuations as valoracion
-                                            where valoracion.projecttasks_id=".$paquete_id." and valoracion.num_evaluacion=".$valoracion;
+                        $query ="SELECT * 
+                            FROM glpi_plugin_comproveedores_valuations as valoracion
+                            where valoracion.projecttasks_id=".$paquete_id." and valoracion.num_evaluacion=".$valoracion;
                         
-                                        $result = $DB->query($query);
-                                        $contenido_valoracion=1;             
-                                        while ($data=$DB->fetch_array($result)) {
+                            $result = $DB->query($query);
+                            $contenido_valoracion=1;             
+                            while ($data=$DB->fetch_array($result)) {
                                             
-                                                //Creamos un script donde se cagarán los valores de la consulta
-                                                echo"<script type='text/javascript'>      
-                                                        $( function() {";
+                                //Creamos un script donde se cagarán los valores de la consulta
+                                echo"<script type='text/javascript'>      
+                                       $( function() {";
                                                 
-                                                                foreach ($arrayValoraciones as $key => $value) {
-                                                                     $valor=$data[$value[0]];
-                                                                    echo"valorElegido($valor, $key, $valoracion);";
-                                                                } 
+                                            foreach ($arrayValoraciones as $key => $value) {
+                                                $valor=$data[$value[0]];
+                                                echo"valorElegido($valor, $key, $valoracion);";
+                                            } 
                                                                   
-                                                         echo"});
-                                                </script>";
+                                 echo"});</script>";
                                                  
                                         
-                                                $valoracion_id=$data['id'];   
-                                        }
+                                $valoracion_id=$data['id'];   
+                            }
                                         
-                                         echo "<br><br>";
-                                        echo"<div  id='boton_guardar_$valoracion'>";
-                                                if($result->num_rows!=0){ 
+                            echo "<br><br>";
+                            echo"<div  id='boton_guardar_$valoracion'>";
+                                if($result->num_rows!=0){ 
 
-                                                       echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,$valoracion_id,\"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR VALORACIÓN</span>";
-                                               }  
-                                               else{
+                                    echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,$valoracion_id,\"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR VALORACIÓN</span>";
+                                }  
+                                else{
 
-                                                       echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,-1,\"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR VALORACIÓN</span>";      
-                                               }    
-                                        echo"</div>";
-                                        echo"<br>";
-                                        echo"<br>";
-                                }
+                                    echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,-1,\"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR VALORACIÓN</span>";      
+                                }    
+                                echo"</div>";
+                                echo"<br>";
+                                echo"<br>";
+                }
+                
+                function showForm(){
+                    GLOBAL $DB,$CFG_GLPI;
+                                   
+                    echo"<script type='text/javascript'>                                           
+                               
+                        var arrayValoracion = [];
+
+                        for ( var i = 1; i <=3; i++ ) {
+                            arrayValoracion[i] = []; 
+                        }
+                    </script>";
+                    
+                    echo $this->consultaAjax();
+                        
+                    $valoracion=0;
+                    $paquete_id=0;
+                    $query2 ="SELECT valoracion.num_evaluacion, valoracion.projecttasks_id 
+                            FROM glpi_plugin_comproveedores_valuations as valoracion
+                            where valoracion.id=".$_GET['id'];
+                        
+                    $result2 = $DB->query($query2);
+                                      
+                    while ($data=$DB->fetch_array($result2)) {
+                        $valoracion=$data['num_evaluacion'];
+                        $paquete_id=$data['projecttasks_id'];
+                    }
+                                                                       
+                    echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
+                    echo"<br/>";
+                    echo "<tr><th></th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Pobre')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
+                    echo "</tr>";
+
+                        $arrayValoraciones[0]=['calidad', 'Calidad'];
+                        $arrayValoraciones[1]=['plazo', 'Plazo'];
+                        $arrayValoraciones[2]=['costes', 'Costes'];
+                        $arrayValoraciones[3]=['cultura', 'Cultura'];
+                        $arrayValoraciones[4]=['suministros_y_subcontratistas', 'Suministros y Subcontratistas'];
+                        $arrayValoraciones[5]=['sys_y_medioambiente', 'Sys y Medioambiente'];
+                                                
+                                                
+                                                    
+
+                    foreach ($arrayValoraciones as $key => $value) {
+                                                    
+                        echo "<tr class='tab_bg_2' style='height:60px;'>";
+                            echo"<td class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
+                            echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
+                        echo "</tr>";    
+                    }
+
+                    echo"<br/>";
+                    echo "</table></div>";
+                                      
+                        $query ="SELECT * 
+                            FROM glpi_plugin_comproveedores_valuations as valoracion
+                            where valoracion.projecttasks_id=".$paquete_id." and valoracion.num_evaluacion=".$valoracion;
+                        
+                            $result = $DB->query($query);
+                            $contenido_valoracion=1;             
+                            while ($data=$DB->fetch_array($result)) {
+                                            
+                                //Creamos un script donde se cagarán los valores de la consulta
+                                echo"<script type='text/javascript'>      
+                                       $( function() {";
+                                                
+                                            foreach ($arrayValoraciones as $key => $value) {
+                                                $valor=$data[$value[0]];
+                                                echo"valorElegido($valor, $key, $valoracion);";
+                                            } 
+                                                                  
+                                 echo"});</script>";
+                                                 
                                         
-                                function showFormItemValuationProveedor($item, $withtemplate='') {	
+                                $valoracion_id=$data['id'];   
+                            }
+                                        
+                            echo "<br><br>";
+                            echo"<div  id='boton_guardar_$valoracion'>";
+                                if($result->num_rows!=0){ 
+
+                                    echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,$valoracion_id,\"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR VALORACIÓN</span>";
+                                }  
+                                else{
+
+                                    echo "<span onclick='guardarYModificarValoracion($paquete_id,$valoracion,-1,\"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR VALORACIÓN</span>";      
+                                }    
+                                echo"</div>";
+                                echo"<br>";
+                                echo"<br>";
+                }    
+                           
+                    function showFormItemValuationProveedor($item, $withtemplate='') {	
 			GLOBAL $DB,$CFG_GLPI;
                         
 			$CvId=$item->fields['cv_id']; 
 			$query2 ="SELECT"
-                                                                         . "(SELECT projects_id "
-                                                                        . "FROM glpi_projecttasks as paquetes "
-                                                                        . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
-                                                . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
-                                                 . "WHERE cv_id=$CvId";
+                            . "(SELECT projects_id "
+                            . "FROM glpi_projecttasks as paquetes "
+                            . "WHERE paquetes.id=valoraciones.projecttasks_id) as project_id, valoraciones.* "
+                            . "FROM `glpi_plugin_comproveedores_valuations` as valoraciones "
+                            . "WHERE cv_id=$CvId order by valoraciones.num_evaluacion desc limit 1";
                         
 			$result2 = $DB->query($query2);
 
@@ -393,18 +424,16 @@
 								$data['is_deleted']=1;
 							}
 
-							echo "<tr class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
-                                                                                                                                echo "<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>";
-                                                                                                                                    echo"<div>".Dropdown::getDropdownName("glpi_projects",$data['project_id'])."</div>";
-                                                                                                                                     echo"<br>";
-                                                                                                                                    echo"<div>".Dropdown::getDropdownName("glpi_projecttasks",$data['projecttasks_id'])."</div>";
-                                                                                                                                echo"</td>";
+							echo "<tr style='height:50px;' class='tab_bg_2".($data["is_deleted"]=='1'?"_2":"")."'>";
+                                                                echo "<td class='center' style='width:10px; text-align:left; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>";
+                                                                    echo"<div>".Dropdown::getDropdownName("glpi_projects",$data['project_id'])."</div>";
+                                                                echo"</td>";
 								echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
-                                                                                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
-                                                                                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['plazo']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['plazo']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['suministros_y_subcontratistas']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['sys_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['sys_y_medioambiente']."</td>";
 								
 						}
                                                                         }
@@ -443,34 +472,105 @@
 			echo "<br>";
 		}
                 
-                                 function getColorValoracion($valor){
+                function getColorValoracion($valor){
 	           
-                                    switch ($valor) {
-                                        case $valor<=1:
+                    switch ($valor) {
+                        case $valor<=1:
 
-                                                $color=1;
-                                            break;
-                                        case $valor<=2 && $valor>1:
+                            $color=1;
+                            break;
+                        case $valor<=2 && $valor>1:
 
-                                                $color=2;
-                                           break;
-                                        case $valor<=3 && $valor>2:
+                            $color=2;
+                            break;
+                        case $valor<=3 && $valor>2:
 
-                                                $color=3;
-                                            break;
-                                        case $valor<=4 && $valor>3:
+                            $color=3;
+                            break;
+                        case $valor<=4 && $valor>3:
 
-                                                $color=4;
-                                            break;
-                                        case $valor<=5 && $valor>4:
+                            $color=4;
+                            break;
+                        case $valor<=5 && $valor>4:
 
-                                                $color=5;
-                                            break;
-                                        default:
-                                            break;
-                                    }
+                            $color=5;
+                            break;
+                        default:
+                            break;
+                    }
 
-                                    return $color;
+                    return $color;
+                }
+                
+            function consultaAjax(){
+                GLOBAL $DB,$CFG_GLPI;
+                $resultado="<script type='text/javascript'>  
+                        function valorElegido(valor_criterio, tipo_criterio, valoracion){
+                                                                
+                            for(i=1;i<=5;i++){
+                                if(valor_criterio==i){
+                                                                            
+                                    $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({
+                                        'background-image':'url(".$CFG_GLPI["root_doc"]."/pics/valoracion_'+valor_criterio+'.png)',
+                                        'background-repeat':'no-repeat',
+                                        'background-position':'center'});
+                                    $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html(valor_criterio);
+                                                                                
+                                    //añadimos el valor elegido a arrayValoracion
+                                    arrayValoracion[valoracion][tipo_criterio]=valor_criterio;                                                                        
                                 }
+                                else{
+                                    $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).css({'background-image':'none'});
+                                    $('#criterio_'+tipo_criterio+'_'+i+'_valoracion_'+valoracion).html('');
+                                }                                       
+                            }                                      
+                        }
+                        function guardarYModificarValoracion(paquete_id, numero_valoracion, valoracion_id, metodo){
+                                                                
+                            var valoracionesCompletada=true;
+                                                               
+                            //Si arrayValoracion no tiene todo los campos completado, no se añadira la valoración
+                            if( arrayValoracion[numero_valoracion].length==6){
+                                                                         
+                                for(i=0;i<arrayValoracion[numero_valoracion].length;i++){
+
+                                    if(arrayValoracion[numero_valoracion][i]==null ){
+                                        valoracionesCompletada=false; 
+                                    }
+                                }
+                                                                        
+                                if(valoracionesCompletada){
+                                                                               
+                                    var parametros = {
+                                        'metodo': metodo,
+                                        'valoracion_id': valoracion_id,
+                                        'paquete_id':paquete_id,
+                                        'numero_valoracion' : numero_valoracion,
+                                        'arrayValoracion': arrayValoracion[numero_valoracion]    
+                                    };
+                                                                              
+                                    $.ajax({ 
+                                        type: 'GET',
+                                        data: parametros,                  
+                                        url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
+                                        success:function(data){
+                                            if(metodo=='add_valoracion'){
+                                                                                                
+                                                $('#boton_guardar_'+numero_valoracion).html(
+                                                    '<span onclick=\'guardarYModificarValoracion('+paquete_id+','+numero_valoracion+','+data+',\"update_valoracion\")\' class=\'vsubmit\' style=\'margin-right: 15px;\'>MODIFICAR VALORACIÓN</span>'
+                                                );
+                                            }
+                                        },
+                                        error: function(result) {
+                                            alert('Data not found');
+                                        }
+                                    });
+                                }
+                            }
+                        }   
+                 </script>";
+                
+                return $resultado;
+            }
 
 }
