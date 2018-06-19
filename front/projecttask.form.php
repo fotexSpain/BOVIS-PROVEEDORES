@@ -53,6 +53,8 @@ if (!isset($_GET["projecttasks_id"])) {
 $task = new ProjectTask();
 
 if (isset($_POST["add"])) {
+    
+    $_POST['valor_contrato']=str_replace('.', '', $_POST['valor_contrato']);
    $task->check(-1, CREATE, $_POST);
    $newID = $task->add($_POST);
 
@@ -75,6 +77,7 @@ if (isset($_POST["add"])) {
    Html::redirect(Project::getFormURL()."?id=".$task->fields['projects_id']);
 
 } else if (isset($_POST["update"])) {
+    $_POST['valor_contrato']=str_replace('.', '', $_POST['valor_contrato']);
    $task->check($_POST["id"], UPDATE);
    $task->update($_POST);
 

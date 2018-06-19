@@ -413,6 +413,8 @@ class ProjectTask extends CommonDBChild {
       $rand_real_end_date      = mt_rand();
       $rand_effective_duration = mt_rand();
       $rand_planned_duration   = mt_rand();
+      $rand_valor_contrato          = mt_rand();
+      $rand_code          = mt_rand();
 
       if ($ID > 0) {
          $this->check($ID, READ);
@@ -426,15 +428,7 @@ class ProjectTask extends CommonDBChild {
       }
 
       $this->showFormHeader($options);
-
-      echo "<tr class='tab_bg_1'>";
-      echo "<td style='width:100px'>"._n('Project task template', 'Project task templates', 1)."</td><td>";
-      ProjectTaskTemplate::dropdown(['value'     => $this->fields['projecttasktemplates_id'],
-                                     'entity'    => $this->getEntityID(),
-                                     'rand'      => $rand_template,
-                                     'on_change' => 'projecttasktemplate_update(this.value)']);
-      echo "</td>";
-      echo "</tr>";
+      
       echo Html::scriptBlock('
          function projecttasktemplate_update(value) {
             $.ajax({
@@ -491,7 +485,22 @@ class ProjectTask extends CommonDBChild {
       echo "<a href='project.form.php?id=".$projects_id."'>".
              Dropdown::getDropdownName("glpi_projects", $projects_id)."</a>";
       echo "</td>";
-      echo "<td>".__('As child of')."</td>";
+      
+       $showuserlink = 0;
+      if (Session::haveRight('user', READ)) {
+         $showuserlink = 1;
+      }
+      
+        if ($ID) {
+         
+         echo "<td>".__('Creation date')."</td>";
+         echo "<td>";
+         echo sprintf(__('%1$s by %2$s'), Html::convDateTime($this->fields["date"]),
+                                       getUserName($this->fields["users_id"], $showuserlink));
+        echo "</td>";
+        
+        }
+     /* echo "<td>".__('As child of')."</td>";
       echo "<td>";
       $this->dropdown(['entity'    => $this->fields['entities_id'],
                             'value'     => $projecttasks_id,
@@ -499,14 +508,10 @@ class ProjectTask extends CommonDBChild {
                             'condition' => "`glpi_projecttasks`.`projects_id`='".
                                              $this->fields['projects_id']."'",
                             'used'      => [$this->fields['id']]]);
-      echo "</td></tr>";
+      echo "</td></tr>";*/
 
-      $showuserlink = 0;
-      if (Session::haveRight('user', READ)) {
-         $showuserlink = 1;
-      }
-
-      if ($ID) {
+     
+     /* if ($ID) {
          echo "<tr class='tab_bg_1'>";
          echo "<td>".__('Creation date')."</td>";
          echo "<td>";
@@ -517,26 +522,51 @@ class ProjectTask extends CommonDBChild {
          echo "<td>";
          echo Html::convDateTime($this->fields["date_mod"]);
          echo "</td></tr>";
-      }
+      }*/
 
       echo "<tr class='tab_bg_1'><td>".__('Name')."</td>";
-      echo "<td colspan='3'>";
-      Html::autocompletionTextField($this, "name", ['size' => 80,
-                                                    'rand' => $rand_name]);
-      echo "</td></tr>\n";
+      echo "<td>";
+      /*Html::autocompletionTextField($this, "name", ['size' => 80,
+                                                    'rand' => $rand_name,
+                                                    'attrs' => ['style' => 'width:400px;'] ]);*/
+      
+        echo "<textarea id='name$rand_name' name='name' cols='70' rows='4' style='resize: none'>".$this->fields["name"].
+           "</textarea>";
+      echo "</td>";
+      echo"<td>".__('Code')."</td>";
+      echo "<td>";
+      Html::autocompletionTextField($this, "code", ['size' => 80,
+                                                    'rand' => $rand_code]);
+      echo "</td>";
+      echo"</tr>\n";
 
-      echo "<tr class='tab_bg_1'>";
+       echo "<tr class='tab_bg_1'>";      
+      echo"<td>".__('Valor/Importe')."</td>";
+      echo "<td>";
+      
+      $valor_contrato=$this->fields['valor_contrato'];
+      $valor_contrato=substr(number_format($valor_contrato, 0, '', '.'),0,strlen(number_format($valor_contrato, 0, '', '.')));
+      Html::autocompletionTextField($this, "valor_contrato", array('value'=>$valor_contrato ,'option'=>'size=12'));
+      
+      
+      
+      //$valor_contrato=substr(number_format($rand_valor_contrato, 0, '', '.'),0,strlen(number_format($rand_valor_contrato, 0, '', '.'))-4);
+      
+      
+      echo "</td>";
+      
       echo "<td>"._x('item', 'State')."</td>";
       echo "<td>";
       ProjectState::dropdown(['value' => $this->fields["projectstates_id"],
                               'rand'  => $rand_state]);
       echo "</td>";
-      echo "<td>".__('Type')."</td>";
+     /* echo "<td>".__('Type')."</td>";
       echo "<td>";
       ProjectTaskType::dropdown(['value' => $this->fields["projecttasktypes_id"],
                                  'rand'  => $rand_type]);
-      echo "</td></tr>";
+      echo "</td></tr>";*/
 
+      /*echo "</tr>";
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Percent done')."</td>";
       echo "<td>";
@@ -557,10 +587,31 @@ class ProjectTask extends CommonDBChild {
          $('tr.is_milestone').toggleClass('starthidden');
       })";
       echo Html::scriptBlock($js);
+      echo "</td>";*/
+      echo "</tr>";
+      
+       echo "<tr class='tab_bg_1'>";
+      echo "<td>".__('Fecha de comienzo')."</td>";
+      echo "<td>";
+      Html::showDateTimeField("Fecha de comienzo",
+                              ['value' => $this->fields['plan_start_date'],
+                               'rand'  => $rand_plan_start_date]);
+      echo "</td>";
+      echo "<td>".__('Fecha de fin')."</td>";
+      echo "<td>";
+      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'],
+                                                'rand'  => $rand_plan_end_date]);
+      echo "</td></tr>";
+      echo "<tr class='tab_bg_1'>";
+      echo "<td style='width:100px; visibility:hidden;'>"._n('Project task template', 'Project task templates', 1)."</td><td style='visibility:hidden;'>";
+      ProjectTaskTemplate::dropdown(['value'     => $this->fields['projecttasktemplates_id'],
+                                     'entity'    => $this->getEntityID(),
+                                     'rand'      => $rand_template,
+                                     'on_change' => 'projecttasktemplate_update(this.value)']);
       echo "</td>";
       echo "</tr>";
 
-      echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
+      /*echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
 
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Planned start date')."</td>";
@@ -640,7 +691,7 @@ class ProjectTask extends CommonDBChild {
       echo "<td colspan='3'>";
       echo "<textarea id='comment$rand_comment' name='comment' cols='90' rows='6'>".$this->fields["comment"].
            "</textarea>";
-      echo "</td></tr>\n";
+      echo "</td></tr>\n";*/
 
       $this->showFormButtons($options);
 

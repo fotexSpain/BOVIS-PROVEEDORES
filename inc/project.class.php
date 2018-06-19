@@ -1055,7 +1055,9 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
-      Html::autocompletionTextField($this, 'name');
+       echo "<textarea id='name' name='name' cols='70' rows='4' style='resize: none'>".$this->fields["name"].
+           "</textarea>";
+      //Html::autocompletionTextField($this, 'name');
       echo "</td>";
       
         echo "<td>".__('Show on global GANTT')."</td>";
