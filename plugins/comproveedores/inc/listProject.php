@@ -115,7 +115,7 @@ $result = $DB->query($query);
                                         window.open('".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/listProjectPDF.php?id='+ids,'_blank'); 
                                 }
                                 else{
-                                        alert('Tienes que elegir un proyecto de las lista, para poder exportar a PDF');
+                                        alert('Tienes que elegir un proyecto de la lista, para poder exportar a PDF');
                                 }
                         }
                         
