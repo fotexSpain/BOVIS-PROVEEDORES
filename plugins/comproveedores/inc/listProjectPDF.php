@@ -61,6 +61,6 @@ $result = $DB->query($query);
 	$html.="<br>";
        
         $nombre_pdf="Lista de Proyectos.pdf";
-        //exportamos el contrnido de la variable $html a pdf, y el pdf tendra el nombre de $nombre_pdf
+        //exportamos el contenido de la variable $html a pdf, y el pdf tendra el nombre de $nombre_pdf
        include ("../../../dompdf/output.php");
-       echo $dompdf;
+      

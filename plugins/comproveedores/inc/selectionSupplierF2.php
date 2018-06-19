@@ -7,10 +7,10 @@ include ("../../../inc/includes.php");
 GLOBAL $DB,$CFG_GLPI;
 
 $objCommonDBT=new CommonDBTM();
-        
+
 echo consultaAjax();
 
-echo"<table class='tab_cadre_fixe'><tbody>";
+echo"<table  class='tab_cadre_fixe'>";
 			
         echo"<th colspan='6'>Selección Proveedor</th></tr>";
         echo"<tr class='tab_bg_1 center' >";
@@ -73,9 +73,9 @@ echo"<table class='tab_cadre_fixe'><tbody>";
         echo "</tr>";
 			
 echo "</table>";
-
 include 'listSelectionSupplier.php';
 
+ echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
 echo "<span onclick='inlcuirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
 echo"<br>";
 echo"<br>";
@@ -100,10 +100,29 @@ function getTiposExperiencias(){
 function consultaAjax(){
 
     GLOBAL $DB,$CFG_GLPI;
+    
 
     $consulta="<script type='text/javascript'>
         
                 var arrayProveedoresElegidos= new Array();
+                
+                  function imprimirPdf(){
+                  
+                                var ids='';
+                                for(i=0; i<arrayProveedoresElegidos.length;i++){
+                                    if(arrayProveedoresElegidos[i]!=null){
+                                        ids=ids+arrayProveedoresElegidos[i]+',';
+                                    }   
+                                }
+                                ids = ids.substring(0, ids.length-1); 
+                                if(ids!=''){
+                                
+                                        window.open('".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/lisSelectionSupplierPDF.php?id='+ids,'_blank'); 
+                                }
+                                else{
+                                        alert('Tienes que elegir un proveedor de la lista, para poder exportar a PDF');
+                                }
+                        }
 
                 function setListaProveedorfiltro(supplier_id){
                    

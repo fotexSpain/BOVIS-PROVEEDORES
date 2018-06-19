@@ -96,6 +96,32 @@
                                             break;
                                 }
                         }
+                        
+                          foreach ($_GET['arrayComentarios'] as $key => $value) {
+                                switch ($key) {
+                                        case 0:
+                                                $valoracion['calidad_coment']=$value;
+                                                break;
+                                        case 1:
+                                                $valoracion['plazo_coment']=$value;
+                                                break;
+                                        case 2:
+                                                $valoracion['costes_coment']=$value;
+                                                break;
+                                        case 3:
+                                                $valoracion['cultura_coment']=$value;
+                                                break;
+                                        case 4:
+                                                $valoracion['suministros_y_subcontratistas_coment']=$value;
+                                                break;
+                                        case 5:
+                                                $valoracion['sys_y_medioambiente_coment']=$value;
+                                                break;
+
+                                        default:
+                                            break;
+                                }
+                        }
             
                         $PluginValuation->check(-1, CREATE, $valoracion);
                         $newID = $PluginValuation->add($valoracion);
@@ -137,6 +163,32 @@
                                                 break;
                                         case 5:
                                                 $valoracion['sys_y_medioambiente']=$value;
+                                                break;
+
+                                        default:
+                                            break;
+                                }
+                        }
+                        
+                         foreach ($_GET['arrayComentarios'] as $key => $value) {
+                                switch ($key) {
+                                        case 0:
+                                                $valoracion['calidad_coment']=$value;
+                                                break;
+                                        case 1:
+                                                $valoracion['plazo_coment']=$value;
+                                                break;
+                                        case 2:
+                                                $valoracion['costes_coment']=$value;
+                                                break;
+                                        case 3:
+                                                $valoracion['cultura_coment']=$value;
+                                                break;
+                                        case 4:
+                                                $valoracion['suministros_y_subcontratistas_coment']=$value;
+                                                break;
+                                        case 5:
+                                                $valoracion['sys_y_medioambiente_coment']=$value;
                                                 break;
 
                                         default:

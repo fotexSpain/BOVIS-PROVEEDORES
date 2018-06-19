@@ -186,8 +186,7 @@
                                         valoracion.costes, 
                                         valoracion.cultura, 
                                         valoracion.suministros_y_subcontratistas, 
-                                        valoracion.sys_y_medioambiente,
-                                        valoracion.comentario as comentario_valoracion
+                                        valoracion.sys_y_medioambiente
                                         from glpi_projecttasks as paquetes 
                                         left join glpi_projecttaskteams as projecttaskteams on paquetes.id=projecttaskteams.projecttasks_id
                                         left join glpi_suppliers as proveedor on proveedor.id=projecttaskteams.items_id
@@ -213,7 +212,6 @@
                                 echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
                                 echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
                                 echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SYS')."</th>";
-                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Cometario')."</th>";
                                 
                         echo "</tr>";
                                         
@@ -267,8 +265,7 @@
                                                 }
                                                 else{
                                                         echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                                }
-                                                echo "<td class='center' style='width:10px; text-align:left;  border: 1px solid #BDBDDB;'>".$data['comentario_valoracion']."</td>";
+                                                }                                                
                                         echo"</tr>";
 		}
                         }
@@ -357,6 +354,7 @@
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Comentario')."</th>";
                     echo "</tr>";
 
                         $arrayValoraciones[0]=['calidad', 'Calidad'];
@@ -378,6 +376,7 @@
                             echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
                             echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
                             echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_comentario_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea rows='4' cols='45' style='resize: none'></textarea></td>";
                         echo "</tr>";    
                     }
 
@@ -398,6 +397,7 @@
                                                 
                                             foreach ($arrayValoraciones as $key => $value) {
                                                 $valor=$data[$value[0]];
+                                                echo "$('#criterio_".$key."_comentario_valoracion_".$valoracion."').find('textarea').html('".$data[$value[0].'_coment']."');";
                                                 echo"valorElegido($valor, $key, $valoracion);";
                                             } 
                                                                   
@@ -458,6 +458,7 @@
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
+                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Comentario')."</th>";
                     echo "</tr>";
 
                         $arrayValoraciones[0]=['calidad', 'Calidad'];
@@ -479,6 +480,7 @@
                             echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
                             echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
                             echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_comentario_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea rows='4' cols='45' style='resize: none'></textarea></td>";
                         echo "</tr>";    
                     }
 
@@ -488,6 +490,7 @@
                         $query ="SELECT * 
                             FROM glpi_plugin_comproveedores_valuations as valoracion
                             where valoracion.projecttasks_id=".$paquete_id." and valoracion.num_evaluacion=".$valoracion;
+                       
                         
                             $result = $DB->query($query);
                             $contenido_valoracion=1;             
@@ -499,6 +502,7 @@
                                                 
                                             foreach ($arrayValoraciones as $key => $value) {
                                                 $valor=$data[$value[0]];
+                                                echo "$('#criterio_".$key."_comentario_valoracion_".$valoracion."').find('textarea').html('".$data[$value[0].'_coment']."');";
                                                 echo"valorElegido($valor, $key, $valoracion);";
                                             } 
                                                                   
@@ -659,21 +663,24 @@
                         function guardarYModificarValoracion(paquete_id, numero_valoracion, valoracion_id, metodo){
                                                                 
                             var valoracionesCompletada=true;
-                                                               
+                            var arrayComentarios= [];
                             //Si arrayValoracion no tiene todo los campos completado, no se añadira la valoración
                             if( arrayValoracion[numero_valoracion].length==6){
-                                                                         
+                                                                    
                                 for(i=0;i<arrayValoracion[numero_valoracion].length;i++){
 
                                     if(arrayValoracion[numero_valoracion][i]==null ){
                                         valoracionesCompletada=false; 
                                     }
+                                    arrayComentarios[i]=$('#criterio_'+i+'_comentario_valoracion_'+numero_valoracion).find('textarea').val();
                                 }
                                                                         
                                 if(valoracionesCompletada){
-                                                                               
+
+
                                     var parametros = {
                                         'metodo': metodo,
+                                        'arrayComentarios':arrayComentarios,
                                         'valoracion_id': valoracion_id,
                                         'paquete_id':paquete_id,
                                         'numero_valoracion' : numero_valoracion,
