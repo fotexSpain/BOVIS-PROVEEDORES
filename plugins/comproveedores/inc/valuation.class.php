@@ -342,8 +342,11 @@
            
                 function modificarValoracionPaquete($valoracion, $paquete_id){
                     GLOBAL $DB,$CFG_GLPI;
-                                   
-                    echo $this->consultaAjax();                 
+                   
+                    echo $this->consultaAjax();     
+                    
+                    //formato de fecha yyyy-mm-dd
+                    $_SESSION['glpidate_format']=0;
                     echo "<div id='fecha_valoracion_".$valoracion."' style='text-align:left; display: -webkit-box;'>";
                                 echo"<div style='margin-right:10px; position: relative; top: 3px;'>Fecha de valoración</div>";
                                 echo"<div>";
@@ -458,6 +461,8 @@
                         $paquete_id=$data['projecttasks_id'];
                     }
                     
+                    //formato de fecha yyyy-mm-dd
+                    $_SESSION['glpidate_format']=0;
                     echo "<div id='fecha_valoracion_".$valoracion."' style='text-align:left; display: -webkit-box;'>";
                                 echo"<div style='margin-right:10px; position: relative; top: 3px;'>Fecha de valoración</div>";
                                 echo"<div>";
