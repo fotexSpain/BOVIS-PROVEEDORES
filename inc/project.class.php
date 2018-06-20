@@ -1031,11 +1031,69 @@ class Project extends CommonDBTM {
       
         $opt2['comments']= false;
         $opt2['addicon']= false;
-        //$opt2['value']=  $data["plugin_comproveedores_experiencestypes_id"];      
+        if(!empty($this->fields["plugin_comproveedores_experiencestypes_id"])){
+              $opt2['value']= $this->fields["plugin_comproveedores_experiencestypes_id"];      
+        }
         
         $opt3['comments']= false;
         $opt3['addicon']= false;
-        //$opt3['value']=  $data["plugin_comproveedores_communities_id"];
+        $opt3['specific_tags']=array('onchange' => 'cambiarProvincia(value)');
+        if(!empty($this->fields["plugin_comproveedores_communities_id"])){
+                $opt3['value']= $this->fields["plugin_comproveedores_communities_id"];
+        }
+        
+         if(!empty($this->fields["plugin_comproveedores_provinces_id"])){
+                $opt4['value']= $this->fields["plugin_comproveedores_provinces_id"];
+         }
+        
+        echo"<script type='text/javascript'>
+            
+                var cargar_provincia=true;
+
+                $(function() {
+                
+                        if(".$this->fields['plugin_comproveedores_communities_id']."!=null){
+                                cambiarProvincia(".$this->fields['plugin_comproveedores_communities_id'].");        
+                        }
+                });
+                
+                function cambiarProvincia(valor){
+
+                        //Comprobamos si tiene provincia el proyecto
+                        if(".$this->fields['plugin_comproveedores_provinces_id']."!=null && cargar_provincia){
+                               
+                                provincia=".$this->fields['plugin_comproveedores_provinces_id']."; 
+                                cargar_provincia=false;
+                        }
+                        if(".$this->fields['plugin_comproveedores_provinces_id']."==null && cargar_provincia){
+                                    
+                                provincia=null;
+                                cargar_provincia=false;
+                        }
+                       
+                        var parametros = {
+                                'idComunidad': 'valor',
+                                'idProvincia':provincia
+                        };
+
+                        $.ajax({  
+                                type: 'GET',        		
+		url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/select_provinces.php',
+		data: parametros,
+		success:function(data){
+
+                                        $('#id_provincia').html(data);
+		},
+		error: function(result) {
+                                        alert('Data not found');
+		}
+                        });
+
+                        //añadimos al foemulario de añadir nueva especialidad, el is de la categoria
+                        //$('[name=categoria_nueva_especialidad]').val(valor);
+	}
+                
+                </script>";
       
        echo "<tr class='tab_bg_1'>";
        

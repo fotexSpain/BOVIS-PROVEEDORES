@@ -93,6 +93,75 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_communities` (
 
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_provinces` (
+	`id` int(11) NOT NULL auto_increment,
+	`name`varchar(255),
+                `plugin_comproveedores_communities_id` int(11) NOT NULL,
+	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `name` (`name`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `glpi_plugin_comproveedores_provinces` (`id`, `name`, `plugin_comproveedores_communities_id`, `is_deleted`, `externalid`, `is_recursive`, `entities_id`) 
+VALUES 
+('1', 'La Coruña', '12', '0', NULL, '0', '0'),
+('2', 'Álava', '16', '0', NULL, '0', '0'),
+('3', 'Albacete', '8', '0', NULL, '0', '0'),
+('4', 'Alicante', '10', '0', NULL, '0', '0'),
+('5', 'Almería', '10', '0', NULL, '0', '0'),
+('6', 'Asturias', '3', '0', NULL, '0', '0'),
+('7', 'Ávila', '7', '0', NULL, '0', '0'),
+('8', 'Badajoz', '11', '0', NULL, '0', '0'),
+('9', 'Islas Baleares', '4', '0', NULL, '0', '0'),
+('10', 'Barcelona', '9', '0', NULL, '0', '0'),
+('11', 'Burgos', '7', '0', NULL, '0', '0'),
+('12', 'Cáceres', '11', '0', NULL, '0', '0'),
+('13', 'Cádiz', '1', '0', NULL, '0', '0'),
+('14', 'Cantabria', '6', '0', NULL, '0', '0'),
+('15', 'Castellón', '10', '0', NULL, '0', '0'),
+('16', 'Ciudad Real', '8', '0', NULL, '0', '0'),
+('17', 'Córdoba', '1', '0', NULL, '0', '0'),
+('18', 'Cuenca', '8', '0', NULL, '0', '0'),
+('19', 'Girona', '9', '0', NULL, '0', '0'),
+('20', 'Granada', '1', '0', NULL, '0', '0'),
+('21', 'Guadalajara', '8', '0', NULL, '0', '0'),
+('22', 'Guipúzcoa', '16', '0', NULL, '0', '0'),
+('23', 'Huelva', '1', '0', NULL, '0', '0'),
+('24', 'Huesca', '2', '0', NULL, '0', '0'),
+('25', 'Jaén', '1', '0', NULL, '0', '0'),
+('26', 'La Rioja', '17', '0', NULL, '0', '0'),
+('27', 'Las Palmas', '5', '0', NULL, '0', '0'),
+('28', 'León', '7', '0', NULL, '0', '0'),
+('29', 'Lleida', '9', '0', NULL, '0', '0'),
+('30', 'Lugo', '12', '0', NULL, '0', '0'),
+('31', 'Madrid', '13', '0', NULL, '0', '0'),
+('32', 'Málaga', '1', '0', NULL, '0', '0'),
+('33', 'Murcia', '14', '0', NULL, '0', '0'),
+('34', 'Navarra', '15', '0', NULL, '0', '0'),
+('35', 'Orense', '12', '0', NULL, '0', '0'),
+('36', 'Palencia', '7', '0', NULL, '0', '0'),
+('37', 'Pontevedra', '12', '0', NULL, '0', '0'),
+('38', 'Salamanca', '7', '0', NULL, '0', '0'),
+('39', 'Segovia', '7', '0', NULL, '0', '0'),
+('40', 'Sevilla', '1', '0', NULL, '0', '0'),
+('41', 'Soria', '7', '0', NULL, '0', '0'),
+('42', 'Tarragona', '9', '0', NULL, '0', '0'),
+('43', 'Santa Cruz de Tenerife', '5', '0', NULL, '0', '0'),
+('44', 'Teruel', '2', '0', NULL, '0', '0'),
+('45', 'Toledo', '8', '0', NULL, '0', '0'),
+('46', 'Valencia', '10', '0', NULL, '0', '0'),
+('47', 'Valladolid', '7', '0', NULL, '0', '0'),
+('48', 'Vizcaya', '16', '0', NULL, '0', '0'),
+('49', 'Zamora', '7', '0', NULL, '0', '0'),
+('50', 'Zaragoza', '2', '0', NULL, '0', '0');
+('51', 'Ceuta', '18', '0', NULL, '0', '0');
+('52', 'Melilla', '19', '0', NULL, '0', '0');
+
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_listspecialties` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

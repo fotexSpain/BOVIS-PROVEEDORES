@@ -541,11 +541,15 @@ class ProjectTask extends CommonDBChild {
       echo"</tr>\n";
 
        echo "<tr class='tab_bg_1'>";      
-      echo"<td>".__('Valor/Importe')."</td>";
-      echo "<td>";
+        echo"<td>".__('Valor/Importe')."</td>";
+        echo "<td>";
+
+        $valor_contrato=0;
+        if(!empty($this->fields['valor_contrato'])){
+                $valor_contrato=$this->fields['valor_contrato'];
+                $valor_contrato=substr(number_format($valor_contrato, 0, '', '.'),0,strlen(number_format($valor_contrato, 0, '', '.')));
+        }
       
-      $valor_contrato=$this->fields['valor_contrato'];
-      $valor_contrato=substr(number_format($valor_contrato, 0, '', '.'),0,strlen(number_format($valor_contrato, 0, '', '.')));
       Html::autocompletionTextField($this, "valor_contrato", array('value'=>$valor_contrato ,'option'=>'size=12'));
       
       
