@@ -193,7 +193,7 @@ class CommonGLPI {
     * @return CommonGLPI
    **/
    function addStandardTab($itemtype, array &$ong, array $options) {
-
+       
       $withtemplate = 0;
       if (isset($options['withtemplate'])) {
          $withtemplate = $options['withtemplate'];
@@ -216,6 +216,7 @@ class CommonGLPI {
             }
             break;
       }
+       
       return $this;
    }
 
@@ -269,6 +270,7 @@ class CommonGLPI {
         }
         
       }
+      
       return $this;
    }
 
@@ -741,11 +743,16 @@ class CommonGLPI {
          $display_all = false;
          unset($onglets['no_all_tab']);
       }
-
+      
+      //Eliminación depuración de paquetes y proyectos
+       if($this->getType()=='Project' || $this->getType()=='ProjectTask'){
+           unset($onglets[-2]);
+       }
+      
       if (count($onglets)) {
          $tabpage = $this->getTabsURL();
          $tabs    = [];
-
+   
          foreach ($onglets as $key => $val) {
             $tabs[$key] = ['title'  => $val,
                                 'url'    => $tabpage,

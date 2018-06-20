@@ -141,6 +141,7 @@ class Project extends CommonDBTM {
                }
                $ong[1] = self::createTabEntry($this->getTypeName(Session::getPluralNumber()), $nb);
                $ong[2] = __('GANTT');
+               
                return $ong;
          }
       }
@@ -1027,23 +1028,29 @@ class Project extends CommonDBTM {
 
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
-
-      echo "<tr class='tab_bg_1'>";
-      echo "<td>".__('Creation date')."</td>";
-      echo "<td>";
-
-      $date = $this->fields["date"];
-      if (!$ID) {
-         $date = $_SESSION['glpi_currenttime'];
-      }
-      Html::showDateTimeField("date", ['value'      => $date,
-                                            'timestep'   => 1,
-                                            'maybeempty' => false]);
+      
+        $opt2['comments']= false;
+        $opt2['addicon']= false;
+        //$opt2['value']=  $data["plugin_comproveedores_experiencestypes_id"];      
+        
+        $opt3['comments']= false;
+        $opt3['addicon']= false;
+        //$opt3['value']=  $data["plugin_comproveedores_communities_id"];
+      
+       echo "<tr class='tab_bg_1'>";
+       
+       echo "<td>".__('Name')."</td>";
+        echo "<td>";
+       echo "<textarea id='name' name='name' cols='60' rows='4' style='resize: none'>".$this->fields["name"].
+           "</textarea>";
+      //Html::autocompletionTextField($this, 'name');
       echo "</td>";
-       echo "<td>"._x('item', 'State')."</td>";
+      
+      echo "<td>".__('Code')."</td>";
       echo "<td>";
-      ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
+      Html::autocompletionTextField($this, 'code');
       echo "</td>";
+       
      /* if ($ID) {
          echo "<td>".__('Last update')."</td>";
          echo "<td >". Html::convDateTime($this->fields["date_mod"])."</td>";
@@ -1053,11 +1060,9 @@ class Project extends CommonDBTM {
       echo "</tr>";
 
       echo "<tr class='tab_bg_1'>";
-      echo "<td>".__('Name')."</td>";
+         echo "<td>"._x('item', 'State')."</td>";
       echo "<td>";
-       echo "<textarea id='name' name='name' cols='60' rows='4' style='resize: none'>".$this->fields["name"].
-           "</textarea>";
-      //Html::autocompletionTextField($this, 'name');
+      ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
       echo "</td>";
       
         echo "<td>".__('Show on global GANTT')."</td>";
@@ -1081,10 +1086,11 @@ class Project extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'>";
       
-      echo "<td>".__('Code')."</td>";
+       echo "<td>".__('Fecha de comienzo')."</td>";
       echo "<td>";
-      Html::autocompletionTextField($this, 'code');
+      Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date']]);
       echo "</td>";
+      
        echo "<td>".__('Porcentaje')."</td>";
       echo "<td>";
       Dropdown::showNumber("percent_done", ['value' => $this->fields['percent_done'],
@@ -1096,10 +1102,56 @@ class Project extends CommonDBTM {
       echo "</tr>";
       echo "<tr>";
       echo "</td>";
+      
+      echo "<tr class='tab_bg_1'>";
+     
       echo "<td>".__('Fecha de finalización')."</td>";
       echo "<td>";
+      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date']]);
+      echo "</td>";
+      
+       echo "<td>Tipo de servicio</td>";
+      echo "<td>";
+      //ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
+      echo "</td>";
+      
+      echo"</tr>";
+      
+       echo "<tr class='tab_bg_1'>";
+     
+       echo "<td>Ubicación (CA)</td>";
+      echo "<td>";
+      Dropdown::show('PluginComproveedoresCommunity',$opt3);
+      echo "</td>";
+      
+       echo "<td>Sector</td>";
+      echo "<td>";
+      Dropdown::show('PluginComproveedoresExperiencestype', $opt2);
+      echo "</td>";
+      
+      echo"</tr>";
+      
+      echo "<tr class='tab_bg_1'>";
+
+        echo "<td>Ubicación (PROV)</td>";
+        echo "<td>";
+                echo "<div id='id_provincia'>";
+                        echo "<span class='no-wrap'>
+                                <div class='select2-container'>
+                                <a class='select2-choice'>
+                                <span class='select2-chosen'>------</span>
+                                </a>
+                                </div>
+                                </span>";
+                echo "</div>";
+        echo "</td>";
+      
+      echo"</tr>";
+      
+     /* echo "<td>".__('Fecha de finalización')."</td>";
+      echo "<td>";
       Html::showDateTimeField("real_end_date", ['value' => $this->fields['real_end_date']]);
-      echo "</td></tr>\n";
+      echo "</td></tr>\n";*/
       //echo "</tr>";
 
       /* echo "<tr class='tab_bg_1'>";
@@ -1128,6 +1180,20 @@ class Project extends CommonDBTM {
                             'condition' => '`is_manager`']);
       echo "</td></tr>\n";*/
       
+      echo"</tr>";
+      
+       echo "<tr class='tab_bg_1' style='visibility:hidden;'>";
+      echo "<td>".__('Creation date')."</td>";
+      echo "<td >";
+
+      $date = $this->fields["date"];
+      if (!$ID) {
+         $date = $_SESSION['glpi_currenttime'];
+      }
+      Html::showDateTimeField("date", ['value'      => $date,
+                                            'timestep'   => 1,
+                                            'maybeempty' => false]);
+      echo "</td>";
       echo"</tr>";
 
       /*echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
