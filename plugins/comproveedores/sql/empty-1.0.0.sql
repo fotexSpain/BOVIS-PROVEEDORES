@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
         `suministros_y_subcontratistas_coment` VARCHAR(255) NULL DEFAULT NULL,
         `sys_y_medioambiente` int(1) NOT NULL default '0',
         `sys_y_medioambiente_coment` VARCHAR(255) NULL DEFAULT NULL,
-        `fecha` date NULL,
+        `fecha` DATETIME NULL,
         `num_evaluacion` int(1) NOT NULL default '0',
 
         `is_deleted` tinyint(1) NOT NULL default '0',

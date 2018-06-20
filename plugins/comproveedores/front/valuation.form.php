@@ -67,7 +67,7 @@
                                 $valoracion['cv_id']=$data['cv_id'];
                         }
                         
-                        $valoracion['fecha']=date("Y-m-d");
+                        $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['projecttasks_id']=$_GET['paquete_id'];
                         $valoracion['projecttasks_id']=$_GET['paquete_id'];
                         $valoracion['num_evaluacion']=$_GET['numero_valoracion'];
@@ -129,7 +129,9 @@
                         echo $newID;
 	}else if(isset($_GET['metodo']) && $_GET['metodo']=='update_valoracion'){
             
-                        $valoracion=array();
+                       
+                        
+                       $valoracion=array();
             
                        $query ="SELECT proveedores.cv_id as cv_id FROM glpi_projecttaskteams as projecttaskteams LEFT JOIN glpi_suppliers proveedores on projecttaskteams.items_id=proveedores.id WHERE projecttasks_id=".$_GET['paquete_id'];
                                    
@@ -138,8 +140,8 @@
                         while ($data=$DB->fetch_array($result)) {
                                 $valoracion['cv_id']=$data['cv_id'];
                         }
-                        
-                        $valoracion['fecha']=date("Y-m-d");
+                       
+                        $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['projecttasks_id']=$_GET['paquete_id'];
                         $valoracion['projecttasks_id']=$_GET['paquete_id'];
                         $valoracion['num_evaluacion']=$_GET['numero_valoracion'];

@@ -344,8 +344,14 @@
                     GLOBAL $DB,$CFG_GLPI;
                                    
                     echo $this->consultaAjax();                 
-                                                                       
+                    echo "<div id='fecha_valoracion_".$valoracion."' style='text-align:left; display: -webkit-box;'>";
+                                echo"<div style='margin-right:10px; position: relative; top: 3px;'>Fecha de valoración</div>";
+                                echo"<div>";
+                                Html::showDateTimeField("fecha");
+                                echo"</div>";
+                    echo"</div>";
                     echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                   
                     echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
                     echo"<br/>";
                     echo "<tr><th></th>";
@@ -370,13 +376,13 @@
                     foreach ($arrayValoraciones as $key => $value) {
                                                     
                         echo "<tr class='tab_bg_2' style='height:60px;'>";
-                            echo"<td class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
-                            echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
-                            echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
-                            echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
-                            echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
-                            echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
-                            echo"<td class='center' id='criterio_".$key."_comentario_valoracion_$valoracion' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea rows='4' cols='45' style='resize: none'></textarea></td>";
+                            echo"<td  class='center' id='criterio_".$key."_0_valoracion_$valoracion' style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>$value[1]</td>";
+                            echo"<td class='center' id='criterio_".$key."_1_valoracion_$valoracion' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_2_valoracion_$valoracion' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2, $key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_3_valoracion_$valoracion'' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_4_valoracion_$valoracion' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_5_valoracion_$valoracion' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,$key,$valoracion)'></td>";
+                            echo"<td class='center' id='criterio_".$key."_comentario_valoracion_$valoracion' style='width: 100px; font-weight:bold; border: 1px solid #BDBDDB;'><textarea rows='4' cols='45' style='resize: none'></textarea></td>";
                         echo "</tr>";    
                     }
 
@@ -396,14 +402,17 @@
                                        $( function() {";
                                                 
                                             foreach ($arrayValoraciones as $key => $value) {
-                                                $valor=$data[$value[0]];
+                                                $valor=$data[$value[0]];                                                
                                                 echo "$('#criterio_".$key."_comentario_valoracion_".$valoracion."').find('textarea').html('".$data[$value[0].'_coment']."');";
                                                 echo"valorElegido($valor, $key, $valoracion);";
                                             } 
-                                                                  
-                                 echo"});</script>";
+                                            
+                                        //Les pasamos el valor a los input de fecha de valoracion
+                                        echo"$('#fecha_valoracion_".$valoracion."').find('input[name=_fecha]').val('".$data['fecha']."');";    
+                                        echo"$('#fecha_valoracion_".$valoracion."').find('input[name=fecha]').val('".$data['fecha']."');";     
+                                echo"});</script>";
                                                  
-                                        
+                                 
                                 $valoracion_id=$data['id'];   
                             }
                                         
@@ -448,6 +457,13 @@
                         $valoracion=$data['num_evaluacion'];
                         $paquete_id=$data['projecttasks_id'];
                     }
+                    
+                    echo "<div id='fecha_valoracion_".$valoracion."' style='text-align:left; display: -webkit-box;'>";
+                                echo"<div style='margin-right:10px; position: relative; top: 3px;'>Fecha de valoración</div>";
+                                echo"<div>";
+                                Html::showDateTimeField("fecha");
+                                echo"</div>";
+                    echo"</div>";
                                                                        
                     echo "<div align='center'><table class='tab_cadre_fixehov'>";
                     echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
@@ -505,8 +521,11 @@
                                                 echo "$('#criterio_".$key."_comentario_valoracion_".$valoracion."').find('textarea').html('".$data[$value[0].'_coment']."');";
                                                 echo"valorElegido($valor, $key, $valoracion);";
                                             } 
-                                                                  
-                                 echo"});</script>";
+                                               
+                                         //Les pasamos el valor a los input de fecha de valoración
+                                        echo"$('#fecha_valoracion_".$valoracion."').find('input[name=_fecha]').val('".$data['fecha']."');";    
+                                        echo"$('#fecha_valoracion_".$valoracion."').find('input[name=fecha]').val('".$data['fecha']."');";    
+                                echo"});</script>";
                                                  
                                         
                                 $valoracion_id=$data['id'];   
@@ -600,12 +619,12 @@
 					
 		}
                        
-		function showFormNoCV($ID, $options=[]) {
-			//Aqui entra cuando no tien gestionado el curriculum
+	function showFormNoCV($ID, $options=[]) {
+                        //Aqui entra cuando no tien gestionado el curriculum
 
-			echo "<div>Necesitas gestionar el CV antes de ver las valoraciones</div>";
-			echo "<br>";
-		}
+                        echo "<div>Necesitas gestionar el CV antes de ver las valoraciones</div>";
+                        echo "<br>";
+	}
                 
                 function getColorValoracion($valor){
 	           
@@ -677,13 +696,13 @@
                                                                         
                                 if(valoracionesCompletada){
 
-
                                     var parametros = {
                                         'metodo': metodo,
                                         'arrayComentarios':arrayComentarios,
                                         'valoracion_id': valoracion_id,
                                         'paquete_id':paquete_id,
                                         'numero_valoracion' : numero_valoracion,
+                                        'fecha':$('#fecha_valoracion_'+numero_valoracion).find('input[name=fecha]').val(), 
                                         'arrayValoracion': arrayValoracion[numero_valoracion]    
                                     };
                                                                               
@@ -693,7 +712,7 @@
                                         url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
                                         success:function(data){
                                             if(metodo=='add_valoracion'){
-                                                                                                
+                                                                                     
                                                 $('#boton_guardar_'+numero_valoracion).html(
                                                     '<span onclick=\'guardarYModificarValoracion('+paquete_id+','+numero_valoracion+','+data+',\"update_valoracion\")\' class=\'vsubmit\' style=\'margin-right: 15px;\'>MODIFICAR VALORACIÓN</span>'
                                                 );

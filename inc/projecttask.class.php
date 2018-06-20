@@ -530,7 +530,7 @@ class ProjectTask extends CommonDBChild {
                                                     'rand' => $rand_name,
                                                     'attrs' => ['style' => 'width:400px;'] ]);*/
       
-        echo "<textarea id='name$rand_name' name='name' cols='70' rows='4' style='resize: none'>".$this->fields["name"].
+        echo "<textarea id='name$rand_name' name='name' cols='60' rows='4' style='resize: none'>".$this->fields["name"].
            "</textarea>";
       echo "</td>";
       echo"<td>".__('Code')."</td>";

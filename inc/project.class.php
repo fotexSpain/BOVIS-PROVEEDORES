@@ -1055,7 +1055,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Name')."</td>";
       echo "<td>";
-       echo "<textarea id='name' name='name' cols='70' rows='4' style='resize: none'>".$this->fields["name"].
+       echo "<textarea id='name' name='name' cols='60' rows='4' style='resize: none'>".$this->fields["name"].
            "</textarea>";
       //Html::autocompletionTextField($this, 'name');
       echo "</td>";
