@@ -1037,14 +1037,15 @@ class Project extends CommonDBTM {
         
         $opt3['comments']= false;
         $opt3['addicon']= false;
-        $opt3['specific_tags']=array('onchange' => 'cambiarProvincia(value)');
+        $opt3['specific_tags']=array('onchange' => 'cambiarProvincia(value, false)');
         if(!empty($this->fields["plugin_comproveedores_communities_id"])){
                 $opt3['value']= $this->fields["plugin_comproveedores_communities_id"];
         }
         
-         if(!empty($this->fields["plugin_comproveedores_provinces_id"])){
+        
+        if(!empty($this->fields["plugin_comproveedores_provinces_id"])){
                 $opt4['value']= $this->fields["plugin_comproveedores_provinces_id"];
-         }
+        }
         
         echo"<script type='text/javascript'>
             
@@ -1053,26 +1054,21 @@ class Project extends CommonDBTM {
                 $(function() {
                 
                         if(".$this->fields['plugin_comproveedores_communities_id']."!=null){
-                                cambiarProvincia(".$this->fields['plugin_comproveedores_communities_id'].");        
+                                cambiarProvincia(".$this->fields['plugin_comproveedores_communities_id'].", true);        
                         }
                 });
                 
-                function cambiarProvincia(valor){
+                function cambiarProvincia(valor, cargar_pagina){
 
-                        //Comprobamos si tiene provincia el proyecto
-                        if(".$this->fields['plugin_comproveedores_provinces_id']."!=null && cargar_provincia){
+                        provincia=null;
+                        //Comprobamos si tiene provincia el proyecto solo al entrar al cargar la pagina
+                        if(".$this->fields['plugin_comproveedores_provinces_id']."!=null &&cargar_pagina){
                                
                                 provincia=".$this->fields['plugin_comproveedores_provinces_id']."; 
-                                cargar_provincia=false;
-                        }
-                        if(".$this->fields['plugin_comproveedores_provinces_id']."==null && cargar_provincia){
-                                    
-                                provincia=null;
-                                cargar_provincia=false;
                         }
                        
                         var parametros = {
-                                'idComunidad': 'valor',
+                                'idComunidad': valor,
                                 'idProvincia':provincia
                         };
 
