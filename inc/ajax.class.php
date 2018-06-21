@@ -367,6 +367,43 @@ class Ajax {
       $options = []
    ) {
       global $CFG_GLPI;
+      
+        //script para cambiar el color a los tab historico y valoraciones
+        echo"<script type='text/javascript'>
+            
+                var arrayNombreTabs=['Histórico', 'Valoraciones'];
+            
+                $(function() {
+                       
+                        //Cambiar color del tab historico y valoraciones si esta seleccionado o no
+                        $('ul[role=tablist]').find('li').click(function(event) {
+                                
+                                for(i = 0; i < arrayNombreTabs.length; ++i){
+
+                                         if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='true'){
+                                                $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                            'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/ui-bg_flat_0_FFF_40x100.png)',
+                                                            'background-position':'center'});
+                                        }else{
+                                                $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                            'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
+                                                            'background-position':'center'});                  
+                                        }     
+                                }
+                        });
+                        
+                        //Al cargar cambiar de color
+                        for(i = 0; i < arrayNombreTabs.length; ++i){
+
+                                if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='false'){
+                                        $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                                    'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
+                                                                    'background-position':'center'});
+                                }
+                        }
+                });   
+                
+        </script>";
 
       // TODO need to clean params !!
       $active_tabs = Session::getActiveTab($type);
@@ -460,7 +497,7 @@ class Ajax {
                $('#tabs$rand').tabs( 'load' , current_index);
                // Restore tab
                $('#tabs$rand ul>li a').eq(current_index).attr('href',currenthref);
-            };";
+            };";             
          echo Html::scriptBlock($js);
       }
    }
