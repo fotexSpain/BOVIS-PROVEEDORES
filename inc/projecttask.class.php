@@ -597,9 +597,8 @@ class ProjectTask extends CommonDBChild {
        echo "<tr class='tab_bg_1'>";
       echo "<td>".__('Fecha de comienzo')."</td>";
       echo "<td>";
-      Html::showDateTimeField("Fecha de comienzo",
-                              ['value' => $this->fields['plan_start_date'],
-                               'rand'  => $rand_plan_start_date]);
+       Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date'],
+                                                'rand'  => $rand_plan_start_date]);
       echo "</td>";
       echo "<td>".__('Fecha de fin')."</td>";
       echo "<td>";
