@@ -1029,22 +1029,30 @@ class Project extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
       
+      
+        //Sector
         $opt2['comments']= false;
         $opt2['addicon']= false;
+        $opt2['width']='203px';
         if(!empty($this->fields["plugin_comproveedores_experiencestypes_id"])){
               $opt2['value']= $this->fields["plugin_comproveedores_experiencestypes_id"];      
         }
-        
+              
+        //Comunidades
         $opt3['comments']= false;
         $opt3['addicon']= false;
+        $opt3['width']='203px';
         $opt3['specific_tags']=array('onchange' => 'cambiarProvincia(value, false)');
         if(!empty($this->fields["plugin_comproveedores_communities_id"])){
                 $opt3['value']= $this->fields["plugin_comproveedores_communities_id"];
         }
         
-        
-        if(!empty($this->fields["plugin_comproveedores_provinces_id"])){
-                $opt4['value']= $this->fields["plugin_comproveedores_provinces_id"];
+        //Tipo de  servicio
+        $opt5['comments']= false;
+        $opt5['width']='203px';
+        $opt5['addicon']= false;
+        if(!empty($this->fields["plugin_comproveedores_servicetypes_id"])){
+                $opt5['value']= $this->fields["plugin_comproveedores_servicetypes_id"];
         }
         
         echo"<script type='text/javascript'>
@@ -1166,7 +1174,7 @@ class Project extends CommonDBTM {
       
        echo "<td>Tipo de servicio</td>";
       echo "<td>";
-      //ProjectState::dropdown(['value' => $this->fields["projectstates_id"]]);
+      Dropdown::show('PluginComproveedoresServicetype',$opt5);
       echo "</td>";
       
       echo"</tr>";

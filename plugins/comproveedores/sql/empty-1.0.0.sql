@@ -434,4 +434,24 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_subpaquetes` (
 
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_servicetypes` (
+	`id` int(11) NOT NULL auto_increment,
+	`name` varchar(255) NULL,
+              
+ 	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `glpi_plugin_comproveedores_servicetypes` (`id`, `name`, `is_deleted`, `externalid`, `is_recursive`, `entities_id`) 
+VALUES ('1', 'PM', '0', NULL, '0', '0'),
+('2', 'CM', '0', NULL, '0', '0'),
+('3', 'PMonit', '0', NULL, '0', '0'),
+('4', 'D&B', '0', NULL, '0', '0'),
+('5', 'PMG', '0', NULL, '0', '0'),
+('6', 'Precio cerrado', '0', NULL, '0', '0');
 
