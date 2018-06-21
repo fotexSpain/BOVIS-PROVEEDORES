@@ -1029,7 +1029,6 @@ class Project extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
       
-      
         //Sector
         $opt2['comments']= false;
         $opt2['addicon']= false;
@@ -1054,15 +1053,14 @@ class Project extends CommonDBTM {
         if(!empty($this->fields["plugin_comproveedores_servicetypes_id"])){
                 $opt5['value']= $this->fields["plugin_comproveedores_servicetypes_id"];
         }
-        
+        echo"hola-".$this->fields['plugin_comproveedores_communities_id']."-adios";
+
         echo"<script type='text/javascript'>
-            
-                var cargar_provincia=true;
 
                 $(function() {
                 
-                        if(".$this->fields['plugin_comproveedores_communities_id']."!=null){
-                                cambiarProvincia(".$this->fields['plugin_comproveedores_communities_id'].", true);        
+                        if('".$this->fields['plugin_comproveedores_communities_id']."'!=''){
+                                cambiarProvincia('".$this->fields['plugin_comproveedores_communities_id']."', true);        
                         }
                 });
                 
@@ -1070,9 +1068,9 @@ class Project extends CommonDBTM {
 
                         provincia=null;
                         //Comprobamos si tiene provincia el proyecto solo al entrar al cargar la pagina
-                        if(".$this->fields['plugin_comproveedores_provinces_id']."!=null &&cargar_pagina){
+                        if('".$this->fields['plugin_comproveedores_provinces_id']."'!='' && cargar_pagina){
                                
-                                provincia=".$this->fields['plugin_comproveedores_provinces_id']."; 
+                                provincia='".$this->fields['plugin_comproveedores_provinces_id']."'; 
                         }
                        
                         var parametros = {
@@ -1092,13 +1090,10 @@ class Project extends CommonDBTM {
                                         alert('Data not found');
 		}
                         });
-
-                        //añadimos al foemulario de añadir nueva especialidad, el is de la categoria
-                        //$('[name=categoria_nueva_especialidad]').val(valor);
 	}
                 
-                </script>";
-      
+        </script>";
+         
        echo "<tr class='tab_bg_1'>";
        
        echo "<td>".__('Name')."</td>";
