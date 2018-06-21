@@ -1053,7 +1053,6 @@ class Project extends CommonDBTM {
         if(!empty($this->fields["plugin_comproveedores_servicetypes_id"])){
                 $opt5['value']= $this->fields["plugin_comproveedores_servicetypes_id"];
         }
-        echo"hola-".$this->fields['plugin_comproveedores_communities_id']."-adios";
 
         echo"<script type='text/javascript'>
 
