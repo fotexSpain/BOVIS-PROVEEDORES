@@ -174,7 +174,7 @@ class Project extends CommonDBTM {
       $ong = [];
       $this->addDefaultFormTab($ong);
       $this->addStandardTab('ProjectTask', $ong, $options);
-      $this->addStandardTab('ProjectTeam', $ong, $options);
+      //$this->addStandardTab('ProjectTeam', $ong, $options);
       $this->addStandardTab(__CLASS__, $ong, $options);
      // $this->addStandardTab('ProjectCost', $ong, $options);
       //$this->addStandardTab('Change_Project', $ong, $options);
@@ -1057,10 +1057,23 @@ class Project extends CommonDBTM {
         echo"<script type='text/javascript'>
 
                 $(function() {
-                
+                        
                         if('".$this->fields['plugin_comproveedores_communities_id']."'!=''){
                                 cambiarProvincia('".$this->fields['plugin_comproveedores_communities_id']."', true);        
                         }
+
+                        //Añadimos gestor de proyecto a la página principal de proyecto
+                        $.ajax({  
+                                type: 'GET',        		
+		url:'".$CFG_GLPI["root_doc"]."/ajax/common.tabs.php?_target=".$CFG_GLPI["root_doc"]."/front/project.form.php&_itemtype=Project&_glpi_tab=ProjectTeam$1&id=".$ID."&withtemplate=',
+		success:function(data){
+
+                                        $('#usuarioGestor').html(data);
+		},
+		error: function(result) {
+                                        alert('Data not found');
+		}
+                        });
                 });
                 
                 function cambiarProvincia(valor, cargar_pagina){
@@ -1220,7 +1233,10 @@ class Project extends CommonDBTM {
 
       echo "<tr><td colspan='4' class='subheader'>".__('Manager')."</td></tr>";
 
-      echo "<tr class='tab_bg_1'>";
+      //include 'projectteam.class.php';
+      
+      echo"<td colspan='4'  id='usuarioGestor'></td>";
+     /* echo "<tr class='tab_bg_1'>";
       echo "<td>".__('User')."</td>";
       echo "<td>";
       User::dropdown(['name'   => 'users_id',
@@ -1234,7 +1250,7 @@ class Project extends CommonDBTM {
                             'value'     => $this->fields['groups_id'],
                             'entity'    => $this->fields['entities_id'],
                             'condition' => '`is_manager`']);
-      echo "</td></tr>\n";*/
+      echo "</td></tr>\n";
       
       echo"</tr>";
       
@@ -1249,7 +1265,7 @@ class Project extends CommonDBTM {
       Html::showDateTimeField("date", ['value'      => $date,
                                             'timestep'   => 1,
                                             'maybeempty' => false]);
-      echo "</td>";
+      echo "</td>";*/
       echo"</tr>";
 
       /*echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
@@ -1350,6 +1366,59 @@ class Project extends CommonDBTM {
       return parent::getSpecificValueToSelect($field, $name, $values, $options);
    }
 
+    
+     static function showElegirGestor(Project $project) {
+       GLOBAL $DB,$CFG_GLPI;
+       
+       $id_projecto=$project->fields['id'];
+
+        //Buscamos el usuario gestor de este proyecto     
+       $query ="SELECT usuarios.name as nombre_usuario,  gestor_proyecto.itemtype
+                    FROM glpi_projectteams as gestor_proyecto 
+                    LEFT JOIN glpi_users as usuarios on usuarios.id=gestor_proyecto.items_id
+                    where gestor_proyecto.projects_id=".$id_projecto;
+          
+     
+        $result = $DB->query($query);
+        
+        //Si no tiene usuario gestor, que visualize un desplegames con los usuarios de perfil estrategico
+        if($result->num_rows==0){
+                $query2 ="SELECT usuarios.id as id_usuario, usuarios.name as nombre_usuario
+                        FROM glpi_profiles_users as perfil_usuario
+                        LEFT JOIN glpi_users as usuarios on usuarios.id=perfil_usuario.users_id
+                        where perfil_usuario.profiles_id=16";
+                
+                $result2 = $DB->query($query2);
+                $arrayUsuarios=array();
+                
+                while ($data=$DB->fetch_array($result2)) {
+                               
+                        $arrayUsuarios[$data['id_usuario']]=$data['nombre_usuario'];
+                }
+                
+                echo"<form action=".$CFG_GLPI["root_doc"]."/front/projectteam.form.php method='post'>";
+                
+                        echo Html::hidden('projects_id', array('value' => $id_projecto));
+                        echo Html::hidden('itemtype', array('value' => 'User'));
+                        echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+                
+                        echo "<div style='display: inline-block; margin-right: 10px;'>Gestor del proyecto</div>";
+                        Dropdown::showFromArray('items_id',$arrayUsuarios);
+
+                        echo "<input style='margin-left:20px;' type='submit' class='submit' name='add' value='AÑADIR' />";
+                
+                echo"</form>";
+        }
+        
+        //Si tiene un usuario gesto que se visualize en una lista
+        while ($data=$DB->fetch_array($result)) {
+                 if($result->num_rows!=0){
+                    echo "<div  align='left'><table class='tab_cadre_fixehov'>";
+                                echo"<span style='font-weight:bold; margin-left:10px; margin-right:10px;'>Usuario Gestor:</span>".$data['nombre_usuario'];
+                    echo"</div>";
+                }
+        }
+   }
 
    /**
     * Show team for a project
@@ -1359,7 +1428,7 @@ class Project extends CommonDBTM {
 
       $ID      = $project->fields['id'];
       $canedit = $project->can($ID, UPDATE);
-
+      
       echo "<div class='center'>";
 
       $rand = mt_rand();
@@ -1400,6 +1469,7 @@ class Project extends CommonDBTM {
                                       'container'     => 'mass'.__CLASS__.$rand];
          Html::showMassiveActions($massiveactionparams);
       }
+     
       echo "<table class='tab_cadre_fixehov'>";
       $header_begin  = "<tr>";
       $header_top    = '';
