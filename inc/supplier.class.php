@@ -101,7 +101,7 @@ class Supplier extends CommonDBTM {
       $ong = [];
       $this->addDefaultFormTab($ong);
       $this->addStandardTab('Document_Item', $ong, $options);
-      $this->addStandardTab('Contract_Supplier', $ong, $options);
+      //$this->addStandardTab('Contract_Supplier', $ong, $options);
      /* $this->addStandardTab('Contact_Supplier', $ong, $options);      
       $this->addStandardTab('Infocom', $ong, $options);      
       $this->addStandardTab('Ticket', $ong, $options);
