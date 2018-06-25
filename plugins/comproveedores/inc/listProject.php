@@ -68,7 +68,7 @@ $result = $DB->query($query);
                             echo "<th>".__('Estado')."</th>";
                             echo "<th>".__('Nº Contratos')."</th>";
                             echo "<th>".__('Nº Evaluaciones')."</th>";
-                            echo "<th>".__('Usuario')."</th>";
+                            echo "<th>".__('Gerente del proyecto')."</th>";
                    echo "</tr>";
 
 	while ($data=$DB->fetch_array($result)) {

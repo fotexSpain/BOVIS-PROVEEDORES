@@ -187,8 +187,8 @@ class Project extends CommonDBTM {
       $this->addStandardTab('PluginComproveedoresValuation', $ong, $options);
       
       //Quitamos el número al lado del tab paquete
-      $ong['ProjectTask$1']=substr($ong['ProjectTask$1'],0, 8);
-      //Eliminamos el tab peoyectos
+      $ong['ProjectTask$1']=substr($ong['ProjectTask$1'],0, 9);
+      //Eliminamos el tab proyectos
       unset($ong['Project$1']);
       
       return $ong;
@@ -1160,14 +1160,20 @@ class Project extends CommonDBTM {
       Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date'], 'hidetime' => true]);
       echo "</td>";
       
-       echo "<td>".__('Porcentaje')."</td>";
+      echo "<td>Ubicación (CA)</td>";
+      echo "<td>";
+      Dropdown::show('PluginComproveedoresCommunity',$opt3);
+      echo "</td>";
+      
+      
+      /* echo "<td>".__('Porcentaje')."</td>";
       echo "<td>";
       Dropdown::showNumber("percent_done", ['value' => $this->fields['percent_done'],
                                                  'min'   => 0,
                                                  'max'   => 100,
                                                  'step'  => 5,
                                                  'unit'  => '%']);
-      echo "</td>";
+      echo "</td>";*/
       echo "</tr>";
       echo "<tr>";
       echo "</td>";
@@ -1179,30 +1185,7 @@ class Project extends CommonDBTM {
       Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'], 'hidetime' => true]);
       echo "</td>";
       
-       echo "<td>Tipo de servicio</td>";
-      echo "<td>";
-      Dropdown::show('PluginComproveedoresServicetype',$opt5);
-      echo "</td>";
-      
-      echo"</tr>";
-      
-       echo "<tr class='tab_bg_1'>";
-     
-       echo "<td>Ubicación (CA)</td>";
-      echo "<td>";
-      Dropdown::show('PluginComproveedoresCommunity',$opt3);
-      echo "</td>";
-      
-       echo "<td>Sector</td>";
-      echo "<td>";
-      Dropdown::show('PluginComproveedoresExperiencestype', $opt2);
-      echo "</td>";
-      
-      echo"</tr>";
-      
-      echo "<tr class='tab_bg_1'>";
-
-        echo "<td>Ubicación (PROV)</td>";
+       echo "<td>Ubicación (PROV)</td>";
         echo "<td>";
                 echo "<div id='id_provincia'>";
                         echo "<span class='no-wrap'>
@@ -1214,6 +1197,21 @@ class Project extends CommonDBTM {
                                 </span>";
                 echo "</div>";
         echo "</td>";
+      
+      echo"</tr>";
+      
+       echo "<tr class='tab_bg_1'>";
+     
+        echo "<td>Tipo de servicio</td>";
+      echo "<td>";
+      Dropdown::show('PluginComproveedoresServicetype',$opt5);
+      echo "</td>";
+      
+       
+       echo "<td>Sector</td>";
+      echo "<td>";
+      Dropdown::show('PluginComproveedoresExperiencestype', $opt2);
+      echo "</td>";
       
       echo"</tr>";
       

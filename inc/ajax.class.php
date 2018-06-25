@@ -367,44 +367,45 @@ class Ajax {
       $options = []
    ) {
       global $CFG_GLPI;
-      
-        //script para cambiar el color a los tab historico y valoraciones
-        echo"<script type='text/javascript'>
-            
-                var arrayNombreTabs=['Contratos', 'Valoraciones'];
-            
-                $(function() {
-                       
-                        //Cambiar color del tab historico y valoraciones si esta seleccionado o no
-                        $('ul[role=tablist]').find('li').click(function(event) {
-                                
-                                for(i = 0; i < arrayNombreTabs.length; ++i){
+        
+        //Si estamos en la pagina del proveedor que cambie del color los tab contratos y valoraciones
+        if($type=="PluginComproveedoresCv" || $type=="Supplier"){
+            echo"<script type='text/javascript'>
 
-                                         if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='true'){
-                                                $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
-                                                            'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/ui-bg_flat_0_FFF_40x100.png)',
-                                                            'background-position':'center'});
-                                        }else{
-                                                $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
-                                                            'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
-                                                            'background-position':'center'});                  
-                                        }     
-                                }
-                        });
-                        
-                        //Al cargar cambiar de color
-                        for(i = 0; i < arrayNombreTabs.length; ++i){
+                    var arrayNombreTabs=['Contratos', 'Valoraciones'];
 
-                                if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='false'){
-                                        $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
-                                                                    'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
-                                                                    'background-position':'center'});
-                                }
-                        }
-                });   
-                
-        </script>";
+                    $(function() {
 
+                            //Cambiar color del tab historico y valoraciones si esta seleccionado o no
+                            $('ul[role=tablist]').find('li').click(function(event) {
+
+                                    for(i = 0; i < arrayNombreTabs.length; ++i){
+
+                                             if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='true'){
+                                                    $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                                'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/ui-bg_flat_0_FFF_40x100.png)',
+                                                                'background-position':'center'});
+                                            }else{
+                                                    $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                                'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
+                                                                'background-position':'center'});                  
+                                            }     
+                                    }
+                            });
+
+                            //Al cargar cambiar de color
+                            for(i = 0; i < arrayNombreTabs.length; ++i){
+
+                                    if($('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').attr('aria-selected')=='false'){
+                                            $('ul[role=tablist]').find('a[title*='+arrayNombreTabs[i]+']').parent('li').css({
+                                                                        'background-image':'url(".$CFG_GLPI["root_doc"]."/lib/jquery/css/smoothness/images/historial_y_valoraciones_40x100.png)',
+                                                                        'background-position':'center'});
+                                    }
+                            }
+                    });   
+
+            </script>";
+        }
       // TODO need to clean params !!
       $active_tabs = Session::getActiveTab($type);
 

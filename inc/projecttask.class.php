@@ -65,13 +65,9 @@ class ProjectTask extends CommonDBChild {
 
 
    static function getTypeName($nb=0) {
+ 
+           return _n('Contrato', 'Contratos', $nb);
        
-       if($nb<=1){
-           return _n('Paquete', 'Paquetes', $nb);
-       }else{
-           $nb=$nb-2;
-            return _n('SubPaquete', 'SubPaquetes', $nb);
-       } 
    }
 
 
@@ -1298,7 +1294,7 @@ class ProjectTask extends CommonDBChild {
                $nb = countElementsInTable($this->getTable(),
                                           ['projects_id' => $item->getID()]);
             }
-            return self::createTabEntry($this->getTypeName(0), $nb);
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
 
          case __CLASS__ :
             if ($_SESSION['glpishow_count_on_tabs']) {
