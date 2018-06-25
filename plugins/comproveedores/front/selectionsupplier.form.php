@@ -175,10 +175,31 @@
                                         }
                                 }        
                         }
-                         
-                      
                         Html::back();
+                        
+	}else if (isset($_GET["preseleccion_guardar"])) {
+            
+            $PluginPreSelection= new PluginComproveedoresPreselection();
+            
+            $_GET['arrayPreselecion']= substr($_GET['arrayPreselecion'], 0, -1);
+            $proveedores = explode('-', $_GET['arrayPreselecion']);
 
+            foreach ($proveedores as $key => $value) {
+                                
+                $add['suppliers_id']=$value;
+                $add['projecttasks_id']=$_GET["paquete_id"];
+
+                $PluginPreSelection->check(-1, CREATE, $add);
+                if ($PluginPreSelection->add($add)) {
+                    Event::log($_GET["paquete_id"], "projecttask", 4, "maintain",
+                    //TRANS: %s is the user login
+                    sprintf(__('%s adds a team member'), $_SESSION["glpiname"]));
+                }
+                                        
+            }
+            Html::back();
+        // var_dump($proveedores);
+                        
 	}else {
 		$PluginSelectionSupplier->checkGlobal(READ);
 

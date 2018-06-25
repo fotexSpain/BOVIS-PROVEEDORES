@@ -112,7 +112,10 @@ $result = $DB->query($query);
                    $html.=  "</tr>";
 
 	while ($data=$DB->fetch_array($result)) {
-                                                                              
+                                      
+                        //Añadimos los id de los proveedores para la preselección
+                        $preselecionIds=$preselecionIds.$data["supplier_id"]."-";
+            
                             $html.=  "<tr class='tab_bg_2'>";
                                     $html.=  "<td  class='center' style=' border: 1px solid #BDBDDB;'>";
                                                 $html.= "<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";

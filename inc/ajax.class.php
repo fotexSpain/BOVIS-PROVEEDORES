@@ -371,7 +371,7 @@ class Ajax {
         //script para cambiar el color a los tab historico y valoraciones
         echo"<script type='text/javascript'>
             
-                var arrayNombreTabs=['Histórico', 'Valoraciones'];
+                var arrayNombreTabs=['Contratos', 'Valoraciones'];
             
                 $(function() {
                        

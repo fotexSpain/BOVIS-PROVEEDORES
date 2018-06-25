@@ -17,9 +17,9 @@
 
 		function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
 			if($item-> getType()=="Supplier"){
-				return self::createTabEntry('Historial');
+				return self::createTabEntry('Contratos');
 			}
-			return 'Historial';
+			return 'Contratos';
 		}
 
 

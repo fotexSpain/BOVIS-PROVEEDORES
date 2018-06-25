@@ -7,6 +7,7 @@ include ("../../../inc/includes.php");
 GLOBAL $DB,$CFG_GLPI;
 
 $objCommonDBT=new CommonDBTM();
+$preselecionIds='';
 
 echo consultaAjax();
 
@@ -73,9 +74,11 @@ echo"<table  class='tab_cadre_fixe'>";
         echo "</tr>";
 			
 echo "</table>";
+
 include 'listSelectionSupplier.php';
 
- echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
+echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
+echo"<span onclick='guardarPreseleccion(".$_GET['paquete_id'].",\"$preselecionIds\")' class='vsubmit' style='margin-right: 15px; '>GUARDAR PRESELECCIÓN</span>";
 echo "<span onclick='inlcuirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
 echo"<br>";
 echo"<br>";
@@ -101,12 +104,32 @@ function consultaAjax(){
 
     GLOBAL $DB,$CFG_GLPI;
     
-
     $consulta="<script type='text/javascript'>
         
                 var arrayProveedoresElegidos= new Array();
                 
-                  function imprimirPdf(){
+                function guardarPreseleccion( paquete_id, preselecionIds){
+
+                        var parametros = {
+                                'preseleccion_guardar': 'preseleccion_guardar',
+                                'arrayPreselecion':preselecionIds,
+                                'paquete_id' : paquete_id
+                        };
+                      
+                        $.ajax({  
+                                type: 'GET',        		
+                                url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/selectionsupplier.form.php',
+                                data: parametros,   		
+                                success:function(data){ 
+                                   alert(data);
+                                },
+                                error: function(result) {
+                                    alert('Data not found');
+                                }
+                        });
+                }
+                        
+                function imprimirPdf(){
                   
                                 var ids='';
                                 for(i=0; i<arrayProveedoresElegidos.length;i++){
@@ -122,7 +145,7 @@ function consultaAjax(){
                                 else{
                                         alert('Tienes que elegir un proveedor de la lista, para poder exportar a PDF');
                                 }
-                        }
+                }
 
                 function setListaProveedorfiltro(supplier_id){
                    

@@ -158,8 +158,8 @@ VALUES
 ('47', 'Valladolid', '7', '0', NULL, '0', '0'),
 ('48', 'Vizcaya', '16', '0', NULL, '0', '0'),
 ('49', 'Zamora', '7', '0', NULL, '0', '0'),
-('50', 'Zaragoza', '2', '0', NULL, '0', '0');
-('51', 'Ceuta', '18', '0', NULL, '0', '0');
+('50', 'Zaragoza', '2', '0', NULL, '0', '0'),
+('51', 'Ceuta', '18', '0', NULL, '0', '0'),
 ('52', 'Melilla', '19', '0', NULL, '0', '0');
 
 
@@ -455,3 +455,16 @@ VALUES ('1', 'PM', '0', NULL, '0', '0'),
 ('5', 'PMG', '0', NULL, '0', '0'),
 ('6', 'Precio cerrado', '0', NULL, '0', '0');
 
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_preselections` (
+	`id` int(11) NOT NULL auto_increment,
+	`suppliers_id` int(11) NOT NULL default '0',
+                `projecttasks_id` int(11) NOT NULL default '0',
+              
+ 	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
