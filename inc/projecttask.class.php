@@ -598,12 +598,12 @@ class ProjectTask extends CommonDBChild {
       echo "<td>".__('Fecha de comienzo')."</td>";
       echo "<td>";
        Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date'],
-                                                'rand'  => $rand_plan_start_date]);
+                                                'rand'  => $rand_plan_start_date, 'hidetime' => true]);
       echo "</td>";
       echo "<td>".__('Fecha de fin')."</td>";
       echo "<td>";
       Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'],
-                                                'rand'  => $rand_plan_end_date]);
+                                                'rand'  => $rand_plan_end_date, 'hidetime' => true]);
       echo "</td></tr>";
       echo "<tr class='tab_bg_1'>";
       echo "<td style='width:100px; visibility:hidden;'>"._n('Project task template', 'Project task templates', 1)."</td><td style='visibility:hidden;'>";

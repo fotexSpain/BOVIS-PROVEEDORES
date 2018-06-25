@@ -2694,6 +2694,7 @@ class Html {
     *   - display    : boolean display or get string (default true)
     *   - rand       : specific random value (default generated one)
     *   - required   : required field (will add required attribute)
+    *   - hidetime   : boolean do not display the time, only the date
     *
     * @return rand value used if displayes else string
    **/
@@ -2712,6 +2713,7 @@ class Html {
       $p['display']    = true;
       $p['rand']       = mt_rand();
       $p['required']   = false;
+      $p['hidetime']   = false;
 
       foreach ($options as $key => $val) {
          if (isset($p[$key])) {
@@ -2760,8 +2762,15 @@ class Html {
       }
 
       $output = "<div class='no-wrap'>";
-      $output .= "<input id='showdate".$p['rand']."' type='text' name='_$name' value='".
-                   trim(self::convDateTime($p['value']))."'";
+      
+      //Convertir en tipo date
+      if($p['hidetime']){
+                $output .= "<input id='showdate".$p['rand']."' type='text' name='_$name' value='".
+                             trim(self::convDate($p['value']))."'";
+      }else{
+                $output .= "<input id='showdate".$p['rand']."' type='text' name='_$name' value='".
+                             trim(self::convDateTime($p['value']))."'";
+      }
       if ($p['required'] == true) {
          $output .= " required='required'";
       }
@@ -2827,16 +2836,22 @@ class Html {
             $p['showyear'] ? $format='yy-mm-dd' : $format='mm-dd';
       }
       $js .= ",dateFormat: '".$format."'";
-      $js .= ",timeFormat: 'HH:mm'";
-
+      
+      if($p['hidetime']){
+                $js .= ",timeFormat:''";
+      }else{
+                $js .= ",timeFormat: 'HH:mm'";
+      }
+      
       $js .= "}).next('.ui-datepicker-trigger').addClass('pointer');";
       $js .= "});";
       $output .= Html::scriptBlock($js);
-
+      
       if ($p['display']) {
          echo $output;
          return $p['rand'];
       }
+       
       return $output;
    }
 

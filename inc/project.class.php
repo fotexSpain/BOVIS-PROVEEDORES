@@ -1157,7 +1157,7 @@ class Project extends CommonDBTM {
       
        echo "<td>".__('Fecha de comienzo')."</td>";
       echo "<td>";
-      Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date']]);
+      Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date'], 'hidetime' => true]);
       echo "</td>";
       
        echo "<td>".__('Porcentaje')."</td>";
@@ -1176,7 +1176,7 @@ class Project extends CommonDBTM {
      
       echo "<td>".__('Fecha de finalización')."</td>";
       echo "<td>";
-      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date']]);
+      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'], 'hidetime' => true]);
       echo "</td>";
       
        echo "<td>Tipo de servicio</td>";

@@ -12,5 +12,9 @@ ALTER TABLE `glpi_projects` ADD `plugin_comproveedores_servicetypes_id` int(11) 
 ALTER TABLE `glpi_projects` ADD `plugin_comproveedores_experiencestypes_id` int(11) NOT NULL default '0';
 ALTER TABLE `glpi_projects` ADD `plugin_comproveedores_communities_id` int(11) NOT NULL default '0';
 ALTER TABLE `glpi_projects` ADD `plugin_comproveedores_provinces_id` int(11) NOT NULL default '0';
+ALTER TABLE `glpi_projecttasks` CHANGE `plan_start_date` `plan_start_date` DATE NULL DEFAULT NULL;
+ALTER TABLE `glpi_projecttasks` CHANGE `plan_end_date` `plan_end_date` DATE NULL DEFAULT NULL;
+ALTER TABLE `glpi_projects` CHANGE `plan_start_date` `plan_start_date` DATE NULL DEFAULT NULL;
+ALTER TABLE `glpi_projects` CHANGE `plan_end_date` `plan_end_date` DATE NULL DEFAULT NULL;
 
 
