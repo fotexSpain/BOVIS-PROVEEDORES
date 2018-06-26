@@ -6070,52 +6070,54 @@ class Html {
       $i = 1;
       foreach ($menu as $part => $data) {
          if (isset($data['content']) && count($data['content'])) {
-            $menu_class = "";
-            if (isset($menu[$sector]) && $menu[$sector]['title'] == $data['title']) {
-               $menu_class = "active";
+             if($data['title']!='Administración' && $data['title']!='Configuración'){
+                $menu_class = "";
+                if (isset($menu[$sector]) && $menu[$sector]['title'] == $data['title']) {
+                   $menu_class = "active";
+                }
+
+                echo "<li id='menu$i' data-id='$i' class='$menu_class'>";
+                $link = "#";
+
+                if (isset($data['default']) && !empty($data['default'])) {
+                   $link = $CFG_GLPI["root_doc"].$data['default'];
+                }
+
+                echo "<a href='$link' class='itemP' title='{$data['title']}'>{$data['title']}</a>";
+                if (!isset($data['content'][0]) || $data['content'][0] !== true) {
+                   echo "<ul class='ssmenu'>";
+
+                   // list menu item
+                   foreach ($data['content'] as $key => $val) {
+                      $menu_class       = "";
+                      $tmp_active_item  = explode("/", $item);
+                      $active_item      = array_pop($tmp_active_item);
+                      if (isset($menu[$sector]['content'])
+                         && isset($menu[$sector]['content'][$active_item])
+                         && isset($val['title'])
+                         && ($menu[$sector]['content'][$active_item]['title'] == $val['title'])) {
+                         $menu_class = "active";
+                      }
+                      if (isset($val['page'])
+                         && isset($val['title'])) {
+                         echo "<li class='$menu_class'><a href='".$CFG_GLPI["root_doc"].$val['page']."'";
+
+                         if (isset($val['shortcut']) && !empty($val['shortcut'])) {
+                            if (!isset($already_used_shortcut[$val['shortcut']])) {
+                               echo " accesskey='".$val['shortcut']."'";
+                               $already_used_shortcut[$val['shortcut']] = $val['shortcut'];
+                            }
+                            echo ">".Toolbox::shortcut($val['title'], $val['shortcut'])."</a></li>\n";
+                         } else {
+                            echo ">".$val['title']."</a></li>\n";
+                         }
+                      }
+                   }
+                   echo "</ul>";
+                }
+                echo "</li>";
+                $i++;
             }
-
-            echo "<li id='menu$i' data-id='$i' class='$menu_class'>";
-            $link = "#";
-
-            if (isset($data['default']) && !empty($data['default'])) {
-               $link = $CFG_GLPI["root_doc"].$data['default'];
-            }
-
-            echo "<a href='$link' class='itemP' title='{$data['title']}'>{$data['title']}</a>";
-            if (!isset($data['content'][0]) || $data['content'][0] !== true) {
-               echo "<ul class='ssmenu'>";
-
-               // list menu item
-               foreach ($data['content'] as $key => $val) {
-                  $menu_class       = "";
-                  $tmp_active_item  = explode("/", $item);
-                  $active_item      = array_pop($tmp_active_item);
-                  if (isset($menu[$sector]['content'])
-                     && isset($menu[$sector]['content'][$active_item])
-                     && isset($val['title'])
-                     && ($menu[$sector]['content'][$active_item]['title'] == $val['title'])) {
-                     $menu_class = "active";
-                  }
-                  if (isset($val['page'])
-                     && isset($val['title'])) {
-                     echo "<li class='$menu_class'><a href='".$CFG_GLPI["root_doc"].$val['page']."'";
-
-                     if (isset($val['shortcut']) && !empty($val['shortcut'])) {
-                        if (!isset($already_used_shortcut[$val['shortcut']])) {
-                           echo " accesskey='".$val['shortcut']."'";
-                           $already_used_shortcut[$val['shortcut']] = $val['shortcut'];
-                        }
-                        echo ">".Toolbox::shortcut($val['title'], $val['shortcut'])."</a></li>\n";
-                     } else {
-                        echo ">".$val['title']."</a></li>\n";
-                     }
-                  }
-               }
-               echo "</ul>";
-            }
-            echo "</li>";
-            $i++;
          }
       }
 
