@@ -1480,8 +1480,8 @@ class Html {
       echo "<body class='$body_class'>";
 
       echo "<div id='header'>";
-      echo "<div id='header_top'>";
-      echo "<div id='c_logo'>";
+      echo "<div id='header_top' style='background-color:  white; height: 50%;'>";
+      echo "<div id='c_logo' style='margin-left: 10px; width: 150px;'>";
       echo Html::link('', $CFG_GLPI["root_doc"]."/front/central.php",
                       ['accesskey' => '1',
                             'title'     => __('Home')]);
@@ -5887,11 +5887,11 @@ class Html {
       global $CFG_GLPI;
 
       /// Prefs / Logout link
-      echo "<div id='c_preference' >";
+      echo "<div style='margin-top: 13px;' id='c_preference' >";
       echo "<ul>";
 
       echo "<li id='deconnexion'>";
-      echo "<a href='".$CFG_GLPI["root_doc"]."/front/logout.php";
+      echo "<a  style='color: black;'  href='".$CFG_GLPI["root_doc"]."/front/logout.php";
             /// logout witout noAuto login for extauth
       if (isset($_SESSION['glpiextauth']) && $_SESSION['glpiextauth']) {
          echo "?noAUTO=1";
@@ -5902,9 +5902,9 @@ class Html {
       echo "</a>";
       echo "</li>\n";
 
-      echo "<li id='preferences_link'><a href='".$CFG_GLPI["root_doc"]."/front/preference.php' title=\"".
+      echo "<li id='preferences_link'><a style='color: black;' href='".$CFG_GLPI["root_doc"]."/front/preference.php' title=\"".
                  __s('My settings')."\" class='fa fa-cog'>";
-      echo "<span class='sr-only'>" . __s('My settings') . "</span>";
+      echo "<span  class='sr-only'>" . __s('My settings') . "</span>";
 
       // check user id : header used for display messages when session logout
       if (Session::getLoginUserID()) {
@@ -5923,7 +5923,7 @@ class Html {
             ($current_mode == Session::DEBUG_MODE ? __('on') : __('off'))
          );
          echo "<li id='debug_mode'>";
-         echo "<a href='{$CFG_GLPI['root_doc']}/ajax/switchdebug.php' class='fa fa-bug $class'
+         echo "<a style='color: black;' href='{$CFG_GLPI['root_doc']}/ajax/switchdebug.php' class='fa fa-bug $class'
                 title='$title'>";
          echo "<span class='sr-only'>" . __('Change mode')  . "</span>";
          echo "</a>";
@@ -5942,13 +5942,13 @@ class Html {
             'icon_txt'  => __('Manage saved searches')
          ]
       );
-      echo "<a href='#' id='showSavedSearchesLink' class='fa fa-star' title=\"".
+      echo "<a style='color: black;' href='#' id='showSavedSearchesLink' class='fa fa-star' title=\"".
              __s('Load a bookmark'). "\">";
       echo "<span class='sr-only'>" . __('Saved searches')  . "</span>";
       echo "</a></li>";
 
       echo "<li id='help_link'>".
-           "<a href='".(empty($CFG_GLPI["central_doc_url"])
+           "<a style='color: black;' href='".(empty($CFG_GLPI["central_doc_url"])
                          ? "http://glpi-project.org/help-central"
                          : $CFG_GLPI["central_doc_url"])."' target='_blank' title=\"".
                             __s('Help')."\" class='fa fa-question'>".
@@ -5956,7 +5956,7 @@ class Html {
       echo "</a></li>";
 
       if (!GLPI_DEMO_MODE) {
-         echo "<li id='language_link'><a href='".$CFG_GLPI["root_doc"].
+         echo "<li id='language_link'><a style='color: black;' href='".$CFG_GLPI["root_doc"].
                     "/front/preference.php?forcetab=User\$1' title=\"".
                     addslashes(Dropdown::getLanguageName($_SESSION['glpilanguage']))."\">".
                     Dropdown::getLanguageName($_SESSION['glpilanguage'])."</a></li>";

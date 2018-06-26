@@ -108,7 +108,7 @@
 			
 
 				echo "<div align='center'><table class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoraciones</th></tr>";
+				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Evaluaciones</th></tr>";
 				echo"<br/>";
 				echo "<tr><th></th>";
 					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Calidad')."</th>";
@@ -198,7 +198,7 @@
                         $result2 = $DB->query($query2);
 
                         echo "<div align='center'><table class='tab_cadre_fixehov'>";
-                        echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoraciones</th></tr>";
+                        echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Evaluaciones</th></tr>";
                         echo"<br/>";
                         echo "<tr><th></th>";
                                 echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
@@ -355,7 +355,7 @@
                     echo"</div>";
                     echo "<div align='center'><table class='tab_cadre_fixehov'>";
                    
-                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
+                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Evaluación ".$valoracion."</th></tr>";
                     echo"<br/>";
                     echo "<tr><th></th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
@@ -471,7 +471,7 @@
                     echo"</div>";
                                                                        
                     echo "<div align='center'><table class='tab_cadre_fixehov'>";
-                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Valoración ".$valoracion."</th></tr>";
+                    echo "<tr class='tab_bg_$valoracion tab_cadre_fixehov nohover'><th colspan='14' >Evaluación ".$valoracion."</th></tr>";
                     echo"<br/>";
                     echo "<tr><th></th>";
                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
@@ -565,7 +565,7 @@
 			$result2 = $DB->query($query2);
 
 				echo "<div align='center'><table class='tab_cadre_fixehov'>";
-				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Valoraciones</th></tr>";
+				echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Evaluaciones</th></tr>";
 				echo"<br/>";
 				echo "<tr><th></th>";
 					echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Calidad')."</th>";
@@ -627,7 +627,7 @@
 	function showFormNoCV($ID, $options=[]) {
                         //Aqui entra cuando no tien gestionado el curriculum
 
-                        echo "<div>Necesitas gestionar el CV antes de ver las valoraciones</div>";
+                        echo "<div>Necesitas gestionar el CV antes de ver las evaluaciones</div>";
                         echo "<br>";
 	}
                 
