@@ -1048,7 +1048,7 @@ class ProjectTask extends CommonDBChild {
       if ($canedit) {
          echo "<div class='center firstbloc'>";
          echo "<a class='vsubmit' href='projecttask.form.php?projects_id=$ID'>".
-                _x('button', 'Add a task')."</a>";
+                _x('button', 'AÑADIR UN CONTRATO')."</a>";
          echo "</div>";
       }
 

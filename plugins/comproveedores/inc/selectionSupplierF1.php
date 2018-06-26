@@ -136,6 +136,7 @@ function consultaAjax(){
             var year = d.getFullYear();
             
             var parametros = {
+                'PrimerFiltro':true,
 	'paquete_id':paquete_id,
 	'nombre_proveedor' : $('input[name=nombre_proveedor]').val(),
                 'especialidad_id': $('input[name=plugin_comproveedores_specialties_id]').val(),

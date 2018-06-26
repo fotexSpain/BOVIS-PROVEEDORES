@@ -178,28 +178,38 @@
                         Html::back();
                         
 	}else if (isset($_GET["preseleccion_guardar"])) {
-            
-            $PluginPreSelection= new PluginComproveedoresPreselection();
-            
-            $_GET['arrayPreselecion']= substr($_GET['arrayPreselecion'], 0, -1);
-            $proveedores = explode('-', $_GET['arrayPreselecion']);
+                        $PluginPreSelection= new PluginComproveedoresPreselection();
+                        //Si se a guardado una preselección y vuelve a guardar, que elimine la antigua
+                        $query =" SELECT * FROM glpi_plugin_comproveedores_preselections where projecttasks_id=".$_GET["paquete_id"];
 
-            foreach ($proveedores as $key => $value) {
-                                
-                $add['suppliers_id']=$value;
-                $add['projecttasks_id']=$_GET["paquete_id"];
+                        $result = $DB->query($query);
 
-                $PluginPreSelection->check(-1, CREATE, $add);
-                if ($PluginPreSelection->add($add)) {
-                    Event::log($_GET["paquete_id"], "projecttask", 4, "maintain",
-                    //TRANS: %s is the user login
-                    sprintf(__('%s adds a team member'), $_SESSION["glpiname"]));
-                }
-                                        
-            }
-            Html::back();
-        // var_dump($proveedores);
-                        
+                         if($result->num_rows!=0){
+
+                                while ($data=$DB->fetch_array($result)) {
+                                        $PluginPreSelection->check($data['id'], PURGE);
+                                        $PluginPreSelection->delete($data, 1);
+                                 }
+                   
+                         }
+
+                        $_GET['arrayPreselecion']= substr($_GET['arrayPreselecion'], 0, -1);
+                        $proveedores = explode('-', $_GET['arrayPreselecion']);
+
+                        foreach ($proveedores as $key => $value) {
+
+                            $add['suppliers_id']=$value;
+                            $add['projecttasks_id']=$_GET["paquete_id"];
+
+                            $PluginPreSelection->check(-1, CREATE, $add);
+                            if ($PluginPreSelection->add($add)) {
+                                Event::log($_GET["paquete_id"], "projecttask", 4, "maintain",
+                                //TRANS: %s is the user login
+                                sprintf(__('%s adds a team member'), $_SESSION["glpiname"]));
+                            }
+
+                        }
+                        Html::back();
 	}else {
 		$PluginSelectionSupplier->checkGlobal(READ);
 

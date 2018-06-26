@@ -12,16 +12,16 @@
 		static $rightname	= "plugin_comproveedores";
 
 		static function getTypeName($nb=0){
-			return _n('Valoraciones','Valoraciones',1,'comproveedores');
+			return _n('Evaluación','Evaluaciones',1,'comproveedores');
 		}
 
 		function getTabNameForItem(CommonGLPI $item, $tabnum=1,$withtemplate=0){
                     
 			if($item-> getType()=="Supplier"){
-				return self::createTabEntry('Valoraciones');
+				return self::createTabEntry('Evaluaciones');
 			}
                                                 
-			return 'Valoraciones';
+			return 'Evaluaciones';
 		}
 
                                 static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){

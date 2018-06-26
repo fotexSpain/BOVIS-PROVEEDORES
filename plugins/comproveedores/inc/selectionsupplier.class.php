@@ -125,6 +125,28 @@
                                                 echo"<br/>";
                                                 echo "</table></div>";
                                                 echo"<br>";
+                                                
+                                                if($result->num_rows!=0){
+                                                          
+                                                        //consultamos los id de los proveedores de la preseleccion
+                                                        $query2 =" SELECT suppliers_id FROM `glpi_plugin_comproveedores_preselections` where projecttasks_id=$projecttasks_id";
+                                                        
+                                                        $result2 = $DB->query($query2);
+                                                        if($result2->num_rows!=0){
+                                                                $preseleccion='';
+                                                                while ($data=$DB->fetch_array($result2)) {
+                                                                        $preseleccion=$preseleccion.$data['suppliers_id'].',';
+                                                                }
+
+                                                                $posicion= strripos($preseleccion, ',');
+                                                                $preseleccion = substr($preseleccion, 0, $posicion);
+
+                                                                include 'listSelectionSupplier.php';
+                                                        }
+                                                        else{
+                                                                echo '<div>No hay una preselección guardada</div>';
+                                                        }
+                                                }
                                               
 		}
                 
@@ -136,19 +158,19 @@
                         
                         function seleccionProvedorFiltro(paquete_id){
                             
-                            $.ajax({ 
-				async: false, 
-            			type: 'GET',
-            			data: {'paquete_id':  paquete_id},                  
-           			url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectionSupplierF1.php',                    
-           			success:function(data){
-                                    $('#selector_proveedor').html(data);
-                		},
-                		error: function(result) {
-                                    alert('Data not found');
-                		}
-                            });
-            		};
+                                $.ajax({ 
+                                        async: false, 
+                                        type: 'GET',
+                                        data: {'paquete_id':  paquete_id},                  
+                                        url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectionSupplierF1.php',                    
+                                        success:function(data){
+                                                $('#selector_proveedor').html(data);
+                                        },
+                                        error: function(result) {
+                                                alert('Data not found');
+                                        }
+                                });
+                        };
 
                     </script>";
 

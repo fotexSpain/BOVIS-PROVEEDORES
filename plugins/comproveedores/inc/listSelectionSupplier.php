@@ -5,13 +5,27 @@ use Glpi\Event;
 GLOBAL $DB,$CFG_GLPI;
 
 $where='';
-
-//comprobamos que se a enviado algún filtro de busqueda
-foreach ($_GET as $value) {
-        if($value!='' && $value!='Siguiente'){
-            $where=" where ";
-        }   
+////////////////////////////////Preselección
+//where para la Preselección
+if(!empty($preseleccion)){
+     $where=" where  proveedor.id in(".$preseleccion.")";
 }
+/////////////////////////////////
+
+/////////////////////////////////SelectionsupplierF1
+//Comprobamos que se ha enviado algún filtro de busqueda
+$filtrar=false;
+
+foreach ($_GET as $value) {
+         if($value!=''){
+                $filtrar=true;
+         }
+}
+//Si hay algún filtro y viene de la página selectionsupplierF1 que ponga el where en la consulta
+ if($filtrar && $_GET['PrimerFiltro']){
+        $where=$where." where ";
+}  
+///////////////////////////////////
 
  //Añadimos los filtros al where de la consulta
 if($_GET['nombre_proveedor']!=''){
@@ -60,9 +74,13 @@ if(isset($_GET['especialidad_id'])){
         where YEAR(anio)=YEAR(now())-2 and proveedor1.id=proveedor.id )=".$_GET['facturacion_year_3']." and ";
  }
 
- //eliminamos el ultimo and y ordenamos por proveedor
-$posicion= strripos($where, ' and');
-$where = substr($where, 0, $posicion);
+ //Eliminamos el ultimo and y ordenamos por proveedor,
+ //en el caso de que venga de la página selectionsupplierF1, sino estamos es que estamos en la preselección y no hay and en el where
+ if($_GET['PrimerFiltro']){
+     $posicion= strripos($where, ' and');
+     $where = substr($where, 0, $posicion);
+ }
+
 $where=$where." group by proveedor.name order by proveedor.name desc";
 
 //Creamos la consulta y añadimos el where a la consulta
@@ -93,11 +111,24 @@ $result = $DB->query($query);
            $html=  "<div id='tabla_seleccion_proveedores' align='center'><table class='tab_cadre_fixehov'>";
               
 	$html.=  "<tr class='tab_bg_2 tab_cadre_fixehov nohover'>";
-                $html.=  "<th style='background-color: white; border-bottom:0px;'></th>";
-                $html.=  "<th class='center' style=' border: 1px solid #BDBDDB;' colspan='14'>Lista de proveedores</th></tr>";
+        
+               //Eliminación al visualizar la preselección
+                if(empty($preseleccion)){
+                        $html.=  "<th style='background-color: white; border-bottom:0px;'></th>";
+                }
+             
+                if($_GET['PrimerFiltro']){
+                        $html.=  "<th class='center' style=' border: 1px solid #BDBDDB;' colspan='14'>Lista de proveedores</th></tr>";
+                }
+                if(!empty($preseleccion)){
+                        $html.=  "<th class='center' style=' border: 1px solid #BDBDDB;' colspan='14'>Lista de proveedores preseleccionados</th></tr>";
+                }
 	$html.=  "<br/>";
 	$html.=   "<tr>";
-                            $html.=   "<th  style='background-color: white'>";
+                             //Eliminación al visualizar la preselección
+                            if(empty($preseleccion)){
+                                $html.=   "<th  style='background-color: white'></th>";
+                            }
                             $html.=  "<th class='center' style=' border: 1px solid #BDBDDB;'>".__('Nombre')."</th>";
                             $html.=   "<th class='center' style=' border: 1px solid #BDBDDB;'>".__('Especialidad')."</th>";
                             $html.=   "<th class='center' style=' border: 1px solid #BDBDDB;'>".__('CV')."</th>";
@@ -117,9 +148,13 @@ $result = $DB->query($query);
                         $preselecionIds=$preselecionIds.$data["supplier_id"]."-";
             
                             $html.=  "<tr class='tab_bg_2'>";
-                                    $html.=  "<td  class='center' style=' border: 1px solid #BDBDDB;'>";
-                                                $html.= "<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";
-                                    $html.=  "</td>";
+                                    
+                                     //Eliminación al visualizar la preselección
+                                    if(empty($preseleccion)){
+                                        $html.=  "<td  class='center' style=' border: 1px solid #BDBDDB;'>";
+                                                    $html.= "<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";
+                                        $html.=  "</td>";
+                                    }
                                     
                                     $html.=  "<td class='center' style=' border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["supplier_id"]."'>".$data["name"]."</a></td>";   
                                     if(!empty($data['especialidad'])){
