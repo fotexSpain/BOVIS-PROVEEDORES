@@ -303,40 +303,87 @@
                                         $paquete_id=$item->fields['id'];
                                         $contenido_valoracion=0;
                                         echo"<script type='text/javascript'>
-                                            $( function() {
-                                                $( '#tabsHorizontal' ).tabs();
-                                            });
-                                            
                                             var arrayValoracion = [];
 
                                             for ( var i = 1; i <=3; i++ ) {
                                                 arrayValoracion[i] = []; 
                                             }
+                                            function  abrirValoracionContrato(valoracion_id){
+                                                var parametros = {
+                                                    'id': valoracion_id
+                                                };
+                                                
+                                               $.ajax({ 
+                                                    type: 'GET',
+                                                    data: parametros,                  
+                                                    url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/valuation_subcriterio.php',                    
+                                                    success:function(data){
+                                                        $('#valoraciones').html(data);
+                                                      
+                                                    },
+                                                    error: function(result) {
+                                                        alert('Data not found');
+                                                    }
+                                                });
+                                            }
                                                         
                                         </script>";
-                                              
-                                         echo"<div id='tabsHorizontal' style='display: inline-block;'>";
-                                                echo"<ul style='display: -webkit-box;'>";
-                                                        echo"<li><a href='#tabs-1'>Valoración 1</a></li>";
-                                                        echo"<li><a href='#tabs-2'>Valoración 2</a></li>";
-                                                        echo"<li><a href='#tabs-3'>Valoración 3</a></li>";
-                                                echo"</ul>";
-                                                echo"<div id='tabs-1'>";
-                                                        echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
-                                                                $this->modificarValoracionPaquete(1, $paquete_id);
-                                                        echo"</div>";
-                                                echo"</div>";
-                                                echo"<div id='tabs-2'>";
-                                                         echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
-                                                                $this->modificarValoracionPaquete(2, $paquete_id);
-                                                        echo"</div>";
-                                                echo"</div>";
-                                                 echo"<div id='tabs-3'>";
+                                        echo "<div id='valoraciones' align='center'><table class='tab_cadre_fixehov'>";
+
+                                        echo "<tr class='tab_cadre_fixehov nohover'><th colspan='14' >Lista de evaluaciones</th></tr>";
+                                        echo"<br/>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Evaluación</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Fecha</th>";
+                                            
+                                            //Contratista
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Calidad</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Plazo</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Costes</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Cultura</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Suministros y Subcontratistas</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Sys y Medioambiente</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>BIM</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Certificación</th>";
+                                            
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Total</th>";
+                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Apto</th>";
+                                            
+                                        echo "</tr>";
+                                        
+                                         $query ="SELECT * 
+                                                FROM glpi_plugin_comproveedores_valuations as valoracion
+                                                where valoracion.projecttasks_id=".$paquete_id;
+                        
+                                                $result = $DB->query($query);
+                                                
+                                                while ($data=$DB->fetch_array($result)) {
+                                                        echo"<tr>";
+                                                        echo "<td><a onclick='abrirValoracionContrato(".$data['id'].")' >Evaluacion ".$data['num_evaluacion']."</a></td>";
+                                                        echo "<td>".$data['fecha']."</td>";
+                                                        echo "<td>".$data['calidad']."</td>";
+                                                        echo "<td>".$data['plazo']."</td>";
+                                                        echo "<td>".$data['costes']."</td>";
+                                                        echo "<td>".$data['cultura']."</td>";
+                                                        echo "<td>".$data['suministros_y_subcontratistas']."</td>";
+                                                        echo "<td>".$data['sys_y_medioambiente']."</td>";
+                                                        echo "<td>".$data['bim']."</td>";
+                                                        echo "<td>".$data['certificaciones']."</td>";
+                                                        
+                                                         echo "<td>valor total</td>";
+                                                          echo "<td>valor apto</td>";
+                                                        echo"</tr>";
+                                                }
+                                                
+                                        echo "<tr>";
+                                        echo "</tr>";
+                                        echo "</table>";
+                                        echo "</div>";
+                                                 /*echo"<div id='tabs-3'>";
                                                          echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
                                                                 $this->modificarValoracionPaquete(3, $paquete_id);
                                                         echo"</div>";
-                                                echo"</div>";
-                                        echo"</div>";   
+                                                echo"</div>";*/
+                                        
 			
 		}
            

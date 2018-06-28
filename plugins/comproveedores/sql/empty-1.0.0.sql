@@ -407,6 +407,8 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
         `suministros_y_subcontratistas_coment` VARCHAR(255) NULL DEFAULT NULL,
         `sys_y_medioambiente` int(1) NOT NULL default '0',
         `sys_y_medioambiente_coment` VARCHAR(255) NULL DEFAULT NULL,
+        `bim` int(1) NOT NULL default '0',
+        `certificaciones` int(1) NOT NULL default '0',
         `fecha` DATETIME NULL,
         `num_evaluacion` int(1) NOT NULL default '0',
 
@@ -433,6 +435,58 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_subpaquetes` (
 	KEY `entities_id` (`entities_id`)
 
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_subvaluations` (
+        `id` int(11) NOT NULL auto_increment,
+        `valuation_id` int(11) NOT NULL default '0',
+        `criterio_id` int(11) NOT NULL default '0',
+        `valor` int(1) NOT NULL default '0',
+        `comentario` VARCHAR(255) NULL DEFAULT NULL,
+
+        `is_deleted` tinyint(1) NOT NULL default '0',
+        `externalid` varchar(255) NULL,
+        `is_recursive` tinyint(1) NOT NULL default '0',
+        `entities_id` int(11) NOT NULL default '0',
+        PRIMARY KEY (`id`),
+        KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_criterios` (
+	`id` int(11) NOT NULL auto_increment,
+	`criterio_padre` varchar(255) NULL,
+                `criterio_hijo` varchar(255) NULL,
+                `ponderacion` int(3) NOT NULL default '0',
+                `denom_Mala` longtext NULL,
+                `denom_Excelente` longtext NULL,
+                `tipo_especialidad` tinyint(1) NOT NULL default '0',
+
+ 	`is_deleted` tinyint(1) NOT NULL default '0',
+	`externalid` varchar(255) NULL,
+	`is_recursive` tinyint(1) NOT NULL default '0',
+	`entities_id` int(11) NOT NULL default '0',
+	PRIMARY KEY (`id`),
+	KEY `entities_id` (`entities_id`)
+
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `glpi_plugin_comproveedores_criterios` (`id`, `criterio_padre`, `criterio_hijo`, `ponderacion`, `denom_Mala`, `denom_Excelente`, `tipo_especialidad`, `is_deleted`, `externalid`, `is_recursive`, `entities_id`) 
+VALUES('1', 'Calidad', 'Gestión documentación. Planos e información', '15', 
+'No existe ni se respeta un protocolo para la emisión de documentación. Es insuficiente y se entrega tarde y con muchos errores. BOVIS tiene que reclamarla constantemente.',
+'Procedimientos empleados para la entrega de la documentación en plazo, forma y calidad, excelentes.',
+ '1', '0', NULL, '0', '0'),
+ ('2', 'Calidad', 'Calidad de la ejecución', '45', 
+'Calidad general inaceptable. No alineada con las prioridades del cliente. Nivel de control bajo. Necesidad significativa de rehacer trabajos. No atiende diligentemente a las instrucciones de la DF, deja muchos pendientes para el periodo de repasos. ',
+'Calidad de la ejecución excelente, mejor de lo esperado. La actitud es hacerlo bien a la primera. Se cumple eficazmente con el plan de calidad. La intervención requerida de la DF o de BOVIS para conseguirlo es mínima. Comprensión de las necesidades del cliente.',
+ '1', '0', NULL, '0', '0'),
+ ('3', 'Calidad', 'PPIs', '10', 
+'',
+'',
+'1', '0', NULL, '0', '0'),
+('4', 'Calidad', 'Defectos a la entrega', '30', 
+'Defectos numerosos/significativos con gran impacto en la operatividad. Gestión deficiente de los repasos, incumplimiento de fechas de resolución.',
+'Muy pocos defectos y poco significativos. Gestión muy eficaz de la resolución de los mismos.',
+ '1', '0', NULL, '0', '0');
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_servicetypes` (
 	`id` int(11) NOT NULL auto_increment,

@@ -12,6 +12,7 @@
 	include ("../../../inc/includes.php");
 	global $DB;
 	Session::checkLoginUser();
+       
 	
 	if(!isset($_GET["id"])) {
 		$_GET["id"] = "";
@@ -21,6 +22,7 @@
 	}
 
 	$PluginValuation= new PluginComproveedoresValuation();
+        $PluginSubValuation= new PluginComproveedoresSubvaluation();
 
 	
 	if(isset($_POST['add'])){
@@ -204,7 +206,35 @@
                        
 
                         Html::back();
-	}  else {
+	}else if(isset($_GET['guardarSubvaloraciones'])){
+
+                        //Guardamos las subvaloraciones
+                        $subvaloraciones=[];
+                        $subvaloraciones_valor=$_GET['arraySubValoracionValor'];
+                        $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
+
+                       $query ="select * from glpi_plugin_comproveedores_subvaluations as subvaloracion where subvaloracion.valuation_id=".$_GET['valoracion_id'];
+
+                        $result = $DB->query($query);
+
+                        while ($data=$DB->fetch_array($result)) {
+                            $subvaloracion['id']=$data['id'];
+                            $subvaloracion['valuation_id']=$data['valuation_id'];
+                            $subvaloracion['criterio_id']=$data['criterio_id'];
+                            $subvaloracion['valor']=$subvaloraciones_valor[$data['criterio_id']];
+                            $subvaloracion['comentario']=$subvaloraciones_comentario[$data['criterio_id']];
+
+                            $PluginSubValuation->check($subvaloracion['id'],UPDATE);
+                            $PluginSubValuation->update($subvaloracion);
+                        }
+            
+           
+            
+            //Guardamos las valoraciones
+            
+            //echo $newID;
+            //Html::back();
+	}else {
 		$PluginValuation->checkGlobal(READ);
 
 		$plugin = new Plugin();
