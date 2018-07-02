@@ -18,11 +18,12 @@ GLOBAL $DB,$CFG_GLPI;
                     echo consultaAjax();
                         
                     $valoracion=0;
-                    $paquete_id=0;
+                    $contrato_id=0;
                     
                     $query2="select 
-                                    (select count(*) from glpi_plugin_comproveedores_criterios as criterio2 where criterio2.criterio_padre=criterio.criterio_padre) as num_subcriterios,
-                                    (select GROUP_CONCAT(id) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio,
+                                    (select GROUP_CONCAT(criterio3.id ORDER BY criterio3.id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=1) as total_ids_subcriterios,
+                                    (select count(*) from glpi_plugin_comproveedores_criterios as criterio2 where criterio2.criterio_padre=criterio.criterio_padre and criterio2.tipo_especialidad=1) as num_subcriterios,
+                                    (select GROUP_CONCAT(criterio4.id ORDER BY criterio4.id asc) from glpi_plugin_comproveedores_criterios as criterio4 where criterio4.criterio_padre=criterio.criterio_padre and criterio4.tipo_especialidad=1) as num_ids_criterio,
                                     criterio.id as criterio_id,
                                     criterio.criterio_padre, 
                                     criterio.criterio_hijo,
@@ -30,7 +31,7 @@ GLOBAL $DB,$CFG_GLPI;
                                     criterio.denom_Mala,
                                     criterio.denom_Excelente
                                     from glpi_plugin_comproveedores_criterios as criterio 
-                                    left join glpi_plugin_comproveedores_subvaluations as subvaloracion on subvaloracion.criterio_id=criterio.id";
+                                    where criterio.tipo_especialidad=1 order by criterio.id";
                         
                     $result2 = $DB->query($query2);
                                       
@@ -62,6 +63,7 @@ GLOBAL $DB,$CFG_GLPI;
                         $cambio_criterio_padre='';                        
                                                     
                          while ($data=$DB->fetch_array($result2)) {
+                             $total_ids_subcriterios=$data['total_ids_subcriterios'];
 
                                 echo "<tr class='tab_bg_2' style='height:60px;'>";
                                     echo"<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'><span style='font-weight: bold;'>".$data['criterio_padre']."</span>\n".$data['criterio_hijo']."</td>";
@@ -83,15 +85,15 @@ GLOBAL $DB,$CFG_GLPI;
                          }
                     echo"<br/>";
                     echo "</table></div>";
-                    
+                        if(isset($_GET['id'])){
                         $query="select *,
-valoracion.num_evaluacion,
-valoracion.projecttasks_id as contrato_id,
-(select GROUP_CONCAT(id) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio 
-from glpi_plugin_comproveedores_subvaluations as Subvaloraciones 
-left join glpi_plugin_comproveedores_criterios as criterio on Subvaloraciones.criterio_id=criterio.id
-left join glpi_plugin_comproveedores_valuations as valoracion on valoracion.id=Subvaloraciones.valuation_id
-where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";                   
+                                valoracion.num_evaluacion,
+                                valoracion.projecttasks_id as contrato_id,
+                                (select GROUP_CONCAT(id ORDER BY id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=1 and  criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio 
+                                from glpi_plugin_comproveedores_subvaluations as Subvaloraciones 
+                                left join glpi_plugin_comproveedores_criterios as criterio on Subvaloraciones.criterio_id=criterio.id
+                                left join glpi_plugin_comproveedores_valuations as valoracion on valoracion.id=Subvaloraciones.valuation_id
+                                where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";                   
                         
                             $result = $DB->query($query);
                             //$contenido_valoracion=1;             
@@ -105,7 +107,7 @@ where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";
                                                     
                                                         $num_valoracion=$data['num_evaluacion'];
                                                         $valoracion_id=$data['valuation_id'];
-                                                        $paquete_id=$data['contrato_id'];
+                                                        $contrato_id=$data['contrato_id'];
                                 
                                                         
                                                         echo "$('#criterio_".$data['criterio_id']."_comentario').html('".$data['comentario']."');";
@@ -118,16 +120,19 @@ where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";
                                 echo"});</script>";
                                     
                             echo "<br><br>";
+                        }
+                        
                             echo"<div  id='boton_guardar_$valoracion'>";
-                                if($result->num_rows!=0){ 
+                                if(isset($_GET['id'])){
 
-                                    echo "<span onclick='guardarYModificarSubValoracion($paquete_id,$num_valoracion,$valoracion_id,\"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR EVALUACIÓN</span>";
+                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,$num_valoracion,$valoracion_id, 1, \"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR EVALUACIÓN</span>";
                                 }  
                                 else{
-
-                                    echo "<span onclick='guardarYModificarSubValoracion($paquete_id,$valoracion,-1,\"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR EVALUACIÓN</span>";      
+                                    $contrato_id=$_GET['contrato_id'];
+                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,$valoracion,-1, 1, \"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR EVALUACIÓN</span>";      
                                 }   
                                 echo"</div>";
+                        
                                 echo"<br>";
                                 echo"<br>";
                                 
@@ -140,7 +145,6 @@ where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";
 
                         function valorElegido(valor_criterio, tipo_criterio, num_subcriterios, criterio_padre){
                         
-
                                 for(i=1;i<=5;i++){
                                         if(valor_criterio==i){
 
@@ -164,31 +168,30 @@ where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";
                         
                          //Comprobamos que todo los valores de un criterio esten rellenos para sacar el total
                         function totalSubvaloracion(num_subcriterios, criterio_padre){
-                        
-                                calcularTotal=true;
-                                
+                       
+                                calcularTotal=true;                                
                                 var arrayIdsCriterio = num_subcriterios.split(',');
+                                var inicio=Number(arrayIdsCriterio[0]);
+                                var fin=Number(arrayIdsCriterio[arrayIdsCriterio.length-1]);
                                
-                                for(i=arrayIdsCriterio[0];i<=arrayIdsCriterio[arrayIdsCriterio.length-1];i++){
-
-                                        //Comprobamos que existe el valor del criterio en el array
-                                        if(typeof arraySubValoracionValor[i] == 'undefined'){
-                                                calcularTotal=false;
-                                        }
-                            
+                                
+                                for(i=inicio;i<=fin;i++){
+                                   
+                                    //Comprobamos que existe el valor del criterio en el array
+                                    if(typeof arraySubValoracionValor[i] == 'undefined'){
+                                            calcularTotal=false;
+                                    }
                                 }
                                 
                                 //Calculamos el total para el criterio_padre elegido
-                               if(calcularTotal){
+                               if(calcularTotal==true){
                                         total_criterio=0;
-                                        for(i=arrayIdsCriterio[0];i<=arrayIdsCriterio[arrayIdsCriterio.length-1];i++){
+                                        for(i=inicio;i<=fin;i++){
                                         
                                                 porcentaje=$('#criterio_'+i+'_porcentaje').text();
                                                 porcentaje=Number(porcentaje.substring(0,porcentaje.length-1));
 
                                                 total_criterio+=(arraySubValoracionValor[i]*porcentaje)/100;
-
-                                                
                                         
                                         }
                                         total_criterio=Math.round(total_criterio * 100) / 100
@@ -198,35 +201,51 @@ where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";
 
                         }
 
-                        function guardarYModificarSubValoracion(paquete_id, numero_valoracion, valoracion_id, metodo){
-                        
-                                //Guardamos los valores de los comentarios
-                                for(i=1;i<=4;i++){
-                                        arraySubValoracionComentario[i]=$('#criterio_'+i+'_comentario').val();        
+                        function guardarYModificarSubValoracion(total_ids_subcriterios, contrato_id, numero_valoracion, valoracion_id, tipo_especialidad, metodo){
+                               
+                               //Comprobamos que esten todo los valores rellenos
+                               valores_completados=true;
+                               var arrayTotalIdsSubcriterios = total_ids_subcriterios.split(',');
+                              
+                               for(i=arrayTotalIdsSubcriterios[0];i<=arrayTotalIdsSubcriterios[arrayTotalIdsSubcriterios.length-1];i++){
+                                   
+                                    if(typeof arraySubValoracionValor[i] == 'undefined'){
+                                        valores_completados=false;
+                                    }    
                                 }
+                                
+                                //Si toda las subvaloraciones estan rellenas, las guardamos
+                                if(valores_completados==true){
+                                    //Guardamos los valores de los comentarios
+                                    for(i=i=arrayTotalIdsSubcriterios[0];i<=arrayTotalIdsSubcriterios[arrayTotalIdsSubcriterios.length-1];i++){
+                                            arraySubValoracionComentario[i]=$('#criterio_'+i+'_comentario').val();        
+                                    }
 
-                                //Guardamos las subvaloraciones
-                                    var parametros = {
-                                        'guardarSubvaloraciones': '',
-                                        'arraySubValoracionValor':arraySubValoracionValor,
-                                        'arraySubValoracionComentario':arraySubValoracionComentario,
-                                        'valoracion_id':valoracion_id
-                                    };
-                                                                              
-                                    $.ajax({ 
-                                        type: 'GET',
-                                        data: parametros,                  
-                                        url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
-                                        success:function(data){
-                                        //alert(data);
-                                        },
-                                        error: function(result) {
-                                            alert('Data not found');
-                                        }
-                                    });
-                                    
-                                //guardamos las valoraciones
-                            
+                                    //Guardamos las subvaloraciones
+                                        var parametros = {
+                                            'metodo':metodo,
+                                            'guardarSubvaloraciones': '',
+                                            'tipo_especialidad':tipo_especialidad,
+                                            'arraySubValoracionValor':arraySubValoracionValor,
+                                            'arraySubValoracionComentario':arraySubValoracionComentario,
+                                            'valoracion_id':valoracion_id,
+                                            'contrato_id':contrato_id
+                                        };
+
+                                        $.ajax({ 
+                                            type: 'GET',
+                                            data: parametros,                  
+                                            url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
+                                            success:function(data){
+                                            //alert(data);
+                                            },
+                                            error: function(result) {
+                                                alert('Data not found');
+                                            }
+                                        });
+
+                                    //guardamos las valoraciones
+                                }
                         }   
                  </script>";
                 

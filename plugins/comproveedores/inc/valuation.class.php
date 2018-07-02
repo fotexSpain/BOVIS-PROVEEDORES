@@ -300,7 +300,7 @@
                                     
                                         GLOBAL $DB,$CFG_GLPI;
                                         
-                                        $paquete_id=$item->fields['id'];
+                                        $contrato_id=$item->fields['id'];
                                         $contenido_valoracion=0;
                                         echo"<script type='text/javascript'>
                                             var arrayValoracion = [];
@@ -308,6 +308,7 @@
                                             for ( var i = 1; i <=3; i++ ) {
                                                 arrayValoracion[i] = []; 
                                             }
+                                            
                                             function  abrirValoracionContrato(valoracion_id){
                                                 var parametros = {
                                                     'id': valoracion_id
@@ -326,7 +327,25 @@
                                                     }
                                                 });
                                             }
-                                                        
+                                             
+                                            function  nuevaValoracionContrato(contrato_id){
+                                                var parametros = {
+                                                    'contrato_id': contrato_id
+                                                };
+                                                
+                                               $.ajax({ 
+                                                    type: 'GET',
+                                                    data: parametros,                  
+                                                    url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/valuation_subcriterio.php',                    
+                                                    success:function(data){
+                                                        $('#valoraciones').html(data);
+                                                      
+                                                    },
+                                                    error: function(result) {
+                                                        alert('Data not found');
+                                                    }
+                                                });
+                                            }
                                         </script>";
                                         echo "<div id='valoraciones' align='center'><table class='tab_cadre_fixehov'>";
 
@@ -352,7 +371,7 @@
                                         
                                          $query ="SELECT * 
                                                 FROM glpi_plugin_comproveedores_valuations as valoracion
-                                                where valoracion.projecttasks_id=".$paquete_id;
+                                                where valoracion.projecttasks_id=".$contrato_id;
                         
                                                 $result = $DB->query($query);
                                                 
@@ -361,13 +380,13 @@
                                                         echo "<td><a onclick='abrirValoracionContrato(".$data['id'].")' >Evaluacion ".$data['num_evaluacion']."</a></td>";
                                                         echo "<td>".$data['fecha']."</td>";
                                                         echo "<td>".$data['calidad']."</td>";
-                                                        echo "<td>".$data['plazo']."</td>";
+                                                        echo "<td>".$data['planificacion']."</td>";
                                                         echo "<td>".$data['costes']."</td>";
-                                                        echo "<td>".$data['cultura']."</td>";
-                                                        echo "<td>".$data['suministros_y_subcontratistas']."</td>";
-                                                        echo "<td>".$data['sys_y_medioambiente']."</td>";
+                                                        echo "<td>".$data['cultura_empresarial']."</td>";
+                                                        echo "<td>".$data['gestion_de_suministros_y_subcontratistas']."</td>";
+                                                        echo "<td>".$data['seguridad_y_salud_y_medioambiente']."</td>";
                                                         echo "<td>".$data['bim']."</td>";
-                                                        echo "<td>".$data['certificaciones']."</td>";
+                                                        echo "<td>".$data['certificacion_medioambiental']."</td>";
                                                         
                                                          echo "<td>valor total</td>";
                                                           echo "<td>valor apto</td>";
@@ -375,9 +394,13 @@
                                                 }
                                                 
                                         echo "<tr>";
-                                        echo "</tr>";
+                                        echo "</tr>";                                       
                                         echo "</table>";
+                                         echo "<div>";
+                                            echo "<span onclick='nuevaValoracionContrato(".$contrato_id.")' class='vsubmit' style='margin-right: 15px;'>NUEVA EVALUACIÓN</span>";
                                         echo "</div>";
+                                        echo "</div>";
+                                       
                                                  /*echo"<div id='tabs-3'>";
                                                          echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
                                                                 $this->modificarValoracionPaquete(3, $paquete_id);

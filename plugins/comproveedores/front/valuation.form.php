@@ -57,7 +57,7 @@
 		
 		Html::back();
 
-	}else if(isset($_GET['metodo']) && $_GET['metodo']=='add_valoracion'){
+	/*}else if(isset($_GET['metodo']) && $_GET['metodo']=='add_valoracion'){
             
                         $valoracion=array();
             
@@ -205,15 +205,19 @@
                         	
                        
 
-                        Html::back();
-	}else if(isset($_GET['guardarSubvaloraciones'])){
-
-                        //Guardamos las subvaloraciones
+                        Html::back();*/
+	}else if(isset($_GET['guardarSubvaloraciones']) && $_GET['metodo']=='update_valoracion'){
+            
+                        
                         $subvaloraciones=[];
+                        $valoraciones=[];
                         $subvaloraciones_valor=$_GET['arraySubValoracionValor'];
                         $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
-
-                       $query ="select * from glpi_plugin_comproveedores_subvaluations as subvaloracion where subvaloracion.valuation_id=".$_GET['valoracion_id'];
+                        
+                       //Guardamos las subvaloraciones
+                       $query ="select subvaloracion.*,criterios.criterio_padre, criterios.ponderacion from glpi_plugin_comproveedores_subvaluations as subvaloracion
+                                left join glpi_plugin_comproveedores_criterios as criterios on criterios.id=subvaloracion.criterio_id
+                                where subvaloracion.valuation_id=".$_GET['valoracion_id'];
 
                         $result = $DB->query($query);
 
@@ -223,17 +227,85 @@
                             $subvaloracion['criterio_id']=$data['criterio_id'];
                             $subvaloracion['valor']=$subvaloraciones_valor[$data['criterio_id']];
                             $subvaloracion['comentario']=$subvaloraciones_comentario[$data['criterio_id']];
-
+                            
+                            //Sumamos el valor de los subcriterio
+                            $valoracion[$data['criterio_padre']]+=(($subvaloraciones_valor[$data['criterio_id']]/100)*$data['ponderacion']);
+                            
+                            
                             $PluginSubValuation->check($subvaloracion['id'],UPDATE);
                             $PluginSubValuation->update($subvaloracion);
                         }
+                        
+                        //Guardamos la valoracion
+                        $query2 ="select distinct criterio_padre from glpi_plugin_comproveedores_criterios as criterio where criterio.tipo_especialidad=".$_GET['tipo_especialidad'];
+                        $result2 = $DB->query($query2);
+
+                        while ($data=$DB->fetch_array($result2)) {
+                          $valoracion[$data['criterio_padre']]=round($valoracion[$data['criterio_padre']], 2);
+                        }
+                        
+                        $valoracion['id']=$_GET['valoracion_id'];
+                        
+                        $PluginValuation->check($valoracion['id'], UPDATE);
+                        $PluginValuation->update($valoracion);
+                                   
+	}else if(isset($_GET['guardarSubvaloraciones']) && $_GET['metodo']=='add_valoracion'){
             
-           
-            
-            //Guardamos las valoraciones
-            
-            //echo $newID;
-            //Html::back();
+                        $subvaloraciones=[];
+                        $valoraciones=[];
+                        $subvaloraciones_valor=$_GET['arraySubValoracionValor'];
+                        $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
+                        
+                        //Guardamos la valoracion
+                        $query ="select distinct(select num_evaluacion from glpi_plugin_comproveedores_valuations where projecttasks_id=".$_GET['contrato_id']." order by num_evaluacion desc limit 1) as num_evaluacion, 
+                                criterio_padre from glpi_plugin_comproveedores_criterios as criterio 
+                                where criterio.tipo_especialidad=".$_GET['tipo_especialidad'];
+                        $result = $DB->query($query);
+
+                        while ($data=$DB->fetch_array($result)) {
+                          $valoracion[$data['criterio_padre']]=0;
+                          $valoracion['num_evaluacion']=($data['num_evaluacion']+1);
+                        }
+                        
+                        $valoracion['projecttasks_id']=$_GET['contrato_id'];
+                        
+                        $PluginValuation->check(-1, CREATE, $valoracion);
+                        $newID = $PluginValuation->add($valoracion);
+
+                        //Guardamos las subvaloraciones
+
+                        $query2 ="select id, criterio_padre, ponderacion from glpi_plugin_comproveedores_criterios as criterio where criterio.tipo_especialidad=".$_GET['tipo_especialidad'];
+                        $result2 = $DB->query($query2);
+
+                        while ($data=$DB->fetch_array($result2)) {
+                        
+                            //$subvaloracion['id']=$data['id'];
+                            //se debe crear la valoracion vacia primero
+                            $subvaloracion['valuation_id']=$newID;
+                            //$subvaloracion['valuation_id']=$data['valuation_id'];
+                            $subvaloracion['criterio_id']=$data['id'];
+                            $subvaloracion['valor']=$subvaloraciones_valor[$data['id']];
+                            $subvaloracion['comentario']=$subvaloraciones_comentario[$data['id']];
+                            
+                            //Sumamos el valor de los subcriterio
+                            $valoracion[$data['criterio_padre']]+=(($subvaloraciones_valor[$data['id']]/100)*$data['ponderacion']);
+                            
+                            $PluginSubValuation->check(-1, CREATE, $subvaloracion);
+                            $PluginSubValuation->add($subvaloracion);
+                        }
+                        //Modificamos la valoración
+                        $query3 ="select distinct criterio_padre from glpi_plugin_comproveedores_criterios as criterio where criterio.tipo_especialidad=".$_GET['tipo_especialidad'];
+                        $result3 = $DB->query($query3);
+
+                        while ($data=$DB->fetch_array($result3)) {
+                          $valoracion[$data['criterio_padre']]=round($valoracion[$data['criterio_padre']], 2);
+                        }
+                        
+                        $valoracion['id']=$newID;
+                        
+                        $PluginValuation->check($valoracion['id'], UPDATE);
+                        $PluginValuation->update($valoracion);
+          
 	}else {
 		$PluginValuation->checkGlobal(READ);
 
