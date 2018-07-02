@@ -244,6 +244,9 @@
                           $valoracion[$data['criterio_padre']]=round($valoracion[$data['criterio_padre']], 2);
                         }
                         
+                          $valoracion['cv_id']=$_GET['cv_id'];
+                        $valoracion['evaluacion_final']=$_GET['eval_final'];
+                        $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['id']=$_GET['valoracion_id'];
                         
                         $PluginValuation->check($valoracion['id'], UPDATE);
@@ -279,10 +282,8 @@
 
                         while ($data=$DB->fetch_array($result2)) {
                         
-                            //$subvaloracion['id']=$data['id'];
-                            //se debe crear la valoracion vacia primero
+                            //Se debe crear la valoracion vacia primero
                             $subvaloracion['valuation_id']=$newID;
-                            //$subvaloracion['valuation_id']=$data['valuation_id'];
                             $subvaloracion['criterio_id']=$data['id'];
                             $subvaloracion['valor']=$subvaloraciones_valor[$data['id']];
                             $subvaloracion['comentario']=$subvaloraciones_comentario[$data['id']];
@@ -301,6 +302,9 @@
                           $valoracion[$data['criterio_padre']]=round($valoracion[$data['criterio_padre']], 2);
                         }
                         
+                        $valoracion['cv_id']=$_GET['cv_id'];
+                        $valoracion['evaluacion_final']=$_GET['eval_final'];
+                        $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['id']=$newID;
                         
                         $PluginValuation->check($valoracion['id'], UPDATE);

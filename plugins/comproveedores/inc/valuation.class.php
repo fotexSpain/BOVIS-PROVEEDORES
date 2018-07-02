@@ -309,9 +309,10 @@
                                                 arrayValoracion[i] = []; 
                                             }
                                             
-                                            function  abrirValoracionContrato(valoracion_id){
+                                            function  abrirValoracionContrato(valoracion_id, tipo_especialidad){
                                                 var parametros = {
-                                                    'id': valoracion_id
+                                                    'id': valoracion_id,
+                                                     'tipo_especialidad': tipo_especialidad
                                                 };
                                                 
                                                $.ajax({ 
@@ -328,9 +329,10 @@
                                                 });
                                             }
                                              
-                                            function  nuevaValoracionContrato(contrato_id){
+                                            function  nuevaValoracionContrato(contrato_id, tipo_especialidad){
                                                 var parametros = {
-                                                    'contrato_id': contrato_id
+                                                    'contrato_id': contrato_id,
+                                                    'tipo_especialidad': tipo_especialidad
                                                 };
                                                 
                                                $.ajax({ 
@@ -347,68 +349,139 @@
                                                 });
                                             }
                                         </script>";
+                                       
                                         echo "<div id='valoraciones' align='center'><table class='tab_cadre_fixehov'>";
 
-                                        echo "<tr class='tab_cadre_fixehov nohover'><th colspan='14' >Lista de evaluaciones</th></tr>";
-                                        echo"<br/>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Evaluación</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Fecha</th>";
-                                            
-                                            //Contratista
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Calidad</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Plazo</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Costes</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Cultura</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Suministros y Subcontratistas</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Sys y Medioambiente</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>BIM</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Certificación</th>";
-                                            
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Total</th>";
-                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Apto</th>";
-                                            
-                                        echo "</tr>";
+                                       
                                         
-                                         $query ="SELECT * 
-                                                FROM glpi_plugin_comproveedores_valuations as valoracion
-                                                where valoracion.projecttasks_id=".$contrato_id;
+                                                $query ="SELECT valoracion.* , contrato.tipo_especialidad, proveedor.cv_id as proveedor_cv_id
+                                                                FROM glpi_projecttasks as contrato 
+                                                                left join glpi_plugin_comproveedores_valuations as valoracion  on contrato.id=valoracion.projecttasks_id
+                                                                left join glpi_projecttaskteams as projecttaskteams  on projecttaskteams.projecttasks_id=valoracion.projecttasks_id
+                                                                left join glpi_suppliers as proveedor  on proveedor.id=projecttaskteams.items_id
+                                                                where contrato.id=".$contrato_id." order by valoracion.num_evaluacion desc";
                         
                                                 $result = $DB->query($query);
                                                 
+                                                $visualizar_cabecera=true;
+                                                $visualizar_boton_nueva_evaluacion=true;
                                                 while ($data=$DB->fetch_array($result)) {
-                                                        echo"<tr>";
-                                                        echo "<td><a onclick='abrirValoracionContrato(".$data['id'].")' >Evaluacion ".$data['num_evaluacion']."</a></td>";
-                                                        echo "<td>".$data['fecha']."</td>";
-                                                        echo "<td>".$data['calidad']."</td>";
-                                                        echo "<td>".$data['planificacion']."</td>";
-                                                        echo "<td>".$data['costes']."</td>";
-                                                        echo "<td>".$data['cultura_empresarial']."</td>";
-                                                        echo "<td>".$data['gestion_de_suministros_y_subcontratistas']."</td>";
-                                                        echo "<td>".$data['seguridad_y_salud_y_medioambiente']."</td>";
-                                                        echo "<td>".$data['bim']."</td>";
-                                                        echo "<td>".$data['certificacion_medioambiental']."</td>";
+                                                    
+                                                        $tipo_especialidad=$data['tipo_especialidad'];
+                                                        $cv_id=$data['proveedor_cv_id'];
                                                         
-                                                         echo "<td>valor total</td>";
-                                                          echo "<td>valor apto</td>";
-                                                        echo"</tr>";
+                                                        //Si existe una valoración final, quitar el boton nueva evaluación
+                                                        if($data['evaluacion_final']==1){
+                                                                $visualizar_boton_nueva_evaluacion=false;
+                                                        }
+                                                        
+                                                        if($visualizar_cabecera){
+                                                            
+                                                                $visualizar_cabecera=false;
+                                                                echo "<tr class='tab_cadre_fixehov nohover'><th colspan='14' >Lista de evaluaciones</th></tr>";
+                                                                echo"<br/>";
+                                                                        echo "<th style='width: 160px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>EVALUACIÓN</th>";
+                                                                        echo "<th style='width: 200px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>FECHA</th>";
+                                                                        if($tipo_especialidad==1){
+                                                                            //Contratista
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Q</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>PLZ</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>COST</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>CULT</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>SUBC</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>SyS</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>BIM</th>";
+                                                                            echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>CERT</th>";
+                                                                        }else{
+                                                                                //Servicios Profesioneales
+
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>PROY BÁSICO</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>PROY EJECUCIÓN</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>CAP EMPRESA</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>COLABORADOR</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>CAPACIDAD</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>ACTITUD</th>";
+                                                                                echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>BIM</th>";
+                                                                                
+                                                                        }
+                                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>TOTAL</th>";
+                                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>APTO</th>";
+                                                                echo "</tr>";
+                                                        }
+                                                        if(!empty($data['num_evaluacion'])){
+                                                                echo"<tr style='height: 45px;'>";
+                                                                echo "<td style=' border: 1px solid #BDBDDB;'><a onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$data['num_evaluacion']."</a></td>";
+                                                                  echo "<td style='border: 1px solid #BDBDDB;'>".substr($data['fecha'], 0,10)."</td>";
+
+                                                                if($tipo_especialidad==1){
+
+                                                                         //Contratista
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['calidad'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['planificacion']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['planificacion'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['costes'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['cultura_empresarial']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['cultura_empresarial'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['gestion_de_suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['gestion_de_suministros_y_subcontratistas'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['seguridad_y_salud_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['seguridad_y_salud_y_medioambiente'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['bim'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['certificacion_medioambiental']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['certificacion_medioambiental'], '.0')."</td>";
+                                                                        $total=$data['calidad']+$data['planificacion']+$data['costes']+$data['cultura_empresarial']+$data['gestion_de_suministros_y_subcontratistas']+$data['seguridad_y_salud_y_medioambiente']+$data['bim']+$data['certificacion_medioambiental'];
+                                                                }else{
+
+                                                                        //Servicios Profesioneales
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['proyecto_basico']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['proyecto_basico'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['proyecto_de_ejecucion']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['proyecto_de_ejecucion'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['capacidad_de_la_empresa']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['capacidad_de_la_empresa'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['colaboradores']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['colaboradores'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['capacidad']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['capacidad'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['actitud']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['actitud'], '.0')."</td>";
+                                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['bim'], '.0')."</td>";
+                                                                        $total=$data['proyecto_basico']+$data['proyecto_de_ejecucion']+$data['capacidad_de_la_empresa']+$data['colaboradores']+$data['capacidad']+$data['actitud']+$data['bim'];
+                                                                }
+                                                                
+                                                                echo "<td style='border: 1px solid #BDBDDB;'>".$total."</td>";
+                                                                echo "<td style='border: 1px solid #BDBDDB;'>".$this->recomendacionesEvaluacion($total)."</td>";
+                                                                echo"</tr>";
+                                                        }
                                                 }
                                                 
                                         echo "<tr>";
                                         echo "</tr>";                                       
                                         echo "</table>";
-                                         echo "<div>";
-                                            echo "<span onclick='nuevaValoracionContrato(".$contrato_id.")' class='vsubmit' style='margin-right: 15px;'>NUEVA EVALUACIÓN</span>";
-                                        echo "</div>";
-                                        echo "</div>";
-                                       
-                                                 /*echo"<div id='tabs-3'>";
-                                                         echo"<div style='-webkit-margin-before: 3em; -webkit-margin-start: -13em;'>";
-                                                                $this->modificarValoracionPaquete(3, $paquete_id);
-                                                        echo"</div>";
-                                                echo"</div>";*/
+                                        echo "<br>";
                                         
-			
-		}
+                                        if($visualizar_boton_nueva_evaluacion){
+                                                echo "<div>";
+                                                        echo "<span onclick='nuevaValoracionContrato(".$contrato_id.", ".$tipo_especialidad.")' class='vsubmit' style='margin-right: 15px;'>NUEVA EVALUACIÓN</span>";
+                                                echo "</div>";
+                                        }
+                                        echo "</div>";
+                                        
+                                        echo "<br><br>";
+                                        echo "<div align='center'><table>";
+                                                echo "<tr>";
+                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_1.png></td>";                                                            
+                                                        echo "<td  style='width: 50px;'>Calificación MALA</td>";
+
+                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_2.png></td>";                                                            
+                                                        echo "<td  style='width: 50px;'>Calificación POBRE</td>";
+
+                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_3.png></td>";                                                            
+                                                        echo "<td  style='width: 50px;'>Calificación ACEPTABLE</td>";
+
+                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_4.png></td>";                                                            
+                                                        echo "<td  style='width: 50px;'>Calificación BUENA</td>";
+
+                                                        echo "<td class='center'><img style='vertical-align:middle; margin: 5px 0px;' src=".$CFG_GLPI["root_doc"]."/pics/valoracion_5.png></td>";                                                            
+                                                        echo "<td  style='width: 50px;'>Calificación EXCELENTE</td>";
+
+                                                echo "</tr>";
+                                        echo "</table></div>";
+                                        
+                                        echo"<div id='evaluacion'>";
+                                                echo Html::hidden('cv_id', array('value' =>$cv_id));
+                                        echo"</div>";
+                                        
+	}
            
                 function modificarValoracionPaquete($valoracion, $paquete_id){
                     GLOBAL $DB,$CFG_GLPI;
@@ -729,6 +802,32 @@
                     }
 
                     return $color;
+                }
+                
+                function recomendacionesEvaluacion($total){
+                      
+                    switch ($total) {
+                        case $total<7:
+
+                            $valor="NO APTO";
+                            break;
+                        case $total<15:
+
+                            $valor="POCO RECOMENDABLE";
+                            break;
+                        case $total<26:
+
+                            $valor="RECOMENDABLE";
+                            break;
+                        case $total>26:
+
+                            $valor="MUY RECOMENDABLE";
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                    return $valor;
                 }
                 
             function consultaAjax(){

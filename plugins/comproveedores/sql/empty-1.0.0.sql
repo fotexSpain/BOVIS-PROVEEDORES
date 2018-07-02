@@ -412,6 +412,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
 
         `fecha` DATETIME NULL,
         `num_evaluacion` int(1) NOT NULL default '0',
+        `evaluacion_final` TINYINT(1) NOT NULL DEFAULT '0'
 
         `is_deleted` tinyint(1) NOT NULL default '0',
         `externalid` varchar(255) NULL,

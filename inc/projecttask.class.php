@@ -602,6 +602,12 @@ class ProjectTask extends CommonDBChild {
                                                 'rand'  => $rand_plan_end_date, 'hidetime' => true]);
       echo "</td></tr>";
       echo "<tr class='tab_bg_1'>";
+      echo"<td>".__('Tipo de especialidad')."</td><td>";
+      Dropdown::showFromArray('tipo_especialidad',array(1 =>'Contratistas' , 2 =>'Servicios profesionales'),array('value' => $this->fields['tipo_especialidad']));
+      echo "</td>";
+      echo "</tr>";
+      
+         echo "<tr class='tab_bg_1'>";
       echo "<td style='width:100px; visibility:hidden;'>"._n('Project task template', 'Project task templates', 1)."</td><td style='visibility:hidden;'>";
       ProjectTaskTemplate::dropdown(['value'     => $this->fields['projecttasktemplates_id'],
                                      'entity'    => $this->getEntityID(),
