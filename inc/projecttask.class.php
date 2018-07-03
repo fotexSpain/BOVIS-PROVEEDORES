@@ -603,7 +603,7 @@ class ProjectTask extends CommonDBChild {
       echo "</td></tr>";
       echo "<tr class='tab_bg_1'>";
       echo"<td>".__('Tipo de especialidad')."</td><td>";
-      Dropdown::showFromArray('tipo_especialidad',array(1 =>'Contratistas' , 2 =>'Servicios profesionales'),array('value' => $this->fields['tipo_especialidad']));
+      Dropdown::showFromArray('tipo_especialidad',array(2 =>'Contratistas' , 1 =>'Servicios profesionales'),array('value' => $this->fields['tipo_especialidad']));
       echo "</td>";
       echo "</tr>";
       

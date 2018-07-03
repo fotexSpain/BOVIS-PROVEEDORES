@@ -77,7 +77,7 @@ echo "</table>";
 
 include 'listSelectionSupplier.php';
 
-echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
+//echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
 echo"<span onclick='guardarPreseleccion(".$_GET['paquete_id'].",\"$preselecionIds\")' class='vsubmit' style='margin-right: 15px; '>GUARDAR PRESELECCIÓN</span>";
 echo "<span onclick='inlcuirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
 echo"<br>";

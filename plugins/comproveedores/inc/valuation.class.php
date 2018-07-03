@@ -368,7 +368,7 @@
                                                 while ($data=$DB->fetch_array($result)) {
                                                     
                                                         $tipo_especialidad=$data['tipo_especialidad'];
-                                                        $cv_id=$data['proveedor_cv_id'];
+                                                        
                                                         
                                                         //Si existe una valoración final, quitar el boton nueva evaluación
                                                         if($data['evaluacion_final']==1){
@@ -382,7 +382,7 @@
                                                                 echo"<br/>";
                                                                         echo "<th style='width: 160px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>EVALUACIÓN</th>";
                                                                         echo "<th style='width: 200px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>FECHA</th>";
-                                                                        if($tipo_especialidad==1){
+                                                                        if($tipo_especialidad==2){
                                                                             //Contratista
                                                                             echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>Q</th>";
                                                                             echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>PLZ</th>";
@@ -413,7 +413,7 @@
                                                                 echo "<td style=' border: 1px solid #BDBDDB;'><a onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$data['num_evaluacion']."</a></td>";
                                                                   echo "<td style='border: 1px solid #BDBDDB;'>".substr($data['fecha'], 0,10)."</td>";
 
-                                                                if($tipo_especialidad==1){
+                                                                if($tipo_especialidad==2){
 
                                                                          //Contratista
                                                                         echo "<td style='text-align: center; border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".rtrim($data['calidad'], '.0')."</td>";
@@ -476,6 +476,20 @@
 
                                                 echo "</tr>";
                                         echo "</table></div>";
+                                        
+                                        //Obtenemos el CV_Id del contrato
+                                        $cv_id='';
+                                        
+                                        $query2 ="select proveedor.cv_id 
+                                                        from glpi_projecttaskteams as projecttaskteams
+                                                        inner join glpi_suppliers as proveedor on projecttaskteams.items_id=proveedor.id 
+                                                        where  projecttasks_id=".$contrato_id;
+                        
+                                        $result2 = $DB->query($query2);
+                                                
+                                        while ($data=$DB->fetch_array($result2)) {
+                                                $cv_id=$data['cv_id'];
+                                        }
                                         
                                         echo"<div id='evaluacion'>";
                                                 echo Html::hidden('cv_id', array('value' =>$cv_id));
