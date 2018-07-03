@@ -103,7 +103,8 @@ GLOBAL $DB,$CFG_GLPI;
                     echo "</table></div>";
                       
                         if(isset($_GET['id'])){
-                        $query="select *,
+                        $query="select Subvaloraciones.*,
+                                criterio.*,
                                 valoracion.num_evaluacion,
                                 valoracion.fecha,
                                 valoracion.projecttasks_id as contrato_id,

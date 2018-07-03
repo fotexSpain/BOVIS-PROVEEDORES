@@ -99,6 +99,7 @@ proveedor.name,
 GROUP_CONCAT(distinct especialidad.name SEPARATOR '\n')  as especialidad, 
 facturacion.facturacion, 
 proveedor.cv_id,
+contrato.tipo_especialidad,
 ROUND(Sum(valoracion.calidad)/count(valoracion.calidad),2) as calidad, 
 ROUND(Sum(valoracion.planificacion)/count(valoracion.planificacion),2) as planificacion,
 ROUND(Sum(valoracion.costes)/count(valoracion.costes),2) as costes, 
@@ -106,7 +107,14 @@ ROUND(Sum(valoracion.cultura_empresarial)/count(valoracion.cultura_empresarial),
 ROUND(Sum(valoracion.gestion_de_suministros_y_subcontratistas)/count(valoracion.gestion_de_suministros_y_subcontratistas),2) as gestion_de_suministros_y_subcontratistas, 
 ROUND(Sum(valoracion.seguridad_y_salud_y_medioambiente)/count(valoracion.seguridad_y_salud_y_medioambiente),2) as seguridad_y_salud_y_medioambiente,
 ROUND(Sum(valoracion.bim)/count(valoracion.bim),2) as bim,
-ROUND(Sum(valoracion.certificacion_medioambiental)/count(valoracion.certificacion_medioambiental),2) as certificacion_medioambiental
+ROUND(Sum(valoracion.certificacion_medioambiental)/count(valoracion.certificacion_medioambiental),2) as certificacion_medioambiental,
+ROUND(Sum(valoracion.proyecto_basico)/count(valoracion.proyecto_basico),2) as proyecto_basico, 
+ROUND(Sum(valoracion.proyecto_de_ejecucion)/count(valoracion.proyecto_de_ejecucion),2) as proyecto_de_ejecucion,
+ROUND(Sum(valoracion.capacidad_de_la_empresa)/count(valoracion.capacidad_de_la_empresa),2) as capacidad_de_la_empresa, 
+ROUND(Sum(valoracion.colaboradores)/count(valoracion.colaboradores),2) as colaboradores, 
+ROUND(Sum(valoracion.capacidad)/count(valoracion.capacidad),2) as capacidad, 
+ROUND(Sum(valoracion.actitud)/count(valoracion.actitud),2) as actitud
+
 from glpi_suppliers as proveedor 
 LEFT JOIN glpi_plugin_comproveedores_annualbillings as facturacion on facturacion.cv_id=proveedor.cv_id and YEAR(facturacion.anio)=YEAR(now()) 
  LEFT JOIN glpi_projecttaskteams as projecttaskteams on projecttaskteams.items_id=proveedor.id
@@ -134,104 +142,175 @@ $result = $DB->query($query);
                         echo"<th class='center' style=' border: 1px solid #BDBDDB;' colspan='14'>Lista de proveedores preseleccionados</th></tr>";
                 }
 	echo"<br/>";
-	echo"<tr>";
-                             //Eliminación al visualizar la preselección
-                            if(empty($preseleccion)){
-                                echo"<th  style='background-color: white'></th>";
-                            }
-                            echo"<th class='center' style='width: 150px; height: 40px; border: 1px solid #BDBDDB;'>".__('Nombre')."</th>";
-                            echo"<th class='center' style='width: 150px; height: 40px; border: 1px solid #BDBDDB;'>".__('Especialidad')."</th>";
-                            echo"<th class='center' style='border: 1px solid #BDBDDB;'>".__('CV')."</th>";
-                            echo"<th class='center' style='border: 1px solid #BDBDDB;'>".__('Facturación')."</th>";
-                            echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
-                            echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
-                            echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
-                            echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
-                            echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
-                            echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('SyS')."</th>";
-                              echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
-                            echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
-                                 
-                   echo"</tr>";
+        
+                 $visualizar_cabecera=true;
+                while ($data=$DB->fetch_array($result)) {
+                    
+                        if($visualizar_cabecera){
+                                
+                                //solo visualizamos 1 vez la cabecera
+                                $visualizar_cabecera=false;
+                                echo"<tr>";
+                                
+                                //Eliminación al visualizar la preselección
+                                if(empty($preseleccion)){
+                                        echo"<th  style='background-color: white'></th>";
+                                }
+                                echo"<th class='center' style='width: 150px; height: 40px; border: 1px solid #BDBDDB;'>".__('Nombre')."</th>";
+                                echo"<th class='center' style='width: 150px; height: 40px; border: 1px solid #BDBDDB;'>".__('Especialidad')."</th>";
+                                echo"<th class='center' style='border: 1px solid #BDBDDB;'>".__('CV')."</th>";
+                                echo"<th class='center' style='border: 1px solid #BDBDDB;'>".__('Facturación')."</th>";
 
-	while ($data=$DB->fetch_array($result)) {
+                                ////////Criterios Contratista///////
+                                if($data["tipo_especialidad"]==2){
+                                        echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
+                                        echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('SyS')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                        echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
+
+                                ////////Criterios Servicios Profesionales ///////      
+                                }else{
+                                        echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY BÁSICO')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('COLABORADOR')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CAPACIDAD')."</th>";
+                                        echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('ACTITUD')."</th>";
+                                        echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                }
+
+                                echo"</tr>";
+                        }
                                       
                         //Añadimos los id de los proveedores para la preselección
                         $preselecionIds=$preselecionIds.$data["supplier_id"]."-";
             
                             echo"<tr class='tab_bg_2'>";
                                     
-                                     //Eliminación al visualizar la preselección
-                                    if(empty($preseleccion)){
-                                        echo"<td  class='center' style=' border: 1px solid #BDBDDB;'>";
-                                                   echo"<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";
-                                        echo"</td>";
-                                    }
-                                    
-                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["supplier_id"]."'>".$data["name"]."</a></td>";   
-                                    if(!empty($data['especialidad'])){
-                                          echo"<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['especialidad']."</td>";
-                                    }else{
-                                          echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                    if(!empty($data['cv_id'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
-                                    }
-                                    
-                                    $facturacion=substr(number_format($data['facturacion'], 0, '', '.'),0,strlen(number_format($data['facturacion'], 0, '', '.')));
-                                    
-                                   echo"<td class='center' style=' border: 1px solid #BDBDDB;'>".$facturacion."</td>";
-                                    if(!empty($data['calidad'])){
-                                       echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['planificacion'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['planificacion']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['planificacion']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['costes'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['cultura_empresarial'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['cultura_empresarial']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura_empresarial']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['gestion_de_suministros_y_subcontratistas'])){
-                                         echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['gestion_de_suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['gestion_de_suministros_y_subcontratistas']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                    if(!empty($data['seguridad_y_salud_y_medioambiente'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['seguridad_y_salud_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['seguridad_y_salud_y_medioambiente']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['bim'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['bim']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
-                                     if(!empty($data['certificacion_medioambiental'])){
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['certificacion_medioambiental']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['certificacion_medioambiental']."</td>";
-                                    }
-                                    else{
-                                        echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                    }
+                                        //Eliminación al visualizar la preselección
+                                       if(empty($preseleccion)){
+                                           echo"<td  class='center' style=' border: 1px solid #BDBDDB;'>";
+                                                      echo"<input onclick='setListaProveedorfiltro(".$data["supplier_id"].")' id='proveedor_".$data["supplier_id"]."' name='proveedor_".$data["supplier_id"]."' type='checkbox'/>";
+                                           echo"</td>";
+                                       }
+
+                                       echo"<td class='center' style=' border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/front/supplier.form.php?id=".$data["supplier_id"]."'>".$data["name"]."</a></td>";   
+                                       if(!empty($data['especialidad'])){
+                                             echo"<td class='center' style=' border: 1px solid #BDBDDB;'>".$data['especialidad']."</td>";
+                                       }else{
+                                             echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                       }
+                                       if(!empty($data['cv_id'])){
+                                           echo"<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                                       }
+                                       else{
+                                           echo"<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                                       }
+
+                                       $facturacion=substr(number_format($data['facturacion'], 0, '', '.'),0,strlen(number_format($data['facturacion'], 0, '', '.')));
+
+                                      echo"<td class='center' style=' border: 1px solid #BDBDDB;'>".$facturacion."</td>";
+
+                                       ////////Criterios Contratista///////
+                                       if($data["tipo_especialidad"]==2){
+                                                if(!empty($data['calidad'])){
+                                                   echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['calidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['calidad']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['planificacion'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['planificacion']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['planificacion']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['costes'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['costes']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['costes']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['cultura_empresarial'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['cultura_empresarial']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['cultura_empresarial']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['gestion_de_suministros_y_subcontratistas'])){
+                                                     echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['gestion_de_suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['gestion_de_suministros_y_subcontratistas']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['seguridad_y_salud_y_medioambiente'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['seguridad_y_salud_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['seguridad_y_salud_y_medioambiente']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['bim'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['bim']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['certificacion_medioambiental'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['certificacion_medioambiental']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['certificacion_medioambiental']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                
+                                        ///////Criterios Servicios Profesionales ///////          
+                                        }else{
+                                                 if(!empty($data['proyecto_basico'])){
+                                                   echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['proyecto_basico']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['proyecto_basico']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['proyecto_de_ejecucion'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['proyecto_de_ejecucion']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['proyecto_de_ejecucion']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['capacidad_de_la_empresa'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['capacidad_de_la_empresa']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['capacidad_de_la_empresa']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['colaboradores'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['colaboradores']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['colaboradores']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['capacidad'])){
+                                                     echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['capacidad']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['capacidad']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                if(!empty($data['actitud'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['actitud']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['actitud']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                                 if(!empty($data['bim'])){
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($data['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".$data['bim']."</td>";
+                                                }
+                                                else{
+                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                }
+                                        }
 
                            echo"</tr>";
                         
