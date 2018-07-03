@@ -63,14 +63,14 @@ GLOBAL $DB,$CFG_GLPI;
                     echo "<tr class=' tab_cadre_fixehov nohover'><th colspan='14' >Evaluación</th></tr>";
                     echo"<br/>";
                     echo "<tr><th></th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Pobre')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Comentario')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('%')."</th>";
-                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Total')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Pobre')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Comentario')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('%')."</th>";
+                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Total')."</th>";
                     echo "</tr>";
                    
                         $cambio_criterio_padre='';                        
@@ -79,19 +79,22 @@ GLOBAL $DB,$CFG_GLPI;
                              $total_ids_subcriterios=$data['total_ids_subcriterios'];
 
                                 echo "<tr class='tab_bg_2' style='height:60px;'>";
-                                    echo"<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'><span style='font-weight: bold;'>".$data['criterio_padre']."</span>\n".$data['criterio_hijo']."</td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_1' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_2' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_3' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_4' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_5' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                    echo"<td class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea  id='criterio_".$data['criterio_id']."_comentario' rows='4' cols='45' style='resize: none'></textarea></td>";
-                                    echo"<td class='center' id='criterio_".$data['criterio_id']."_porcentaje' style='font-weight:bold; border: 1px solid #BDBDDB;'>".$data['ponderacion']."%</td>";
-                                    
-                                    if($cambio_criterio_padre!=$data['criterio_padre']){
-                                        $cambio_criterio_padre=$data['criterio_padre'];
-                                        echo"<td rowspan='".$data['num_subcriterios']."' id='criterio_padre_".$data['criterio_padre']."' class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'></td>";
-                                    }
+                                
+                                        $criterio_padre=str_replace ( '_' , ' ' , $data['criterio_padre']);
+                                        $criterio_padre=ucfirst($criterio_padre);
+                                        echo"<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'><div style='font-weight: bold;'>".$criterio_padre."</div><br><div>".$data['criterio_hijo']."</div></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_1' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_2' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_3' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_4' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_5' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
+                                        echo"<td class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea  id='criterio_".$data['criterio_id']."_comentario' rows='4' cols='45' style='resize: none'></textarea></td>";
+                                        echo"<td class='center' id='criterio_".$data['criterio_id']."_porcentaje' style='font-weight:bold; border: 1px solid #BDBDDB;'>".$data['ponderacion']."%</td>";
+
+                                        if($cambio_criterio_padre!=$data['criterio_padre']){
+                                            $cambio_criterio_padre=$data['criterio_padre'];
+                                            echo"<td rowspan='".$data['num_subcriterios']."' id='criterio_padre_".$data['criterio_padre']."' class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'></td>";
+                                        }
                                     
                                 echo "</tr>";    
                             
@@ -139,11 +142,12 @@ GLOBAL $DB,$CFG_GLPI;
                                         echo"$('#fecha_valoracion').find('input[name=_fecha]').val('".$fecha."');";    
                                         echo"$('#fecha_valoracion').find('input[name=fecha]').val('".$fecha."');";    
                                 echo"});</script>";
-                                    
-                            echo "<br><br>";
                         }
+                        echo "<br><br>";
                         
-                            echo"<div  id='boton_guardar_$valoracion_id'>";
+                        echo"<div  id='boton_formulario'>";
+                            
+                                echo "<span class='vsubmit' style='margin-right: 15px;' onClick='location.reload();'>VOLVER A LA LISTA</span>";
                                 if(isset($_GET['id'])){
 
                                     echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,$num_valoracion,$valoracion_id, ".$_GET['tipo_especialidad'].", \"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR EVALUACIÓN</span>";
@@ -152,10 +156,10 @@ GLOBAL $DB,$CFG_GLPI;
                                     $contrato_id=$_GET['contrato_id'];
                                     echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,-1,-1, ".$_GET['tipo_especialidad'].", \"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR EVALUACIÓN</span>";      
                                 }   
-                                echo"</div>";
-                        
-                                echo"<br>";
-                                echo"<br>";
+                                
+                        echo"</div>";
+                        echo"<br>";
+                        echo"<br>";
                                 
                                 
   function consultaAjax(){
@@ -266,15 +270,15 @@ GLOBAL $DB,$CFG_GLPI;
                                             type: 'GET',
                                             data: parametros,                  
                                             url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php',                    
-                                            success:function(data){
-                                            //alert(data);
+                                            success:function(){
+                                               
+                                                location.reload();
                                             },
                                             error: function(result) {
                                                 alert('Data not found');
                                             }
                                         });
 
-                                    //guardamos las valoraciones
                                 }
                         }   
                  </script>";

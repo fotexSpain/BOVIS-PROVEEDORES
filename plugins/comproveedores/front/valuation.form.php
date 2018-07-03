@@ -244,7 +244,7 @@
                           $valoracion[$data['criterio_padre']]=round($valoracion[$data['criterio_padre']], 2);
                         }
                         
-                          $valoracion['cv_id']=$_GET['cv_id'];
+                        $valoracion['cv_id']=$_GET['cv_id'];
                         $valoracion['evaluacion_final']=$_GET['eval_final'];
                         $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['id']=$_GET['valoracion_id'];
@@ -309,7 +309,7 @@
                         
                         $PluginValuation->check($valoracion['id'], UPDATE);
                         $PluginValuation->update($valoracion);
-          
+
 	}else {
 		$PluginValuation->checkGlobal(READ);
 
