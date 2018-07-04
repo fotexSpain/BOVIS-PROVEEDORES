@@ -50,6 +50,22 @@
 		$PluginValuation->check($_POST['id'], PURGE);
 		$PluginValuation->restore($_POST);
 		Html::back();
+                
+                } else if (isset($_POST["delete_evaluacion"])) {
+                        
+                        $query ="select id from glpi_plugin_comproveedores_subvaluations as subEvaluaciones where subEvaluaciones.valuation_id=".$_POST['id'];
+                      
+                        $result = $DB->query($query);
+		
+                        while ($data=$DB->fetch_array($result)) {
+                               
+                                $PluginSubValuation->check($data['id'], PURGE);
+		$PluginSubValuation->delete($data['id'], 1);
+                        }
+                        $PluginValuation->check($_POST['id'], PURGE);
+                        $PluginValuation->delete($_POST, 1);
+		
+                        Html::back();
 
 	} else if (isset($_POST["purge"])) {
 		$PluginValuation->check($_POST['id'], PURGE);
@@ -260,14 +276,14 @@
                         $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
                         
                         //Guardamos la valoracion
-                        $query ="select distinct(select num_evaluacion from glpi_plugin_comproveedores_valuations where projecttasks_id=".$_GET['contrato_id']." order by num_evaluacion desc limit 1) as num_evaluacion, 
-                                criterio_padre from glpi_plugin_comproveedores_criterios as criterio 
+                        $query ="select distinct criterio_padre
+                                from glpi_plugin_comproveedores_criterios as criterio 
                                 where criterio.tipo_especialidad=".$_GET['tipo_especialidad'];
                         $result = $DB->query($query);
 
                         while ($data=$DB->fetch_array($result)) {
                           $valoracion[$data['criterio_padre']]=0;
-                          $valoracion['num_evaluacion']=($data['num_evaluacion']+1);
+                         
                         }
                         
                         $valoracion['projecttasks_id']=$_GET['contrato_id'];

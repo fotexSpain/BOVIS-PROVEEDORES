@@ -168,7 +168,7 @@
 				
 				
 		}
-                
+                // Visualizar Evaluaciones de un proyecto(Proyecto/Evaluaciones)
                 function showFormValuationProyecto($item, $withtemplate='') {
                                     
                         GLOBAL $DB,$CFG_GLPI;
@@ -295,7 +295,7 @@
                         echo"<br>";
 		
 	}
-                
+                // Visualizar Evaluaciones de un contrato(Proyecto/contrato/Evaluaciones)
                 function showFormValuationPaquete($item, $withtemplate='') {
                                     
                                         GLOBAL $DB,$CFG_GLPI;
@@ -359,12 +359,13 @@
                                                                 left join glpi_plugin_comproveedores_valuations as valoracion  on contrato.id=valoracion.projecttasks_id
                                                                 left join glpi_projecttaskteams as projecttaskteams  on projecttaskteams.projecttasks_id=valoracion.projecttasks_id
                                                                 left join glpi_suppliers as proveedor  on proveedor.id=projecttaskteams.items_id
-                                                                where contrato.id=".$contrato_id." order by valoracion.num_evaluacion desc";
+                                                                where contrato.id=".$contrato_id." order by valoracion.id asc";
                         
                                                 $result = $DB->query($query);
                                                 
                                                 $visualizar_cabecera=true;
                                                 $visualizar_boton_nueva_evaluacion=true;
+                                                $num_evaluación=1;
                                                 while ($data=$DB->fetch_array($result)) {
                                                     
                                                         $tipo_especialidad=$data['tipo_especialidad'];
@@ -406,12 +407,15 @@
                                                                         }
                                                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>TOTAL</th>";
                                                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>APTO</th>";
+                                                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>ELIMINAR</th>";
                                                                 echo "</tr>";
                                                         }
-                                                        if(!empty($data['num_evaluacion'])){
+                                                        if(!empty($data['id'])){
                                                                 echo"<tr style='height: 45px;'>";
-                                                                echo "<td style=' border: 1px solid #BDBDDB;'><a onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$data['num_evaluacion']."</a></td>";
-                                                                  echo "<td style='border: 1px solid #BDBDDB;'>".substr($data['fecha'], 0,10)."</td>";
+                                                                echo "<td style=' border: 1px solid #BDBDDB;'><a onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$num_evaluación."</a></td>";
+                                                                $num_evaluación++;
+                                                                
+                                                                 echo "<td style='border: 1px solid #BDBDDB;'>".substr($data['fecha'], 0,10)."</td>";
 
                                                                 if($tipo_especialidad==2){
 
@@ -440,6 +444,15 @@
                                                                 
                                                                 echo "<td style='border: 1px solid #BDBDDB;'>".$total."</td>";
                                                                 echo "<td style='border: 1px solid #BDBDDB;'>".$this->recomendacionesEvaluacion($total)."</td>";
+                                                                   
+                                                                echo "<td style='border: 1px solid #BDBDDB;'>";
+                                                                        echo"<form action=".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php method='post'>";
+                                                                                echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+                                                                                echo Html::hidden('id', array('value' =>$data['id']));
+                                                                                echo"<input type='submit' class='submit' name='delete_evaluacion' value='ELIMINAR' />";
+                                                                        echo"</form>";
+                                                                echo "</td>";
+                                                                
                                                                 echo"</tr>";
                                                         }
                                                 }

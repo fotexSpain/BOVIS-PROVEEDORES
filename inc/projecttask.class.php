@@ -603,18 +603,35 @@ class ProjectTask extends CommonDBChild {
       echo "</td></tr>";
       echo "<tr class='tab_bg_1'>";
       echo"<td>".__('Tipo de especialidad')."</td><td>";
-      Dropdown::showFromArray('tipo_especialidad',array(2 =>'Contratistas' , 1 =>'Servicios profesionales'),array('value' => $this->fields['tipo_especialidad']));
+      
+      if($this->fields['id']!=''){
+          $tipo_especialidad=$this->fields['tipo_especialidad'];
+          switch ($tipo_especialidad) {
+                case 1:
+                        echo"<span>Contratistas</span>";
+                  break;
+
+                case 2:
+                        echo"<span>Servicios profesionales</span>";
+                  break;
+                default:
+                  break;
+          }
+      }else{
+          Dropdown::showFromArray('tipo_especialidad',array(2 =>'Contratistas' , 1 =>'Servicios profesionales'),array('value' => $this->fields['tipo_especialidad']));
+      }
       echo "</td>";
       echo "</tr>";
       
          echo "<tr class='tab_bg_1'>";
-      echo "<td style='width:100px; visibility:hidden;'>"._n('Project task template', 'Project task templates', 1)."</td><td style='visibility:hidden;'>";
-      ProjectTaskTemplate::dropdown(['value'     => $this->fields['projecttasktemplates_id'],
+      echo "<td style='width:100px; visibility:hidden;'>"._n('Project task template', 'Project task templates', 1)."</td><td style='visibility:hidden;'>";  
+           ProjectTaskTemplate::dropdown(['value'     => $this->fields['projecttasktemplates_id'],
                                      'entity'    => $this->getEntityID(),
                                      'rand'      => $rand_template,
                                      'on_change' => 'projecttasktemplate_update(this.value)']);
       echo "</td>";
       echo "</tr>";
+
 
       /*echo "<tr><td colspan='4' class='subheader'>".__('Planning')."</td></tr>";
 

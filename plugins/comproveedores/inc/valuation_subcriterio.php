@@ -105,9 +105,9 @@ GLOBAL $DB,$CFG_GLPI;
                         if(isset($_GET['id'])){
                         $query="select Subvaloraciones.*,
                                 criterio.*,
-                                valoracion.num_evaluacion,
                                 valoracion.fecha,
                                 valoracion.projecttasks_id as contrato_id,
+                                valoracion.evaluacion_final as evaluacion_final,
                                 (select GROUP_CONCAT(id ORDER BY id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=".$_GET['tipo_especialidad']." and  criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio 
                                 from glpi_plugin_comproveedores_subvaluations as Subvaloraciones 
                                 left join glpi_plugin_comproveedores_criterios as criterio on Subvaloraciones.criterio_id=criterio.id
@@ -115,16 +115,13 @@ GLOBAL $DB,$CFG_GLPI;
                                 where Subvaloraciones.valuation_id=".$_GET['id']." order by criterio_id asc";                   
                         
                             $result = $DB->query($query);
-                            //$contenido_valoracion=1;             
-                           
                                             
                                 //Creamos un script donde se cagarán los valores de la consulta
                                 echo"<script type='text/javascript'>      
                                        $( function() {";
-                                                
+                                                $evaluacion_final;
                                                 while ($data=$DB->fetch_array($result)) {
                                                     
-                                                        $num_valoracion=$data['num_evaluacion'];
                                                         $valoracion_id=$data['valuation_id'];
                                                         $contrato_id=$data['contrato_id'];
                                                         $fecha=$data['fecha'];
@@ -133,15 +130,16 @@ GLOBAL $DB,$CFG_GLPI;
                                                         echo"valorElegido(".$data['valor'].", ".$data['criterio_id'].", \"".$data['num_ids_criterio']."\",\"".$data['criterio_padre']."\");"; 
                                                         
                                                         //Si la evaluación tiene marcado el check de ultima evaluación, que pueda quitarlo y sequir creardo evaluaciones.
-                                                        if($data['evaluacion_final']==1){
-                                                                echo"$('#visualizar_ultima_eval').attr('style', 'display:-webkit-box; font-size: 14px;');";
-                                                                echo"$('#evaluacion_final').attr('checked',true);";
-                                                        }
+                                                        $evaluacion_final=$data['evaluacion_final'];
                                                 }
-                                               
-                                        //Les pasamos el valor a los input de fecha de valoración
-                                        echo"$('#fecha_valoracion').find('input[name=_fecha]').val('".$fecha."');";    
-                                        echo"$('#fecha_valoracion').find('input[name=fecha]').val('".$fecha."');";    
+                                                if($evaluacion_final==1){
+                                                                   
+                                                        echo"$('#visualizar_ultima_eval').attr('style', 'display:-webkit-box; font-size: 14px;');";
+                                                        echo"$('#evaluacion_final').attr('checked',true);";
+                                                } 
+                                                //Les pasamos el valor a los input de fecha de valoración
+                                                echo"$('#fecha_valoracion').find('input[name=_fecha]').val('".$fecha."');";    
+                                                echo"$('#fecha_valoracion').find('input[name=fecha]').val('".$fecha."');";    
                                 echo"});</script>";
                         }
                         echo "<br><br>";
@@ -151,11 +149,11 @@ GLOBAL $DB,$CFG_GLPI;
                                 echo "<span class='vsubmit' style='margin-right: 15px;' onClick='location.reload();'>VOLVER A LA LISTA</span>";
                                 if(isset($_GET['id'])){
 
-                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,$num_valoracion,$valoracion_id, ".$_GET['tipo_especialidad'].", \"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR EVALUACIÓN</span>";
+                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,$valoracion_id, ".$_GET['tipo_especialidad'].", \"update_valoracion\")' class='vsubmit' style='margin-right: 15px;'>MODIFICAR EVALUACIÓN</span>";
                                 }  
                                 else{
                                     $contrato_id=$_GET['contrato_id'];
-                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,-1,-1, ".$_GET['tipo_especialidad'].", \"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR EVALUACIÓN</span>";      
+                                    echo "<span onclick='guardarYModificarSubValoracion(\"".$total_ids_subcriterios."\", $contrato_id,-1, ".$_GET['tipo_especialidad'].", \"add_valoracion\")'class='vsubmit' style='margin-right: 15px;'>GUARDAR EVALUACIÓN</span>";      
                                 }   
                                 
                         echo"</div>";
@@ -227,7 +225,7 @@ GLOBAL $DB,$CFG_GLPI;
 
                         }
 
-                        function guardarYModificarSubValoracion(total_ids_subcriterios, contrato_id, numero_valoracion, valoracion_id, tipo_especialidad, metodo){
+                        function guardarYModificarSubValoracion(total_ids_subcriterios, contrato_id, valoracion_id, tipo_especialidad, metodo){
                                
                                //Comprobamos que esten todo los valores rellenos
                                valores_completados=true;
