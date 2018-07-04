@@ -103,7 +103,7 @@
 			echo "</td>";
 			echo "<td>" . __('Valoración') . "</td>";
 			echo "<td>";
-			Html::autocompletionTextField($this, "valoracion");
+                                                Dropdown::showFromArray('valoracion',array('NO APTO'=>'NO APTO', 'POCO RECOMENDABLE'=>'POCO RECOMENDABLE', 'RECOMENDABLE'=>'RECOMENDABLE', 'MUY RECOMENDABLE'=>'MUY RECOMENDABLE'));
 			echo "</td>";
 			echo "</tr>";
 			

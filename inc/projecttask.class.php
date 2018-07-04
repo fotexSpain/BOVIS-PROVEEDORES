@@ -607,11 +607,11 @@ class ProjectTask extends CommonDBChild {
       if($this->fields['id']!=''){
           $tipo_especialidad=$this->fields['tipo_especialidad'];
           switch ($tipo_especialidad) {
-                case 1:
+                case 2:
                         echo"<span>Contratistas</span>";
                   break;
 
-                case 2:
+                case 1:
                         echo"<span>Servicios profesionales</span>";
                   break;
                 default:
