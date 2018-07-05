@@ -25,7 +25,7 @@
 		}
 
                                 static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){
-;
+
                                         global $CFG_GLPI,$DB;
                                         $self = new self();
                                         
@@ -107,12 +107,18 @@
                 
 			$CvId=$item->fields['id']; 
                         
-                                                $query ="Select contratos.id as contrato_id, contratos.tipo_especialidad, valoraciones.* from glpi_projecttasks as contratos
-                                                                left join glpi_plugin_comproveedores_valuations as valoraciones on valoraciones.projecttasks_id=contratos.id
-                                                                where valoraciones.cv_id=$CvId order by valoraciones.id desc limit 1";
+                                                $query ="Select 
+                                                                contratos.id as contrato_id, 
+                                                                contratos.tipo_especialidad, 
+                                                                valoraciones.* 
+                                                                from glpi_projecttasks as contratos
+                                                                left join glpi_plugin_comproveedores_valuations as valoraciones on valoraciones.projecttasks_id=contratos.id 
+                                                                where valoraciones.id in(Select 
+                                                                MAx(valoraciones.id) from glpi_plugin_comproveedores_valuations as valoraciones
+                                                                where valoraciones.cv_id=$CvId group by valoraciones.projecttasks_id)";
                                                 
 			$result = $DB->query($query);
-                        
+                                                
                                                 //Nos creamos 2 array, uno para la tabla Servicios profesionales y otro para Contratistas
                                                 $arrayServicioProfesionales=[];
                                                 $arrayContratistas=[];
@@ -152,6 +158,7 @@
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['gestion_de_suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['gestion_de_suministros_y_subcontratistas']."</td>";
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['seguridad_y_salud_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['seguridad_y_salud_y_medioambiente']."</td>";
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['bim']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['certificacion_medioambiental']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['certificacion_medioambiental']."</td>";
                                                         echo"</tr>";
 
                                                 }
@@ -894,9 +901,16 @@
 			GLOBAL $DB,$CFG_GLPI;
                         
 			$CvId=$item->fields['cv_id']; 
-			     $query ="Select contratos.id as contrato_id, contratos.tipo_especialidad, valoraciones.* from glpi_projecttasks as contratos
-                                                                left join glpi_plugin_comproveedores_valuations as valoraciones on valoraciones.projecttasks_id=contratos.id
-                                                                where valoraciones.cv_id=$CvId order by valoraciones.id desc limit 1";
+                        
+			$query ="Select 
+                                                                contratos.id as contrato_id, 
+                                                                contratos.tipo_especialidad, 
+                                                                valoraciones.* 
+                                                                from glpi_projecttasks as contratos
+                                                                left join glpi_plugin_comproveedores_valuations as valoraciones on valoraciones.projecttasks_id=contratos.id 
+                                                                where valoraciones.id in(Select 
+                                                                MAx(valoraciones.id) from glpi_plugin_comproveedores_valuations as valoraciones
+                                                                where valoraciones.cv_id=$CvId group by valoraciones.projecttasks_id)";
                                                 
 			$result = $DB->query($query);
                         
@@ -939,6 +953,7 @@
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['gestion_de_suministros_y_subcontratistas']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['gestion_de_suministros_y_subcontratistas']."</td>";
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['seguridad_y_salud_y_medioambiente']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['seguridad_y_salud_y_medioambiente']."</td>";
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['bim']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['bim']."</td>";
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ;  background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['certificacion_medioambiental']).".png); background-repeat: no-repeat;  background-position: center;'>".$contratista['certificacion_medioambiental']."</td>";
                                                         echo"</tr>";
 
                                                 }
