@@ -17,5 +17,6 @@ ALTER TABLE `glpi_projecttasks` CHANGE `plan_end_date` `plan_end_date` DATE NULL
 ALTER TABLE `glpi_projects` CHANGE `plan_start_date` `plan_start_date` DATE NULL DEFAULT NULL;
 ALTER TABLE `glpi_projects` CHANGE `plan_end_date` `plan_end_date` DATE NULL DEFAULT NULL;
 ALTER TABLE `glpi_projecttasks` ADD `tipo_especialidad` TINYINT(1) NOT NULL;
+ALTER TABLE `glpi_projecttasks` ADD `is_delete` TINYINT(1) NOT NULL;
 
 
