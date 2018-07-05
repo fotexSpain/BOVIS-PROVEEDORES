@@ -2158,7 +2158,6 @@ class CommonDBTM extends CommonGLPI {
    **/
    function showFormButtons($options = []) {
       global $CFG_GLPI;
-
       // for single object like config
       if (isset($this->fields['id'])) {
          $ID = $this->fields['id'];
@@ -2250,9 +2249,15 @@ class CommonDBTM extends CommonGLPI {
                if (!$this->maybeDeleted()
                    || $this->useDeletedToLockIfDynamic()) {
                   if ($this->can($ID, PURGE)) {
-                     echo Html::submit(_x('button', 'Delete permanently'),
-                                       ['name'    => 'purge',
-                                             'confirm' => __('Confirm the final deletion?')]);
+                        if($this->getType()=='ProjectTask'){
+                                echo Html::submit(_x('button', 'Eliminar contrato'),
+                                                  ['name'    => 'purge',
+                                                        'confirm' => __('Confirm the final deletion?')]);
+                        }else{
+                                echo Html::submit(_x('button', 'Delete permanently'),
+                                                  ['name'    => 'purge',
+                                                        'confirm' => __('Confirm the final deletion?')]);
+                        }
                   }
                } else if (!$this->isDeleted()
                           && $this->can($ID, DELETE)) {

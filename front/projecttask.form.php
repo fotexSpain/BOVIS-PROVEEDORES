@@ -68,12 +68,15 @@ if (isset($_POST["add"])) {
    }
 
 } else if (isset($_POST["purge"])) {
-   $task->check($_POST['id'], PURGE);
+   $task->check($_POST["id"], UPDATE);
+   $_POST['is_delete']=1;
+   $task->update($_POST);
+  /* $task->check($_POST['id'], PURGE);
    $task->delete($_POST, 1);
 
    Event::log($task->fields['projects_id'], 'project', 4, "maintain",
               //TRANS: %s is the user login
-              sprintf(__('%s purges a task'), $_SESSION["glpiname"]));
+              sprintf(__('%s purges a task'), $_SESSION["glpiname"]));*/
    Html::redirect(Project::getFormURL()."?id=".$task->fields['projects_id']);
 
 } else if (isset($_POST["update"])) {

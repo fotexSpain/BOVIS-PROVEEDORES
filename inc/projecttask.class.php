@@ -1055,7 +1055,7 @@ class ProjectTask extends CommonDBChild {
 
       switch ($item->getType()) {
          case 'Project' :
-            $where = "WHERE `glpi_projecttasks`.`projects_id` = '$ID'";
+            $where = "WHERE `glpi_projecttasks`.`projects_id` = '$ID' and `glpi_projecttasks`.`is_delete` = '0'";
             break;
 
          case 'ProjectTask' :

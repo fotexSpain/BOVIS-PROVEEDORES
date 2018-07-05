@@ -25,10 +25,14 @@
 
 		static function displayTabContentForItem(CommonGLPI $item,$tabnum=1,$withtemplate=0){
 
-                    global $CFG_GLPI;
-                    $self = new self();
+                                        global $CFG_GLPI;
+                                        $self = new self();
 
-                     $self->showFormItem($item, $withtemplate);
+                                        if($item-> getType()=="Supplier"){
+                                                $self->showFormNumPreselecciones($item, $withtemplate);
+                                        }else{
+                                                $self->showFormItem($item, $withtemplate);
+                                        }
                           
 		}
 
@@ -71,16 +75,86 @@
 			}
 			return $types;
 		}
+                
+                                function showFormNumPreselecciones($item, $withtemplate='') {
+                                    
+                                        GLOBAL $DB,$CFG_GLPI;
+                                        $cv_id=$item->fields['cv_id']; 
+                                        
+                                        //Le pasamos las condiciones a los desplegables para que visualizen los contratos y subcontratos del proveedor
+                                        $opt_contratos['condition']='id in(select projecttaskteams.projecttasks_id from glpi_projecttaskteams as projecttaskteams 
+                                                                                inner join glpi_suppliers as proveedor on proveedor.id=projecttaskteams.items_id
+                                                                                where proveedor.cv_id="'.$cv_id.'")';
+                                        $opt_contratos['comments']= false;
+                                        $opt_contratos['width']= 200;
+                                        
+                                        
+                                        $opt_subcontratos['condition']='id in(select subcontratos.id from glpi_plugin_comproveedores_subpaquetes as subcontratos 
+                                                                                inner join glpi_suppliers as proveedor on proveedor.id=subcontratos.suppliers_id
+                                                                                where proveedor.cv_id="'.$cv_id.'")';
+                                        $opt_subcontratos['comments']= false;
+                                        $opt_subcontratos['width']= 200;
+                                        
+                                        //Cargamos el numero de preselecciones, contratos y subcontratos de un proveedor
+                                        $query ="select count(distinct preseleccion.id) as numero_preselecciones, 
+                                                        count(distinct projecttaskteams.id) as numero_contratos, 
+                                                        count(distinct subpaquetes.id) as numero_subpaquetes 
+                                                        from glpi_suppliers as proveedor
+                                                        left join glpi_plugin_comproveedores_preselections as preseleccion on preseleccion.suppliers_id=proveedor.id
+                                                        left join glpi_projecttaskteams as projecttaskteams on projecttaskteams.items_id=proveedor.id
+                                                        left join glpi_plugin_comproveedores_subpaquetes as subpaquetes on subpaquetes.suppliers_id=proveedor.id
+                                                        where proveedor.cv_id=$cv_id";
+                                        
+                                        $result = $DB->query($query);
+                                
+                                        echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th style='text-align: center; border: 1px solid #BDBDDB;' colspan='14'>Historial</th></tr>";
+                                                echo"<br/>";
+                                                echo "<tr><th style='text-align: center; border: 1px solid #BDBDDB; width:300px;'>".__('Num Preselecciones')."</th>";
+                                                        echo "<th style='text-align: center; border: 1px solid #BDBDDB; width:300px;'>".__('Num Contratos')."</th>";
+                                                        echo "<th style='text-align: center; border: 1px solid #BDBDDB; width:300px;'>".__('Num Subcontratos')."</th>";
+                                                       
+                                                echo "</tr>";
+                                                echo "<tr>";
+                                                while ($data=$DB->fetch_array($result)) {
+                                                    
+                                                        //Le pasamos las condiciones a los desplegables para que visualizen los contratos y subcontratos del proveedor
+                                                        $opt_contratos['condition']='id in(select projecttaskteams.projecttasks_id from glpi_projecttaskteams as projecttaskteams 
+                                                                                inner join glpi_suppliers as proveedor on proveedor.id=projecttaskteams.items_id
+                                                                                where proveedor.cv_id="'.$cv_id.'")';
+                                                        $opt_contratos['toadd']=$data["numero_contratos"];
+                                                        $opt_contratos['comments']= false;
+                                                        $opt_subcontratos['condition']='id in(select subcontratos.id from glpi_plugin_comproveedores_subpaquetes as subcontratos 
+                                                                                inner join glpi_suppliers as proveedor on proveedor.id=subcontratos.suppliers_id
+                                                                                where proveedor.cv_id="'.$cv_id.'")';
+                                                        $opt_subcontratos['toadd']=$data["numero_subpaquetes"];
+                                                        $opt_contratos['comments']= false;
+                                                
+                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB;' class='center'>".$data["numero_preselecciones"]."</td>";
+                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB;' class='center'>";
+                                                                $opt_contratos['toadd']=$data["numero_contratos"];
+                                                                Dropdown::show('ProjectTask',$opt_contratos);
+                                                        echo "</td>";
+                                                        echo "<td style='text-align: center; border: 1px solid #BDBDDB;' class='center'>";
+                                                                $opt_subcontratos['toadd']=$data["numero_subpaquetes"];
+                                                                Dropdown::show('PluginComproveedoresSubpaquete',$opt_subcontratos);
+                                                        echo"</td>";
+                                                }
+                                                echo"</tr>";
+                                                echo"<br/>";
+			echo "</table></div>";
+                                                echo"<br>";
+                                }
 
 		function showFormItem($item, $withtemplate='') {	
 
-			GLOBAL $DB,$CFG_GLPI;
+		GLOBAL $DB,$CFG_GLPI;
                         
-                        if($item-> getType()=="Supplier"){
-                            $cv_id=$item->fields['cv_id']; 
-                        }else{
-                            $cv_id=$item->fields['id']; 
-                        }
+                                /*if($item-> getType()=="Supplier"){
+                                    $cv_id=$item->fields['cv_id']; 
+                                }else{*/
+                                    $cv_id=$item->fields['id']; 
+                                //}
 			
 
 		$query ="SELECT 
