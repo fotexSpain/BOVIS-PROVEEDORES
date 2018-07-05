@@ -293,6 +293,7 @@
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
+                                        echo "<th style='min-width: 70px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Fecha')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
@@ -316,6 +317,7 @@
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$contratista['nombre_paquete']."</td>";
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$contratista['nombre_proveedor']."</td>";
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$contratista['nif_proveedor']."</td>";
+                                                        echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".substr($contratista['fecha'], 0,10)."</td>";
                                                         if(!empty($contratista['calidad'])){
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($contratista['calidad']).".png); background-repeat: no-repeat;  background-position: center; padding: 10px;'>".$contratista['calidad']."</td>";
                                                         }
@@ -378,6 +380,7 @@
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
+                                        echo "<th style='min-width: 70px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Fecha')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY BÁSICO')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAP EMPRESA')."</th>";
@@ -399,6 +402,7 @@
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$servicio_profesional['nombre_paquete']."</td>";
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$servicio_profesional['nombre_proveedor']."</td>";
                                                         echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".$servicio_profesional['nif_proveedor']."</td>";
+                                                        echo "<td class='center' style='text-align:left;  border: 1px solid #BDBDDB;'>".substr($servicio_profesional['fecha'], 0,10)."</td>";
                                                         if(!empty($servicio_profesional['proyecto_basico'])){
                                                                 echo "<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".$this->getColorValoracion($servicio_profesional['proyecto_basico']).".png); background-repeat: no-repeat;  background-position: center; padding: 10px;'>".$servicio_profesional['proyecto_basico']."</td>";
                                                         }
