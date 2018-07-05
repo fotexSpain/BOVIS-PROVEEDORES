@@ -138,13 +138,13 @@
                                                                 echo "<tr style='height:50px;'>";
                                                                         if($proyecto_id!=$data['proyecto_id']){
                                                                             $proyecto_id=$data['proyecto_id'];
-                                                                            echo "<td rowspan='".$data['num_rep_proyecto']."' style=' border: 1px solid #BDBDDB;' class='center'>".$data['nombre_proyecto']."</td>";
+                                                                            echo "<td rowspan='".$data['num_rep_proyecto']."' style='text-align: left; border: 1px solid #BDBDDB;' class='center'>".$data['nombre_proyecto']."</td>";
                                                                             //echo "<td rowspan='".$data['num_rep_proyecto']."' style=' border: 1px solid #BDBDDB;' class='center'><a href='".$CFG_GLPI["root_doc"]."/front/project.form.php?id=".$data["proyecto_id"]."'>".$data["nombre_proyecto"]."</a></td>";
                                                                         }
                                                                         if($item-> getType()=="Supplier" && !empty($data["valoracion_id"])){
-                                                                            echo "<td style=' border: 1px solid #BDBDDB;' class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php?id=".$data["valoracion_id"]."'>".$data["nombre_contrato"]."</a></td>";
+                                                                            echo "<td style='text-align: left; border: 1px solid #BDBDDB;' class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php?id=".$data["valoracion_id"]."'>".$data["nombre_contrato"]."</a></td>";
                                                                         }else{
-                                                                            echo "<td style=' border: 1px solid #BDBDDB;' class='center'>".$data["nombre_contrato"]."</td>";
+                                                                            echo "<td style='text-align: left; border: 1px solid #BDBDDB;' class='center'>".$data["nombre_contrato"]."</td>";
                                                                         }
                                                                         
                                                                         echo "<td style=' border: 1px solid #BDBDDB;' class='center'>".$data['valor_contrato']."</td>";
@@ -259,13 +259,13 @@
                                                                 echo "<tr style='height:50px;'>";
                                                                         if($proyecto_id!=$data['proyecto_id']){
                                                                             $proyecto_id=$data['proyecto_id'];
-                                                                            echo "<td rowspan='".$data['num_rep_proyecto']."' style=' border: 1px solid #BDBDDB;' class='center'>".$data['nombre_proyecto']."</td>";
+                                                                            echo "<td rowspan='".$data['num_rep_proyecto']."' style='text-align: left; border: 1px solid #BDBDDB;'>".$data['nombre_proyecto']."</td>";
                                                                             //echo "<td rowspan='".$data['num_rep_proyecto']."' style=' border: 1px solid #BDBDDB;' class='center'><a href='".$CFG_GLPI["root_doc"]."/front/project.form.php?id=".$data["proyecto_id"]."'>".$data["nombre_proyecto"]."</a></td>";
                                                                         }
                                                                         if($item-> getType()=="Supplier" && !empty($data["valoracion_id"])){
-                                                                            echo "<td style=' border: 1px solid #BDBDDB;' class='center'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php?id=".$data["valoracion_id"]."'>".$data["nombre_contrato"]."</a></td>";
+                                                                            echo "<td style='text-align: left; border: 1px solid #BDBDDB;'><a href='".$CFG_GLPI["root_doc"]."/plugins/comproveedores/front/valuation.form.php?id=".$data["valoracion_id"]."'>".$data["nombre_contrato"]."</a></td>";
                                                                         }else{
-                                                                            echo "<td style=' border: 1px solid #BDBDDB;' class='center'>".$data["nombre_contrato"]."</td>";
+                                                                            echo "<td style='text-align: left; border: 1px solid #BDBDDB;'>".$data["nombre_contrato"]."</td>";
                                                                         }
                                                                         
                                                                         echo "<td style=' border: 1px solid #BDBDDB;' class='center'>".$data['valor_contrato']."</td>";

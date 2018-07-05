@@ -302,6 +302,7 @@
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SYS')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
+                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
 
                                 echo "</tr>";
                                 
@@ -365,7 +366,13 @@
                                                         }
                                                         else{
                                                                 echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
-                                                        }           
+                                                        }     
+                                                        if($contratista['evaluacion_final']==1){
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                                                        }
+                                                        else{
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                                                        }  
                                         echo"</tr>";
                                 }
                         echo"<br/>";
@@ -388,6 +395,7 @@
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAPACIDAD')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('ACTITUD')."</th>";
                                         echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
 
                                 echo "</tr>";
                                 
@@ -445,6 +453,12 @@
                                                         else{
                                                                 echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                                         }
+                                                         if($servicio_profesional['evaluacion_final']==1){
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                                                        }
+                                                        else{
+                                                                echo "<td class='center' style=' border: 1px solid #BDBDDB;'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                                                        }  
                                                         
                                         echo"</tr>";
                                 } 
