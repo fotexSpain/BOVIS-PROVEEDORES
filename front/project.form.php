@@ -105,14 +105,13 @@ if (isset($_POST["add"])) {
    Html::popFooter();
 
 } else {
-   
+
    Html::header(Project::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "management", "project");
 
    if (isset($_GET['showglobalgantt']) && $_GET['showglobalgantt']) {
       $project->showGantt(-1);
    } else {
-      $project->display(['id'           => $_GET["id"],
-                         'withtemplate' => $_GET["withtemplate"]]);
+      $project->display($_GET);
    }
    Html::footer();
 }

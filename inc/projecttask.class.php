@@ -1028,6 +1028,11 @@ class ProjectTask extends CommonDBChild {
                        'plan_end_date'    => __('Fecha de finalización'),
                        'state' => __('State')];
       
+      //Si se ha pulsado el boton visualizar borrados que se añada a la cabecera el campo borrar
+      if(isset($_GET["vis_delete"]) && $_GET["vis_delete"]){
+            $columns['is_delete']= __('Delete');
+      }
+      
         if(get_class($item)=='ProjectTask'){
             unset($columns['fname']);
         }
@@ -1055,7 +1060,12 @@ class ProjectTask extends CommonDBChild {
 
       switch ($item->getType()) {
          case 'Project' :
-            $where = "WHERE `glpi_projecttasks`.`projects_id` = '$ID' and `glpi_projecttasks`.`is_delete` = '0'";
+            $where = "WHERE `glpi_projecttasks`.`projects_id` = '$ID' ";
+             
+             //Si no se ha pulsado el boton de visualizar borrados, que se añada al where
+             if(!isset($_GET["vis_delete"])){
+                  $where .="and `glpi_projecttasks`.`is_delete` = '0' ";
+             }
             break;
 
          case 'ProjectTask' :
@@ -1072,7 +1082,15 @@ class ProjectTask extends CommonDBChild {
          echo "<div class='center firstbloc'>";
          echo "<a class='vsubmit' href='projecttask.form.php?projects_id=$ID'>".
                 _x('button', 'AÑADIR UN CONTRATO')."</a>";
-         echo "</div>";
+         
+         //Boton visualizar borrados
+         if(isset($_GET["vis_delete"]) && $_GET["vis_delete"]){
+                 echo "<a href='".$CFG_GLPI["root_doc"]."/front/project.form.php?id=".$ID."' style='float:right; margin-right:10px;'><div style='background-size: 20px; width:30px; height:30px; background-image: url(".$CFG_GLPI["root_doc"]."/pics/showdeleted.png); background-repeat: no-repeat;  background-position: center;'></div></a>";
+         }else{
+                echo "<a href='".$CFG_GLPI["root_doc"]."/front/project.form.php?id=".$ID."&vis_delete=true' style='float:right; margin-right:10px;'><div style='background-size: 20px; width:30px; height:30px; background-image: url(".$CFG_GLPI["root_doc"]."/pics/showdeleted.png); background-repeat: no-repeat;  background-position: center;'></div></a>";
+         }
+         
+           echo "</div>";
       }
 
       if (($item->getType() == 'ProjectTask')
@@ -1260,6 +1278,22 @@ class ProjectTask extends CommonDBChild {
                         echo "<td>".Html::convDateTime($data['plan_start_date'])."</td>";
                         echo "<td>".Html::convDateTime($data['plan_end_date'])."</td>";
                         echo "<td>".$data['sname']."</td>";
+                        
+                        //Si se ha pulsado el boton visualizar borrados, que se añada la columna con el boton Borrar, solo los que tenga is_delete=1
+                        if(isset($_GET["vis_delete"]) && $_GET["vis_delete"]){
+                                echo "<td>";
+                                        if($data['is_delete']==1){
+                                                echo"<form action=".$CFG_GLPI["root_doc"]."/front/projecttask.form.php method='post'>";
+                                                echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
+                                                echo Html::hidden('id', array('value' => $data['id']));    
+                                                echo Html::submit(_x('button', 'BORRAR'),
+                                                  ['name'    => 'purge_final',
+                                                        'confirm' => __('Confirm the final deletion?')]);
+                                                echo"</form>";
+                                        }
+                                echo"</td>";
+                        }
+                     
                                  
                         //Visualizamos los subpaquetes
                        /* if(get_class($item)!='ProjectTask'){

@@ -78,6 +78,16 @@ if (isset($_POST["add"])) {
               //TRANS: %s is the user login
               sprintf(__('%s purges a task'), $_SESSION["glpiname"]));*/
    Html::redirect(Project::getFormURL()."?id=".$task->fields['projects_id']);
+   
+}else if (isset($_POST["purge_final"])) {
+    
+   $task->check($_POST['id'], PURGE);
+   $task->delete($_POST, 1);
+
+   Event::log($task->fields['projects_id'], 'project', 4, "maintain",
+              //TRANS: %s is the user login
+              sprintf(__('%s purges a task'), $_SESSION["glpiname"]));
+    Html::back();
 
 } else if (isset($_POST["update"])) {
     $_POST['valor_contrato']=str_replace('.', '', $_POST['valor_contrato']);

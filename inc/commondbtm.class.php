@@ -2251,8 +2251,7 @@ class CommonDBTM extends CommonGLPI {
                   if ($this->can($ID, PURGE)) {
                         if($this->getType()=='ProjectTask'){
                                 echo Html::submit(_x('button', 'Eliminar contrato'),
-                                                  ['name'    => 'purge',
-                                                        'confirm' => __('Confirm the final deletion?')]);
+                                                  ['name'    => 'purge']);
                         }else{
                                 echo Html::submit(_x('button', 'Delete permanently'),
                                                   ['name'    => 'purge',
