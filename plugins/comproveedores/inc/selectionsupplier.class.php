@@ -80,18 +80,19 @@
 		function showFormItem($item, $withtemplate='') {	
 
 			GLOBAL $DB,$CFG_GLPI;
-                        
-                        echo $this->consultaAjax();
 
-                        $projecttasks_id=$item->fields['id']; 
-                        	
-                             $query ="SELECT 
-                                proveedores.name, 
-                                proveedores.cif, 
-                                proveedores.comment 
-                                FROM glpi_projecttaskteams as projectaskteams 
-                                LEFT JOIN glpi_suppliers as proveedores on projectaskteams.items_id=proveedores.id 
-                                WHERE projectaskteams.projecttasks_id=$projecttasks_id" ;
+                                                $tipo_especialidad=$item->fields['tipo_especialidad'];
+                                                $projecttasks_id=$item->fields['id']; 
+                                                
+                                                echo $this->consultaAjax();
+
+                                                     $query ="SELECT 
+                                                        proveedores.name, 
+                                                        proveedores.cif, 
+                                                        proveedores.comment 
+                                                        FROM glpi_projecttaskteams as projectaskteams 
+                                                        LEFT JOIN glpi_suppliers as proveedores on projectaskteams.items_id=proveedores.id 
+                                                        WHERE projectaskteams.projecttasks_id=$projecttasks_id" ;
                                                
 			$result = $DB->query($query);
                         
@@ -99,7 +100,7 @@
                                                 
                                                 //Sino tiene proveedores que se visualize, si tiene un proveedore se ocultara
                                                  if($result->num_rows==0){
-                                                    echo "<div style='display: inline-block;' onclick='seleccionProvedorFiltro(".$projecttasks_id.")'><span class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR </span></div>";
+                                                    echo "<div style='display: inline-block;' onclick='seleccionProvedorFiltro(".$projecttasks_id.", ".$tipo_especialidad.")'><span class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR </span></div>";
                                                  }
                                                  
                                                 echo "<table class='tab_cadre_fixehov'>";
@@ -156,12 +157,12 @@
 
                     $consulta="<script type='text/javascript'>
                         
-                        function seleccionProvedorFiltro(paquete_id){
+                        function seleccionProvedorFiltro(paquete_id, tipo_especialidad){
                             
                                 $.ajax({ 
                                         async: false, 
                                         type: 'GET',
-                                        data: {'paquete_id':  paquete_id},                  
+                                        data: {'paquete_id':  paquete_id, 'tipo_especialidad':tipo_especialidad},                  
                                         url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectionSupplierF1.php',                    
                                         success:function(data){
                                                 $('#selector_proveedor').html(data);

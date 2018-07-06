@@ -7,9 +7,13 @@ include ("../../../inc/includes.php");
 GLOBAL $DB,$CFG_GLPI;
 
 $objCommonDBT=new CommonDBTM();
-$opt['specific_tags']=array('onchange' => 'cambiarCategorias(value)');
-$opt['comments']= false;
-$opt['addicon']= false;
+
+$tipo_especialidad=$_GET['tipo_especialidad'];
+
+$opt_categoria['condition']='glpi_plugin_comproveedores_categories.glpi_plugin_comproveedores_roltypes_id='.$tipo_especialidad;
+$opt_categoria['specific_tags']=array('onchange' => 'cambiarEspecialidades(value)');
+$opt_categoria['comments']= false;
+$opt_categoria['width']= 155;
 
 echo consultaAjax();
 
@@ -31,58 +35,44 @@ echo"<table class='tab_cadre_fixe'>";
                
         echo "</tr>";
 
-	echo"<tr class='tab_bg_1 center'>";
-            echo "<td>Contratista/Proveedor</td>";
-            echo "<td>";
-            Dropdown::show('PluginComproveedoresRoltype',$opt);
-            echo "</td>";
+        echo"<tr class='tab_bg_1 center'>";
+    
+                echo "<td>Categorias</td>";
+                echo "<td>";
+                    echo "<div id='IdCategorias'>";
+                            Dropdown::show('PluginComproveedoresCategory',$opt_categoria);              
+                echo "</td>";
 
-            echo "<td>Facturación ".(date("Y")-1)."</td>";
-            echo "<td>";
-                Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-1));
-            echo "</td>";
-            echo "<td style='text-align:left'>x1000€</td>";
-	echo "</tr>";
+                echo "<td>Facturación ".(date("Y")-1)."</td>";
+                echo "<td>";
+                    Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-1));
+                echo "</td>";
+                echo "<td style='text-align:left'>x1000€</td>";
+        echo "</tr>";
         
         echo"<tr class='tab_bg_1 center'>";
-           echo "<td>Categorias</td>";
-            echo "<td>";
-                echo "<div id='IdCategorias'>";
-                echo "<span class='no-wrap'>
-                    <div class='select2-container'>
-                    <a class='select2-choice'>
-                    <span class='select2-chosen'>------</span>
-                    </a>
-                    </div>
-                    </span>";
-                echo "</div>";
-            echo "</td>";
-
-            echo "<td>Facturación ".(date("Y")-2)."</td>";
-            echo "<td>";
-                Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-2));
-            echo "</td>";
-            echo "<td style='text-align:left'>x1000€</td>";
-	echo "</tr>";
-        
+           
+                 echo"<tr class='tab_bg_1 center'>";
+                echo "<td>" . __('Especialidades') . "</td>";
+                echo "<td>";
+                    echo "<div id='IdEspecialidades'>";
+                    echo "<span  class='no-wrap'>
+                                                    <div class='select2-container'>
+                                                    <a class='select2-choice'>
+                                                    <span class='select2-chosen' style='width:140px;'>------</span>
+                                                    </a>
+                                                    </div>
+                                                    </span>";
+                    echo "</div>";
+                echo "</td>";
+                echo "<td>Facturación ".(date("Y")-2)."</td>";
+                echo "<td>";
+                    Html::autocompletionTextField($objCommonDBT,'facturacion_'.(date("Y")-2));
+                echo "</td>";
+                echo "<td style='text-align:left'>x1000€</td>";
+        echo "</tr>";
+                
         echo"<tr class='tab_bg_1 center'>";
-            echo "<td>" . __('Especialidades') . "</td>";
-            echo "<td>";
-                echo "<div id='IdEspecialidades'>";
-		echo "<span class='no-wrap'>
-                    <div class='select2-container'>
-                    <a class='select2-choice'>
-                    <span class='select2-chosen'>------</span>
-                    </a>
-                    </div>
-                    </span>";
-		echo "</div>";
-            echo "</td>";
-	echo "</tr>";
-        
-        
-        
-            echo"<tr class='tab_bg_1 center'>";
                         echo "<td colspan='6'>";
                                 echo "<span class='vsubmit' style='margin-right: 15px;' onClick='location.reload();'>ATRAS</span>";
                                 echo"<span  class='vsubmit' style='margin-right: 15px;' onclick='seleccionProvedorFiltro(".$_GET['paquete_id'].")'>SIGUIENTE</span>";
@@ -98,28 +88,12 @@ function consultaAjax(){
 
     $consulta="<script type='text/javascript'>
 		
-	function cambiarCategorias(valor){
+        function cambiarEspecialidades(valor){
 
             $.ajax({  
 		type: 'GET',        		
 		url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
-		data: {idRolType:valor, tipo:'categoria'},   		
-		success:function(data){
-                    $('#IdCategorias').html(data);
-		},
-		error: function(result) {
-                    alert('Data not found');
-		}
-            });
-				
-	}
-			
-	function cambiarEspecialidades(valor){
-
-            $.ajax({  
-		type: 'GET',        		
-		url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/selectCategoriesAndSpecialty.php',
-		data: {idCategories:valor, tipo:'especialidad'},   		
+		data: {idCategories:valor, tipo:'especialidad', width:'155'},   		
 		success:function(data){
                     $('#IdEspecialidades').html(data);
 		},
@@ -128,7 +102,7 @@ function consultaAjax(){
 		}
             });
 
-	}
+        }
         
         function seleccionProvedorFiltro(paquete_id){
         

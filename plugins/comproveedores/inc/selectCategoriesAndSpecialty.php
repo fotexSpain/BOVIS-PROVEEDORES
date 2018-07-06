@@ -8,6 +8,9 @@
 
 	$opt['comments']= false;
 	$opt['addicon']= false;
+                if(isset($_GET['width'])){
+                        $opt['width']= $_GET['width'];
+                }
 	
 	if($_GET['tipo']=='categoria'){
 
