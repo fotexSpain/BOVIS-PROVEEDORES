@@ -445,6 +445,47 @@ class Config extends CommonDBTM {
       Dropdown::showYesNo("login_remember_default", $CFG_GLPI["login_remember_default"], -1, ['rand' => $rand]);
       echo "</td>";
       echo "</td></tr>";
+      ////Configuracion correo evaluaciones
+      echo "<tr class='tab_bg_1'><td colspan='4' class='center b'>".__('Configuración correo evaluaciones').
+           "</td></tr>";
+      
+      echo "<tr class='tab_bg_2'>";
+      echo "<td><label>".
+            __('Meses para la próxima evaluación').
+            "</label></td><td>";
+      Dropdown::showNumber('meses_valoraciones', ['value' => $CFG_GLPI["meses_valoraciones"],
+                                            'min'   => 1,
+                                            'max'   => 200]);
+      echo "</td>";
+      echo "</tr>";
+      
+      echo "<tr class='tab_bg_2'>";
+      echo "<td><label>" . __('Asunto Correo') . "</label></td>";
+      echo "<td colspan='3'>";
+      echo "<textarea cols='70' rows='4' name='asunto_correo' id='text_login'>".$CFG_GLPI["asunto_correo"]."</textarea>";
+      echo "</td></tr>";
+      
+      echo "<tr class='tab_bg_2'>";
+      echo "<td><label>" . __('Mensaje del correo (Debajo apareceran los nombres de los contratos ha evaluar)') . "</label></td>";
+      echo "<td colspan='3'>";
+      echo "<textarea cols='70' rows='4' name='cuerpo_correo' id='text_login'>".$CFG_GLPI["cuerpo_correo"]."</textarea>";
+      echo "</td></tr>";
+      
+      echo "<tr class='tab_bg_2'>";
+      echo "<td><label>" . __('Firma correo') . "</label></td>";
+      echo "<td colspan='3'>";
+      echo "<textarea cols='70' rows='4' name='firma_correo' id='text_login'>".$CFG_GLPI["firma_correo"]."</textarea>";
+      echo "</td></tr>";
+      
+      echo "<tr><td><label >" . __('Correo remitente') . "</label></td>";
+      echo "<td colspan='3'><input size='69' type='text' name='remitente_correo' value='" .
+                 $CFG_GLPI["remitente_correo"] . "'></td>";
+      echo "</tr>";
+      
+      echo "<tr><td><label>" . __('Nombre remitente') . "</label></td>";
+      echo "<td colspan='3'><input size='69' type='text' name='remitente_nombre' value='" .
+                 $CFG_GLPI["remitente_nombre"] . "'></td>";
+      echo "</tr>";
 
       if ($canedit) {
          echo "<tr class='tab_bg_2'>";

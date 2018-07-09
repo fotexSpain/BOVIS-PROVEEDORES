@@ -1178,5 +1178,79 @@
                 
                 return $resultado;
             }
+            
+        static function cronEvaluacionesRecordatorio($task = null) {
+               GLOBAL $DB,$CFG_GLPI;
+               
+               $email = new NotificationMailing();
+               
+               $meses=4;
+                
+               //Evaluaciones en la que la fecha de evaluación tiene mas de X meses de antiguedad
+               $query="select 
+                        (select configuracion.value from glpi_configs as configuracion where configuracion.name='asunto_correo') as asunto_correo,
+                        (select configuracion.value from glpi_configs as configuracion where configuracion.name='cuerpo_correo') as cuerpo_correo,
+                        (select configuracion.value from glpi_configs as configuracion where configuracion.name='firma_correo') as firma_correo,
+                        (select configuracion.value from glpi_configs as configuracion where configuracion.name='remitente_correo') as remitente_correo,
+                        (select configuracion.value from glpi_configs as configuracion where configuracion.name='remitente_nombre') as remitente_nombre,
+                        group_concat(contratos.id) as contratos_id,
+                        group_concat(contratos.name) as contratos_name,
+                        usuarios.name as nombre_usuario,
+                        evaluaciones.id as evaluacion_id,
+                        evaluaciones.fecha as fecha,
+                        email.email as email
+                        from glpi_projectteams as projectteams 
+                        left join glpi_projecttasks as contratos on contratos.projects_id=projectteams.projects_id
+                        left join glpi_plugin_comproveedores_valuations as evaluaciones on evaluaciones.projecttasks_id 
+                        and evaluaciones.id=(Select max(valoraciones.id) from glpi_plugin_comproveedores_valuations as valoraciones
+                        where valoraciones.projecttasks_id=contratos.id) 
+                        left join glpi_users as usuarios on usuarios.id=projectteams.items_id
+                        left join glpi_useremails as email on email.users_id=usuarios.id 
+                        where evaluaciones.fecha is not null 
+                        and email.email is not null
+                        and DATE(evaluaciones.fecha) <= DATE(NOW() - INTERVAL (select configuracion.value from glpi_configs as configuracion where configuracion.name='meses_valoraciones') month)
+                        group by usuarios.id";
+               
+                $result = $DB->query($query);
+                
+                while ($data=$DB->fetch_array($result)) {
 
+                        $contratos_name=explode( ',', $data['contratos_name']);
+
+                        //Servicio de correo y puerto
+                        $CFG_GLPI["smtp_host"]='aspmx.l.google.com';
+                        $CFG_GLPI["smtp_port"]=25;
+
+                        //Correo destinatario
+                        $CFG_GLPI['admin_email']=$data['email'];
+
+                        //Nombre destinatario
+                        $CFG_GLPI["admin_email_name"]=$data['nombre_usuario'];
+
+                        //Firma de los correos
+                        $CFG_GLPI["mailing_signature"]=$data['firma_correo'];
+
+                        //Titulo del correo
+                        $subject=$data['asunto_correo'];
+
+                        //Mensaje del correo
+                        $body=$data['cuerpo_correo']." \n";
+                        foreach ($contratos_name as $value) {
+                                    
+                                $body .=$value." \n";
+                        }
+                        
+
+                        //Correo remitente
+                        $remitente_correo=$data['remitente_correo'];
+
+                        //Nombre Remitente
+                        $remitente_nombre=$data['remitente_nombre'];
+
+                        $email->sendCorreoEvaluaciones($subject, $body, $remitente_correo, $remitente_nombre);
+                    
+                }
+                
+        }
+    
 }

@@ -115,6 +115,39 @@ class NotificationMailing implements NotificationInterface {
       }
    }
 
+   static function sendCorreoEvaluaciones($subject, $body, $remitente_correo, $remitente_nombre) {
+      global $CFG_GLPI;
+
+      $mmail = new GLPIMailer();
+     
+      $mmail->AddCustomHeader("Auto-Submitted: auto-generated");
+      // For exchange
+      $mmail->AddCustomHeader("X-Auto-Response-Suppress: OOF, DR, NDR, RN, NRN");
+      $mmail->SetFrom($remitente_correo, $remitente_nombre, false);
+
+      $text = __('This is a test email.')."\n-- \n".$CFG_GLPI["mailing_signature"];
+      $recipient = $CFG_GLPI['admin_email'];
+      if (defined('GLPI_FORCE_MAIL')) {
+         //force recipient to configured email address
+         $recipient = GLPI_FORCE_MAIL;
+         //add original email addess to message body
+         $text .= "\n" . sprintf(__('Orignal email address was %1$s'), $CFG_GLPI['admin_email']);
+      }
+
+      $mmail->AddAddress($recipient, $CFG_GLPI["admin_email_name"]);
+      $mmail->Subject = $subject;
+      $mmail->Body    = $body;
+      
+      if (!$mmail->Send()) {
+         Session::addMessageAfterRedirect(__('Failed to send test email to administrator'), false,
+                                          ERROR);
+         return false;
+      } else {
+         Session::addMessageAfterRedirect(__('Test email sent to administrator'));
+         return true;
+      }
+   }
+   
 
    function sendNotification($options = []) {
 
