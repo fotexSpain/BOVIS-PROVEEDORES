@@ -5891,7 +5891,7 @@ class Html {
       echo "<ul>";
 
       echo "<li id='deconnexion'>";
-      echo "<a  style='color: black;'  href='".$CFG_GLPI["root_doc"]."/front/logout.php";
+      echo "<a  style='color: #0e52a0;'  href='".$CFG_GLPI["root_doc"]."/front/logout.php";
             /// logout witout noAuto login for extauth
       if (isset($_SESSION['glpiextauth']) && $_SESSION['glpiextauth']) {
          echo "?noAUTO=1";
@@ -5902,7 +5902,7 @@ class Html {
       echo "</a>";
       echo "</li>\n";
 
-      echo "<li id='preferences_link'><a style='color: black;' href='".$CFG_GLPI["root_doc"]."/front/preference.php' title=\"".
+      echo "<li id='preferences_link'><a style='color: #0e52a0;' href='".$CFG_GLPI["root_doc"]."/front/preference.php' title=\"".
                  __s('My settings')."\" class='fa fa-cog'>";
       echo "<span  class='sr-only'>" . __s('My settings') . "</span>";
 
@@ -5923,7 +5923,7 @@ class Html {
             ($current_mode == Session::DEBUG_MODE ? __('on') : __('off'))
          );
          echo "<li id='debug_mode'>";
-         echo "<a style='color: black;' href='{$CFG_GLPI['root_doc']}/ajax/switchdebug.php' class='fa fa-bug $class'
+         echo "<a style='color: #0e52a0;' href='{$CFG_GLPI['root_doc']}/ajax/switchdebug.php' class='fa fa-bug $class'
                 title='$title'>";
          echo "<span class='sr-only'>" . __('Change mode')  . "</span>";
          echo "</a>";
@@ -5942,13 +5942,13 @@ class Html {
             'icon_txt'  => __('Manage saved searches')
          ]
       );
-      echo "<a style='color: black;' href='#' id='showSavedSearchesLink' class='fa fa-star' title=\"".
+      echo "<a style='color: #0e52a0;' href='#' id='showSavedSearchesLink' class='fa fa-star' title=\"".
              __s('Load a bookmark'). "\">";
       echo "<span class='sr-only'>" . __('Saved searches')  . "</span>";
       echo "</a></li>";
 
       echo "<li id='help_link'>".
-           "<a style='color: black;' href='".(empty($CFG_GLPI["central_doc_url"])
+           "<a style='color: #0e52a0;' href='".(empty($CFG_GLPI["central_doc_url"])
                          ? "http://glpi-project.org/help-central"
                          : $CFG_GLPI["central_doc_url"])."' target='_blank' title=\"".
                             __s('Help')."\" class='fa fa-question'>".
@@ -5956,7 +5956,7 @@ class Html {
       echo "</a></li>";
 
       if (!GLPI_DEMO_MODE) {
-         echo "<li id='language_link'><a style='color: black;' href='".$CFG_GLPI["root_doc"].
+         echo "<li id='language_link'><a style='color: #0e52a0;' href='".$CFG_GLPI["root_doc"].
                     "/front/preference.php?forcetab=User\$1' title=\"".
                     addslashes(Dropdown::getLanguageName($_SESSION['glpilanguage']))."\">".
                     Dropdown::getLanguageName($_SESSION['glpilanguage'])."</a></li>";
@@ -5970,7 +5970,7 @@ class Html {
          /// Search engine
          if ($CFG_GLPI['allow_search_global']) {
             echo "<form method='get' action='".$CFG_GLPI["root_doc"]."/front/search.php'>\n";
-            echo "<span id='champRecherche'><input size='15' type='text' name='globalsearch'
+            echo "<span id='champRecherche'><input  style='background-color: #0e52a0; color:white;}' size='15' type='text' name='globalsearch'
                                           placeholder='". __s('Search')."'>";
             echo "</span>";
             Html::closeForm();
