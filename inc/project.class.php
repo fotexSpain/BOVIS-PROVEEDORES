@@ -1062,19 +1062,55 @@ class Project extends CommonDBTM {
                                 cambiarProvincia('".$this->fields['plugin_comproveedores_communities_id']."', true);        
                         }
 
-                        //Añadimos gestor de proyecto a la página principal de proyecto
-                        $.ajax({  
-                                type: 'GET',        		
-		url:'".$CFG_GLPI["root_doc"]."/ajax/common.tabs.php?_target=".$CFG_GLPI["root_doc"]."/front/project.form.php&_itemtype=Project&_glpi_tab=ProjectTeam$1&id=".$ID."&withtemplate=',
-		success:function(data){
+                        //Añadimos gestor de proyecto a la página principal de proyecto solo si ya esta creado el proyecto
+                        if('".$ID."'!=''){
+                                $.ajax({  
+                                        type: 'GET',        		
+                                        url:'".$CFG_GLPI["root_doc"]."/ajax/common.tabs.php?_target=".$CFG_GLPI["root_doc"]."/front/project.form.php&_itemtype=Project&_glpi_tab=ProjectTeam$1&id=".$ID."&withtemplate=',
+                                        success:function(data){
 
-                                        $('#usuarioGestor').html(data);
-		},
-		error: function(result) {
-                                        alert('Data not found');
-		}
-                        });
+                                                $('#usuarioGestor').html(data);
+                                        },
+                                        error: function(result) {
+                                                                alert('Data not found');
+                                        }
+                                });
+                        }
+                        
+                        $('#duracion').find('input').attr('onChange', 'cambiarDuracion(\"duracion\")');
+                        $('#plan_end_date').find('input[name=_plan_end_date]').attr('onChange', 'cambiarDuracion(\"fecha_final\")');
+                            
                 });
+                
+                function cambiarDuracion(tipo){
+                        
+                        if(tipo=='duracion'){
+                                duracion=  $('#duracion').find('input').val();
+                                fecha_inicio=$('#plan_start_date').find('input[name=_plan_start_date]').val();
+                                                                
+                                var d = new Date(fecha_inicio);
+                                d.setMonth(d.getMonth()+parseInt(duracion));                               
+                                
+                                dia=(d.getDate())<10?'0'+(d.getDate()):(d.getDate());
+                                mes=(d.getMonth())<10?'0'+(d.getMonth()):(d.getMonth());
+                                fecha_final=d.getFullYear()+'-'+mes+'-'+dia;
+                                                                 
+                                $('#plan_end_date').find('input[name=_plan_end_date]').attr('value',fecha_final);
+                                $('#plan_end_date').find('input[name=plan_end_date]').val(fecha_final);
+                        }
+                        if(tipo=='fecha_final'){
+                                fecha_inicio=$('#plan_start_date').find('input[name=_plan_start_date]').val();
+                                fecha_fin= $('#plan_end_date').find('input[name=_plan_end_date]').val();
+                                
+                                var d_inicio= new Date(fecha_inicio);
+                                var d_fin = new Date(fecha_fin);  
+                                
+                                var duracion=d_fin-d_inicio;
+                                 duracion=  $('#duracion').find('input').val(Math.round(duracion/(1000*60*60*24*30)) );
+                                 
+                        }
+
+                }
                 
                 function cambiarProvincia(valor, cargar_pagina){
 
@@ -1156,7 +1192,7 @@ class Project extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
       
        echo "<td>".__('Fecha de comienzo')."</td>";
-      echo "<td>";
+      echo "<td id='plan_start_date'>";
       Html::showDateTimeField("plan_start_date", ['value' => $this->fields['plan_start_date'], 'hidetime' => true]);
       echo "</td>";
       
@@ -1179,12 +1215,12 @@ class Project extends CommonDBTM {
       echo "</td>";
       
       echo "<tr class='tab_bg_1'>";
-     
-      echo "<td>".__('Fecha de finalización')."</td>";
-      echo "<td>";
-      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'], 'hidetime' => true]);
-      echo "</td>";
       
+      echo "<td>".__('Duración')."</td>";
+      echo "<td id='duracion'>";
+      Html::autocompletionTextField($this, 'duracion');
+      echo " meses</td>";
+     
        echo "<td>Ubicación (PROV)</td>";
         echo "<td>";
                 echo "<div id='id_provincia'>";
@@ -1202,16 +1238,22 @@ class Project extends CommonDBTM {
       
        echo "<tr class='tab_bg_1'>";
      
-        echo "<td>Tipo de servicio</td>";
-      echo "<td>";
-      Dropdown::show('PluginComproveedoresServicetype',$opt5);
-      echo "</td>";
-      
+       echo "<td>".__('Fecha de finalización')."</td>";
+      echo "<td id='plan_end_date'>";
+      Html::showDateTimeField("plan_end_date", ['value' => $this->fields['plan_end_date'], 'hidetime' => true]);
+      echo "</td>";     
        
        echo "<td>Sector</td>";
       echo "<td>";
       Dropdown::show('PluginComproveedoresExperiencestype', $opt2);
       echo "</td>";
+      
+      echo "<tr>";
+            echo "<td>Tipo de servicio</td>";
+           echo "<td>";
+           Dropdown::show('PluginComproveedoresServicetype',$opt5);
+           echo "</td>";
+      echo "</tr>";
       
       echo"</tr>";
       
@@ -1229,10 +1271,10 @@ class Project extends CommonDBTM {
     
       echo "</tr>";*/
 
-      echo "<tr><td colspan='4' class='subheader'>".__('Manager')."</td></tr>";
+      //echo "<tr><td colspan='4' class='subheader'>".__('Manager')."</td></tr>";
 
       //include 'projectteam.class.php';
-      
+      echo"<tr>";
       echo"<td colspan='4'  id='usuarioGestor'></td>";
      /* echo "<tr class='tab_bg_1'>";
       echo "<td>".__('User')."</td>";
