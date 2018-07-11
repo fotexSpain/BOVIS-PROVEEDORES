@@ -6077,7 +6077,12 @@ class Html {
       $i = 1; 
       foreach ($menu as $part => $data) {
          if (isset($data['content']) && count($data['content'])) {
-             if($data['title']!='Administración' && $data['title']!='Configuración'){
+            
+             if($data['title']!='Administración' && $data['title']!='Configuración' ){
+                 if($data['title']=='Proyectos' && !isset($data['default'])){
+                      
+                 }
+                 else{
                 $menu_class = "";
                 if (isset($menu[$sector]) && $menu[$sector]['title'] == $data['title']) {
                    $menu_class = "active";
@@ -6124,10 +6129,10 @@ class Html {
                 }
                 echo "</li>";
                 $i++;
+             }
             }
          }
       }
-
       if ($full === false) {
          // Plugins
          $menu['plugins'] = [
