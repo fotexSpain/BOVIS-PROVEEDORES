@@ -55,7 +55,7 @@
 	function plugin_version_comproveedores(){
 		return array('name' => 'Gestion avanzada de proveedores',
 			'version' => '1.0.0',
-			'author' => 'Fotex:Daniel Torvisco, Julio Márquez',
+			'author' => 'Fotex:Daniel Torvisco, Julio Márquez, Miguel Ángel Moreno',
 			'license' => 'GPLv3+',
 			'homepage' => 'https://fotex.es',
 			'minGlpiVersion' => '9.2');

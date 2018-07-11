@@ -106,7 +106,7 @@ if (isset($_POST["add"])) {
 
 } else {
 
-   Html::header(Project::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "management", "project");
+   Html::header(Project::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "projects", "project");
 
    if (isset($_GET['showglobalgantt']) && $_GET['showglobalgantt']) {
       $project->showGantt(-1);

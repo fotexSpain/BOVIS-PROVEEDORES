@@ -1312,7 +1312,13 @@ class Html {
     * @return string
    **/
    static function getMenuInfos() {
-
+    
+      $menu['projects']['title']       = __('Proyectos');
+      $menu['projects']['types']       = ['Project'];
+      
+      $menu['supplier']['title']       = __('Proveedores');
+      $menu['supplier']['types']       = ['Supplier'];
+       
       $menu['assets']['title']       = __('Assets');
       $menu['assets']['types']       = ['Computer', 'Monitor', 'Software',
                                              'NetworkEquipment', 'Peripheral', 'Printer',
@@ -1323,9 +1329,9 @@ class Html {
                                              'Planning', 'Stat', 'TicketRecurrent'];
 
       $menu['management']['title']   = __('Management');
-      $menu['management']['types']   = ['Project','SoftwareLicense','Budget', 'Supplier', 'Contact', 'Contract',
+      $menu['management']['types']   = ['SoftwareLicense','Budget', 'Contact', 'Contract',
                                         'Document', 'Line', 'Certificate'];
-
+      
       $menu['tools']['title']        = __('Tools');
       $menu['tools']['types']        = ['Reminder', 'RSSFeed', 'KnowbaseItem',
                                              'ReservationItem', 'Report', 'MigrationCleaner',
@@ -1347,6 +1353,7 @@ class Html {
       $menu['preference']['title']   = __('My settings');
       $menu['preference']['default'] = '/front/preference.php';
 
+      
       return $menu;
    }
 
@@ -6067,7 +6074,7 @@ class Html {
       }
 
       // Get object-variables and build the navigation-elements
-      $i = 1;
+      $i = 1; 
       foreach ($menu as $part => $data) {
          if (isset($data['content']) && count($data['content'])) {
              if($data['title']!='Administración' && $data['title']!='Configuración'){

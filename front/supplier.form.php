@@ -94,7 +94,7 @@ if (isset($_POST["add"])) {
    Html::back();
 
 } else {
-   Html::header(Supplier::getTypeName(Session::getPluralNumber()), '', "management", "supplier");
+   Html::header(Supplier::getTypeName(Session::getPluralNumber()), '', "supplier", "supplier");
    $ent->display(['id' => $_GET["id"]]);
    Html::footer();
 }

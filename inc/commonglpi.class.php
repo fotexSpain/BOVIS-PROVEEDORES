@@ -865,10 +865,11 @@ class CommonGLPI {
          echo Toolbox::substr($glpilisttitle, 0, 100)."...";
          echo "</a></td>";
 
-         $name = $this->getTypeName(1);
-         
+         //$name = $this->getTypeName(1);
+         $name='';
          if (isset($this->fields['id']) && ($this instanceof CommonDBTM)) {
-            $name = sprintf(__('%1$s - %2$s'), $name, $this->getName());
+            //$name = sprintf(__('%1$s - %2$s'), $name, $this->getName());
+             $name = sprintf(__('%2$s'), $name, $this->getName());
             if ($_SESSION['glpiis_ids_visible'] || empty($name)) {
                $name = sprintf(__('%1$s - ID %2$d'), $name, $this->fields['id']);
             }

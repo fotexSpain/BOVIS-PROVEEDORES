@@ -2108,34 +2108,34 @@ class CommonDBTM extends CommonGLPI {
       if ($date_creation_exists
          && $this->getID() > 0
             && (!isset($options['withtemplate']) || $options['withtemplate'] == 0)) {
-         echo "<th colspan='$colspan'>";
+         echo "<th style='font-weight: normal;'  colspan='$colspan'>";
          printf(__('Created on %s'), Html::convDateTime($this->fields["date_creation"]));
          echo "</th>";
       } else if (!isset($options['withtemplate']) || $options['withtemplate'] == 0) {
-         echo "<th colspan='$colspan'>";
+         echo "<th style='font-weight: normal;' colspan='$colspan'>";
          echo "</th>";
       }
 
       if (isset($options['withtemplate']) && $options['withtemplate']) {
-         echo "<th colspan='$colspan'>";
+         echo "<th  style='font-weight: normal;'colspan='$colspan'>";
          //TRANS: %s is the datetime of insertion
          printf(__('Created on %s'), Html::convDateTime($_SESSION["glpi_currenttime"]));
          echo "</th>";
       }
 
       if ($date_mod_exists) {
-         echo "<th colspan='$colspan'>";
+         echo "<th style='font-weight: normal;' colspan='$colspan'>";
          //TRANS: %s is the datetime of update
          printf(__('Last update on %s'), Html::convDateTime($this->fields["date_mod"]));
          echo "</th>";
       } else {
-         echo "<th colspan='$colspan'>";
+         echo "<th  style='font-weight: normal;'colspan='$colspan'>";
          echo "</th>";
       }
 
       if ((!isset($options['withtemplate']) || ($options['withtemplate'] == 0))
           && !empty($this->fields['template_name'])) {
-         echo "<th colspan='".($colspan * 2)."'>";
+         echo "<th style='font-weight: normal;' colspan='".($colspan * 2)."'>";
          printf(__('Created from the template %s'), $this->fields['template_name']);
          echo "</th>";
       }
@@ -2418,7 +2418,7 @@ class CommonDBTM extends CommonGLPI {
       echo "<table class='tab_cadre_fixe' id='mainformtable'>";
 
       if ($params['formtitle'] !== '' && $params['formtitle'] !== false) {
-         echo "<tr class='headerRow'><th colspan='".$params['colspan']."'>";
+         echo "<tr class='headerRow' style='visibility: hidden;'><th colspan='".$params['colspan']."'>";
 
          if (!empty($params['withtemplate']) && ($params['withtemplate'] == 2)
             && !$this->isNewID($ID)) {

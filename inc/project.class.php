@@ -1089,7 +1089,7 @@ class Project extends CommonDBTM {
                                 fecha_inicio=$('#plan_start_date').find('input[name=_plan_start_date]').val();
                                                                 
                                 var d = new Date(fecha_inicio);
-                                d.setMonth(d.getMonth()+parseInt(duracion));                               
+                                d.setMonth(d.getMonth()+parseInt(duracion)+1);                               
                                 
                                 dia=(d.getDate())<10?'0'+(d.getDate()):(d.getDate());
                                 mes=(d.getMonth())<10?'0'+(d.getMonth()):(d.getMonth());

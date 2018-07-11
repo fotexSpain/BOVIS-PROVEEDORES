@@ -38,7 +38,7 @@ include ('../inc/includes.php');
 
 Session::checkRight("contact_enterprise", READ);
 
-Html::header(Supplier::getTypeName(Session::getPluralNumber()), '', "management", "supplier");
+Html::header(Supplier::getTypeName(Session::getPluralNumber()), '', "supplier", "supplier");
 
 if(isset($_GET['preseleccion'])){
    include "../plugins/comproveedores/inc/listSupplierPreseleccion.php";
