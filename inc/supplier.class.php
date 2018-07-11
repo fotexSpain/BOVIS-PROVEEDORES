@@ -126,6 +126,9 @@ class Supplier extends CommonDBTM {
     *
     *@return Nothing (display)
    **/
+   function showppp($ID, $options = []) {
+       echo 'hola';
+   }
    function showForm($ID, $options = []) {
 
       $this->initForm($ID, $options);

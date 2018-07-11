@@ -40,6 +40,9 @@ Session::checkRight("contact_enterprise", READ);
 
 Html::header(Supplier::getTypeName(Session::getPluralNumber()), '', "management", "supplier");
 
-Search::show('Supplier');
-
+if(isset($_GET['preseleccion'])){
+   include "../plugins/comproveedores/inc/listSupplierPreseleccion.php";
+}else{
+    Search::show('Supplier');
+}
 Html::footer();

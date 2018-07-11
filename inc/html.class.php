@@ -6265,6 +6265,29 @@ class Html {
                   "<span class='sr-only'>" . __('Search is disabled') . "</span></a>";
             }
             echo "</span>";
+            //Añadir un para la busqueda de preseleccion de proveedores
+            if($options['item']=='supplier'){
+                    
+                echo"<a href='#' onclick='cambiarBuscadorPreseleccion()'><span style='background-size: 20px; background-image: url(".$CFG_GLPI["root_doc"]."/pics/preseleccion.png); background-repeat: no-repeat;  background-position: center;'><span></a>";
+                
+                echo "<script type='text/javascript'>
+
+                        function cambiarBuscadorPreseleccion(){
+                        	$.ajax({ 
+                                        async: false, 
+                                        type: 'GET',                
+                                        url:'".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/buscadorSupplierPreseleccion.php',                    
+                                        success:function(data){
+                                                $('#page').html(data);
+                                        },
+                                        error: function(result) {
+	                 	alert('Data not found');
+                                        }
+	            	});
+                        }
+
+                </script>";
+            }
             // Links
             if (count($links) > 0) {
                foreach ($links as $key => $val) {

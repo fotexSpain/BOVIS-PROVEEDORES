@@ -81,8 +81,8 @@ $result = $DB->query($query);
                             echo "<th>".__('Nombre')."</th>";
                             echo "<th>".__('CIF')."</th>";
                             echo "<th>".__('Proyecto')."</th>";
-                            echo "<th>".__('Paquete')."</th>";
-                            echo "<th>".__('SubPaquete')."</th>";
+                            echo "<th>".__('Contratos')."</th>";
+                            //echo "<th>".__('SubPaquete')."</th>";
                             echo "<th>".__('CV')."</th>";
                    echo "</tr>";
 
@@ -93,7 +93,7 @@ $result = $DB->query($query);
 		echo "<td class='center'>".$data['cif']."</td>";
 		echo "<td class='center'>".$data['proyecto_nombre']."</td>";
                                      echo "<td class='center'>".$data['paquete_nombre']."</td>";
-                                      echo "<td class='center'>".$data['subpaquete_nombre']."</td>";
+                                      //echo "<td class='center'>".$data['subpaquete_nombre']."</td>";
                                       if(!empty($data['cv'])){
                                            echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
                                       }

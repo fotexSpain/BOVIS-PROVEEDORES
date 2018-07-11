@@ -99,7 +99,7 @@ proveedor.name,
 GROUP_CONCAT(distinct especialidad.name SEPARATOR '\n')  as especialidad, 
 facturacion.facturacion, 
 proveedor.cv_id,
-contrato.tipo_especialidad,
+(select contrato1.tipo_especialidad from glpi_projecttasks as contrato1 where id=".$contrato_id.") as tipo_especialidad, 
 ROUND(Sum(valoracion.calidad)/count(valoracion.calidad),2) as calidad, 
 ROUND(Sum(valoracion.planificacion)/count(valoracion.planificacion),2) as planificacion,
 ROUND(Sum(valoracion.costes)/count(valoracion.costes),2) as costes, 
@@ -162,7 +162,7 @@ $result = $DB->query($query);
                                 echo"<th class='center' style='border: 1px solid #BDBDDB;'>".__('Facturación')."</th>";
 
                                 ////////Criterios Contratista///////
-                                if($data["tipo_especialidad"]==2){
+                                 if($data["tipo_especialidad"]==2){
                                         echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
                                         echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
                                         echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
@@ -172,8 +172,8 @@ $result = $DB->query($query);
                                         echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
                                         echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
 
-                                ////////Criterios Servicios Profesionales ///////      
                                 }else{
+                                    ////////Criterios Servicios Profesionales ///////      
                                         echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY BÁSICO')."</th>";
                                         echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
                                         echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
