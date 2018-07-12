@@ -36,7 +36,7 @@
 */
 
 use Glpi\Event;
-
+global $DB;
 include ('../inc/includes.php');
 
 Session::checkCentralAccess();
@@ -51,6 +51,8 @@ if (!isset($_GET["projecttasks_id"])) {
    $_GET["projecttasks_id"] = "";
 }
 $task = new ProjectTask();
+$PluginValuation = new PluginComproveedoresValuation();
+$PluginSubvaluation = new PluginComproveedoresSubvaluation();
 
 if (isset($_POST["add"])) {
     
@@ -81,13 +83,31 @@ if (isset($_POST["add"])) {
    
 }else if (isset($_POST["purge_final"])) {
     
+   //Eliminamos evaluaciones
+   $query_valuation ="select id from glpi_plugin_comproveedores_valuations where projecttasks_id=".$_POST['id'];   
+   $result_valuation = $DB->query($query_valuation);
+   
+   while ($data_valuation=$DB->fetch_array($result_valuation)) {
+       
+       //////////Eliminamos subevaluaciones/////////////
+        $query_subvaluation ="select id from glpi_plugin_comproveedores_subvaluations where valuation_id=".$data_valuation['id'];
+        $result_subvaluation = $DB->query($query_subvaluation);
+
+        while ($data_subvaluation=$DB->fetch_array($result_subvaluation)) {
+
+             $PluginSubvaluation->check($data_subvaluation['id'], PURGE);
+             $PluginSubvaluation->delete($data_subvaluation, 1);
+        }
+       ///////////////////////////////////////////////////////////////
+        $PluginValuation->check($data_valuation['id'], PURGE);
+        $PluginValuation->delete($data_valuation, 1);
+     
+   }
+  
    $task->check($_POST['id'], PURGE);
    $task->delete($_POST, 1);
-
-   Event::log($task->fields['projects_id'], 'project', 4, "maintain",
-              //TRANS: %s is the user login
-              sprintf(__('%s purges a task'), $_SESSION["glpiname"]));
-    Html::back();
+   
+   Html::redirect(Project::getFormURL()."?id=".$task->fields['projects_id']);
 
 } else if (isset($_POST["update"])) {
     $_POST['valor_contrato']=str_replace('.', '', $_POST['valor_contrato']);
