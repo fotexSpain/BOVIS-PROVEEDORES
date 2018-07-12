@@ -174,7 +174,7 @@ class Project extends CommonDBTM {
       $ong = [];
       $this->addDefaultFormTab($ong);
       $this->addStandardTab('ProjectTask', $ong, $options);
-      //$this->addStandardTab('ProjectTeam', $ong, $options);
+      $this->addStandardTab('ProjectTeam', $ong, $options);
       $this->addStandardTab(__CLASS__, $ong, $options);
      // $this->addStandardTab('ProjectCost', $ong, $options);
       //$this->addStandardTab('Change_Project', $ong, $options);
@@ -1066,7 +1066,7 @@ class Project extends CommonDBTM {
                         if('".$ID."'!=''){
                                 $.ajax({  
                                         type: 'GET',        		
-                                        url:'".$CFG_GLPI["root_doc"]."/ajax/common.tabs.php?_target=".$CFG_GLPI["root_doc"]."/front/project.form.php&_itemtype=Project&_glpi_tab=ProjectTeam$1&id=".$ID."&withtemplate=',
+                                        url:'".$CFG_GLPI["root_doc"]."/ajax/common.tabs.php?_target=".$CFG_GLPI["root_doc"]."/front/project.form.php&_itemtype=Project&_glpi_tab=ProjectTeam$1&id=".$ID."&tab_projecto=true&withtemplate=',
                                         success:function(data){
 
                                                 $('#usuarioGestor').html(data);
@@ -1416,7 +1416,8 @@ class Project extends CommonDBTM {
        $query ="SELECT usuarios.name as nombre_usuario,  gestor_proyecto.itemtype
                     FROM glpi_projectteams as gestor_proyecto 
                     LEFT JOIN glpi_users as usuarios on usuarios.id=gestor_proyecto.items_id
-                    where gestor_proyecto.projects_id=".$id_projecto;
+                    LEFT JOIN glpi_profiles_users as perfil_usuario on usuarios.id=perfil_usuario.users_id
+                    where gestor_proyecto.projects_id=".$id_projecto." and perfil_usuario.profiles_id=16 and gestor_proyecto.gerente=1";
           
      
         $result = $DB->query($query);
@@ -1439,6 +1440,7 @@ class Project extends CommonDBTM {
                 echo"<form action=".$CFG_GLPI["root_doc"]."/front/projectteam.form.php method='post'>";
                 
                         echo Html::hidden('projects_id', array('value' => $id_projecto));
+                        echo Html::hidden('gerente', array('value' => 1));
                         echo Html::hidden('itemtype', array('value' => 'User'));
                         echo Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken()));
                 
@@ -1484,12 +1486,20 @@ class Project extends CommonDBTM {
          echo "<tr class='tab_bg_1'><th colspan='2'>".__('Add a team member')."</tr>";
          echo "<tr class='tab_bg_2'><td>";
 
-         $params = ['itemtypes'       => ProjectTeam::$available_types,
+          $params = ['itemtypes'       => array(0 => 'User'),
                          'entity_restrict' => ($project->fields['is_recursive']
                                                ? getSonsOf('glpi_entities',
                                                            $project->fields['entities_id'])
                                                : $project->fields['entities_id']),
                          ];
+         
+         /*$params = ['itemtypes'       => ProjectTeam::$available_types,
+                         'entity_restrict' => ($project->fields['is_recursive']
+                                               ? getSonsOf('glpi_entities',
+                                                           $project->fields['entities_id'])
+                                               : $project->fields['entities_id']),
+                         ];*/
+
          $addrand = Dropdown::showSelectItemFromItemtypes($params);
 
          echo "</td>";
@@ -1523,6 +1533,7 @@ class Project extends CommonDBTM {
       }
       $header_end .= "<th>".__('Type')."</th>";
       $header_end .= "<th>"._n('Member', 'Members', Session::getPluralNumber())."</th>";
+      $header_end .= "<th>Gerente</th>";
       $header_end .= "</tr>";
       echo $header_begin.$header_top.$header_end;
 
@@ -1536,9 +1547,15 @@ class Project extends CommonDBTM {
                      echo "<td>";
                      Html::showMassiveActionCheckBox('ProjectTeam', $data["id"]);
                      echo "</td>";
-                  }
+                  }                
                   echo "<td>".$item->getTypeName(1)."</td>";
                   echo "<td>".$item->getLink()."</td>";
+                  if($data['gerente']==1){
+                        echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxTrue.png'></td>";
+                  }
+                  else{
+                        echo "<td class='center'><img  style='vertical-align:middle; margin: 10px 0px;' src='".$CFG_GLPI["root_doc"]."/pics/CheckBoxFalse.png'></td>";
+                  }
                   echo "</tr>";
                }
             }

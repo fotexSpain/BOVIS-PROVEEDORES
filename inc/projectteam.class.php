@@ -118,7 +118,12 @@ class ProjectTeam extends CommonDBRelation {
 
       switch ($item->getType()) {
          case 'Project' :
-            $item->showElegirGestor($item);
+                if(isset($_GET['tab_projecto'])){
+                        $item->showElegirGestor($item);
+                }else{
+                        $item->showTeam($item);
+                }
+                
             return true;
       }
    }

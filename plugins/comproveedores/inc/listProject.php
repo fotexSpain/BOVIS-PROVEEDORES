@@ -22,7 +22,7 @@ on valoracion1.projecttasks_id=paquetes1.id
 
 where paquetes1.projects_id=proyectos.id) as numero_evaluaciones,
 
-(select items_id from glpi_projectteams where projects_id=proyectos.id) as usuario_cargo_proyecto 
+(select items_id from glpi_projectteams where projects_id=proyectos.id and gerente=1) as usuario_cargo_proyecto 
 
 from glpi_projects  as proyectos";
 
