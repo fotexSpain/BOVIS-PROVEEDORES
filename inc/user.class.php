@@ -1933,11 +1933,14 @@ Html::displayTitle($CFG_GLPI["root_doc"] . "/pics/users.png", self::getTypeName(
           $('#primerApellido').find('input[name=realname]').keyup(function () {
               var value = $(this).val();
 
-                var first = value.substring(0, 1);
-                var rest = value.substring(1, value.length);
-                var first = first.toUpperCase();
+                primer_apellido =value.split(' ');
+                
+                var first = primer_apellido[0].substring(0, 1);
+                var rest = primer_apellido[0].substring(1,  primer_apellido[0].length);
+                first = first.toUpperCase();
+                rest=rest.toLowerCase();
                 var contrasenia = first + rest;
-            
+                
               $('.ponerContrasenia').val(contrasenia);
           });
           
