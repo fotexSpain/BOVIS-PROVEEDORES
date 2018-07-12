@@ -22,7 +22,7 @@
 	}
 
 	$PluginValuation= new PluginComproveedoresValuation();
-        $PluginSubValuation= new PluginComproveedoresSubvaluation();
+                $PluginSubValuation= new PluginComproveedoresSubvaluation();
 
 	
 	if(isset($_POST['add'])){
@@ -53,14 +53,13 @@
                 
                 } else if (isset($_POST["delete_evaluacion"])) {
                         
-                        $query ="select id from glpi_plugin_comproveedores_subvaluations as subEvaluaciones where subEvaluaciones.valuation_id=".$_POST['id'];
-                      
-                        $result = $DB->query($query);
-		
-                        while ($data=$DB->fetch_array($result)) {
-                               
-                                $PluginSubValuation->check($data['id'], PURGE);
-		$PluginSubValuation->delete($data['id'], 1);
+                        $query_subvaluation ="select id from glpi_plugin_comproveedores_subvaluations where valuation_id=".$_POST['id'];
+                        $result_subvaluation = $DB->query($query_subvaluation);
+
+                        while ($data_subvaluation=$DB->fetch_array($result_subvaluation)) {
+
+                             $PluginSubValuation->check($data_subvaluation['id'], PURGE);
+                             $PluginSubValuation->delete($data_subvaluation, 1);
                         }
                         $PluginValuation->check($_POST['id'], PURGE);
                         $PluginValuation->delete($_POST, 1);
