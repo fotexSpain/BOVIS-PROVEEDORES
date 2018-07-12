@@ -105,7 +105,7 @@ if (isset($_POST["add"])) {
    Html::popFooter();
 
 } else {
-   Html::header(ProjectTask::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "management", "project");
+   Html::header(ProjectTask::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "projects", "project");
    $task->display($_GET);
    Html::footer();
 }
