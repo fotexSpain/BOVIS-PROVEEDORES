@@ -72,163 +72,13 @@
 		$PluginValuation->delete($_POST, 1);
 		
 		Html::back();
-
-	/*}else if(isset($_GET['metodo']) && $_GET['metodo']=='add_valoracion'){
-            
-                        $valoracion=array();
-            
-                       $query ="SELECT proveedores.cv_id as cv_id FROM glpi_projecttaskteams as projecttaskteams LEFT JOIN glpi_suppliers proveedores on projecttaskteams.items_id=proveedores.id WHERE projecttasks_id=".$_GET['paquete_id'];
-                                   
-                        $result = $DB->query($query);
-		
-                        while ($data=$DB->fetch_array($result)) {
-                                $valoracion['cv_id']=$data['cv_id'];
-                        }
-                        
-                        $valoracion['fecha']=$_GET['fecha'];
-                        $valoracion['projecttasks_id']=$_GET['paquete_id'];
-                        $valoracion['projecttasks_id']=$_GET['paquete_id'];
-                        $valoracion['num_evaluacion']=$_GET['numero_valoracion'];
-                        foreach ($_GET['arrayValoracion'] as $key => $value) {
-                                switch ($key) {
-                                        case 0:
-                                                $valoracion['calidad']=$value;
-                                                break;
-                                        case 1:
-                                                $valoracion['plazo']=$value;
-                                                break;
-                                        case 2:
-                                                $valoracion['costes']=$value;
-                                                break;
-                                        case 3:
-                                                $valoracion['cultura']=$value;
-                                                break;
-                                        case 4:
-                                                $valoracion['suministros_y_subcontratistas']=$value;
-                                                break;
-                                        case 5:
-                                                $valoracion['sys_y_medioambiente']=$value;
-                                                break;
-
-                                        default:
-                                            break;
-                                }
-                        }
-                        
-                          foreach ($_GET['arrayComentarios'] as $key => $value) {
-                                switch ($key) {
-                                        case 0:
-                                                $valoracion['calidad_coment']=$value;
-                                                break;
-                                        case 1:
-                                                $valoracion['plazo_coment']=$value;
-                                                break;
-                                        case 2:
-                                                $valoracion['costes_coment']=$value;
-                                                break;
-                                        case 3:
-                                                $valoracion['cultura_coment']=$value;
-                                                break;
-                                        case 4:
-                                                $valoracion['suministros_y_subcontratistas_coment']=$value;
-                                                break;
-                                        case 5:
-                                                $valoracion['sys_y_medioambiente_coment']=$value;
-                                                break;
-
-                                        default:
-                                            break;
-                                }
-                        }
-            
-                        $PluginValuation->check(-1, CREATE, $valoracion);
-                        $newID = $PluginValuation->add($valoracion);
-	
-                        echo $newID;
-	}else if(isset($_GET['metodo']) && $_GET['metodo']=='update_valoracion'){
-            
-                       
-                        
-                       $valoracion=array();
-            
-                       $query ="SELECT proveedores.cv_id as cv_id FROM glpi_projecttaskteams as projecttaskteams LEFT JOIN glpi_suppliers proveedores on projecttaskteams.items_id=proveedores.id WHERE projecttasks_id=".$_GET['paquete_id'];
-                                   
-                        $result = $DB->query($query);
-		
-                        while ($data=$DB->fetch_array($result)) {
-                                $valoracion['cv_id']=$data['cv_id'];
-                        }
-                       
-                        $valoracion['fecha']=$_GET['fecha'];
-                        $valoracion['projecttasks_id']=$_GET['paquete_id'];
-                        $valoracion['projecttasks_id']=$_GET['paquete_id'];
-                        $valoracion['num_evaluacion']=$_GET['numero_valoracion'];
-                        $valoracion['id']=$_GET['valoracion_id'];
-                        foreach ($_GET['arrayValoracion'] as $key => $value) {
-                                switch ($key) {
-                                        case 0:
-                                                $valoracion['calidad']=$value;
-                                                break;
-                                        case 1:
-                                                $valoracion['plazo']=$value;
-                                                break;
-                                        case 2:
-                                                $valoracion['costes']=$value;
-                                                break;
-                                        case 3:
-                                                $valoracion['cultura']=$value;
-                                                break;
-                                        case 4:
-                                                $valoracion['suministros_y_subcontratistas']=$value;
-                                                break;
-                                        case 5:
-                                                $valoracion['sys_y_medioambiente']=$value;
-                                                break;
-
-                                        default:
-                                            break;
-                                }
-                        }
-                        
-                         foreach ($_GET['arrayComentarios'] as $key => $value) {
-                                switch ($key) {
-                                        case 0:
-                                                $valoracion['calidad_coment']=$value;
-                                                break;
-                                        case 1:
-                                                $valoracion['plazo_coment']=$value;
-                                                break;
-                                        case 2:
-                                                $valoracion['costes_coment']=$value;
-                                                break;
-                                        case 3:
-                                                $valoracion['cultura_coment']=$value;
-                                                break;
-                                        case 4:
-                                                $valoracion['suministros_y_subcontratistas_coment']=$value;
-                                                break;
-                                        case 5:
-                                                $valoracion['sys_y_medioambiente_coment']=$value;
-                                                break;
-
-                                        default:
-                                            break;
-                                }
-                        }
-            
-                        $PluginValuation->check($valoracion['id'], UPDATE);
-                        $PluginValuation->update($valoracion);
-                        	
-                       
-
-                        Html::back();*/
 	}else if(isset($_GET['guardarSubvaloraciones']) && $_GET['metodo']=='update_valoracion'){
             
                         
                         $subvaloraciones=[];
                         $valoraciones=[];
                         $subvaloraciones_valor=$_GET['arraySubValoracionValor'];
-                        $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
+                        //$subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
                         
                        //Guardamos las subvaloraciones
                        $query ="select subvaloracion.*,criterios.criterio_padre, criterios.ponderacion from glpi_plugin_comproveedores_subvaluations as subvaloracion
@@ -242,7 +92,7 @@
                             $subvaloracion['valuation_id']=$data['valuation_id'];
                             $subvaloracion['criterio_id']=$data['criterio_id'];
                             $subvaloracion['valor']=$subvaloraciones_valor[$data['criterio_id']];
-                            $subvaloracion['comentario']=$subvaloraciones_comentario[$data['criterio_id']];
+                            //$subvaloracion['comentario']=$subvaloraciones_comentario[$data['criterio_id']];
                             
                             //Sumamos el valor de los subcriterio
                             $valoracion[$data['criterio_padre']]+=(($subvaloraciones_valor[$data['criterio_id']]/100)*$data['ponderacion']);
@@ -262,6 +112,7 @@
                         
                         $valoracion['cv_id']=$_GET['cv_id'];
                         $valoracion['evaluacion_final']=$_GET['eval_final'];
+                        $valoracion['comentario']=$_GET['comentario'];
                         $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['id']=$_GET['valoracion_id'];
                         
@@ -273,7 +124,7 @@
                         $subvaloraciones=[];
                         $valoraciones=[];
                         $subvaloraciones_valor=$_GET['arraySubValoracionValor'];
-                        $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
+                       // $subvaloraciones_comentario=$_GET['arraySubValoracionComentario'];
                         
                         //Guardamos la valoracion
                         $query ="select distinct criterio_padre
@@ -302,7 +153,7 @@
                             $subvaloracion['valuation_id']=$newID;
                             $subvaloracion['criterio_id']=$data['id'];
                             $subvaloracion['valor']=$subvaloraciones_valor[$data['id']];
-                            $subvaloracion['comentario']=$subvaloraciones_comentario[$data['id']];
+                            //$subvaloracion['comentario']=$subvaloraciones_comentario[$data['id']];
                             
                             //Sumamos el valor de los subcriterio
                             $valoracion[$data['criterio_padre']]+=(($subvaloraciones_valor[$data['id']]/100)*$data['ponderacion']);
@@ -320,6 +171,7 @@
                         
                         $valoracion['cv_id']=$_GET['cv_id'];
                         $valoracion['evaluacion_final']=$_GET['eval_final'];
+                        $valoracion['comentario']=$_GET['comentario'];
                         $valoracion['fecha']=$_GET['fecha'];
                         $valoracion['id']=$newID;
                         

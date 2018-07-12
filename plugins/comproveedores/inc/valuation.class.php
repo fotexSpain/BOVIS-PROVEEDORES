@@ -286,23 +286,23 @@
                         
                         //Tabla Servicios profesionales     
                         echo"<table class='tab_cadre_fixehov'>";
-                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Evaluaciones Contratistas</th></tr>";
+                                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='15' >Evaluaciones Contratistas</th></tr>";
                                 echo"<br/>";
                                 echo "<tr><th style='min-width: 80px;'></th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
                                         echo "<th style='min-width: 70px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Fecha')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SYS')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Q')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PLZ')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COST')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CULT')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SUBC')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('SYS')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CERT')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
 
                                 echo "</tr>";
                                 
@@ -383,19 +383,19 @@
                                 echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Evaluaciones Servicios Profesionales</th></tr>";
                                 echo"<br/>";
                                 echo "<tr><th style='min-width: 80px;'></th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
-                                        echo "<th style='min-width: 70px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Fecha')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY BÁSICO')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAP EMPRESA')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COLABORADOR')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAPACIDAD')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('ACTITUD')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
-                                        echo "<th style='width: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Código')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Contrato')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Proveedor')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('NIF')."</th>";
+                                        echo "<th style='min-width: 70pxmin-width: 70px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Fecha')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY BÁSICO')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('PROY EJECUCIÓN')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAP EMPRESA')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('COLABORADOR')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('CAPACIDAD')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('ACTITUD')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                        echo "<th style='min-width: 70pxwidth: 100px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Evaluación Final')."</th>";
 
                                 echo "</tr>";
                                 
@@ -1108,6 +1108,7 @@
             function consultaAjax(){
                 GLOBAL $DB,$CFG_GLPI;
                 $resultado="<script type='text/javascript'>  
+                    
                         function valorElegido(valor_criterio, tipo_criterio, valoracion){
                                                                 
                             for(i=1;i<=5;i++){

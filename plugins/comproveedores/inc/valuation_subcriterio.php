@@ -40,12 +40,17 @@ GLOBAL $DB,$CFG_GLPI;
                   
                                                                        
                     echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                     echo "<tr>";
+                                echo"<td colspan='8' style=' border-bottom: none;'><div id='visualizar_ultima_eval' style='display: ".$display."; font-size: 14px;'>Evaluación Final&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                                        echo"<input id='evaluacion_final' style='width:17px;height:17px;' type='checkbox'/>";
+                                echo"</td>";
+                    echo "</tr>";
                     echo "<tr>";
                     
-                                echo"<td colspan='6' ><div id='fecha_valoracion' style='display: -webkit-box; font-size: 14px;'>Fecha de valoración&nbsp"; 
+                                echo"<td colspan='1' style=' border-bottom: none;'><div id='fecha_valoracion' style='display: -webkit-box; font-size: 14px;'>Fecha de valoración&nbsp"; 
                                         Html::showDateTimeField("fecha");
                                 echo"</div></td>";
-                                
+                              
                                 //Si es una nueva evaluación que aparezca el Evaluación final. 
                                 //Esta con display para el caso en que se modifica la ultima evaluación, para que pueda desmarcar y crear nuevas
                                 if(!isset($_GET['id'])){
@@ -53,14 +58,15 @@ GLOBAL $DB,$CFG_GLPI;
                                 }else{
                                         $display="none";
                                 }
+                                echo"<td style='font-size: 14px; border-bottom: none;'>Comentario</td>";
+                                echo"<td colspan='6' class='center' style='font-weight:bold; border-bottom: none;'><textarea  id='comentario' rows='4' cols='60' style='resize: none'></textarea></td>";
+                            
                                 
-                                echo"<td colspan='3' ><div id='visualizar_ultima_eval' style='display: ".$display."; font-size: 14px;'>Evaluación Final&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                                        echo"<input id='evaluacion_final' style='width:17px;height:17px;' type='checkbox'/>";
-                                echo"</td>";
                                 
                                 
                     echo"</tr>";
-                    echo "<tr class=' tab_cadre_fixehov nohover'><th colspan='14' >Evaluación</th></tr>";
+                   
+                    echo "<tr class=' tab_cadre_fixehov nohover'><th colspan='8' >Evaluación</th></tr>";
                     echo"<br/>";
                     echo "<tr><th></th>";
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Mal')."</th>";
@@ -68,27 +74,41 @@ GLOBAL $DB,$CFG_GLPI;
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Adecuado')."</th>";
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Bien')."</th>";
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Excelente')."</th>";
-                        echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Comentario')."</th>";
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('%')."</th>";
                         echo "<th style='width: 60px; background-color:#D8D8D8; border: 1px solid #BDBDDB;'>".__('Total')."</th>";
                     echo "</tr>";
                    
                         $cambio_criterio_padre='';                        
-                                                    
+                        
+                        $nombre_criterio='';
+                        $columna_par_impar=0;
                          while ($data=$DB->fetch_array($result2)) {
-                             $total_ids_subcriterios=$data['total_ids_subcriterios'];
+                                
+                                //Color criterios
+                                if ($nombre_criterio!=$data['criterio_padre']){
+                                    
+                                        $nombre_criterio=$data['criterio_padre'];
+                                        
+                                        if($columna_par_impar==0){
+                                                $color_criterio='#d8d8d8';
+                                                $columna_par_impar=1;
+                                        }else{
+                                                $color_criterio='#f3f3f3';
+                                                $columna_par_impar=0;
+                                        }
+                                }
+                             
+                                $total_ids_subcriterios=$data['total_ids_subcriterios'];
 
                                 echo "<tr class='tab_bg_2' style='height:60px;'>";
-                                
                                         $criterio_padre=str_replace ( '_' , ' ' , $data['criterio_padre']);
                                         $criterio_padre=ucfirst($criterio_padre);
-                                        echo"<td class='center' style='background-color:#D8D8D8; border: 1px solid #BDBDDB;'><div style='font-weight: bold;'>".$criterio_padre."</div><br><div>".$data['criterio_hijo']."</div></td>";
+                                        echo"<td class='center' style='background-color:".$color_criterio."; border: 1px solid #BDBDDB;'><div style='font-weight: bold;'>".$criterio_padre."</div><br><div>".$data['criterio_hijo']."</div></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_1' title='".$data['denom_Mala']."' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(1,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_2' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(2,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_3' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(3,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_4' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(4,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_valor_5' title='".$data['denom_Excelente']."' style='font-weight:bold; border: 1px solid #BDBDDB;' onclick='valorElegido(5,".$data['criterio_id'].", \"".$data['num_ids_criterio']."\", \"".$data['criterio_padre']."\")'></td>";
-                                        echo"<td class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'><textarea  id='criterio_".$data['criterio_id']."_comentario' rows='4' cols='45' style='resize: none'></textarea></td>";
                                         echo"<td class='center' id='criterio_".$data['criterio_id']."_porcentaje' style='font-weight:bold; border: 1px solid #BDBDDB;'>".$data['ponderacion']."%</td>";
 
                                         if($cambio_criterio_padre!=$data['criterio_padre']){
@@ -96,8 +116,10 @@ GLOBAL $DB,$CFG_GLPI;
                                             echo"<td rowspan='".$data['num_subcriterios']."' id='criterio_padre_".$data['criterio_padre']."' class='center' style='font-weight:bold; border: 1px solid #BDBDDB;'></td>";
                                         }
                                     
-                                echo "</tr>";    
-                            
+                                echo "</tr>";  
+                                
+                                
+                                
                          }
                     echo"<br/>";
                     echo "</table></div>";
@@ -106,6 +128,7 @@ GLOBAL $DB,$CFG_GLPI;
                         $query="select Subvaloraciones.*,
                                 criterio.*,
                                 valoracion.fecha,
+                                valoracion.comentario,
                                 valoracion.projecttasks_id as contrato_id,
                                 valoracion.evaluacion_final as evaluacion_final,
                                 (select GROUP_CONCAT(id ORDER BY id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=".$_GET['tipo_especialidad']." and  criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio 
@@ -125,8 +148,8 @@ GLOBAL $DB,$CFG_GLPI;
                                                         $valoracion_id=$data['valuation_id'];
                                                         $contrato_id=$data['contrato_id'];
                                                         $fecha=$data['fecha'];
-                                
-                                                        echo "$('#criterio_".$data['criterio_id']."_comentario').html('".$data['comentario']."');";
+                                                        $comentario=$data['comentario'];
+                                                       
                                                         echo"valorElegido(".$data['valor'].", ".$data['criterio_id'].", \"".$data['num_ids_criterio']."\",\"".$data['criterio_padre']."\");"; 
                                                         
                                                         //Si la evaluación tiene marcado el check de ultima evaluación, que pueda quitarlo y sequir creardo evaluaciones.
@@ -140,6 +163,7 @@ GLOBAL $DB,$CFG_GLPI;
                                                 //Les pasamos el valor a los input de fecha de valoración
                                                 echo"$('#fecha_valoracion').find('input[name=_fecha]').val('".$fecha."');";    
                                                 echo"$('#fecha_valoracion').find('input[name=fecha]').val('".$fecha."');";    
+                                                echo "$('#comentario').html('".$comentario."');";
                                 echo"});</script>";
                         }
                         echo "<br><br>";
@@ -165,7 +189,7 @@ GLOBAL $DB,$CFG_GLPI;
                 GLOBAL $DB,$CFG_GLPI;
                 $resultado="<script type='text/javascript'>  
                     var arraySubValoracionValor = [];
-                    var arraySubValoracionComentario = [];
+                    //var arraySubValoracionComentario = [];
 
                         function valorElegido(valor_criterio, tipo_criterio, num_subcriterios, criterio_padre){
                         
@@ -241,9 +265,9 @@ GLOBAL $DB,$CFG_GLPI;
                                 //Si toda las subvaloraciones estan rellenas, las guardamos
                                 if(valores_completados==true){
                                         //Guardamos los valores de los comentarios
-                                        for(i=i=arrayTotalIdsSubcriterios[0];i<=arrayTotalIdsSubcriterios[arrayTotalIdsSubcriterios.length-1];i++){
+                                        /*for(i=i=arrayTotalIdsSubcriterios[0];i<=arrayTotalIdsSubcriterios[arrayTotalIdsSubcriterios.length-1];i++){
                                                 arraySubValoracionComentario[i]=$('#criterio_'+i+'_comentario').val();        
-                                        }
+                                        }*/
                                     
                                         if($('#evaluacion_final').prop('checked')) {	
                                                 eval_final=1;
@@ -255,15 +279,17 @@ GLOBAL $DB,$CFG_GLPI;
                                         var parametros = {
                                             'metodo':metodo,
                                             'guardarSubvaloraciones': '',
+                                            'comentario': $('#comentario').val(),
                                             'tipo_especialidad':tipo_especialidad,
-                                            'arraySubValoracionValor':arraySubValoracionValor,
-                                            'arraySubValoracionComentario':arraySubValoracionComentario,
+                                            'arraySubValoracionValor':arraySubValoracionValor,                                            
                                             'valoracion_id':valoracion_id,
                                             'fecha':$('#fecha_valoracion').find('input[name=fecha]').val(), 
                                             'contrato_id':contrato_id,
                                             'cv_id':$('#evaluacion').find('input[name=cv_id]').val(),
                                             'eval_final': eval_final
                                         };
+                                        
+                                        //'arraySubValoracionComentario':arraySubValoracionComentario,
 
                                         $.ajax({ 
                                             type: 'GET',

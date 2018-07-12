@@ -411,7 +411,8 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_comproveedores_valuations` (
         `actitud` DECIMAL(3,2) NOT NULL DEFAULT '0',
 
         `fecha` DATETIME NULL,
-        `evaluacion_final` TINYINT(1) NOT NULL DEFAULT '0'
+        `evaluacion_final` TINYINT(1) NOT NULL DEFAULT '0',
+        `comentario` VARCHAR(255) NULL,
 
         `is_deleted` tinyint(1) NOT NULL default '0',
         `externalid` varchar(255) NULL,

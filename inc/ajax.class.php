@@ -416,7 +416,7 @@ class Ajax {
 
       $rand = mt_rand();
       if (count($tabs) > 0) {
-         echo "<div id='tabs$rand' class='center$mainclass $orientation'>";
+         echo "<div id='tabs$rand' class='center$mainclass $orientation' style='width: auto;'>";
          if (CommonGLPI::isLayoutWithMain()
              && !CommonGLPI::isLayoutExcludedPage()) {
             $orientation = 'horizontal';
