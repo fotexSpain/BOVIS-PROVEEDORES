@@ -14,6 +14,7 @@
 	Session::checkLoginUser();
         
                 $team = new ProjectTaskTeam();
+                $PluginExperience= new PluginComproveedoresExperience();
 	
 	if(!isset($_GET["id"])) {
 		$_GET["id"] = "";
@@ -162,7 +163,66 @@
                        foreach ($proveedores as $key => $value) {
                                 
                                 if(!empty($value)){
+                                    
+                                        //Añadimos el contrato a la experiencia del proveedor 
+                                        $query="Select 
+                                                proyecto.name as nombre_proyecto, 
+                                                contrato.projectstates_id as estado, 
+                                                proyecto.plugin_comproveedores_experiencestypes_id as sector, 
+                                                proyecto.plugin_comproveedores_communities_id as CCAA,
+                                                contrato.plan_start_date as fecha_inicio,
+                                                contrato.plan_end_date as fecha_fin,
+                                                contrato.valor_contrato as importe,
+                                                (select cv_id from glpi_suppliers where id=".$value.") as cv_id
+                                                from glpi_projecttasks as contrato 
+                                                left join glpi_projects as proyecto on proyecto.id=contrato.projects_id
+                                                where contrato.id=".$_GET["paquete_id"];
+                                        
+                                        $result = $DB->query($query);
+                                         
+                                        while ($data=$DB->fetch_array($result)) {
+                                            
+                                                $experiencia['intervencion_bovis']=1;
+                                                //Nombre
+                                                $experiencia['name']=$data['nombre_proyecto'];
+                                                
+                                                //Año
+                                                $experiencia['anio']=substr($data['fecha_inicio'],0,4);
+                                                $experiencia['anio']= $experiencia['anio'].'-00-00 00:00';
 
+                                                //Importe
+                                                $experiencia['importe']=$data['importe'];
+                                                $experiencia['importe']= str_replace(".", "",  $experiencia['importe']);
+                                                $experiencia['importe']= str_replace(",", ".",  $experiencia['importe']);
+                                                
+                                                //Estado
+                                                if($data['estado']==1){
+                                                        $experiencia['estado']=1;
+                                                }else{
+                                                        $experiencia['estado']=0;
+                                                }
+                                                
+                                                //Tipo Experiencia
+                                                $experiencia['plugin_comproveedores_experiencestypes_id']=$data['sector'];
+                                                
+                                                //Comunidad Autonoma
+                                                $experiencia['plugin_comproveedores_communities_id']=$data['CCAA'];
+
+                                                //Duración 
+                                                $d_inicio=new DateTime($data['fecha_inicio']);
+                                                $d_fin=new DateTime($data['fecha_fin']);
+                                                
+                                                $experiencia['duracion']=$d_inicio->diff($d_fin);
+                                                $experiencia['duracion']=$experiencia['duracion']->format('%m%');
+                                                
+                                                //cv_id
+                                                 $experiencia['cv_id']=$data['cv_id'];
+                                                                                                
+                                                $PluginExperience->check(-1, CREATE, $experiencia);
+                                                $PluginExperience->add($experiencia);
+                                        }
+                                    
+                                        ///Guardamo la seleción del proveedor
                                         $add['projecttasks_id']=$_GET["paquete_id"];
                                         $add['itemtype']="Supplier";
                                         $add['items_id']=$value;
@@ -175,7 +235,7 @@
                                         }
                                 }        
                         }
-                        Html::back();
+                        //Html::back();
                         
 	}else if (isset($_GET["preseleccion_guardar"])) {
                         $PluginPreSelection= new PluginComproveedoresPreselection();

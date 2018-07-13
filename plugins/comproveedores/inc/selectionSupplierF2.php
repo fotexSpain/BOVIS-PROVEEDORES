@@ -79,7 +79,7 @@ include 'listSelectionSupplier.php';
 
 //echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
 echo"<span onclick='guardarPreseleccion(".$_GET['paquete_id'].",\"$preselecionIds\")' class='vsubmit' style='margin-right: 15px; '>GUARDAR PRESELECCIÓN</span>";
-echo "<span onclick='inlcuirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
+echo "<span onclick='incluirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
 echo"<br>";
 echo"<br>";
 echo"<br>";
@@ -254,12 +254,9 @@ function consultaAjax(){
 				
 	}
         
-                function inlcuirProveedoresAlPaquete(paquete_id){
-                
-                        
+                function incluirProveedoresAlPaquete(paquete_id){
+                                     
                         var numProveedores=0;
-                     
-                      
 
                         for(var i=0;i<=arrayProveedoresElegidos.length;i++){
                                 

@@ -606,7 +606,7 @@
                                                         }
                                                         if(!empty($data['id'])){
                                                                 echo"<tr style='height: 45px;'>";
-                                                                echo "<td style=' border: 1px solid #BDBDDB;'><a onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$num_evaluación."</a></td>";
+                                                                echo "<td style=' border: 1px solid #BDBDDB;'><a href='#' onclick='abrirValoracionContrato(".$data['id'].", ".$tipo_especialidad.")' >Evaluación ".$num_evaluación."</a></td>";
                                                                 $num_evaluación++;
                                                                 
                                                                  echo "<td style='border: 1px solid #BDBDDB;'>".substr($data['fecha'], 0,10)."</td>";
