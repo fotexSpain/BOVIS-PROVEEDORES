@@ -1329,7 +1329,7 @@ class ProjectTask extends CommonDBChild {
                         }         */  
                 }
             }
-            echo $header;
+            //echo $header;
             echo "</table>\n";
 
          } else {

@@ -1561,16 +1561,16 @@ class Project extends CommonDBTM {
             }
          }
       }
-      if ($nb) {
+     /* if ($nb) {
          echo $header_begin.$header_bottom.$header_end;
-      }
+      }*/
 
       echo "</table>";
-      if ($canedit && $nb) {
+      /*if ($canedit && $nb) {
          $massiveactionparams['ontop'] =false;
          Html::showMassiveActions($massiveactionparams);
          Html::closeForm();
-      }
+      }*/
 
       echo "</div>";
       // Add items

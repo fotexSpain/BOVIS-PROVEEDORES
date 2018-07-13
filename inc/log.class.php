@@ -301,7 +301,7 @@ class Log extends CommonDBTM {
             echo "<td width='60%'>".$data['change']."</td></tr>";
          }
       }
-      echo $header;
+      //echo $header;
       echo "</table></div>";
       Html::printAjaxPager(self::getTypeName(1), $start, $number);
 
