@@ -6080,7 +6080,7 @@ class Html {
             
              if($data['title']!='Administración' && $data['title']!='Configuración' ){
                  if($data['title']=='Proyectos' && !isset($data['default'])){
-                      
+                     unset($menu[$part]['content']);
                  }
                  else{
                 $menu_class = "";
