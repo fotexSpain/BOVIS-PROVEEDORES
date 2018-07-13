@@ -1369,20 +1369,40 @@ class ProjectTask extends CommonDBChild {
 
 
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
+        GLOBAL $DB,$CFG_GLPI;
+        
+       $id_usuario=$_SESSION['glpiID'];
+      
+        $query = "select distinct projectteams.items_id 
+                        from glpi_projectteams as projectteams 
+                        where projectteams.projects_id=".$item->fields['id']." and projectteams.items_id=".$id_usuario;
+        
+        $result = $DB->query($query);
+                                                     
+        //Si un usuario de equipo de proyecto o tiene premisos de super-Admin, que entre
+        if($result->num_rows!=0 || $_SESSION['glpiactiveprofile']['id']==4){
+                switch ($item->getType()) {
+                   case 'Project' :
+                      self::showFor($item);
+                      break;
 
-      switch ($item->getType()) {
-         case 'Project' :
-            self::showFor($item);
-            break;
-
-         case __CLASS__ :
-            self::showFor($item);
-            break;
-      }
+                   case __CLASS__ :
+                      self::showFor($item);
+                      break;
+                }
+        }
+        else{
+                self::showFormNoPermiso($item, $withtemplate);
+        }
       return true;
    }
 
 
+     function showFormNoPermiso($ID, $options=[]) {
+                        
+                echo "<div>Solo pueden acceder los usuarios que este en Equipo de proyecto o sean Administrador</div>";
+                echo "<br>";
+    }
    /**
     * Show team for a project task
     *

@@ -44,6 +44,7 @@
                                                         $self->showFormValuationProveedor($item, $withtemplate);
                                                 }else if($item->getType()=='ProjectTask'){
                                                     
+                                                        
                                                          //Çomprobamos que tiene un proveedor asignado,
                                                          //si el contrato tiene un proveedor asignado, que pase a la pantalla de valoraciones,
                                                          //si no tiene un proveedor asignado, visualizara la pantalla en la que le explica que el contrato tiene que tener un proveedor asignado
@@ -51,14 +52,27 @@
                         
                                                         $result = $DB->query($query);
                                                         
-                                                        if($result->num_rows!=0){
+                                                        if($result->num_rows!=0 || $_SESSION['glpiactiveprofile']['id']==4){
                                                                 $self->showFormValuationPaquete($item, $withtemplate);
                                                         }else{
                                                                 $self->showFormNoAsignadoProveedor($item, $withtemplate);
                                                         }
                                                 }else if($item->getType()=='Project'){
-                                                    
-                                                        $self->showFormValuationProyecto($item, $withtemplate);
+                                                        $id_usuario=$_SESSION['glpiID'];
+                                                           
+                                                        $query = "select distinct projectteams.items_id 
+                                                                        from glpi_projectteams as projectteams 
+                                                                        where projectteams.projects_id=".$item->fields['id']." and projectteams.items_id=".$id_usuario;
+                                                                       
+                                                        $result = $DB->query($query);
+                                                       
+                                                        //Si un usuario de equipo de proyecto o tiene premisos de super-Admin, que entre
+                                                        if($result->num_rows!=0 || $_SESSION['glpiactiveprofile']['id']==4){
+                                                                $self->showFormValuationProyecto($item, $withtemplate);
+                                                        }
+                                                        else{
+                                                                $self->showFormNoPermiso($item, $withtemplate);
+                                                        }
                                                 }            
                                 }
 
@@ -1046,6 +1060,13 @@
                         //Aqui entra cuando no tien gestionado el curriculum
 
                         echo "<div>Necesitas seleccionar un proveedor para este contrato, antes de evaluar</div>";
+                        echo "<br>";
+	}
+        
+                function showFormNoPermiso($ID, $options=[]) {
+                        //Aqui entra cuando no tien gestionado el curriculum
+
+                        echo "<div>Solo pueden acceder los usuarios que este en Equipo de proyecto o sean Administrador</div>";
                         echo "<br>";
 	}
                 
