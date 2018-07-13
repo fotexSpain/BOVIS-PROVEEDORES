@@ -37,15 +37,20 @@ GLOBAL $DB,$CFG_GLPI;
 
                     //formato de fecha yyyy-mm-dd
                     $_SESSION['glpidate_format']=0;
-                  
+                                
+                                if(!isset($_GET['id'])){
+                                        $display="-webkit-box";
+                                }else{
+                                        $display="none";
+                                }
                                                                        
-                    echo "<div align='center'><table class='tab_cadre_fixehov'>";
-                     echo "<tr>";
-                                echo"<td colspan='8' style=' border-bottom: none;'><div id='visualizar_ultima_eval' style='display: ".$display."; font-size: 14px;'>Evaluación Final&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                                        echo"<input id='evaluacion_final' style='width:17px;height:17px;' type='checkbox'/>";
-                                echo"</td>";
-                    echo "</tr>";
-                    echo "<tr>";
+                                echo "<div align='center'><table class='tab_cadre_fixehov'>";
+                                 echo "<tr>";
+                                            echo"<td colspan='8' style=' border-bottom: none;'><div id='visualizar_ultima_eval' style='display: ".$display."; font-size: 14px;'>Evaluación Final&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                                                    echo"<input id='evaluacion_final' style='width:17px;height:17px;' type='checkbox'/>";
+                                            echo"</td>";
+                                echo "</tr>";
+                                echo "<tr>";
                     
                                 echo"<td colspan='1' style=' border-bottom: none;'><div id='fecha_valoracion' style='display: -webkit-box; font-size: 14px;'>Fecha de valoración&nbsp"; 
                                         Html::showDateTimeField("fecha");
@@ -53,11 +58,7 @@ GLOBAL $DB,$CFG_GLPI;
                               
                                 //Si es una nueva evaluación que aparezca el Evaluación final. 
                                 //Esta con display para el caso en que se modifica la ultima evaluación, para que pueda desmarcar y crear nuevas
-                                if(!isset($_GET['id'])){
-                                        $display="-webkit-box";
-                                }else{
-                                        $display="none";
-                                }
+                                
                                 echo"<td style='font-size: 14px; border-bottom: none;'>Comentario</td>";
                                 echo"<td colspan='6' class='center' style='font-weight:bold; border-bottom: none;'><textarea  id='comentario' rows='4' cols='60' style='resize: none'></textarea></td>";
                             
