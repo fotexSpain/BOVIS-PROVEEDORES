@@ -132,7 +132,8 @@ GLOBAL $DB,$CFG_GLPI;
                                 valoracion.comentario,
                                 valoracion.projecttasks_id as contrato_id,
                                 valoracion.evaluacion_final as evaluacion_final,
-                                (select GROUP_CONCAT(id ORDER BY id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=".$_GET['tipo_especialidad']." and  criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio 
+                                (select GROUP_CONCAT(id ORDER BY id asc) from glpi_plugin_comproveedores_criterios as criterio3 where criterio3.tipo_especialidad=".$_GET['tipo_especialidad']." and  criterio3.criterio_padre=criterio.criterio_padre) as num_ids_criterio,
+                                (select valoracion2.id from glpi_plugin_comproveedores_valuations as valoracion2 where valoracion2.projecttasks_id=valoracion.projecttasks_id order by valoracion2.id desc limit 1) as id_ultima_evaluación
                                 from glpi_plugin_comproveedores_subvaluations as Subvaloraciones 
                                 left join glpi_plugin_comproveedores_criterios as criterio on Subvaloraciones.criterio_id=criterio.id
                                 left join glpi_plugin_comproveedores_valuations as valoracion on valoracion.id=Subvaloraciones.valuation_id
@@ -150,16 +151,24 @@ GLOBAL $DB,$CFG_GLPI;
                                                         $contrato_id=$data['contrato_id'];
                                                         $fecha=$data['fecha'];
                                                         $comentario=$data['comentario'];
+                                                        $ultima_evaluacion_guardada_id=$data['id_ultima_evaluación'];
                                                        
                                                         echo"valorElegido(".$data['valor'].", ".$data['criterio_id'].", \"".$data['num_ids_criterio']."\",\"".$data['criterio_padre']."\");"; 
                                                         
                                                         //Si la evaluación tiene marcado el check de ultima evaluación, que pueda quitarlo y sequir creardo evaluaciones.
                                                         $evaluacion_final=$data['evaluacion_final'];
                                                 }
-                                                if($evaluacion_final==1){
+                                                //Es la evaluación final(marco el check de evaluación final)
+                                                if($evaluacion_final==1 ){
                                                                    
                                                         echo"$('#visualizar_ultima_eval').attr('style', 'display:-webkit-box; font-size: 14px;');";
                                                         echo"$('#evaluacion_final').attr('checked',true);";
+                                                } 
+                                                //Es la última evaluación (pero no marco el check de evaluación final, al modificar pueda ponerlo como evaluación final)
+                                                if($ultima_evaluacion_guardada_id==$valoracion_id &&  $evaluacion_final==0){
+                                                                   
+                                                        echo"$('#visualizar_ultima_eval').attr('style', 'display:-webkit-box; font-size: 14px;');";
+                                                        echo"$('#evaluacion_final').attr('checked',false);";
                                                 } 
                                                 //Les pasamos el valor a los input de fecha de valoración
                                                 echo"$('#fecha_valoracion').find('input[name=_fecha]').val('".$fecha."');";    
