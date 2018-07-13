@@ -286,7 +286,7 @@ $result = $DB->query($query);
                         
 	}
         
-                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14' >Preselecciones Servicios Profesionales</th></tr>";
+                echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='15' >Preselecciones Servicios Profesionales</th></tr>";
 
                                 echo"<tr>";
                                 
@@ -304,7 +304,7 @@ $result = $DB->query($query);
                                 echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('COLABORADOR')."</th>";
                                 echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('CAPACIDAD')."</th>";
                                 echo "<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('ACTITUD')."</th>";
-                                echo"<th class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
+                                echo"<th colspan='2' class='center' style='width: 40px; height: 40px; border: 1px solid #BDBDDB;'>".__('BIM')."</th>";
                                 
 
                                 echo"</tr>";
@@ -385,10 +385,10 @@ $result = $DB->query($query);
                                                     echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                                 }
                                                  if(!empty($serviciosProfesionales['bim_servicio'])){
-                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($serviciosProfesionales['bim_servicio']).".png); background-repeat: no-repeat;  background-position: center;'>".$serviciosProfesionales['bim_servicio']."</td>";
+                                                    echo"<td colspan='2' class='center' style=' border: 1px solid #BDBDDB; font-weight: bold; color: black ; text-shadow:  2 white; background-image: url(".$CFG_GLPI["root_doc"]."/pics/valoracion_".getColorValoracion($serviciosProfesionales['bim_servicio']).".png); background-repeat: no-repeat;  background-position: center;'>".$serviciosProfesionales['bim_servicio']."</td>";
                                                 }
                                                 else{
-                                                    echo"<td class='center' style=' border: 1px solid #BDBDDB;'></td>";
+                                                    echo"<td colspan='2' class='center' style=' border: 1px solid #BDBDDB;'></td>";
                                                 }
                                         
 
