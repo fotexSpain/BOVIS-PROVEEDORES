@@ -6269,8 +6269,16 @@ class Html {
             echo "<span>";
              //Eliminamos los botones no necesarios de proyecto, solo se visualizarán, el de crear y el de buscar
             if($options['item']=='project'){
+                //buscamos el nombre del array, ya que varia en funcion del servidor
+                foreach ($links as $key => $value) {
+                       
+                        if(strpos( $key, 'img title="Mis tareas" alt="Mis tareas" src=')!=0){
+                                $nombre_key =$key;
+                        }
+                }
+                 
                 unset($links['template']);
-                unset($links['<img title="Mis tareas" alt="Mis tareas" src=\'/BOVIS-PROVEEDORES/pics/menu_showall.png\' class=\'pointer\'>']);
+                unset($links[$nombre_key]);
                 unset($links['summary']);
             }
             if (isset($links['search'])) {
