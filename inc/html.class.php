@@ -6267,6 +6267,12 @@ class Html {
 
             // Search Item
             echo "<span>";
+             //Eliminamos los botones no necesarios de proyecto, solo se visualizarán, el de crear y el de buscar
+            if($options['item']=='project'){
+                unset($links['template']);
+                unset($links['<img title="Mis tareas" alt="Mis tareas" src=\'/BOVIS-PROVEEDORES/pics/menu_showall.png\' class=\'pointer\'>']);
+                unset($links['summary']);
+            }
             if (isset($links['search'])) {
                echo "<a href='{$CFG_GLPI['root_doc']}{$links['search']}' class='pointer'
                                  title='" . __s('Search') ."'><i class='fa fa-search'></i>

@@ -39,7 +39,7 @@ $result = $DB->query($query);
                             $html.= "<th style='border: 1px solid #BDBDDB; font-weight: bold; text-align: left; padding: 10px 5px;'>".__('Estado')."</th>";
                             $html.= "<th style='border: 1px solid #BDBDDB; font-weight: bold; text-align: left; padding: 10px 5px;'>".__('Nº Contratos')."</th>";
                             $html.= "<th style='border: 1px solid #BDBDDB; font-weight: bold; text-align: left; padding: 10px 5px;'>".__('Nº Evaluaciones')."</th>";
-                            $html.= "<th style='border: 1px solid #BDBDDB; font-weight: bold; text-align: left; padding: 10px 5px;'>".__('Usuario')."</th>";
+                            $html.= "<th style='border: 1px solid #BDBDDB; font-weight: bold; text-align: left; padding: 10px 5px;'>".__('Gerente')."</th>";
                    $html.= "</tr>";
 
 	while ($data=$DB->fetch_array($result)) {
