@@ -62,7 +62,7 @@ $result = $DB->query($query);
 	echo "<tr class='tab_bg_2 tab_cadre_fixehov nohover'><th colspan='14'>Lista de proyectos</th></tr>";
 	echo"<br/>";
 	echo "<tr>";
-                            echo "<th></th>";
+                            echo "<th><input id='proyectos_todos'  onclick=añadirProyectoIdPDF('Todos') type='checkbox' /></th>";
                             echo "<th>".__('Nombre')."</th>";
                             echo "<th>".__('Código del proyecto')."</th>";
                             echo "<th>".__('Estado')."</th>";
@@ -73,7 +73,6 @@ $result = $DB->query($query);
 
 	while ($data=$DB->fetch_array($result)) {
                             
-                                
                                 echo "<tr class='tab_bg_2'>";
                                 
                                 echo "<td  class='center'><input id='proyecto_".$data["id"]."' onclick=añadirProyectoIdPDF(".$data["id"].") type='checkbox' /></td>";
@@ -121,14 +120,29 @@ $result = $DB->query($query);
                         
                         //Añadimos o quitamos el id del proyecto al array arrayProyectosIdPDF
                         function añadirProyectoIdPDF(proyecto_id){
-                               
-                            if($('#proyecto_'+proyecto_id).prop('checked')){
                                 
-                                arrayProyectosIdPDF[proyecto_id]=proyecto_id;
-                            }
-                            else{
+                                //Marcar o desmarca todo los check
+                                if(proyecto_id=='Todos'){
+                                
+                                        //Si el check 'Todos' está marcado que marque los check que no lo este y viceversa
+                                        if($('#proyectos_todos').is(':checked')){
                                         
-                                delete  arrayProyectosIdPDF[proyecto_id];
-                            }
+                                                $('[id*=proyecto_]').prop('checked', false).click();
+                                        }else{
+                                        
+                                                $('[id*=proyecto_]').prop('checked', true).click();
+                                        }         
+                                }else{
+                                        if($('#proyecto_'+proyecto_id).prop('checked')){
+                                
+                                            arrayProyectosIdPDF[proyecto_id]=proyecto_id;
+                                        }
+                                        else{
+
+                                            delete  arrayProyectosIdPDF[proyecto_id];
+                                        }
+                                }
+                            
+                            
                         }
                 </script>";
