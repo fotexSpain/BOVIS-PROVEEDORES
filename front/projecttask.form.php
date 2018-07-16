@@ -53,6 +53,7 @@ if (!isset($_GET["projecttasks_id"])) {
 $task = new ProjectTask();
 $PluginValuation = new PluginComproveedoresValuation();
 $PluginSubvaluation = new PluginComproveedoresSubvaluation();
+$PluginPreSelection = new PluginComproveedoresPreselection();
 
 if (isset($_POST["add"])) {
     
@@ -103,6 +104,16 @@ if (isset($_POST["add"])) {
         $PluginValuation->delete($data_valuation, 1);
      
    }
+   ////Eliminamos las Preselecciones del contrato///////
+        $query_preseleccion ="select id from glpi_plugin_comproveedores_preselections where projecttasks_id=".$_POST['id'];
+        $result_preseleccion = $DB->query($query_preseleccion);
+
+        while ($data_preseleccion=$DB->fetch_array($result_preseleccion)) {
+
+             $PluginPreSelection->check($data_preseleccion['id'], PURGE);
+             $PluginPreSelection->delete($data_preseleccion, 1);
+        }
+   ////////////////////////////////////////////////////////////
   
    $task->check($_POST['id'], PURGE);
    $task->delete($_POST, 1);

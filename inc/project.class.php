@@ -1079,6 +1079,7 @@ class Project extends CommonDBTM {
                         
                         $('#duracion').find('input').attr('onChange', 'cambiarDuracion(\"duracion\")');
                         $('#plan_end_date').find('input[name=_plan_end_date]').attr('onChange', 'cambiarDuracion(\"fecha_final\")');
+                        cambiarDuracion('fecha_final');
                             
                 });
                 
