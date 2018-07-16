@@ -77,12 +77,16 @@ echo "</table>";
 
 include 'listSelectionSupplier.php';
 
-//echo"<span onclick='imprimirPdf()' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
+$contrato_id=$_GET['paquete_id'];
+
+echo"<span onclick='imprimirPdf(\"$preselecionIds\", ".$contrato_id.")' class='vsubmit' style='margin-right: 15px; '>IMPRIMIR</span>";
 echo"<span onclick='guardarPreseleccion(".$_GET['paquete_id'].",\"$preselecionIds\")' class='vsubmit' style='margin-right: 15px; '>GUARDAR PRESELECCIÓN</span>";
 echo "<span onclick='incluirProveedoresAlPaquete(".$_GET['paquete_id'].")' class='vsubmit' style='margin-right: 15px;'>AÑADIR PROVEEDOR</span>";
 echo"<br>";
 echo"<br>";
 echo"<br>";
+
+
 
 function getTiposExperiencias(){
 	GLOBAL $DB,$CFG_GLPI;
@@ -129,22 +133,10 @@ function consultaAjax(){
                         });
                 }
                         
-                function imprimirPdf(){
-                  
-                                var ids='';
-                                for(i=0; i<arrayProveedoresElegidos.length;i++){
-                                    if(arrayProveedoresElegidos[i]!=null){
-                                        ids=ids+arrayProveedoresElegidos[i]+',';
-                                    }   
-                                }
-                                ids = ids.substring(0, ids.length-1); 
-                                if(ids!=''){
+                function imprimirPdf(preselecionIds, contrato_id){
                                 
-                                        window.open('".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/lisSelectionSupplierPDF.php?id='+ids,'_blank'); 
-                                }
-                                else{
-                                        alert('Tienes que elegir un proveedor de la lista, para poder exportar a PDF');
-                                }
+                        window.open('".$CFG_GLPI["root_doc"]."/plugins/comproveedores/inc/lisSelectionSupplierPDF.php?ids='+preselecionIds+'&contrato_id='+contrato_id,'_blank');
+
                 }
 
                 function setListaProveedorfiltro(supplier_id){
