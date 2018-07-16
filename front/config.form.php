@@ -37,6 +37,7 @@
 
 include ('../inc/includes.php');
 Session::checkRight("config", READ);
+global $DB;
 
 $config = new Config();
 $_POST['id'] = 1;
@@ -45,6 +46,26 @@ if (!empty($_POST["update_auth"])) {
    Html::back();
 }
 if (!empty($_POST["update"])) {
+    ////Actualizar la frecuencia en la que se envían los recordatorios de evaluaciones
+    $crontask = new CronTask();
+    
+     //frecuencia de un mes
+    $frecuancia= 2592000;
+    
+    $query="select id from glpi_crontasks where itemtype='PluginComproveedoresValuation' and name='EvaluacionesRecordatorio'";
+   
+    $result = $DB->query($query);
+    
+    while ($data=$DB->fetch_array($result)) {
+        
+        $recordatorio_evaluacion['id']=$data['id'];
+        $recordatorio_evaluacion['frequency']=$_POST['meses_valoraciones']*$frecuancia;
+
+        $crontask->check($recordatorio_evaluacion['id'], UPDATE);
+        $crontask->update($recordatorio_evaluacion);
+    }
+  ////////////////
+
    $config->update($_POST);
    Html::redirect(Toolbox::getItemTypeFormURL('Config'));
 }
