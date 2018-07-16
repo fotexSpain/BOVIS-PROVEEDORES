@@ -26,13 +26,13 @@ if($_GET['nombre_proveedor']!=''){
      $where=$where."UPPER(proveedor.name) LIKE UPPER('%".$_GET['nombre_proveedor']."%') and ";
  }
 if($_GET['cif']!=''){
-     $where=$where."proveedor.cif='".$_GET['nombre_proveedor']." and ";
+     $where=$where."proveedor.cif=".$_GET['cif']." and ";
  }
  if($_GET['nombre_proyecto']!=''){
      $where=$where."UPPER(proyectos.name) LIKE UPPER('%".$_GET['nombre_proyecto']."%') and ";
  }
   if($_GET['codigo_proyecto']!=''){
-     $where=$where."proyectos.code='".$_GET['codigo_proyecto']." and ";
+     $where=$where."proyectos.code=".$_GET['codigo_proyecto']." and ";
  }
  //Eliminamos el ultimo and y ordenamos por proveedor,
  //en el caso de que venga de la página selectionsupplierF1, sino estamos es que estamos en la preselección y no hay and en el where
